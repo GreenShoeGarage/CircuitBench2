@@ -1,0 +1,19 @@
+LOGIC-LEVEL OFFLINE VERIFICATION ONLY. No browser service-worker or disconnected-network reload is claimed.
+Generated dist/sw.js SHA-256: 813c0067520d87157ede25bad4c7d7f7c97b7b872404526b96514776f9345e04; version 1.0.0-rc.1; build 804d39c2687b9a27
+✔ generated precache lists every real runtime asset, including actual WebAssembly bytes (68.597818ms)
+✔ scope-relative install and cached offline fetch work in VM at / (25.765907ms)
+✔ scope-relative install and cached offline fetch work in VM at /tools/circuitbench/ (18.324192ms)
+✔ uncached resources fall back to network and fail honestly while offline (4.331486ms)
+✔ non-GET, foreign-origin, and out-of-scope requests are not intercepted (2.027511ms)
+✔ a failed cache.addAll cannot advertise offline readiness (2.077285ms)
+✔ readiness checks every cached runtime asset instead of accepting only the HTML shell (1.618755ms)
+✔ cache activation cleans only older builds of the exact scope, preserving nested and sibling installs (7.05219ms)
+✔ waiting updates are activated only by explicit SKIP_WAITING message (1.789702ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 146.43005

@@ -1,0 +1,21 @@
+{
+  "package": "eecircuit-engine",
+  "version": "1.8.0",
+  "packageIntegrity": "sha512-surzfC0ZZYRN9X3sRN4w5RqTUypoEArTyMQJTXnBLguH10G+QKLp2LveXHybxyTZPLZVPTfahVw6J8U2caf1vg==",
+  "tarball": "https://registry.npmjs.org/eecircuit-engine/-/eecircuit-engine-1.8.0.tgz",
+  "adaptation": "CircuitBench vendor patch 2: byte-safe raw header parsing",
+  "files": {
+    "eecircuit-engine.mjs": {
+      "sha256": "3b0e9ec07d5ee75ce40bee633fff8d3226df2ecf8dbba4e33e118550ed143196",
+      "bytes": 77772
+    },
+    "spice.wasm": {
+      "sha256": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4",
+      "bytes": 6133055
+    },
+    "LICENSE-EEcircuit.txt": {
+      "sha256": "05b5629164ed0e846fd9f3ee34b64aced9d1ffef01e6fc30c39c8c68b9fea4ed",
+      "bytes": 1066
+    }
+  }
+}

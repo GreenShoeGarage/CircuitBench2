@@ -1,0 +1,46 @@
+{
+  "package": "eecircuit-engine",
+  "version": "1.8.0",
+  "packageGitHead": "f4dab6458d3865a1db9766008480690d23410c3a",
+  "nativeSourceTag": "ngspice-45.2",
+  "nativeTagRef": "724dc77b9153dc75eaec474b1f7a44f1fcf5f362",
+  "nativeSourceURL": "https://github.com/danchitnis/ngspice-sf-mirror/archive/refs/tags/ngspice-45.2.tar.gz",
+  "sourceFiles": {
+    "ngspice-45.2-source.tar.gz": {
+      "sha256": "3aa30022e975bc04e2d9566e62e76d15e108d7b887f520755383ba37464c2324",
+      "bytes": 10591938
+    },
+    "eecircuit-engine-1.8.0/LICENSE": {
+      "sha256": "05b5629164ed0e846fd9f3ee34b64aced9d1ffef01e6fc30c39c8c68b9fea4ed",
+      "bytes": 1066
+    },
+    "eecircuit-engine-1.8.0/Docker/run.sh": {
+      "sha256": "434d3a0c99a8aaa2a4152d7c5583e96dd899d06dbbf6175cc65975a41d92a85e",
+      "bytes": 5303
+    },
+    "eecircuit-engine-1.8.0/Docker/pre.js": {
+      "sha256": "d4f5703e1ead8f7d213fa274a3e2c7c678da0609b22abf2c7d7c763060dbb05e",
+      "bytes": 651
+    },
+    "eecircuit-engine-1.8.0/Docker/Dockerfile": {
+      "sha256": "774ccc0e7d9a0229bfefeea450d4051a5b4f410912449c34b325acead24c4a2d",
+      "bytes": 676
+    },
+    "eecircuit-engine-1.8.0/Docker/hicum2_patch.sh": {
+      "sha256": "c846cb833eb2bbbbabb99e4ec13f62f593188d703dc165980cb533cd7bb60478",
+      "bytes": 1067
+    },
+    "eecircuit-engine-1.8.0/src/spice.d.ts": {
+      "sha256": "3e6932ce5c9c815f12f7475f8d85a1837ae1d56c288fe458c63514f5bf162e0e",
+      "bytes": 610
+    },
+    "eecircuit-engine-1.8.0/src/simulationLink.ts": {
+      "sha256": "270494b5190110265fb14704a0b551d659fae7f863c8202fff1126161e466173",
+      "bytes": 11181
+    },
+    "eecircuit-engine-1.8.0/src/readOutput.ts": {
+      "sha256": "c1c1361355d2b6837ed909d41bd0c84ab8723358532d72ea948caa71d88af7e9",
+      "bytes": 5972
+    }
+  }
+}

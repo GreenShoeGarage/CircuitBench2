@@ -1,0 +1,14 @@
+✔ built release identity matches application and source package (10.130944ms)
+✔ manifest authenticates every packaged file it declares (164.214777ms)
+✔ offline asset list includes the actual WASM filename referenced by the engine (21.015343ms)
+✔ service worker precaches only available local core assets (4.647476ms)
+✔ browser module imports and entry assets resolve locally within the app subdirectory (21.661808ms)
+✔ source runtime bytes equal the built bytes under test (37.966288ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 268.656708

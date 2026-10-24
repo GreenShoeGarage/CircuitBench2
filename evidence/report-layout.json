@@ -1,0 +1,70 @@
+{
+  "checkedAt": "2026-10-24T04:37:42.218766+00:00",
+  "status": "pass",
+  "scope": "Visual pagination QA of the exact HTML report captured from the application browser preview, using an independent PDF renderer.",
+  "browserHTMLPreview": {
+    "verified": true,
+    "verifiedBy": "Parent agent in managed CUA browser",
+    "capturePath": "/home/oai/share/circuitbench-report-release.html",
+    "syncedPath": "/workspace/scratch/circuitbench-report-release.html"
+  },
+  "independentPDFRender": {
+    "verified": true,
+    "renderer": "WeasyPrint",
+    "version": "66.0",
+    "rasterizer": "Poppler pdftoppm 26.05.0",
+    "rasterDpi": 110,
+    "pages": 3,
+    "paper": "A4",
+    "allPagesVisuallyInspected": true
+  },
+  "nativeChromePrintDialogTested": false,
+  "nativeChromePDFExportTested": false,
+  "report": {
+    "project": "RC low-pass filter",
+    "revision": 7,
+    "analysis": "AC",
+    "runStatus": "completed",
+    "samplesPerVector": 501,
+    "capacitance": "220 nF",
+    "expectedCutoffHz": 72.34,
+    "baselineRevision": 0,
+    "selectedRunProvenance": "Fresh completed run; no restored-backup notice expected for selected run."
+  },
+  "pageReview": [
+    {
+      "page": 1,
+      "result": "pass",
+      "contents": "Report identity, completed revision 7 status, immutable schematic, component values. Mirrored horizontal capacitor ground wire approaches the right pin from below; no body crossing. All symbols, wire labels and probe numbers are visible."
+    },
+    {
+      "page": 2,
+      "result": "pass",
+      "contents": "Numerical evidence begins with its plot. Export legend identifies Output and Input by color and solid/dashed comparison semantics. Both magnitude and phase curves and axes fit. Baseline caption, measurements, assumptions and corrected 72.34 Hz interpretation fit without clipping."
+    },
+    {
+      "page": 3,
+      "result": "pass",
+      "contents": "Active AC configuration and solver fields, engine/model provenance, limitations, exact netlist and complete short engine log fit. The footer remains on this page, with no orphan page or split short log."
+    }
+  ],
+  "artifacts": {
+    "html": {
+      "path": "/workspace/scratch/141bc601d3b6/release/CircuitBench-1.0.0-rc.1-example-report.html",
+      "bytes": 83481,
+      "sha256": "03dd1c0800848aefc51e8e9ab8cf1ba648731d75c0fbd3b0567f9e6642aad5b3",
+      "sourceUnmodified": true
+    },
+    "pdf": {
+      "path": "/workspace/scratch/141bc601d3b6/release/CircuitBench-1.0.0-rc.1-example-report.pdf",
+      "bytes": 62664,
+      "sha256": "45ed9723e41276f0180358cdcdbeb26490509f711aef5abb5de1ccae65d49eec",
+      "producer": "WeasyPrint 66.0"
+    }
+  },
+  "limitations": [
+    "This verifies the browser-generated report content and independent-renderer pagination, not the native Chrome Print or Save as PDF dialog.",
+    "The final sample uses a fresh completed run. Restored-backup provenance behavior is separate from this final PDF layout check."
+  ],
+  "delivery": "Sample HTML and PDF copied to the local release directory. QA page PNGs remain under qa-tmp and are excluded from the source package. No uploads performed."
+}

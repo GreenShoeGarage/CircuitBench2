@@ -1,0 +1,36 @@
+CircuitBench numerical runtime notices
+
+CircuitBench uses ngspice 45.2 compiled to WebAssembly and the EEcircuit-engine
+1.8.0 adapter by Danial Chitnis (MIT). The engine binary is extracted, unchanged,
+from the pinned npm release. See manifest.json for cryptographic identity.
+
+ngspice is not exclusively BSD: its COPYING file lists Modified BSD, LGPL
+(numparam and KLU portions), MIT-compatible sparse code, and other notices.
+The complete license document is in COPYING-ngspice-45.2.txt. Emscripten and its
+runtime portions are covered by LICENSE-Emscripten.txt. Preserve these notices.
+
+The upstream ngspice 45.2 source release is provided in
+source/ngspice-45.2-source.tar.gz; source/eecircuit-engine-1.8.0 contains the
+upstream integration/build patches from the npm package's exact gitHead.
+The source/manifest.json records hashes and source locations. Source archives
+are for inspection, modification and rebuilding; they are not runtime assets.
+The application places no restrictions on modifying or replacing this runtime
+or reverse engineering it to debug such modifications.
+
+CircuitBench's adaptation is reproducible with scripts/vendor-engine.py in the
+application source package. It extracts identical embedded WASM bytes, points
+both JS loading paths at the local WASM, removes all upstream PDK/model-card
+preloads, parses binary offsets in bytes so UTF-8 project titles are preserved,
+validates raw payload lengths, propagates parse failures, and caps diagnostics.
+The readable parser patch is scripts/vendor-raw-parser.js in the source package.
+It does not change the numerical implementation. Curated CircuitBench device model
+cards are separately declared and attributed in each generated netlist.
+
+The upstream Docker recipe selects a moving Emscripten toolchain. Consequently,
+we verify byte-identical extraction from the pinned published package, not a
+byte-identical C-source compiler build. The original recipe is retained as
+source evidence; pin a toolchain before maintaining a new engine build.
+
+Source archives may include upstream examples and models. These are upstream
+source materials under their included notices, not part of CircuitBench's
+supported runtime component library; CircuitBench never loads them implicitly.

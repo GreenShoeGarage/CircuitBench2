@@ -1,0 +1,17 @@
+{
+  "application": "CircuitBench",
+  "version": "1.0.0-rc.1",
+  "runtime_build": "804d39c2687b9a27",
+  "passed": 74,
+  "failed": 0,
+  "suites": {
+    "core": 25,
+    "editor": 11,
+    "results": 13,
+    "package": 6,
+    "offline": 9,
+    "autosave": 4,
+    "engine-raw-parser": 6
+  },
+  "scope": "Node logic and generated-service-worker VM tests; actual browser and native/WASM evidence are separate."
+}
