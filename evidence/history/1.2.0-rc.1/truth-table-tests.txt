@@ -1,0 +1,20 @@
+CircuitBench 1.2.0-rc.1 focused test evidence
+Runtime build: c8ef3ed4d77a1672
+Command: node tests/truth-table.test.mjs
+Recorded: 2026-10-24T06:56:43.397Z
+
+✔ truth table enumerates selected inputs in declared significance order through timed logic (5.350453ms)
+✔ truth table settles the longest reconvergent path and preserves fixed unknown drivers (1.1038ms)
+✔ eight selected bus bits produce at most 256 literal-word rows without exposing private bits (42.576677ms)
+✔ truth tables reject clocks, patterns, state and combinational cycles (2.862099ms)
+✔ truth-table input, output and shared work limits fail explicitly (2.134274ms)
+✔ workbench rejects mixed truth tables before starting a worker (0.936976ms)
+✔ truth-table worker is exclusive, disposable, cancellable and recoverable (156.620761ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 220.041857

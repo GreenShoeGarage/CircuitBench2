@@ -1,0 +1,137 @@
+{
+  "application": "CircuitBench",
+  "version": "1.2.0-rc.1",
+  "recorded_at": "2026-10-24T07:11:09.992522+00:00",
+  "final_runtime_build": "7ad78c372946c614",
+  "browser": "Managed Chrome",
+  "preview_url": "http://terminal.local:4173/",
+  "secure_context": false,
+  "build_chronology": [
+    {
+      "build": "95fb816ff55932ab",
+      "scope": "Initial 1.2 refresh, authored half-adder enumeration, connected LUT width rejection, row edit to 0X, immutable history, CSV download."
+    },
+    {
+      "build": "c8ef3ed4d77a1672",
+      "scope": "Numeric LUT normalization and draft validation, autosaved table recovery in a fresh tab, bus alias timing/report and counter word/cursor checks."
+    },
+    {
+      "build": "7ad78c372946c614",
+      "scope": "Final refresh retained counter run; mixed bus-bit DAC/RC run, incomplete imported LUT repair/cancel/apply, fresh authored half-adder table and final screenshot."
+    }
+  ],
+  "confirmed": [
+    {
+      "workflow": "legacy-scalar-recovery",
+      "result": "Existing tri-state project and 16-position 0/1/X/Z evidence recovered with 37-part library."
+    },
+    {
+      "workflow": "half-adder-table",
+      "input_words": [
+        "00",
+        "01",
+        "10",
+        "11"
+      ],
+      "carry_sum": [
+        "00",
+        "01",
+        "01",
+        "10"
+      ],
+      "rows": 4,
+      "kernel": "cb-digital-kernel-2",
+      "settling_seconds": 1.0002e-08
+    },
+    {
+      "workflow": "connected-width-edit",
+      "request": "LUT output 2 bits to 4 bits",
+      "result": "Rejected width conflict on sumcarry; project revision remained 0."
+    },
+    {
+      "workflow": "immutable-history",
+      "result": "Row 00 changed to 0X at revision 1; new table sum X, prior revision 0 table unchanged and explicitly marked outdated. Saved revisions 0 and 1 survived fresh build/tab; revision2 numeric row followed."
+    },
+    {
+      "workflow": "numeric-row-editor",
+      "result": "0x1 and 0x2 produced 01 and 10. Non-fitting 0x9 at width 2 showed row-specific error and preserved draft/dimensions."
+    },
+    {
+      "workflow": "bus-slice-join",
+      "points": 2,
+      "values": {
+        "WORD": "10Z1",
+        "LOW": "Z1",
+        "HIGH": "10",
+        "JOINED": "10Z1",
+        "bit1": "Z"
+      },
+      "report_preview": "Exact words retained; no numeric bus extrema."
+    },
+    {
+      "workflow": "counter",
+      "points": 28,
+      "result": "Visible wrap 1111\u21920000, synchronous reset and Q0 tap. Cursor at about 3.674 ms: COUNT 0010, Q0=0. Run recovered after final refresh."
+    },
+    {
+      "workflow": "bus-dac-rc-final",
+      "points": 635,
+      "original_analog_positions": 635,
+      "word_sequence": [
+        "0000",
+        "0100",
+        "0000"
+      ],
+      "status": "completed-with-warnings",
+      "digital_protocol": 2,
+      "analog_protocol": 4,
+      "wasm_response": {
+        "status": 200,
+        "content_type": "application/wasm",
+        "bytes": 6133055
+      },
+      "asset_base": "assets/1.2.0-rc.1/"
+    },
+    {
+      "workflow": "incomplete-lut-repair-final",
+      "original_text": "00:00",
+      "result": "Imported fixture opened repair dialog; reset local draft + Cancel retained text and rev 0; corrected complete half-adder table + Apply committed rev 1."
+    },
+    {
+      "workflow": "truth-table-csv-download",
+      "bytes": 290,
+      "sha256": "6fd7ebfee61b7f86af7e71241d67a371f68c6b4d1eecf0f3ab71f54a71171c8f",
+      "data_rows": 4,
+      "evidence_file": "rc120-truth-table.csv",
+      "exact_expected_values": true
+    }
+  ],
+  "unverified": [
+    {
+      "workflow": "truth-table-evidence-json",
+      "observation": "Download event timed out; browser automation required a fresh preview tab. No cause assigned and no verified file."
+    },
+    {
+      "workflow": "project-backup-download-reopen",
+      "observation": "Download API returned path, but no file was available in shared workspace after 5 seconds or through browser file chooser. Not counted as successful export."
+    },
+    {
+      "workflow": "secure-offline-install-update-recovery",
+      "observation": "Managed preview is HTTP on a non-localhost origin; UI reported HTTPS/localhost required."
+    },
+    {
+      "workflow": "final-html-download-native-print-pdf",
+      "observation": "Report preview verified; final-candidate download/native print not closed."
+    },
+    {
+      "workflow": "browser-viewport-matrix",
+      "observation": "Current desktop view reviewed; full phone/tablet/browser matrix not rerun."
+    },
+    {
+      "workflow": "preparation-cancel-and-empty-circuit-retention",
+      "observation": "Controlled app regression tests cover these exact races/guards; not manually forced in browser."
+    }
+  ],
+  "live_host_record": "live-host-120-preflight.json",
+  "scope": "Browser observations are separate from Node worker numerical proofs and package integrity. The public deployment was not modified."
+}

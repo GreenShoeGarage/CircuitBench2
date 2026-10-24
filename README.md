@@ -1,91 +1,219 @@
 # CircuitBench
 
-**Version 1.0.0-rc.1 — release candidate; secure-context browser offline verification remains blocked.**
+**Version 2.0.0-rc.1 — analog, digital and coordinated mixed-signal release candidate.**
 
-CircuitBench is a self-hosted analog electronics workbench from Green Shoe
-Garage. Draw a circuit, connect real pins, configure an experiment, run ngspice,
-measure the response, change a value, compare a baseline, and save the evidence.
+CircuitBench is Green Shoe Garage's self-hosted electronics workbench. Draw a
+circuit, configure an experiment, run it, measure the response, compare a
+baseline and save the evidence. It is a static browser application with local
+simulation and storage. No account, cloud API, telemetry or native runtime
+installation is required for the deployed application.
 
-It is a static web application. The simulation engine runs locally in a Web
-Worker. Core operation needs no account, cloud API, telemetry, or native ngspice
-installation. The deployable ZIP contains the built application and its runtime
-assets; you do not compile it to deploy it.
+This candidate implements all six requested batches: a working seven-segment
+display, coordinated analog/digital feedback, closed-loop execution, multibit
+converters, advanced analog experiments and stateful continuous simulation.
+The library contains **41 parts, 35 model definitions and 38 examples**:
+16 analog, 14 digital and 8 mixed-signal examples. External-host acceptance
+remains a release gate; see [validation](docs/VALIDATION.md).
 
-## Start the prebuilt release
+## New in 2.0
 
-Unzip the deployable package into a folder, open a terminal in that folder, and
-run:
+| Capability | Delivered behavior |
+|---|---|
+| Working seven-segment display | `SEG7` observes an eight-bit segment bus at the selected simulated time. `HEX7` decodes a four-bit hexadecimal or BCD digit and a decimal-point input. Active-high/low operation and literal X/Z states are explicit. |
+| Coordinated analog/digital feedback | One isolated worker advances the supported analog network, four-state logic, converter samples and pending events on a shared causal timeline. |
+| Closed-loop mixed simulation | Analog voltage can change digital logic and return through a DAC to the same analog circuit. Schmitt RC and sampled four-bit feedback examples are included. |
+| Multibit conversion | Unsigned 2–8-bit sampled ADCs and finite-edge voltage DACs preserve full bus words, differential references, conversion timing and declared startup conditions. |
+| Advanced analog experiments | Linear/logarithmic parameter sweeps and deterministic seeded tolerance studies run independent trials with exact parameter values, explicit failures, saved measurements and CSV/JSON evidence. |
+| Continuous simulation | Bounded worker commands continue the same circuit state. Pause, Resume, Step and live input changes operate with an explicitly bounded recent waveform window. |
+
+## Choose the simulation mode
+
+The transient inspector provides two engine choices:
+
+| Engine choice | Supported work |
+|---|---|
+| **ngspice · analog / feed-forward mixed** | The established analog library, including diodes, transistors, switches and op amps; operating point, DC sweep, AC and transient analysis. Mixed experiments use the existing scalar ADC/DAC feed-forward replay. |
+| **Coordinated · analog/digital feedback** | Transient simulation of resistors, capacitors, inductors and independent voltage/current sources together with digital logic, buses, displays and scalar or multibit converters. Supports closed-loop and continuous execution. |
+
+Digital circuits use CircuitBench's four-state event logic. Width checks require
+explicit Slice/Join parts when changing bus widths; sequential parts provide
+state boundaries for digital feedback. Pure combinational digital cycles are
+rejected. The coordinated solver also rejects unsupported nonlinear parts and
+imported SPICE decks with an actionable diagnostic.
+
+Coordinated analog integration uses backward Euler. Reduce **Maximum time
+step** and compare the quantity of interest when checking numerical convergence.
+The shared 1 ps event grid is a scheduling resolution, not a physical-accuracy
+claim. Ngspice remains the engine for nonlinear analog device experiments and
+its supported feed-forward mixed circuits. The bundled ngspice WASM still has
+XSPICE disabled; the coordinated engine has its own recorded identity and
+explicit model limits. See [the engine contract](docs/closed-loop-engine.md).
+
+## Try the new workflows
+
+### Display actual digital state
+
+1. Open **Examples → Hex counter with a working seven-segment display**.
+2. Choose **Run experiment**. The counter, decoder and display execute together.
+3. Move waveform cursor A to inspect a saved time. The display reads the
+   preserved segment events; without a selected time it shows the latest
+   retained state.
+
+Try **Seven-segment patterns, decimal point, X and Z** to inspect uncertain and
+released segments. `SEG7` is a passive digital indicator; it has no LED current,
+brightness or multiplex-persistence model. Its input is the eight-bit segment
+word, while `HEX7` accepts the four-bit digit. See
+[seven-segment displays](docs/seven-segment-display.md).
+
+### Run a closed feedback loop or a multibit conversion
+
+Open **Examples → Closed-loop Schmitt RC oscillator** and choose **Run
+experiment**. The capacitor voltage crosses the ADC thresholds; the digital
+inverter and DAC then change the drive on that same RC network. Compare a
+second run with a smaller maximum time step.
+
+For sampled feedback, choose **Sampled 4-bit feedback controller and display**.
+For the converter transfer, choose **Multibit ADC, DAC and seven-segment
+readout**. The latter samples a 0–5 V ramp into a four-bit code and reconstructs
+it with a DAC. **Eight-bit counter through a voltage DAC** exercises a complete
+eight-bit path.
+
+The sampled ADC clips to its configured range and rounds to the nearest unsigned
+code. It publishes after its conversion delay; the initial word is X. The
+multibit DAC holds its explicit startup code until its first fully known word.
+A later X/Z input stops the run with a diagnostic. Widths, references and
+sample/delay rules are documented in [multibit converters](docs/multibit-converters.md).
+
+### Sweep a component or study tolerance
+
+1. Open **Examples → Resistor tolerance and divider sensitivity**.
+2. Choose **Analog experiments…**, then **Parameter sweep**. Select `R1.value`,
+   start `10k`, stop `30k`, three trials and linear spacing.
+3. Select **Midpoint** and **Final value**, then **Run study**. The divider
+   outputs are approximately 5 V, 3.333 V and 2.5 V for those three resistor values.
+4. Export the study CSV or evidence JSON. To examine component variation,
+   choose **Tolerance study · Monte Carlo**, select both resistors, set each
+   to ±5%, and retain the seed when repeating the study.
+
+**RC capacitance sweep and frequency response** demonstrates a logarithmic
+capacitance sweep with AC magnitude or phase at a chosen frequency. Transient
+studies also support final, minimum, maximum, peak-to-peak and time-weighted
+RMS measurements, optionally within a specified time window.
+
+Studies operate on analog-only schematics. Each trial starts a fresh isolated
+simulation from the captured project and exact parameter changes. The working
+circuit stays intact. Uniform relative tolerance draws are deterministic for
+the chosen seed; they are not a manufacturing yield guarantee. Stop preserves
+finished trials, and failed or cancelled trials retain their status without
+entering measured-value statistics.
+
+A study supports up to **64 trials and 8 tolerance parameters**. History retains
+up to **6 study records** within the documented sample/byte limits. Backups and
+reports retain the captured circuit revision and selected source data. See
+[analog parameter studies](docs/analog-experiments.md) for measurement rules,
+restored-record checks and limits.
+
+### Continue the same circuit through batches
+
+1. Open **Examples → Continuous RC with live input changes**.
+2. Choose **Continuous…**, set the update interval and recent history window,
+   then choose **Start continuous simulation**.
+3. Open **Live inputs…**, set the independent DC voltage source to `5`, and
+   apply it. The capacitor charges from its current voltage.
+4. Choose **Pause**, change the live source to `0`, then choose **Step** or
+   **Resume**. The capacitor discharges from its retained state.
+5. Choose **Stop & keep results** before creating timing measurements or
+   exporting a report from the completed window.
+
+The same worker retains capacitor voltages, inductor currents, clock phase,
+register/counter state and pending digital/conversion events across updates and
+pauses. Live controls include scalar `DIN`, `BUSIN` words and independent **DC**
+voltage/current sources. Applied changes are recorded with absolute simulation
+times. Circuit edits stop the session; changing topology or component parameters
+starts a new experiment.
+
+Continuous results keep a bounded rolling window: up to 30,000 points per
+vector, one million dense values and 250,000 sparse events. Screen updates run
+as fast as bounded computation and display scheduling allow. Each update is
+limited to 2,000 accepted steps. Saved backups contain the retained waveform,
+original project and live-input history; they cannot resume a live solver.
+An active session can be saved as a completed window snapshot. See
+[continuous simulation](docs/continuous-simulation.md).
+
+## Existing workbench capabilities
+
+Schematic editing includes explicit pin connections, junctions, labels,
+transforms, clipboard and undo/redo. Results include voltage/current and complex
+AC measurements, cursors, baselines, CSV and printable analysis reports. Local
+autosave, previous-save recovery and dark, light and high-contrast themes remain
+available.
+
+Digital tools include timed 0/1/X/Z gates, clocks, tri-state driver resolution,
+D flip-flops, 1–8-bit words, patterns, registers, counters, MUX/decoder/LUT parts,
+and independent combinational truth-table experiments. **Timing** measures
+propagation delay, pulse width, period, frequency and duty cycle from preserved
+events on a scalar signal or selected bus bit. X/Z and incomplete observations
+retain explanations instead of guessed measurements. Truth-table and timing
+evidence remain available independently of the full source run.
+
+For a first analog comparison, run **Examples → RC low-pass filter**, choose
+**Pin baseline**, change C1 from `100n` to `200n`, and run again. Save a backup
+and reopen it through **Project → Open project**. Generic semiconductor models
+have educational limitations; see [component models](docs/component-models.md)
+and [compatibility](docs/compatibility.md) when interpreting results.
+
+## Install the prebuilt 2.0 release
+
+Extract **CircuitBench-2.0.0-rc.1-deploy.zip** and upload the complete contents to
+the application's directory. Preserve `assets/`, `repair/`, manifests and root
+files. Executable assets are under `assets/2.0.0-rc.1/`; this includes the
+complete `engine/` folder and its WASM binary. Every worker and engine asset
+must be present.
+
+For a local server, run this from the extracted deploy folder:
 
 ```sh
 python3 -m http.server 8080
 ```
 
-Open **http://localhost:8080/** in a modern browser. Keep that terminal running.
-Opening `index.html` directly with `file://` is unsupported because browser
-modules, Web Workers and offline installation require a web origin.
+Open **http://localhost:8080/**. A source checkout needs the build below before
+serving `dist/`. Opening `index.html` directly through `file://` is unsupported.
 
-For static hosting, upload the complete folder containing `index.html` to the
-chosen route. A subdirectory such as `/circuitbench/` works with relative asset
-paths. Serve `.mjs` as JavaScript and `.wasm` as `application/wasm`. HTTPS is
-recommended and enables service-worker offline installation.
+To upgrade an existing installation, save a backup, upload the complete release,
+close other CircuitBench tabs and open `repair/?release=2.0.0-rc.1`. Refresh
+cached application files, return to the app and confirm the visible version.
+Recovery preserves project storage and preferences. The versioned service
+worker retains exact asset checks and a canonical application shell for hosts
+that modify HTML responses.
 
-## First experiment
+Serve `.js` as JavaScript and preferably `.wasm` as `application/wasm`; the
+buffered WASM loader also accepts valid generic binary responses. HTTPS or
+localhost enables service-worker installation. Detailed host, MIME and recovery
+instructions are in [installation and updates](docs/installation.md).
 
-1. Open **Examples → RC low-pass filter**, or use the empty-workbench RC button.
-2. Choose **Run experiment**. Real ngspice results appear in Waveforms.
-3. Choose **Pin baseline**.
-4. Select C1 and change its capacitance from `100n` to `200n`.
-5. Run again. The output cutoff moves from about 159.15 Hz to 79.58 Hz; the
-   baseline remains dashed for comparison.
-6. Choose **Save backup**, then **Project → Open project** to reopen the portable
-   JSON project with its recorded runs.
+## Local data and offline operation
 
-These cutoff values follow `fc = 1/(2πRC)`; the numerical acceptance evidence is
-in [engine-validation.json](evidence/engine-validation.json).
+Autosave belongs to this browser and origin. Imported disk files are not
+modified automatically. Download portable backups before clearing browser data
+or moving hosts. The application displays **Session only** when durable storage
+is unavailable.
 
-## Included capabilities
-
-- A schematic editor with searchable parts, snapping, pin-based connections,
-  explicit junctions and labels, movement, rotation, mirroring, wire bends,
-  multiselection, copy/paste, undo/redo and keyboard alternatives.
-- Operating point, one-source DC sweep, logarithmic AC analysis and transient
-  analysis through ngspice 45.2 WebAssembly / EEcircuit-engine 1.8.0.
-- Node and differential voltage probes; voltage-source and inductor branch
-  currents; resistor current derived from the simulated voltage difference.
-- Multiple traces, magnitude/phase plots, waveform zoom/pan, cursors, saved-run
-  comparison, numerical tables and full-resolution CSV export.
-- Fourteen component types and thirteen worked examples covering passive
-  circuits, sensor conditioning, diodes/LEDs, BJTs, MOSFETs, switches and an
-  educational bounded op amp.
-- Local autosave and previous-save recovery; downloadable JSON projects,
-  SPICE netlists, schematic SVG, component CSV and designed printable reports.
-- Dark, light and high-contrast themes, collapsible panels, visible version,
-  run status, diagnostics and stale-result indicators.
-
-Semiconductor models are original **generic educational parameter sets**, not
-identified manufacturer models. Their provenance, version, limitations and
-validation fixtures are documented. The op amp omits finite bandwidth and slew
-rate. The MOSFETs use level-1 models with body tied to source in the schematic.
-See [compatibility](docs/compatibility.md) before interpreting practical device
-behavior.
-
-## Local storage and offline use
-
-Autosave belongs to this browser and origin. It never changes a file you opened
-from disk. Keep downloadable backups before clearing browser data, changing a
-hostname, or moving to another device. The application shows **Session only**
-if durable browser storage is unavailable.
+This version reads existing schema-1 analog, scalar-digital and bus projects.
+It adds display/converter parts, coordinated plans, continuous-window provenance
+and analog-study records while retaining earlier truth-table and timing
+evidence. Older application versions may reject new parts or omit new evidence
+fields; keep the original backup when moving between versions. See
+[project format](docs/project-format.md).
 
 For installed offline use, visit over HTTPS or localhost and wait for
-**Offline ready**. Essential runtime assets are then cached. A downloaded
-release served by a local web server also works without internet access.
-Updates are described in [installation](docs/installation.md); save a backup and
-close all CircuitBench tabs before opening an updated installation.
+**Offline ready**. A downloaded release can also be served from a local web
+server without internet access. Fresh installation, offline reload and upgrade
+acceptance must still be verified on the exact external target build.
 
 ## Source checkout
 
-The application source has no npm dependency installation step. Its runtime
-engine is vendored and pinned.
+The analog engine is pinned and vendored. There is no npm dependency install.
+Use Node.js 20 or newer and Python 3:
 
 ```sh
 node scripts/build.mjs
@@ -93,67 +221,39 @@ node --test tests/*.test.mjs
 python3 -m http.server 8080 --directory dist
 ```
 
-Use Node.js 20 or newer and Python 3. The source ZIP intentionally excludes a
-second copy of `dist/`; `build.mjs` recreates it. Numerical development checks
-also require the separately pinned native ngspice reference:
+The source ZIP excludes a duplicate `dist/` tree; the build recreates it.
+Numerical proof scripts and their evidence are included under `scripts/` and
+`evidence/`. Analog reference comparisons use the separately pinned native
+ngspice development executable; it is not a deployed application dependency.
 
-```sh
-node --expose-gc scripts/prove-engine.mjs
-node --expose-gc scripts/prove-examples.mjs
-```
+## Release status and evidence
 
-Those scripts execute the production WASM adapter in Node workers, check the
-analytic reference cases and compare native ngspice. These checks are distinct
-from browser workflow verification. The native executable pin is recorded in
-[engine evaluation](docs/engine-evaluation.md).
+Version 2.0.0-rc.1 remains a release candidate. Current numerical results,
+worker checks, browser observations, test totals and remaining acceptance gates
+are recorded in [VALIDATION.md](docs/VALIDATION.md) and
+[PROGRESS.md](docs/PROGRESS.md). Historical observations retain their original
+build identities. Feature completion does not establish external-host
+deployment or successful HTTPS/offline acceptance.
 
-## Verification and release status
-
-The recorded foundation suite passed **62 numerical and lifecycle checks**,
-including cancellation, timeout, failure recovery and repeated worker disposal:
-56 workers created, 56 terminated. All thirteen authored examples plus
-current-source and PWL fixtures passed actual WASM/native comparison, totaling
-70 vector comparisons and 16 analytic/behavior checks. Another 74 Node/VM tests
-cover the core model, editor logic, results/reports, autosave, package files and
-service-worker logic, including six raw-parser regression checks.
-
-The actual browser completed a 501-point RC AC run, a 100 nF → 220 nF capacitor
-change with baseline overlay, undo/redo stale-state checks, backup JSON
-export/import/reload and HTML report preview. It also verified keyboard wiring,
-explicit crossing/junction behavior, cursor readouts, Stop/recovery, CSV download, themes,
-constrained phone/tablet viewports and a fresh run at a subdirectory URL. A
-Unicode-title parser defect found during review was fixed and regression-tested.
-The exact final browser report also passed independent three-page A4 PDF layout
-review using WeasyPrint and Poppler; Chrome's native print dialog was not tested.
-The precise evidence layers, remaining browser checks and reproduction steps are recorded in
-[release validation](docs/VALIDATION.md).
-
-The provided browser review endpoint is plain HTTP on a non-localhost host, so
-it cannot exercise secure-context service-worker installation, offline reload
-or update activation. Deterministic asset and simulated service-worker checks
-passed; they do not prove browser offline behavior. **This candidate is not a
-completed v1.0.0 release.** Standalone HTML-report and SPICE-file browser downloads
-also remain unverified. See [progress](docs/PROGRESS.md) and the `evidence/`
-directory for the current status and numerical records.
-
-The accompanying `CircuitBench-1.0.0-rc.1-release-integrity.json` receipt and
-`SHA256SUMS` identify the final archives after packaging checks. The receipt is
-produced only after those checks and stays outside the ZIPs.
+The release's `CircuitBench-2.0.0-rc.1-release-integrity.json` and
+`CircuitBench-2.0.0-rc.1-SHA256SUMS.txt` identify the exact packaged source and
+deploy archives. Uploading those deploy contents is a separate host operation.
 
 ## Documentation
 
 - [User guide](docs/user-guide.md)
-- [Installation, hosting and updates](docs/installation.md)
-- [Components, analyses and import compatibility](docs/compatibility.md)
-- [Architecture and data model](docs/architecture.md)
-- [Exact project-format reference](docs/project-format.md)
-- [Component model provenance](docs/component-models.md)
-- [Engine evaluation and numerical evidence](docs/engine-evaluation.md)
-- [Release validation and handoff](docs/VALIDATION.md)
-- [Editor implementation](docs/editor-implementation.md)
-- [Changelog](CHANGELOG.md)
-- [Post-v1 roadmap](ROADMAP.md)
+- [Seven-segment display](docs/seven-segment-display.md)
+- [Multibit converters](docs/multibit-converters.md)
+- [Coordinated engine and closed-loop contract](docs/closed-loop-engine.md)
+- [Continuous simulation](docs/continuous-simulation.md)
+- [Analog parameter studies](docs/analog-experiments.md)
+- [Digital and mixed-signal guide](docs/digital-mixed-signal.md)
+- [Timing measurements and edge semantics](docs/timing-measurements.md)
+- [Installation and updates](docs/installation.md)
+- [Supported components and interchange](docs/compatibility.md)
+- [Architecture](docs/architecture.md) and [project format](docs/project-format.md)
+- [Component models](docs/component-models.md)
+- [Analog engine evaluation](docs/engine-evaluation.md)
+- [Validation](docs/VALIDATION.md) and [progress](docs/PROGRESS.md)
+- [Roadmap](ROADMAP.md) and [changelog](CHANGELOG.md)
 - [Application license](LICENSE) and [third-party notices](THIRD_PARTY_NOTICES.md)
-
-No external repository, domain or hosting destination has been selected or
-deployed as part of this package.

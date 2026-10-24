@@ -1,0 +1,7 @@
+Generic diode
+V1 in 0 5
+R1 in out 1000
+D1 out 0 CBD
+.model CBD D(Is=1e-14 N=1 Rs=0.1 Cjo=2e-12)
+.op
+.end

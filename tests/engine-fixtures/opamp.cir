@@ -1,0 +1,9 @@
+Bounded generic opamp
+VCC vp 0 12
+VEE vn 0 -12
+VIN input 0 0.1
+R1 minus 0 10000
+R2 out minus 100000
+B1 out 0 V=(V(vp)+V(vn))/2+(V(vp)-V(vn))/2*tanh(100000*(V(input)-V(minus))/((V(vp)-V(vn))/2))
+.op
+.end

@@ -1,0 +1,25 @@
+✔ modal Stop during plan hashing prevents worker startup and evidence append (25.627429ms)
+✔ global Stop cancels preparation and a subsequent table can complete (27.441819ms)
+✔ project replacement cancels a preparing truth table before replacing its state (6.39049ms)
+✔ a late successful worker response cannot append evidence after Stop (8.625181ms)
+✔ Stop without a truth-table task retains the ordinary engine stop behavior (1.951485ms)
+✔ completed evidence retains the captured circuit after later working edits (11.576034ms)
+✔ an incomplete imported LUT opens a repair draft and Cancel preserves every project byte (2.801222ms)
+✔ incorrect repair text reports its parse error without changing the circuit (1.844944ms)
+✔ corrected repair text normalizes numeric and unknown words, then applies atomically (6.319457ms)
+✔ resetting a repair draft is explicit and cancelling its row editor keeps the original (2.298262ms)
+✔ a reset draft changes the component only when Apply truth table succeeds (2.552677ms)
+✔ a repaired width conflict keeps both the circuit and draft available for correction (1.937522ms)
+✔ valid LUTs retain direct row editing and numeric-word normalization (2.438887ms)
+✔ a truly empty new project can be replaced without a confirmation dialog (2.258139ms)
+✔ deleting the circuit does not bypass backup confirmation for retained truth tables (10.349215ms)
+✔ retained run history also requires explicit replacement confirmation (2.212181ms)
+✔ non-component project content disables the empty-project shortcut (10.054295ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 139.184533

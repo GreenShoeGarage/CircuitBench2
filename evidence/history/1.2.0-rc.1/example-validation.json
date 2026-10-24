@@ -1,0 +1,1088 @@
+{
+  "testedAt": "2026-10-24T06:53:59.503Z",
+  "scope": "All authored analog example project schemas and generated netlists (digital and mixed-signal examples have a separate proof), production WASM adapter with Node Worker API shim, compared with native ngspice 42. Browser operation is verified separately.",
+  "engine": {
+    "name": "ngspice",
+    "version": "45.2",
+    "build": "Sat Sep 5 01:00:10 UTC 2026",
+    "package": "EEcircuit-engine",
+    "packageVersion": "1.8.0",
+    "adapterVersion": 4,
+    "wasmSha256": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4",
+    "wasmBytes": 6133055,
+    "execution": "WebAssembly · isolated Web Worker · fresh instance per run"
+  },
+  "tolerances": {
+    "nativeVoltage": "max(2 mV, 0.5% of native full-scale peak)",
+    "nativeCurrent": "max(1 μA, 0.5% of native full-scale peak)",
+    "nativeOther": "max(1e-8, 0.5% of native peak)",
+    "comparison": "Linear interpolation of native samples onto WASM times for transient; real and imaginary vectors otherwise."
+  },
+  "examples": [
+    {
+      "id": "rc-filter",
+      "title": "RC low-pass filter",
+      "projectRevision": 0,
+      "analysis": {
+        "type": "ac",
+        "start": "1",
+        "stop": "100k",
+        "points": 100,
+        "step": "5u",
+        "duration": "5m",
+        "source": "V1",
+        "sweepStart": "0",
+        "sweepStop": "10",
+        "sweepStep": "0.1",
+        "temperature": 27,
+        "reltol": "1e-4",
+        "uic": false
+      },
+      "models": [],
+      "netlist": "CircuitBench - RC low-pass filter - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 in 0 DC 1.000000000000e+0 AC 1.000000000000e+0 0.000000000000e+0\nR1 in out 1.000000000000e+4\nC1 out 0 1.000000000000e-7 IC=0.000000000000e+0\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.ac dec 100 1.000000000000e+0 1.000000000000e+5\n.end\n",
+      "points": 501,
+      "durationMs": 37.64392099999998,
+      "warnings": [],
+      "comparisons": [
+        {
+          "vector": "v(in)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.005,
+          "pass": true
+        },
+        {
+          "vector": "v(out)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.004999802615704398,
+          "pass": true
+        },
+        {
+          "vector": "i(v1)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.000001,
+          "pass": true
+        }
+      ],
+      "auxiliaryVectors": [],
+      "status": "passed"
+    },
+    {
+      "id": "divider",
+      "title": "Voltage divider",
+      "projectRevision": 0,
+      "analysis": {
+        "type": "op",
+        "start": "1",
+        "stop": "100k",
+        "points": 60,
+        "step": "10u",
+        "duration": "10m",
+        "source": "V1",
+        "sweepStart": "0",
+        "sweepStop": "10",
+        "sweepStep": "0.1",
+        "temperature": 27,
+        "reltol": "1e-4",
+        "uic": false
+      },
+      "models": [],
+      "netlist": "CircuitBench - Voltage divider - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 supply 0 DC 1.000000000000e+1 AC 0.000000000000e+0 0.000000000000e+0\nR1 supply mid 1.000000000000e+4\nR2 mid 0 1.000000000000e+4\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.op\n.end\n",
+      "points": 1,
+      "durationMs": 22.89414099999999,
+      "warnings": [],
+      "comparisons": [
+        {
+          "vector": "v(supply)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.05,
+          "pass": true
+        },
+        {
+          "vector": "v(mid)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.025,
+          "pass": true
+        },
+        {
+          "vector": "i(v1)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.0000025,
+          "pass": true
+        }
+      ],
+      "auxiliaryVectors": [],
+      "status": "passed"
+    },
+    {
+      "id": "rc-step",
+      "title": "RC step response",
+      "projectRevision": 0,
+      "analysis": {
+        "type": "tran",
+        "start": "1",
+        "stop": "100k",
+        "points": 100,
+        "step": "5u",
+        "duration": "5m",
+        "source": "V1",
+        "sweepStart": "0",
+        "sweepStop": "10",
+        "sweepStep": "0.1",
+        "temperature": 27,
+        "reltol": "1e-4",
+        "uic": true
+      },
+      "models": [],
+      "netlist": "CircuitBench - RC step response - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 in 0 DC 0.000000000000e+0 AC 1.000000000000e+0 0.000000000000e+0 PULSE(0.000000000000e+0 1.000000000000e+0 0.000000000000e+0 1.000000000000e-9 1.000000000000e-9 1.000000000000e-2 2.000000000000e-2)\nR1 in out 1.000000000000e+4\nC1 out 0 1.000000000000e-7 IC=0.000000000000e+0\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 5.000000000000e-6 5.000000000000e-3 0 5.000000000000e-6 uic\n.end\n",
+      "points": 1028,
+      "durationMs": 41.62411399999996,
+      "warnings": [],
+      "comparisons": [
+        {
+          "vector": "v(in)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.005,
+          "pass": true
+        },
+        {
+          "vector": "v(out)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.004966310595938647,
+          "pass": true
+        },
+        {
+          "vector": "i(v1)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.000001,
+          "pass": true
+        }
+      ],
+      "auxiliaryVectors": [],
+      "status": "passed"
+    },
+    {
+      "id": "rectifier",
+      "title": "Diode rectifier",
+      "projectRevision": 0,
+      "analysis": {
+        "type": "tran",
+        "start": "1",
+        "stop": "100k",
+        "points": 60,
+        "step": "50u",
+        "duration": "100m",
+        "source": "V1",
+        "sweepStart": "0",
+        "sweepStop": "10",
+        "sweepStep": "0.1",
+        "temperature": 27,
+        "reltol": "1e-4",
+        "uic": false
+      },
+      "models": [
+        {
+          "name": "CB_DIODE",
+          "version": "cb-models-1.0.0",
+          "source": "CircuitBench original educational parameter sets",
+          "license": "MIT",
+          "kind": "generic",
+          "definition": ".model CB_DIODE D(IS=1e-14 N=1 RS=0.5 CJO=2e-12 TT=5e-9 BV=100 IBV=1e-6)",
+          "contentId": "fnv1a32-84d0a270"
+        }
+      ],
+      "netlist": "CircuitBench - Diode rectifier - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 in 0 DC 0.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0 SIN(0.000000000000e+0 5.000000000000e+0 6.000000000000e+1 0.000000000000e+0)\nD1 in out CB_DIODE\nR1 out 0 1.000000000000e+3\nC1 out 0 1.000000000000e-6 IC=0.000000000000e+0\n.model CB_DIODE D(IS=1e-14 N=1 RS=0.5 CJO=2e-12 TT=5e-9 BV=100 IBV=1e-6)\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 5.000000000000e-5 1.000000000000e-1 0 5.000000000000e-5\n.end\n",
+      "points": 2129,
+      "durationMs": 61.00051099999996,
+      "warnings": [],
+      "comparisons": [
+        {
+          "vector": "v(in)",
+          "maximumAbsoluteError": 5.5067062021407764e-14,
+          "absoluteTolerance": 0.024999994923362263,
+          "pass": true
+        },
+        {
+          "vector": "v(out)",
+          "maximumAbsoluteError": 1.1298947888427335e-13,
+          "absoluteTolerance": 0.021524785998361003,
+          "pass": true
+        },
+        {
+          "vector": "i(v1)",
+          "maximumAbsoluteError": 5.3958573720258585e-15,
+          "absoluteTolerance": 0.00002323169680747306,
+          "pass": true
+        }
+      ],
+      "auxiliaryVectors": [],
+      "status": "passed"
+    },
+    {
+      "id": "transistor",
+      "title": "NPN transistor driver",
+      "projectRevision": 0,
+      "analysis": {
+        "type": "tran",
+        "start": "1",
+        "stop": "100k",
+        "points": 60,
+        "step": "5u",
+        "duration": "5m",
+        "source": "V1",
+        "sweepStart": "0",
+        "sweepStop": "10",
+        "sweepStep": "0.1",
+        "temperature": 27,
+        "reltol": "1e-4",
+        "uic": false
+      },
+      "models": [
+        {
+          "name": "CB_NPN",
+          "version": "cb-models-1.0.0",
+          "source": "CircuitBench original educational parameter sets",
+          "license": "MIT",
+          "kind": "generic",
+          "definition": ".model CB_NPN NPN(IS=1e-14 BF=100 VAF=100 IKF=0.1 CJE=10e-12 CJC=5e-12 TF=400e-12 TR=20e-9)",
+          "contentId": "fnv1a32-ba4907d7"
+        }
+      ],
+      "netlist": "CircuitBench - NPN transistor driver - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 supply 0 DC 5.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0\nV2 drive 0 DC 0.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0 PULSE(0.000000000000e+0 3.300000000000e+0 0.000000000000e+0 1.000000000000e-6 1.000000000000e-6 1.000000000000e-3 2.000000000000e-3)\nR1 supply load 4.700000000000e+2\nQ1 load n1 0 CB_NPN\nR2 drive n1 4.700000000000e+3\n.model CB_NPN NPN(IS=1e-14 BF=100 VAF=100 IKF=0.1 CJE=10e-12 CJC=5e-12 TF=400e-12 TR=20e-9)\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 5.000000000000e-6 5.000000000000e-3 0 5.000000000000e-6\n.end\n",
+      "points": 1220,
+      "durationMs": 58.51041000000009,
+      "warnings": [],
+      "comparisons": [
+        {
+          "vector": "v(drive)",
+          "maximumAbsoluteError": 4.440892098500626e-16,
+          "absoluteTolerance": 0.0165,
+          "pass": true
+        },
+        {
+          "vector": "v(load)",
+          "maximumAbsoluteError": 1.5535739361638434e-11,
+          "absoluteTolerance": 0.025017448312256513,
+          "pass": true
+        },
+        {
+          "vector": "v(n1)",
+          "maximumAbsoluteError": 1.1748380046583407e-12,
+          "absoluteTolerance": 0.0036033179530210553,
+          "pass": true
+        },
+        {
+          "vector": "v(supply)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.025,
+          "pass": true
+        },
+        {
+          "vector": "i(v1)",
+          "maximumAbsoluteError": 3.305515583473806e-14,
+          "absoluteTolerance": 0.00005225746803152483,
+          "pass": true
+        },
+        {
+          "vector": "i(v2)",
+          "maximumAbsoluteError": 2.499357058122209e-16,
+          "absoluteTolerance": 0.000002744015454689309,
+          "pass": true
+        }
+      ],
+      "auxiliaryVectors": [],
+      "status": "passed"
+    },
+    {
+      "id": "mosfet",
+      "title": "MOSFET switching load",
+      "projectRevision": 0,
+      "analysis": {
+        "type": "tran",
+        "start": "1",
+        "stop": "100k",
+        "points": 60,
+        "step": "5u",
+        "duration": "5m",
+        "source": "V1",
+        "sweepStart": "0",
+        "sweepStop": "10",
+        "sweepStep": "0.1",
+        "temperature": 27,
+        "reltol": "1e-4",
+        "uic": false
+      },
+      "models": [
+        {
+          "name": "CB_NMOS",
+          "version": "cb-models-1.0.0",
+          "source": "CircuitBench original educational parameter sets",
+          "license": "MIT",
+          "kind": "generic",
+          "definition": ".model CB_NMOS NMOS(LEVEL=1 VTO=2 KP=0.02 LAMBDA=0.02 RD=0.5 RS=0.5 CGSO=100e-12 CGDO=100e-12 CBD=50e-12 CBS=50e-12)",
+          "contentId": "fnv1a32-fa0df710"
+        }
+      ],
+      "netlist": "CircuitBench - MOSFET switching load - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 supply 0 DC 1.200000000000e+1 AC 0.000000000000e+0 0.000000000000e+0\nV2 drive 0 DC 0.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0 PULSE(0.000000000000e+0 5.000000000000e+0 0.000000000000e+0 1.000000000000e-6 1.000000000000e-6 1.000000000000e-3 2.000000000000e-3)\nR1 supply load 1.000000000000e+2\nM1 load n1 0 0 CB_NMOS W=1.000000000000e-4 L=1.000000000000e-5\nR2 drive n1 1.000000000000e+2\n.model CB_NMOS NMOS(LEVEL=1 VTO=2 KP=0.02 LAMBDA=0.02 RD=0.5 RS=0.5 CGSO=100e-12 CGDO=100e-12 CBD=50e-12 CBS=50e-12)\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 5.000000000000e-6 5.000000000000e-3 0 5.000000000000e-6\n.end\n",
+      "points": 1169,
+      "durationMs": 49.03361399999994,
+      "warnings": [],
+      "comparisons": [
+        {
+          "vector": "v(drive)",
+          "maximumAbsoluteError": 1.3877787807814457e-17,
+          "absoluteTolerance": 0.025,
+          "pass": true
+        },
+        {
+          "vector": "v(load)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.06004688560661293,
+          "pass": true
+        },
+        {
+          "vector": "v(n1)",
+          "maximumAbsoluteError": 5.551115123125783e-17,
+          "absoluteTolerance": 0.02500000028853468,
+          "pass": true
+        },
+        {
+          "vector": "v(supply)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.06,
+          "pass": true
+        },
+        {
+          "vector": "i(v1)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.0005839197966767862,
+          "pass": true
+        },
+        {
+          "vector": "i(v2)",
+          "maximumAbsoluteError": 1.3234889800848443e-23,
+          "absoluteTolerance": 0.000001,
+          "pass": true
+        }
+      ],
+      "auxiliaryVectors": [],
+      "status": "passed"
+    },
+    {
+      "id": "amplifier",
+      "title": "Non-inverting amplifier",
+      "projectRevision": 0,
+      "analysis": {
+        "type": "tran",
+        "start": "1",
+        "stop": "100k",
+        "points": 60,
+        "step": "5u",
+        "duration": "3m",
+        "source": "V1",
+        "sweepStart": "0",
+        "sweepStop": "10",
+        "sweepStep": "0.1",
+        "temperature": 27,
+        "reltol": "1e-4",
+        "uic": false
+      },
+      "models": [
+        {
+          "name": "CB_OPAMP",
+          "version": "cb-models-1.0.0",
+          "source": "CircuitBench original educational parameter sets",
+          "license": "MIT",
+          "kind": "idealized",
+          "definition": ".subckt CB_OPAMP inp inn vp vn out\nRdiff inp inn 1e9\nBdrive drive 0 V=0.5*(v(vp)+v(vn))+0.5*(v(vp)-v(vn))*tanh(2e5*v(inp,inn)/(abs(v(vp)-v(vn))+1e-6))\nRout drive out 10\n.ends CB_OPAMP",
+          "contentId": "fnv1a32-01b47827"
+        }
+      ],
+      "netlist": "CircuitBench - Non-inverting amplifier - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 in 0 DC 0.000000000000e+0 AC 1.000000000000e+0 0.000000000000e+0 SIN(0.000000000000e+0 1.000000000000e-1 1.000000000000e+3 0.000000000000e+0)\nX1 in n1 vplus vminus out CB_OPAMP\nR1 n1 out 1.000000000000e+4\nR2 0 n1 1.000000000000e+3\nV2 vplus 0 DC 1.200000000000e+1 AC 0.000000000000e+0 0.000000000000e+0\nV3 vminus 0 DC -1.200000000000e+1 AC 0.000000000000e+0 0.000000000000e+0\n.subckt CB_OPAMP inp inn vp vn out\nRdiff inp inn 1e9\nBdrive drive 0 V=0.5*(v(vp)+v(vn))+0.5*(v(vp)-v(vn))*tanh(2e5*v(inp,inn)/(abs(v(vp)-v(vn))+1e-6))\nRout drive out 10\n.ends CB_OPAMP\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 5.000000000000e-6 3.000000000000e-3 0 5.000000000000e-6\n.end\n",
+      "points": 608,
+      "durationMs": 49.256873999999925,
+      "warnings": [],
+      "comparisons": [
+        {
+          "vector": "i(b.x1.bdrive)",
+          "maximumAbsoluteError": 2.0816681711721685e-16,
+          "absoluteTolerance": 0.000001,
+          "pass": true
+        },
+        {
+          "vector": "v(in)",
+          "maximumAbsoluteError": 1.3877787807814457e-17,
+          "absoluteTolerance": 0.002,
+          "pass": true
+        },
+        {
+          "vector": "v(n1)",
+          "maximumAbsoluteError": 1.3877787807814457e-17,
+          "absoluteTolerance": 0.002,
+          "pass": true
+        },
+        {
+          "vector": "v(out)",
+          "maximumAbsoluteError": 1.8172130467064562e-12,
+          "absoluteTolerance": 0.005499180045355188,
+          "pass": true
+        },
+        {
+          "vector": "i(v1)",
+          "maximumAbsoluteError": 1.9387045606711586e-26,
+          "absoluteTolerance": 0.000001,
+          "pass": true
+        },
+        {
+          "vector": "i(v2)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.000001,
+          "pass": true
+        },
+        {
+          "vector": "i(v3)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.000001,
+          "pass": true
+        },
+        {
+          "vector": "v(vminus)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.06,
+          "pass": true
+        },
+        {
+          "vector": "v(vplus)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.06,
+          "pass": true
+        },
+        {
+          "vector": "v(x1.drive)",
+          "maximumAbsoluteError": 1.8189894035458565e-12,
+          "absoluteTolerance": 0.005504179299941825,
+          "pass": true
+        }
+      ],
+      "auxiliaryVectors": [],
+      "status": "passed"
+    },
+    {
+      "id": "sensor",
+      "title": "Resistive sensor interface",
+      "projectRevision": 0,
+      "analysis": {
+        "type": "op",
+        "start": "1",
+        "stop": "100k",
+        "points": 60,
+        "step": "10u",
+        "duration": "10m",
+        "source": "V1",
+        "sweepStart": "0",
+        "sweepStop": "10",
+        "sweepStep": "0.1",
+        "temperature": 27,
+        "reltol": "1e-4",
+        "uic": false
+      },
+      "models": [],
+      "netlist": "CircuitBench - Resistive sensor interface - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 supply 0 DC 5.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0\nR1 supply sensor 1.000000000000e+4\nR2 sensor 0 1.000000000000e+4\nR3 sensor adc 1.000000000000e+3\nC1 adc 0 1.000000000000e-6 IC=0.000000000000e+0\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.op\n.end\n",
+      "points": 1,
+      "durationMs": 26.37268899999981,
+      "warnings": [],
+      "comparisons": [
+        {
+          "vector": "v(supply)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.025,
+          "pass": true
+        },
+        {
+          "vector": "v(adc)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.012499999999999992,
+          "pass": true
+        },
+        {
+          "vector": "v(sensor)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.012499999999999992,
+          "pass": true
+        },
+        {
+          "vector": "i(v1)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.000001250000000000001,
+          "pass": true
+        }
+      ],
+      "auxiliaryVectors": [],
+      "status": "passed"
+    },
+    {
+      "id": "led-driver",
+      "title": "LED transistor driver",
+      "projectRevision": 0,
+      "analysis": {
+        "type": "tran",
+        "start": "1",
+        "stop": "100k",
+        "points": 60,
+        "step": "5u",
+        "duration": "5m",
+        "source": "V1",
+        "sweepStart": "0",
+        "sweepStop": "10",
+        "sweepStep": "0.1",
+        "temperature": 27,
+        "reltol": "1e-4",
+        "uic": false
+      },
+      "models": [
+        {
+          "name": "CB_NPN",
+          "version": "cb-models-1.0.0",
+          "source": "CircuitBench original educational parameter sets",
+          "license": "MIT",
+          "kind": "generic",
+          "definition": ".model CB_NPN NPN(IS=1e-14 BF=100 VAF=100 IKF=0.1 CJE=10e-12 CJC=5e-12 TF=400e-12 TR=20e-9)",
+          "contentId": "fnv1a32-ba4907d7"
+        },
+        {
+          "name": "CB_LED",
+          "version": "cb-models-1.0.0",
+          "source": "CircuitBench original educational parameter sets",
+          "license": "MIT",
+          "kind": "generic",
+          "definition": ".model CB_LED D(IS=1e-20 N=2 RS=8 CJO=10e-12 BV=5 IBV=1e-6)",
+          "contentId": "fnv1a32-9aecf44d"
+        }
+      ],
+      "netlist": "CircuitBench - LED transistor driver - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 supply 0 DC 5.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0\nV2 drive 0 DC 0.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0 PULSE(0.000000000000e+0 3.300000000000e+0 0.000000000000e+0 1.000000000000e-6 1.000000000000e-6 1.000000000000e-3 2.000000000000e-3)\nR1 supply n1 3.300000000000e+2\nQ1 load n2 0 CB_NPN\nR2 drive n2 4.700000000000e+3\nD1 n1 load CB_LED\n.model CB_NPN NPN(IS=1e-14 BF=100 VAF=100 IKF=0.1 CJE=10e-12 CJC=5e-12 TF=400e-12 TR=20e-9)\n.model CB_LED D(IS=1e-20 N=2 RS=8 CJO=10e-12 BV=5 IBV=1e-6)\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 5.000000000000e-6 5.000000000000e-3 0 5.000000000000e-6\n.end\n",
+      "points": 1254,
+      "durationMs": 63.16279599999962,
+      "warnings": [],
+      "comparisons": [
+        {
+          "vector": "v(drive)",
+          "maximumAbsoluteError": 4.884981308350689e-15,
+          "absoluteTolerance": 0.0165,
+          "pass": true
+        },
+        {
+          "vector": "v(load)",
+          "maximumAbsoluteError": 0.0017236837137470373,
+          "absoluteTolerance": 0.019984051603710102,
+          "pass": true
+        },
+        {
+          "vector": "v(n1)",
+          "maximumAbsoluteError": 0.0016509513827371869,
+          "absoluteTolerance": 0.025012130266320598,
+          "pass": true
+        },
+        {
+          "vector": "v(n2)",
+          "maximumAbsoluteError": 0.00001744473074261066,
+          "absoluteTolerance": 0.0035733634867244875,
+          "pass": true
+        },
+        {
+          "vector": "v(supply)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.025,
+          "pass": true
+        },
+        {
+          "vector": "i(v1)",
+          "maximumAbsoluteError": 0.000005002882977992416,
+          "absoluteTolerance": 0.00004121015357772436,
+          "pass": true
+        },
+        {
+          "vector": "i(v2)",
+          "maximumAbsoluteError": 3.7116448388353155e-9,
+          "absoluteTolerance": 0.0000027504156358363896,
+          "pass": true
+        }
+      ],
+      "auxiliaryVectors": [],
+      "status": "passed"
+    },
+    {
+      "id": "pnp-driver",
+      "title": "PNP high-side driver",
+      "projectRevision": 0,
+      "analysis": {
+        "type": "tran",
+        "start": "1",
+        "stop": "100k",
+        "points": 60,
+        "step": "5u",
+        "duration": "5m",
+        "source": "V1",
+        "sweepStart": "0",
+        "sweepStop": "10",
+        "sweepStep": "0.1",
+        "temperature": 27,
+        "reltol": "1e-4",
+        "uic": false
+      },
+      "models": [
+        {
+          "name": "CB_PNP",
+          "version": "cb-models-1.0.0",
+          "source": "CircuitBench original educational parameter sets",
+          "license": "MIT",
+          "kind": "generic",
+          "definition": ".model CB_PNP PNP(IS=1e-14 BF=80 VAF=80 IKF=0.1 CJE=10e-12 CJC=5e-12 TF=500e-12 TR=20e-9)",
+          "contentId": "fnv1a32-43af73b4"
+        }
+      ],
+      "netlist": "CircuitBench - PNP high-side driver - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 n1 0 DC 5.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0\nV2 drive 0 DC 5.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0 PULSE(5.000000000000e+0 0.000000000000e+0 0.000000000000e+0 1.000000000000e-6 1.000000000000e-6 1.000000000000e-3 2.000000000000e-3)\nQ1 out n2 n1 CB_PNP\nR1 n2 drive 4.700000000000e+3\nR2 out 0 4.700000000000e+2\n.model CB_PNP PNP(IS=1e-14 BF=80 VAF=80 IKF=0.1 CJE=10e-12 CJC=5e-12 TF=500e-12 TR=20e-9)\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 5.000000000000e-6 5.000000000000e-3 0 5.000000000000e-6\n.end\n",
+      "points": 1227,
+      "durationMs": 44.97289799999999,
+      "warnings": [],
+      "comparisons": [
+        {
+          "vector": "v(drive)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.025,
+          "pass": true
+        },
+        {
+          "vector": "v(n1)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.025,
+          "pass": true
+        },
+        {
+          "vector": "v(n2)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.025000001692035916,
+          "pass": true
+        },
+        {
+          "vector": "v(out)",
+          "maximumAbsoluteError": 5.551115123125783e-17,
+          "absoluteTolerance": 0.02462582719789906,
+          "pass": true
+        },
+        {
+          "vector": "i(v1)",
+          "maximumAbsoluteError": 2.168404344971009e-19,
+          "absoluteTolerance": 0.0000569461597213522,
+          "pass": true
+        },
+        {
+          "vector": "i(v2)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.000004550841364933651,
+          "pass": true
+        }
+      ],
+      "auxiliaryVectors": [],
+      "status": "passed"
+    },
+    {
+      "id": "pmos-driver",
+      "title": "PMOS high-side driver",
+      "projectRevision": 0,
+      "analysis": {
+        "type": "tran",
+        "start": "1",
+        "stop": "100k",
+        "points": 60,
+        "step": "5u",
+        "duration": "5m",
+        "source": "V1",
+        "sweepStart": "0",
+        "sweepStop": "10",
+        "sweepStep": "0.1",
+        "temperature": 27,
+        "reltol": "1e-4",
+        "uic": false
+      },
+      "models": [
+        {
+          "name": "CB_PMOS",
+          "version": "cb-models-1.0.0",
+          "source": "CircuitBench original educational parameter sets",
+          "license": "MIT",
+          "kind": "generic",
+          "definition": ".model CB_PMOS PMOS(LEVEL=1 VTO=-2 KP=0.01 LAMBDA=0.02 RD=0.5 RS=0.5 CGSO=100e-12 CGDO=100e-12 CBD=50e-12 CBS=50e-12)",
+          "contentId": "fnv1a32-d57a8c3c"
+        }
+      ],
+      "netlist": "CircuitBench - PMOS high-side driver - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 n1 0 DC 5.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0\nV2 drive 0 DC 5.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0 PULSE(5.000000000000e+0 0.000000000000e+0 0.000000000000e+0 1.000000000000e-6 1.000000000000e-6 1.000000000000e-3 2.000000000000e-3)\nM1 out n2 n1 n1 CB_PMOS W=1.000000000000e-4 L=1.000000000000e-5\nR1 n2 drive 1.000000000000e+2\nR2 out 0 4.700000000000e+2\n.model CB_PMOS PMOS(LEVEL=1 VTO=-2 KP=0.01 LAMBDA=0.02 RD=0.5 RS=0.5 CGSO=100e-12 CGDO=100e-12 CBD=50e-12 CBS=50e-12)\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 5.000000000000e-6 5.000000000000e-3 0 5.000000000000e-6\n.end\n",
+      "points": 1166,
+      "durationMs": 50.76400999999987,
+      "warnings": [],
+      "comparisons": [
+        {
+          "vector": "v(drive)",
+          "maximumAbsoluteError": 2.220446049250313e-16,
+          "absoluteTolerance": 0.025,
+          "pass": true
+        },
+        {
+          "vector": "v(n1)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.025,
+          "pass": true
+        },
+        {
+          "vector": "v(n2)",
+          "maximumAbsoluteError": 5.551115123125783e-17,
+          "absoluteTolerance": 0.02500000009220993,
+          "pass": true
+        },
+        {
+          "vector": "v(out)",
+          "maximumAbsoluteError": 5.551115123125783e-17,
+          "absoluteTolerance": 0.024770550663365306,
+          "pass": true
+        },
+        {
+          "vector": "i(v1)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.000052703881065845336,
+          "pass": true
+        },
+        {
+          "vector": "i(v2)",
+          "maximumAbsoluteError": 5.829038379084617e-24,
+          "absoluteTolerance": 0.000001,
+          "pass": true
+        }
+      ],
+      "auxiliaryVectors": [],
+      "status": "passed"
+    },
+    {
+      "id": "switch",
+      "title": "Controlled analog switch",
+      "projectRevision": 0,
+      "analysis": {
+        "type": "tran",
+        "start": "1",
+        "stop": "100k",
+        "points": 60,
+        "step": "5u",
+        "duration": "5m",
+        "source": "V1",
+        "sweepStart": "0",
+        "sweepStop": "10",
+        "sweepStep": "0.1",
+        "temperature": 27,
+        "reltol": "1e-4",
+        "uic": false
+      },
+      "models": [
+        {
+          "name": "CB_SWITCH",
+          "version": "cb-models-1.0.0",
+          "source": "CircuitBench original educational parameter sets",
+          "license": "MIT",
+          "kind": "idealized",
+          "definition": ".model CB_SWITCH SW(RON=1 ROFF=1e9 VT=2.5 VH=0.1)",
+          "contentId": "fnv1a32-f8d5de07"
+        }
+      ],
+      "netlist": "CircuitBench - Controlled analog switch - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 n1 0 DC 5.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0\nV2 control 0 DC 0.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0 PULSE(0.000000000000e+0 5.000000000000e+0 0.000000000000e+0 1.000000000000e-6 1.000000000000e-6 1.000000000000e-3 2.000000000000e-3)\nS1 n1 out control 0 CB_SWITCH\nR1 out 0 1.000000000000e+3\n.model CB_SWITCH SW(RON=1 ROFF=1e9 VT=2.5 VH=0.1)\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 5.000000000000e-6 5.000000000000e-3 0 5.000000000000e-6\n.end\n",
+      "points": 1100,
+      "durationMs": 52.53813799999989,
+      "warnings": [],
+      "comparisons": [
+        {
+          "vector": "v(control)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.025,
+          "pass": true
+        },
+        {
+          "vector": "v(n1)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.025,
+          "pass": true
+        },
+        {
+          "vector": "v(out)",
+          "maximumAbsoluteError": 2.4938598142945287e-16,
+          "absoluteTolerance": 0.02497502497502498,
+          "pass": true
+        },
+        {
+          "vector": "i(v1)",
+          "maximumAbsoluteError": 3.7511400008360976e-19,
+          "absoluteTolerance": 0.000024975024975022464,
+          "pass": true
+        },
+        {
+          "vector": "i(v2)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.000001,
+          "pass": true
+        }
+      ],
+      "auxiliaryVectors": [],
+      "status": "passed"
+    },
+    {
+      "id": "rl-step",
+      "title": "Inductor step response",
+      "projectRevision": 0,
+      "analysis": {
+        "type": "tran",
+        "start": "1",
+        "stop": "100k",
+        "points": 60,
+        "step": "5u",
+        "duration": "5m",
+        "source": "V1",
+        "sweepStart": "0",
+        "sweepStop": "10",
+        "sweepStep": "0.1",
+        "temperature": 27,
+        "reltol": "1e-4",
+        "uic": true
+      },
+      "models": [],
+      "netlist": "CircuitBench - Inductor step response - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 in 0 DC 0.000000000000e+0 AC 1.000000000000e+0 0.000000000000e+0 PULSE(0.000000000000e+0 1.000000000000e+0 0.000000000000e+0 1.000000000000e-9 1.000000000000e-9 1.000000000000e-2 2.000000000000e-2)\nR1 in out 1.000000000000e+2\nL1 out 0 1.000000000000e-1 IC=0.000000000000e+0\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 5.000000000000e-6 5.000000000000e-3 0 5.000000000000e-6 uic\n.end\n",
+      "points": 1035,
+      "durationMs": 38.93157800000017,
+      "warnings": [],
+      "comparisons": [
+        {
+          "vector": "v(in)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.005,
+          "pass": true
+        },
+        {
+          "vector": "i(l1)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.000049663105960581525,
+          "pass": true
+        },
+        {
+          "vector": "v(out)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.004999997499750847,
+          "pass": true
+        },
+        {
+          "vector": "i(v1)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.000049663105960581525,
+          "pass": true
+        }
+      ],
+      "auxiliaryVectors": [],
+      "status": "passed"
+    },
+    {
+      "id": "current-source-fixture",
+      "title": "Independent current source fixture",
+      "projectRevision": 0,
+      "analysis": {
+        "type": "op",
+        "start": "1",
+        "stop": "100k",
+        "points": 60,
+        "step": "10u",
+        "duration": "10m",
+        "source": "V1",
+        "sweepStart": "0",
+        "sweepStop": "10",
+        "sweepStep": "0.1",
+        "temperature": 27,
+        "reltol": "1e-4",
+        "uic": false
+      },
+      "models": [],
+      "netlist": "CircuitBench - Current source validation - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nI1 0 out DC 1.000000000000e-3 AC 1.000000000000e-3 0.000000000000e+0\nR1 out 0 1.000000000000e+3\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.op\n.end\n",
+      "points": 1,
+      "durationMs": 28.277755999999954,
+      "warnings": [],
+      "comparisons": [
+        {
+          "vector": "v(out)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.005000000000000001,
+          "pass": true
+        }
+      ],
+      "auxiliaryVectors": [
+        {
+          "name": "v(all)",
+          "reason": "ngspice 45.2 interactive raw output adds an identical v(all) alias for a single-voltage operating point. Raw alias is preserved; requested canonical node is compared with native.",
+          "canonical": "v(out)"
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "pwl-source-fixture",
+      "title": "PWL ramp through RC fixture",
+      "projectRevision": 0,
+      "analysis": {
+        "type": "tran",
+        "start": "1",
+        "stop": "100k",
+        "points": 100,
+        "step": "5u",
+        "duration": "5m",
+        "source": "V1",
+        "sweepStart": "0",
+        "sweepStop": "10",
+        "sweepStep": "0.1",
+        "temperature": 27,
+        "reltol": "1e-4",
+        "uic": true
+      },
+      "models": [],
+      "netlist": "CircuitBench - PWL ramp validation - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 in 0 DC 0.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0 PWL(0.000000000000e+0 0.000000000000e+0 1.000000000000e-3 1.000000000000e+0 2.000000000000e-3 0.000000000000e+0 4.000000000000e-3 0.000000000000e+0)\nR1 in out 1.000000000000e+4\nC1 out 0 1.000000000000e-7 IC=0.000000000000e+0\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 5.000000000000e-6 5.000000000000e-3 0 5.000000000000e-6 uic\n.end\n",
+      "points": 1024,
+      "durationMs": 35.224599000000126,
+      "warnings": [],
+      "comparisons": [
+        {
+          "vector": "v(in)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.005,
+          "pass": true
+        },
+        {
+          "vector": "v(out)",
+          "maximumAbsoluteError": 1.6940658945086007e-21,
+          "absoluteTolerance": 0.002550587297093684,
+          "pass": true
+        },
+        {
+          "vector": "i(v1)",
+          "maximumAbsoluteError": 0,
+          "absoluteTolerance": 0.000001,
+          "pass": true
+        }
+      ],
+      "auxiliaryVectors": [],
+      "status": "passed"
+    }
+  ],
+  "checks": [
+    {
+      "name": "Independent current source into 1 kΩ",
+      "actual": 1.0000000000000002,
+      "expected": 1,
+      "absoluteTolerance": 1e-8,
+      "pass": true
+    },
+    {
+      "name": "PWL linear ramp RC response at 1 ms",
+      "actual": 0.3678786866165322,
+      "expected": 0.36787944117144233,
+      "absoluteTolerance": 0.0001,
+      "pass": true
+    },
+    {
+      "name": "Example divider midpoint",
+      "actual": 5,
+      "expected": 5,
+      "absoluteTolerance": 1e-8,
+      "pass": true
+    },
+    {
+      "name": "Actual RC example cutoff magnitude",
+      "actual": -3.010297440190204,
+      "expected": -3.010299956639812,
+      "absoluteTolerance": 0.002,
+      "pass": true
+    },
+    {
+      "name": "Actual RC example cutoff phase",
+      "actual": -44.99773885882389,
+      "expected": -45,
+      "absoluteTolerance": 0.01,
+      "pass": true
+    },
+    {
+      "name": "Actual RC example after one time constant",
+      "actual": 0.6321205436491997,
+      "expected": 0.6321205588285577,
+      "absoluteTolerance": 0.0001,
+      "pass": true
+    },
+    {
+      "name": "Actual RL example after one time constant",
+      "actual": 0.006321206310981473,
+      "expected": 0.006321205588285576,
+      "absoluteTolerance": 0.000001,
+      "pass": true
+    },
+    {
+      "name": "Sensor input at default resistance",
+      "actual": 2.4999999999999982,
+      "expected": 2.5,
+      "absoluteTolerance": 1e-8,
+      "pass": true
+    },
+    {
+      "name": "Amplifier peak near expected gain 11",
+      "actual": 1.0998360090710375,
+      "expected": 1.1,
+      "absoluteTolerance": 0.003,
+      "pass": true
+    },
+    {
+      "name": "Controlled switch on voltage",
+      "actual": 4.9950049950049955,
+      "expected": 4.995004995004995,
+      "absoluteTolerance": 0.00001,
+      "pass": true
+    },
+    {
+      "name": "transistor on-state",
+      "actual": 0.08781451375768516,
+      "expected": 0,
+      "absoluteTolerance": 0.3,
+      "pass": true
+    },
+    {
+      "name": "mosfet on-state",
+      "actual": 0.3216084202455852,
+      "expected": 0,
+      "absoluteTolerance": 1,
+      "pass": true
+    },
+    {
+      "name": "pnp-driver on-state",
+      "actual": 4.925153465457663,
+      "expected": 5,
+      "absoluteTolerance": 0.3,
+      "pass": true
+    },
+    {
+      "name": "pmos-driver on-state",
+      "actual": 4.95407917763147,
+      "expected": 5,
+      "absoluteTolerance": 0.3,
+      "pass": true
+    },
+    {
+      "name": "Changed capacitor shifts cutoff by half",
+      "actual": -3.010298331079893,
+      "expected": -3.010299956639812,
+      "absoluteTolerance": 0.002,
+      "pass": true
+    },
+    {
+      "name": "Actual divider DC sweep endpoint",
+      "actual": 4.99999999999999,
+      "expected": 5,
+      "absoluteTolerance": 1e-8,
+      "pass": true
+    }
+  ],
+  "status": "passed"
+}

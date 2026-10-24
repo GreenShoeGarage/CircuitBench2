@@ -1,0 +1,16 @@
+✔ portable digital record preserves all four literal states and its snapshot (18.494099ms)
+✔ numeric pseudo-logic and unknown state tokens are rejected (4.482153ms)
+✔ logic imports require a valid transient time order (5.034332ms)
+✔ logic measurement kind and unit must agree (0.887862ms)
+✔ mixed sample provenance and exact analog inputs survive a backup round trip (5.089997ms)
+✔ mixed provenance cannot point beyond, repeat, or omit its source positions (1.768612ms)
+✔ sparse event evidence round-trips and must agree with the logic samples (1.36818ms)
+✔ sparse event evidence rejects future, nonliteral and unseeded transitions (2.639311ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 72.934349

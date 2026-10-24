@@ -1,0 +1,458 @@
+{
+  "application": "CircuitBench",
+  "version": "1.2.0-rc.1",
+  "runtime_build": "7ad78c372946c614",
+  "recorded_at": "2026-10-24T07:12:16.319975+00:00",
+  "status": "passed",
+  "passed": 295,
+  "failed": 0,
+  "executed_suites": 22,
+  "suites": {
+    "autosave": 4,
+    "bus-model": 24,
+    "bus-report": 2,
+    "bus-ui": 10,
+    "core": 25,
+    "digital-editor": 6,
+    "digital-expansion": 14,
+    "digital-model": 23,
+    "digital-plots": 10,
+    "digital-storage": 13,
+    "digital": 22,
+    "editor": 11,
+    "engine-loading": 24,
+    "engine-raw-parser": 6,
+    "offline": 22,
+    "repair": 12,
+    "results": 14,
+    "simulation": 10,
+    "truth-table-evidence-ui": 10,
+    "truth-table": 7,
+    "truth-table-app": 17,
+    "package": 9
+  },
+  "suite_results": [
+    {
+      "suite": "autosave",
+      "command": [
+        "node",
+        "tests/autosave.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 4,
+      "passed": 4,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/autosave-tests.txt",
+      "recorded_at": "2026-10-24T06:56:43.397Z",
+      "runtime_build": "c8ef3ed4d77a1672"
+    },
+    {
+      "suite": "bus-model",
+      "command": [
+        "node",
+        "tests/bus-model.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 24,
+      "passed": 24,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/bus-model-tests.txt",
+      "recorded_at": "2026-10-24T06:56:43.397Z",
+      "runtime_build": "c8ef3ed4d77a1672"
+    },
+    {
+      "suite": "bus-report",
+      "command": [
+        "node",
+        "tests/bus-report.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 2,
+      "passed": 2,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/bus-report-tests.txt",
+      "recorded_at": "2026-10-24T06:56:43.397Z",
+      "runtime_build": "c8ef3ed4d77a1672"
+    },
+    {
+      "suite": "bus-ui",
+      "command": [
+        "node",
+        "tests/bus-ui.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 10,
+      "passed": 10,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/bus-ui-tests.txt",
+      "recorded_at": "2026-10-24T06:56:43.397Z",
+      "runtime_build": "c8ef3ed4d77a1672"
+    },
+    {
+      "suite": "core",
+      "command": [
+        "node",
+        "tests/core.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 25,
+      "passed": 25,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/core-tests.txt",
+      "recorded_at": "2026-10-24T06:56:43.397Z",
+      "runtime_build": "c8ef3ed4d77a1672"
+    },
+    {
+      "suite": "digital-editor",
+      "command": [
+        "node",
+        "tests/digital-editor.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 6,
+      "passed": 6,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/digital-editor-tests.txt",
+      "recorded_at": "2026-10-24T06:56:43.397Z",
+      "runtime_build": "c8ef3ed4d77a1672"
+    },
+    {
+      "suite": "digital-expansion",
+      "command": [
+        "node",
+        "tests/digital-expansion.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 14,
+      "passed": 14,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/digital-expansion-tests.txt",
+      "recorded_at": "2026-10-24T06:56:43.397Z",
+      "runtime_build": "c8ef3ed4d77a1672"
+    },
+    {
+      "suite": "digital-model",
+      "command": [
+        "node",
+        "tests/digital-model.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 23,
+      "passed": 23,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/digital-model-tests.txt",
+      "recorded_at": "2026-10-24T06:56:43.397Z",
+      "runtime_build": "c8ef3ed4d77a1672"
+    },
+    {
+      "suite": "digital-plots",
+      "command": [
+        "node",
+        "tests/digital-plots.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 10,
+      "passed": 10,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/digital-plots-tests.txt",
+      "recorded_at": "2026-10-24T06:56:43.397Z",
+      "runtime_build": "c8ef3ed4d77a1672"
+    },
+    {
+      "suite": "digital-storage",
+      "command": [
+        "node",
+        "tests/digital-storage.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 13,
+      "passed": 13,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/digital-storage-tests.txt",
+      "recorded_at": "2026-10-24T06:56:43.397Z",
+      "runtime_build": "c8ef3ed4d77a1672"
+    },
+    {
+      "suite": "digital",
+      "command": [
+        "node",
+        "tests/digital.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 22,
+      "passed": 22,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/digital-tests.txt",
+      "recorded_at": "2026-10-24T06:56:43.397Z",
+      "runtime_build": "c8ef3ed4d77a1672"
+    },
+    {
+      "suite": "editor",
+      "command": [
+        "node",
+        "tests/editor.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 11,
+      "passed": 11,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/editor-tests.txt",
+      "recorded_at": "2026-10-24T06:56:43.397Z",
+      "runtime_build": "c8ef3ed4d77a1672"
+    },
+    {
+      "suite": "engine-loading",
+      "command": [
+        "node",
+        "tests/engine-loading.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 24,
+      "passed": 24,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/engine-loading-tests.txt",
+      "recorded_at": "2026-10-24T06:56:43.397Z",
+      "runtime_build": "c8ef3ed4d77a1672"
+    },
+    {
+      "suite": "engine-raw-parser",
+      "command": [
+        "node",
+        "tests/engine-raw-parser.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 6,
+      "passed": 6,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/engine-raw-parser-tests.txt",
+      "recorded_at": "2026-10-24T06:56:43.397Z",
+      "runtime_build": "c8ef3ed4d77a1672"
+    },
+    {
+      "suite": "offline",
+      "command": [
+        "node",
+        "tests/offline.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 22,
+      "passed": 22,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/offline-tests.txt",
+      "recorded_at": "2026-10-24T06:56:43.397Z",
+      "runtime_build": "c8ef3ed4d77a1672"
+    },
+    {
+      "suite": "repair",
+      "command": [
+        "node",
+        "tests/repair.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 12,
+      "passed": 12,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/repair-tests.txt",
+      "recorded_at": "2026-10-24T06:56:43.397Z",
+      "runtime_build": "c8ef3ed4d77a1672"
+    },
+    {
+      "suite": "results",
+      "command": [
+        "node",
+        "tests/results.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 14,
+      "passed": 14,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/results-tests.txt",
+      "recorded_at": "2026-10-24T06:56:43.397Z",
+      "runtime_build": "c8ef3ed4d77a1672"
+    },
+    {
+      "suite": "simulation",
+      "command": [
+        "node",
+        "tests/simulation.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 10,
+      "passed": 10,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/simulation-tests.txt",
+      "recorded_at": "2026-10-24T06:56:43.397Z",
+      "runtime_build": "c8ef3ed4d77a1672"
+    },
+    {
+      "suite": "truth-table-evidence-ui",
+      "command": [
+        "node",
+        "tests/truth-table-evidence-ui.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 10,
+      "passed": 10,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/truth-table-evidence-ui-tests.txt",
+      "recorded_at": "2026-10-24T06:56:43.397Z",
+      "runtime_build": "c8ef3ed4d77a1672"
+    },
+    {
+      "suite": "truth-table",
+      "command": [
+        "node",
+        "tests/truth-table.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 7,
+      "passed": 7,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/truth-table-tests.txt",
+      "recorded_at": "2026-10-24T06:56:43.397Z",
+      "runtime_build": "c8ef3ed4d77a1672"
+    },
+    {
+      "suite": "truth-table-app",
+      "command": [
+        "node",
+        "tests/truth-table-app.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 17,
+      "passed": 17,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/truth-table-app-tests.txt",
+      "recorded_at": "2026-10-24T07:03:37.763Z",
+      "runtime_build": "7ad78c372946c614"
+    },
+    {
+      "suite": "package",
+      "command": [
+        "node",
+        "tests/package.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 9,
+      "passed": 9,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/package-tests.txt",
+      "recorded_at": "2026-10-24T07:12:16.319975+00:00",
+      "runtime_build": "7ad78c372946c614"
+    }
+  ],
+  "pending_suites": [],
+  "scope": "Focused direct-Node test files, including the built-package gate. Numeric worker proof and browser acceptance are separate evidence. Per-suite timestamps/builds retain the verification chronology.",
+  "proof_evidence": {
+    "analog_foundation": {
+      "file": "evidence/engine-validation.json",
+      "status": "passed",
+      "tested_at": "2026-10-24T06:50:11.631Z",
+      "checks": 62,
+      "native_comparisons_included_in_checks": 48,
+      "workers_created": 56,
+      "workers_terminated": 56,
+      "workers_alive": 0
+    },
+    "analog_examples": {
+      "file": "evidence/example-validation.json",
+      "status": "passed",
+      "tested_at": "2026-10-24T06:53:59.503Z",
+      "fixtures": 15,
+      "authored_examples": 13,
+      "supplementary_fixtures": 2,
+      "native_vector_comparisons": 70,
+      "analytic_behavior_checks": 16
+    },
+    "digital_mixed": {
+      "file": "evidence/digital-validation.json",
+      "status": "passed",
+      "tested_at": "2026-10-24T06:53:51.366Z",
+      "fixtures": 16,
+      "authored_examples": 13,
+      "truth_table_experiments": 1,
+      "checks": 149,
+      "workers_created": 33,
+      "workers_terminated": 33,
+      "workers_alive": 0,
+      "source_hashes_match_current": true,
+      "source_hashes_verified_at": "2026-10-24T07:03:37.763Z"
+    }
+  },
+  "retained_results": {
+    "previous_runtime_build": "c8ef3ed4d77a1672",
+    "previous_recorded_at": "2026-10-24T06:56:43.397Z",
+    "retained_suites": 20,
+    "retained_passed": 269,
+    "runtime_files_changed_since_retained_capture": [
+      "src/app.js"
+    ],
+    "reason": "Root authorized retaining unaffected results while rerunning only the new app integration suite. Per-suite timestamps and runtime identities preserve the distinction."
+  }
+}

@@ -1,0 +1,42 @@
+✔ timing choices expose scalar signals and explicit LSB-numbered bus bits with saved labels (7.356773ms)
+✔ canonical specification fills window and edge defaults and discards unrelated controls (5.208528ms)
+✔ authored probe labels take priority over generated vector names (0.925233ms)
+✔ measurements use preserved sparse events and do not infer edges from sampled logic (0.990704ms)
+✔ captured timing source copies only selected full traces and is independent of the run (1.729837ms)
+✔ legacy sampled-only, incomplete and non-transient runs have explicit unavailable errors (3.446612ms)
+✔ delay pairs each source with its first eligible target and reports a final missing edge (0.677528ms)
+✔ delay supports separately selected source and target polarity (1.820957ms)
+✔ simultaneous direct edges produce measured zero delay without inventing time-zero edges (0.400555ms)
+✔ a target at the next source timestamp belongs to that source and is never reused (0.485281ms)
+✔ target edges before a source are not paired backwards (2.19196ms)
+✔ pulse width distinguishes complete high and low pulses (2.065119ms)
+✔ an initial high value is not a rising edge or a complete high pulse (0.257383ms)
+✔ X and Z interrupt a pulse without pairing it across a later recovery (0.537825ms)
+✔ a closing edge exactly on the inclusive window end completes the pulse (0.209535ms)
+✔ period and frequency preserve per-cycle jitter and summarize only complete cycles (1.501621ms)
+✔ duty cycle measures percent high for both rising- and falling-bounded cycles (0.262489ms)
+✔ period, frequency and duty cycle never give a number across X/Z (0.226093ms)
+✔ an initially unknown target makes a later paired delay indeterminate (0.139108ms)
+✔ an X-to-one transition is never promoted to a rising edge (0.166051ms)
+✔ an entirely unknown signal has an explicit missing-edge diagnostic and no statistics (0.62149ms)
+✔ left-clipped pulses are not reconstructed from an earlier edge (0.416092ms)
+✔ measurements do not borrow a closing edge beyond a selected window (0.145186ms)
+✔ a single-timestamp window can measure simultaneous zero delay (0.28039ms)
+✔ explicit bus bit selection ignores unknown neighbors and preserves LSB numbering (0.30722ms)
+✔ the same bus can supply independently selected source and target bits (0.203911ms)
+✔ retained rows are bounded and truncation never claims an all-cycle summary (7.304466ms)
+✔ selected event count is bounded across both traces, not separately per signal (282.772701ms)
+✔ malformed event times and noncanonical states are rejected before measurement (2.665323ms)
+✔ source metadata rejects mismatched widths, duplicate traces and unsupported time grids (1.011652ms)
+✔ invalid measurement kinds, polarity, windows and bit selections are rejected (0.693487ms)
+✔ run adapter rejects event/trace metadata disagreement instead of coercing it (0.960606ms)
+✔ measurement is deterministic, leaves its source untouched and round-trips through JSON (0.60956ms)
+✔ reconvergent delayed logic yields a measurable short transport glitch (5.672575ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 362.573203

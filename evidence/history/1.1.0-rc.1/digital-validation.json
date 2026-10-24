@@ -1,0 +1,1363 @@
+{
+  "status": "passed",
+  "recordedAt": "2026-10-24T06:15:28.832Z",
+  "environment": {
+    "node": "v24.19.0",
+    "method": "Production browser modules in Node Worker API shim; actual event kernel and pinned ngspice WASM. No browser/UI or secure offline claim."
+  },
+  "analogEngine": {
+    "name": "ngspice",
+    "version": "45.2",
+    "build": "Sat Sep 5 01:00:10 UTC 2026",
+    "package": "EEcircuit-engine",
+    "packageVersion": "1.8.0",
+    "adapterVersion": 4,
+    "wasmSha256": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4",
+    "wasmBytes": 6133055,
+    "execution": "WebAssembly · isolated Web Worker · fresh instance per run"
+  },
+  "digitalEngine": {
+    "name": "CircuitBench event logic",
+    "version": "1",
+    "package": "CircuitBench event kernel",
+    "packageVersion": "1",
+    "build": "cb-digital-kernel-1",
+    "execution": "JavaScript · isolated Web Worker · fresh instance per run",
+    "states": [
+      "0",
+      "1",
+      "X",
+      "Z"
+    ],
+    "timeResolution": 1e-12,
+    "delayModel": "transport",
+    "initialization": "Combinational logic settles at time zero; flip-flops use their explicit initial state.",
+    "simultaneousInputs": "All driver changes at one timestamp resolve together. A rising-edge DFF samples the resulting D input.",
+    "limitations": "No setup/hold, metastability, drive strengths, HDL, or analog feedback coupling."
+  },
+  "sourceHashes": {
+    "digital.js": "4f4d87662f2bc40fc0bcb877ad7ba84ed4b92cf99915ee047c0f2d1514be7193",
+    "digital-worker.js": "aca93a581cf5fb27604eb9185d5ac7e39a4711836f9aea42c215f92e9b122799",
+    "digital-engine.js": "644b981095a6a2dbc0a397f3fa8bd492846ae364e32445540bdfe9715352265d",
+    "simulation.js": "9a8dc4e7869ef87a5d743df259fd26f9e402664b49c6cfbd2e9a6cb2b537b501",
+    "model.js": "5befcc6c7ed8b26f099d6a7a2694927802a4335311ba7a0da1e7988374f815e3",
+    "netlist.js": "811057e913a7c04e9cb40831bfb54d484a8db8434236c435053bdbfebca8b565",
+    "library.js": "af29ac64a2bf720ecb185db219591ca0164e0864ac18dc6c4885ff4cbc8d587b",
+    "examples.js": "637de67a2f25854a6c893c55173004161467ced570bb639783ee17df46e9860c"
+  },
+  "lifecycle": {
+    "created": 24,
+    "terminated": 24,
+    "alive": 0,
+    "digital": 12,
+    "analog": 12
+  },
+  "checks": [
+    {
+      "name": "clock_dac_rc: generated project has no electrical errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "clock_dac_rc: expected mixed execution",
+      "pass": true
+    },
+    {
+      "name": "clock_dac_rc: complete aligned vectors",
+      "pass": true
+    },
+    {
+      "name": "clock_dac_rc: strictly increasing shared time",
+      "pass": true
+    },
+    {
+      "name": "Clock DAC RC rising 1.5 V crossing",
+      "actual": 0.0000013616809599350664,
+      "expected": 0.0000013616791106019216,
+      "absoluteTolerance": 2e-11,
+      "pass": true
+    },
+    {
+      "name": "Clock DAC RC rising 3.5 V crossing",
+      "actual": 0.000002208976952568542,
+      "expected": 0.000002208976970989125,
+      "absoluteTolerance": 2e-11,
+      "pass": true
+    },
+    {
+      "name": "analog_threshold_adc: generated project has no electrical errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "analog_threshold_adc: expected mixed execution",
+      "pass": true
+    },
+    {
+      "name": "analog_threshold_adc: complete aligned vectors",
+      "pass": true
+    },
+    {
+      "name": "analog_threshold_adc: strictly increasing shared time",
+      "pass": true
+    },
+    {
+      "name": "Threshold ADC preserves 0/X/1/X/0 intervals",
+      "pass": true
+    },
+    {
+      "name": "Threshold ADC event 1",
+      "actual": 0.0000014,
+      "expected": 0.0000014,
+      "absoluteTolerance": 1e-12,
+      "pass": true
+    },
+    {
+      "name": "Threshold ADC event 2",
+      "actual": 0.0000026,
+      "expected": 0.0000026,
+      "absoluteTolerance": 1e-12,
+      "pass": true
+    },
+    {
+      "name": "Threshold ADC event 3",
+      "actual": 0.0000054,
+      "expected": 0.0000054,
+      "absoluteTolerance": 1e-12,
+      "pass": true
+    },
+    {
+      "name": "Threshold ADC event 4",
+      "actual": 0.0000065999999999999995,
+      "expected": 0.0000066,
+      "absoluteTolerance": 1e-12,
+      "pass": true
+    },
+    {
+      "name": "analog_schmitt_logic_dac_rc: generated project has no electrical errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "analog_schmitt_logic_dac_rc: expected mixed execution",
+      "pass": true
+    },
+    {
+      "name": "analog_schmitt_logic_dac_rc: complete aligned vectors",
+      "pass": true
+    },
+    {
+      "name": "analog_schmitt_logic_dac_rc: strictly increasing shared time",
+      "pass": true
+    },
+    {
+      "name": "Schmitt ADC emits known 0/1/0",
+      "pass": true
+    },
+    {
+      "name": "Schmitt rising decision",
+      "actual": 0.0000026,
+      "expected": 0.0000026,
+      "absoluteTolerance": 1e-12,
+      "pass": true
+    },
+    {
+      "name": "Schmitt falling decision",
+      "actual": 0.0000065999999999999995,
+      "expected": 0.0000066,
+      "absoluteTolerance": 1e-12,
+      "pass": true
+    },
+    {
+      "name": "Digital propagation after ADC rising",
+      "actual": 1.999999999999981e-8,
+      "expected": 2e-8,
+      "absoluteTolerance": 1e-12,
+      "pass": true
+    },
+    {
+      "name": "Feed-forward Schmitt/DAC RC analog result at 4 us",
+      "actual": 3.7357961504682637,
+      "expected": 3.735796753478111,
+      "absoluteTolerance": 0.00002,
+      "pass": true
+    },
+    {
+      "name": "Every original ngspice time and value survives event union exactly",
+      "pass": true
+    },
+    {
+      "name": "Fresh complete mixed replay is deterministic",
+      "pass": true
+    },
+    {
+      "name": "Unknown threshold band is rejected before DAC replay",
+      "pass": true,
+      "detail": {
+        "status": "failed",
+        "code": "DAC_UNKNOWN",
+        "message": "c_549de71e-7d1d-4dd0-b507-d10e99484686: DAC input is X at 0.00000142 s. This DAC requires known 0/1 states; X and Z have no analog voltage mapping."
+      }
+    },
+    {
+      "name": "example:digital-half-adder: generated project has no electrical errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "example:digital-half-adder: expected digital execution",
+      "pass": true
+    },
+    {
+      "name": "example:digital-half-adder: complete aligned vectors",
+      "pass": true
+    },
+    {
+      "name": "example:digital-half-adder: strictly increasing shared time",
+      "pass": true
+    },
+    {
+      "name": "Half-adder truth at 0.0005 s",
+      "pass": true
+    },
+    {
+      "name": "Half-adder truth at 0.0015 s",
+      "pass": true
+    },
+    {
+      "name": "Half-adder truth at 0.0025 s",
+      "pass": true
+    },
+    {
+      "name": "Half-adder truth at 0.0035 s",
+      "pass": true
+    },
+    {
+      "name": "example:logic-gates: generated project has no electrical errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "example:logic-gates: expected digital execution",
+      "pass": true
+    },
+    {
+      "name": "example:logic-gates: complete aligned vectors",
+      "pass": true
+    },
+    {
+      "name": "example:logic-gates: strictly increasing shared time",
+      "pass": true
+    },
+    {
+      "name": "Unknown logic example and",
+      "pass": true
+    },
+    {
+      "name": "Unknown logic example nand",
+      "pass": true
+    },
+    {
+      "name": "Unknown logic example buf",
+      "pass": true
+    },
+    {
+      "name": "Unknown logic example not",
+      "pass": true
+    },
+    {
+      "name": "Unknown logic example or",
+      "pass": true
+    },
+    {
+      "name": "Unknown logic example nor",
+      "pass": true
+    },
+    {
+      "name": "Unknown logic example xor",
+      "pass": true
+    },
+    {
+      "name": "Unknown logic example xnor",
+      "pass": true
+    },
+    {
+      "name": "example:dff-divider: generated project has no electrical errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "example:dff-divider: expected digital execution",
+      "pass": true
+    },
+    {
+      "name": "example:dff-divider: complete aligned vectors",
+      "pass": true
+    },
+    {
+      "name": "example:dff-divider: strictly increasing shared time",
+      "pass": true
+    },
+    {
+      "name": "DFF divider alternating states",
+      "pass": true
+    },
+    {
+      "name": "DFF divider event 1",
+      "actual": 0.00010001,
+      "expected": 0.00010001,
+      "absoluteTolerance": 1e-12,
+      "pass": true
+    },
+    {
+      "name": "DFF divider event 2",
+      "actual": 0.00110001,
+      "expected": 0.00110001,
+      "absoluteTolerance": 1e-12,
+      "pass": true
+    },
+    {
+      "name": "DFF divider event 3",
+      "actual": 0.00210001,
+      "expected": 0.00210001,
+      "absoluteTolerance": 1e-12,
+      "pass": true
+    },
+    {
+      "name": "DFF divider event 4",
+      "actual": 0.00310001,
+      "expected": 0.00310001,
+      "absoluteTolerance": 1e-12,
+      "pass": true
+    },
+    {
+      "name": "DFF divider event 5",
+      "actual": 0.00410001,
+      "expected": 0.00410001,
+      "absoluteTolerance": 1e-12,
+      "pass": true
+    },
+    {
+      "name": "example:tri-state-bus: generated project has no electrical errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "example:tri-state-bus: expected digital execution",
+      "pass": true
+    },
+    {
+      "name": "example:tri-state-bus: complete aligned vectors",
+      "pass": true
+    },
+    {
+      "name": "example:tri-state-bus: strictly increasing shared time",
+      "pass": true
+    },
+    {
+      "name": "Tri-state example includes 0, contention X, 1 and undriven Z",
+      "pass": true
+    },
+    {
+      "name": "Tri-state first contention delay",
+      "actual": 0.00100001,
+      "expected": 0.00100001,
+      "absoluteTolerance": 1e-12,
+      "pass": true
+    },
+    {
+      "name": "example:clock-dac-rc: generated project has no electrical errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "example:clock-dac-rc: expected mixed execution",
+      "pass": true
+    },
+    {
+      "name": "example:clock-dac-rc: complete aligned vectors",
+      "pass": true
+    },
+    {
+      "name": "example:clock-dac-rc: strictly increasing shared time",
+      "pass": true
+    },
+    {
+      "name": "Authored clock-DAC RC at 350 us",
+      "actual": 4.587650245635333,
+      "expected": 4.587516024363058,
+      "absoluteTolerance": 0.002,
+      "pass": true
+    },
+    {
+      "name": "example:adc-ramp: generated project has no electrical errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "example:adc-ramp: expected mixed execution",
+      "pass": true
+    },
+    {
+      "name": "example:adc-ramp: complete aligned vectors",
+      "pass": true
+    },
+    {
+      "name": "example:adc-ramp: strictly increasing shared time",
+      "pass": true
+    },
+    {
+      "name": "Authored ADC ramp threshold sequence",
+      "pass": true
+    },
+    {
+      "name": "Authored ADC ramp event 1",
+      "actual": 0.0015,
+      "expected": 0.0015,
+      "absoluteTolerance": 1e-12,
+      "pass": true
+    },
+    {
+      "name": "Authored ADC ramp event 2",
+      "actual": 0.0035,
+      "expected": 0.0035,
+      "absoluteTolerance": 1e-12,
+      "pass": true
+    },
+    {
+      "name": "Authored ADC ramp event 3",
+      "actual": 0.0065,
+      "expected": 0.0065,
+      "absoluteTolerance": 1e-12,
+      "pass": true
+    },
+    {
+      "name": "Authored ADC ramp event 4",
+      "actual": 0.0085,
+      "expected": 0.0085,
+      "absoluteTolerance": 1e-12,
+      "pass": true
+    },
+    {
+      "name": "example:mixed-chain: generated project has no electrical errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "example:mixed-chain: expected mixed execution",
+      "pass": true
+    },
+    {
+      "name": "example:mixed-chain: complete aligned vectors",
+      "pass": true
+    },
+    {
+      "name": "example:mixed-chain: strictly increasing shared time",
+      "pass": true
+    },
+    {
+      "name": "Authored complete mixed chain at 0 s",
+      "actual": 5,
+      "expected": 5,
+      "absoluteTolerance": 0.000001,
+      "pass": true
+    },
+    {
+      "name": "Authored complete mixed chain at 0.005 s",
+      "actual": 0,
+      "expected": 0,
+      "absoluteTolerance": 0.000001,
+      "pass": true
+    },
+    {
+      "name": "Authored complete mixed chain at 0.009 s",
+      "actual": 5,
+      "expected": 5,
+      "absoluteTolerance": 0.000001,
+      "pass": true
+    },
+    {
+      "name": "Authored complete mixed chain performed two actual analog passes",
+      "pass": true
+    },
+    {
+      "name": "All created workers were physically terminated",
+      "pass": true,
+      "detail": {
+        "created": 24,
+        "terminated": 24,
+        "alive": 0,
+        "digital": 12,
+        "analog": 12
+      }
+    }
+  ],
+  "fixtures": [
+    {
+      "id": "clock_dac_rc",
+      "projectTitle": "Proof · digital clock, finite DAC and analog RC",
+      "mode": "mixed",
+      "points": 2262,
+      "analogPoints": 2260,
+      "digitalEvents": [
+        {
+          "name": "d(clock)",
+          "events": [
+            {
+              "time": 0,
+              "value": "0"
+            },
+            {
+              "time": 0.000001,
+              "value": "1"
+            },
+            {
+              "time": 0.000006,
+              "value": "0"
+            },
+            {
+              "time": 0.000011,
+              "value": "1"
+            }
+          ]
+        }
+      ],
+      "sampling": {
+        "mode": "event-union",
+        "analogInterpolation": "linear",
+        "logicContinuity": "right",
+        "timeResolution": 1e-12,
+        "description": "All original ngspice sample times and values are preserved. Analog values at additional digital event times are linearly interpolated; logic states are right-continuous after simultaneous events settle.",
+        "originalAnalogSamples": 2260
+      },
+      "analogNetlists": [
+        "CircuitBench - Proof · digital clock, finite DAC and analog RC - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\n* CircuitBench mixed-signal replay: this is one analog pass, not the complete native digital experiment.\n* Import the CircuitBench JSON project to preserve logic, bridges and timing.\n* Native digital plan: {\"mode\":\"mixed\",\"duration\":0.000011,\"maxStep\":5e-9,\"digital\":{\"sources\":[{\"id\":\"c_c5d96d4b-6d80-4f84-a7de-32b57383cc96\",\"output\":\"clock\",\"kind\":\"clock\",\"period\":0.000009999999999999999,\"duty\":0.5,\"delay\":0.000001}],\"gates\":[],\"probes\":[{\"name\":\"d(clock)\",\"node\":\"clock\"}]},\"adcs\":[],\"dacs\":[{\"id\":\"c_8975fe8e-8e0b-4e3f-a025-7a2c88caeeca\",\"input\":\"clock\",\"sourceName\":\"V_CB_DAC1\",\"low\":0,\"high\":5,\"rise\":1e-8,\"fall\":1e-8,\"initial\":0}]}\nV_CB_DAC1 drive 0 PWL(0.000000000000e+0 0.000000000000e+0 1.000000000000e-6 0.000000000000e+0 1.010000000000e-6 5.000000000000e+0 6.000000000000e-6 5.000000000000e+0 6.010000000000e-6 0.000000000000e+0 1.100000000000e-5 0.000000000000e+0)\nR1 drive out 1.000000000000e+3\nC1 out 0 1.000000000000e-9 IC=0.000000000000e+0\n.temp 27\n.options reltol=1.000000000000e-7 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 5.000000000000e-9 1.100000000000e-5 0 5.000000000000e-9\n.end\n"
+      ],
+      "warnings": [
+        "Mixed simulation uses feed-forward replay; analog-to-digital feedback paths are unsupported."
+      ]
+    },
+    {
+      "id": "analog_threshold_adc",
+      "projectTitle": "Proof · analog threshold ADC, logic and digital output",
+      "mode": "mixed",
+      "points": 1828,
+      "analogPoints": 1820,
+      "digitalEvents": [
+        {
+          "name": "d(decision)",
+          "events": [
+            {
+              "time": 0,
+              "value": "0"
+            },
+            {
+              "time": 0.0000014,
+              "value": "X"
+            },
+            {
+              "time": 0.0000026,
+              "value": "1"
+            },
+            {
+              "time": 0.0000054,
+              "value": "X"
+            },
+            {
+              "time": 0.0000065999999999999995,
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "name": "d(logic_out)",
+          "events": [
+            {
+              "time": 0,
+              "value": "0"
+            },
+            {
+              "time": 0.00000142,
+              "value": "X"
+            },
+            {
+              "time": 0.00000262,
+              "value": "1"
+            },
+            {
+              "time": 0.00000542,
+              "value": "X"
+            },
+            {
+              "time": 0.00000662,
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "sampling": {
+        "mode": "event-union",
+        "analogInterpolation": "linear",
+        "logicContinuity": "right",
+        "timeResolution": 1e-12,
+        "description": "All original ngspice sample times and values are preserved. Analog values at additional digital event times are linearly interpolated; logic states are right-continuous after simultaneous events settle.",
+        "originalAnalogSamples": 1820
+      },
+      "analogNetlists": [
+        "CircuitBench - Proof · analog threshold ADC, logic and digital output - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\n* CircuitBench mixed-signal replay: this is one analog pass, not the complete native digital experiment.\n* Import the CircuitBench JSON project to preserve logic, bridges and timing.\n* Native digital plan: {\"mode\":\"mixed\",\"duration\":0.000009,\"maxStep\":5e-9,\"digital\":{\"sources\":[],\"gates\":[{\"id\":\"c_6de640eb-071f-4e46-a432-7c3ec7808002\",\"type\":\"BUF\",\"inputs\":[\"decision\"],\"output\":\"logic_out\",\"delay\":2e-8}],\"probes\":[{\"name\":\"d(decision)\",\"node\":\"decision\"},{\"name\":\"d(logic_out)\",\"node\":\"logic_out\"}]},\"adcs\":[{\"id\":\"c_ebb7aa01-5578-407d-ae26-3105d6e08351\",\"inputVector\":\"v(sense)\",\"referenceVector\":\"0\",\"output\":\"decision\",\"low\":1,\"high\":4,\"mode\":\"threshold\"}],\"dacs\":[]}\nV1 sense 0 DC 0.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0 PWL(0.000000000000e+0 0.000000000000e+0 1.000000000000e-6 0.000000000000e+0 3.000000000000e-6 5.000000000000e+0 5.000000000000e-6 5.000000000000e+0 7.000000000000e-6 0.000000000000e+0 9.000000000000e-6 0.000000000000e+0)\nR1 sense 0 1.000000000000e+4\n.temp 27\n.options reltol=1.000000000000e-7 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 5.000000000000e-9 9.000000000000e-6 0 5.000000000000e-9\n.end\n"
+      ],
+      "warnings": [
+        "Mixed simulation uses feed-forward replay; analog-to-digital feedback paths are unsupported.",
+        "ADC crossing times are interpolated from saved analog samples and rounded to 1 ps. Reduce the transient maximum step to resolve faster analog activity."
+      ]
+    },
+    {
+      "id": "analog_schmitt_logic_dac_rc",
+      "projectTitle": "Proof · analog schmitt ADC, logic and DAC RC output",
+      "mode": "mixed",
+      "points": 1876,
+      "analogPoints": 1872,
+      "digitalEvents": [
+        {
+          "name": "d(decision)",
+          "events": [
+            {
+              "time": 0,
+              "value": "0"
+            },
+            {
+              "time": 0.0000026,
+              "value": "1"
+            },
+            {
+              "time": 0.0000065999999999999995,
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "name": "d(logic_out)",
+          "events": [
+            {
+              "time": 0,
+              "value": "0"
+            },
+            {
+              "time": 0.00000262,
+              "value": "1"
+            },
+            {
+              "time": 0.00000662,
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "sampling": {
+        "mode": "event-union",
+        "analogInterpolation": "linear",
+        "logicContinuity": "right",
+        "timeResolution": 1e-12,
+        "description": "All original ngspice sample times and values are preserved. Analog values at additional digital event times are linearly interpolated; logic states are right-continuous after simultaneous events settle.",
+        "originalAnalogSamples": 1872
+      },
+      "analogNetlists": [
+        "CircuitBench - Proof · analog schmitt ADC, logic and DAC RC output - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\n* CircuitBench mixed-signal replay: this is one analog pass, not the complete native digital experiment.\n* Import the CircuitBench JSON project to preserve logic, bridges and timing.\n* Native digital plan: {\"mode\":\"mixed\",\"duration\":0.000009,\"maxStep\":5e-9,\"digital\":{\"sources\":[],\"gates\":[{\"id\":\"c_4569f8a5-91a6-4a9f-a74c-79eb474334e7\",\"type\":\"BUF\",\"inputs\":[\"decision\"],\"output\":\"logic_out\",\"delay\":2e-8}],\"probes\":[{\"name\":\"d(decision)\",\"node\":\"decision\"},{\"name\":\"d(logic_out)\",\"node\":\"logic_out\"}]},\"adcs\":[{\"id\":\"c_6412f851-9087-44e4-9af7-fcdc60a6b6f8\",\"inputVector\":\"v(sense)\",\"referenceVector\":\"0\",\"output\":\"decision\",\"low\":1,\"high\":4,\"mode\":\"schmitt\"}],\"dacs\":[{\"id\":\"c_1252b65d-58c3-4e88-8606-e3f63b7123d6\",\"input\":\"logic_out\",\"sourceName\":\"V_CB_DAC1\",\"low\":0,\"high\":5,\"rise\":1e-8,\"fall\":1e-8,\"initial\":0}]}\nV1 sense 0 DC 0.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0 PWL(0.000000000000e+0 0.000000000000e+0 1.000000000000e-6 0.000000000000e+0 3.000000000000e-6 5.000000000000e+0 5.000000000000e-6 5.000000000000e+0 7.000000000000e-6 0.000000000000e+0 9.000000000000e-6 0.000000000000e+0)\nR1 sense 0 1.000000000000e+4\nV_CB_DAC1 n1 0 PWL(0.000000000000e+0 0.000000000000e+0 9.000000000000e-6 0.000000000000e+0)\nR2 n1 out 1.000000000000e+3\nC1 out 0 1.000000000000e-9 IC=0.000000000000e+0\n.temp 27\n.options reltol=1.000000000000e-7 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 5.000000000000e-9 9.000000000000e-6 0 5.000000000000e-9\n.end\n",
+        "CircuitBench - Proof · analog schmitt ADC, logic and DAC RC output - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\n* CircuitBench mixed-signal replay: this is one analog pass, not the complete native digital experiment.\n* Import the CircuitBench JSON project to preserve logic, bridges and timing.\n* Native digital plan: {\"mode\":\"mixed\",\"duration\":0.000009,\"maxStep\":5e-9,\"digital\":{\"sources\":[],\"gates\":[{\"id\":\"c_4569f8a5-91a6-4a9f-a74c-79eb474334e7\",\"type\":\"BUF\",\"inputs\":[\"decision\"],\"output\":\"logic_out\",\"delay\":2e-8}],\"probes\":[{\"name\":\"d(decision)\",\"node\":\"decision\"},{\"name\":\"d(logic_out)\",\"node\":\"logic_out\"}]},\"adcs\":[{\"id\":\"c_6412f851-9087-44e4-9af7-fcdc60a6b6f8\",\"inputVector\":\"v(sense)\",\"referenceVector\":\"0\",\"output\":\"decision\",\"low\":1,\"high\":4,\"mode\":\"schmitt\"}],\"dacs\":[{\"id\":\"c_1252b65d-58c3-4e88-8606-e3f63b7123d6\",\"input\":\"logic_out\",\"sourceName\":\"V_CB_DAC1\",\"low\":0,\"high\":5,\"rise\":1e-8,\"fall\":1e-8,\"initial\":0}]}\nV1 sense 0 DC 0.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0 PWL(0.000000000000e+0 0.000000000000e+0 1.000000000000e-6 0.000000000000e+0 3.000000000000e-6 5.000000000000e+0 5.000000000000e-6 5.000000000000e+0 7.000000000000e-6 0.000000000000e+0 9.000000000000e-6 0.000000000000e+0)\nR1 sense 0 1.000000000000e+4\nV_CB_DAC1 n1 0 PWL(0.000000000000e+0 0.000000000000e+0 2.620000000000e-6 0.000000000000e+0 2.630000000000e-6 5.000000000000e+0 6.620000000000e-6 5.000000000000e+0 6.630000000000e-6 0.000000000000e+0 9.000000000000e-6 0.000000000000e+0)\nR2 n1 out 1.000000000000e+3\nC1 out 0 1.000000000000e-9 IC=0.000000000000e+0\n.temp 27\n.options reltol=1.000000000000e-7 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 5.000000000000e-9 9.000000000000e-6 0 5.000000000000e-9\n.end\n"
+      ],
+      "warnings": [
+        "Mixed simulation uses feed-forward replay; analog-to-digital feedback paths are unsupported.",
+        "ADC crossing times are interpolated from saved analog samples and rounded to 1 ps. Reduce the transient maximum step to resolve faster analog activity."
+      ]
+    },
+    {
+      "id": "example:digital-half-adder",
+      "projectTitle": "Digital half adder",
+      "mode": "digital",
+      "points": 14,
+      "digitalEvents": [
+        {
+          "name": "d(a)",
+          "events": [
+            {
+              "time": 0,
+              "value": "1"
+            },
+            {
+              "time": 0.001,
+              "value": "0"
+            },
+            {
+              "time": 0.002,
+              "value": "1"
+            },
+            {
+              "time": 0.003,
+              "value": "0"
+            },
+            {
+              "time": 0.004,
+              "value": "1"
+            },
+            {
+              "time": 0.005,
+              "value": "0"
+            },
+            {
+              "time": 0.006,
+              "value": "1"
+            },
+            {
+              "time": 0.007,
+              "value": "0"
+            },
+            {
+              "time": 0.008,
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "name": "d(b)",
+          "events": [
+            {
+              "time": 0,
+              "value": "1"
+            },
+            {
+              "time": 0.002,
+              "value": "0"
+            },
+            {
+              "time": 0.004,
+              "value": "1"
+            },
+            {
+              "time": 0.006,
+              "value": "0"
+            },
+            {
+              "time": 0.008,
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "name": "d(carry)",
+          "events": [
+            {
+              "time": 0,
+              "value": "1"
+            },
+            {
+              "time": 0.00100001,
+              "value": "0"
+            },
+            {
+              "time": 0.00400001,
+              "value": "1"
+            },
+            {
+              "time": 0.00500001,
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "name": "d(sum)",
+          "events": [
+            {
+              "time": 0,
+              "value": "0"
+            },
+            {
+              "time": 0.00100001,
+              "value": "1"
+            },
+            {
+              "time": 0.00300001,
+              "value": "0"
+            },
+            {
+              "time": 0.00500001,
+              "value": "1"
+            },
+            {
+              "time": 0.00700001,
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "sampling": {
+        "mode": "digital-events",
+        "analogInterpolation": "none",
+        "logicContinuity": "right",
+        "timeResolution": 1e-12,
+        "description": "Change-only digital events plus time zero and run end; logic states are right-continuous after simultaneous events settle. Gate delays use 1 ps transport timing.",
+        "originalAnalogSamples": 0
+      },
+      "analogNetlists": [],
+      "warnings": []
+    },
+    {
+      "id": "example:logic-gates",
+      "projectTitle": "Four-state gate bench",
+      "mode": "digital",
+      "points": 2,
+      "digitalEvents": [
+        {
+          "name": "d(a)",
+          "events": [
+            {
+              "time": 0,
+              "value": "X"
+            }
+          ]
+        },
+        {
+          "name": "d(and)",
+          "events": [
+            {
+              "time": 0,
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "name": "d(b)",
+          "events": [
+            {
+              "time": 0,
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "name": "d(buf)",
+          "events": [
+            {
+              "time": 0,
+              "value": "X"
+            }
+          ]
+        },
+        {
+          "name": "d(nand)",
+          "events": [
+            {
+              "time": 0,
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "name": "d(nor)",
+          "events": [
+            {
+              "time": 0,
+              "value": "X"
+            }
+          ]
+        },
+        {
+          "name": "d(not)",
+          "events": [
+            {
+              "time": 0,
+              "value": "X"
+            }
+          ]
+        },
+        {
+          "name": "d(or)",
+          "events": [
+            {
+              "time": 0,
+              "value": "X"
+            }
+          ]
+        },
+        {
+          "name": "d(xnor)",
+          "events": [
+            {
+              "time": 0,
+              "value": "X"
+            }
+          ]
+        },
+        {
+          "name": "d(xor)",
+          "events": [
+            {
+              "time": 0,
+              "value": "X"
+            }
+          ]
+        }
+      ],
+      "sampling": {
+        "mode": "digital-events",
+        "analogInterpolation": "none",
+        "logicContinuity": "right",
+        "timeResolution": 1e-12,
+        "description": "Change-only digital events plus time zero and run end; logic states are right-continuous after simultaneous events settle. Gate delays use 1 ps transport timing.",
+        "originalAnalogSamples": 0
+      },
+      "analogNetlists": [],
+      "warnings": []
+    },
+    {
+      "id": "example:dff-divider",
+      "projectTitle": "D flip-flop divide by two",
+      "mode": "digital",
+      "points": 22,
+      "digitalEvents": [
+        {
+          "name": "d(clk)",
+          "events": [
+            {
+              "time": 0,
+              "value": "0"
+            },
+            {
+              "time": 0.00009999999999999999,
+              "value": "1"
+            },
+            {
+              "time": 0.0006,
+              "value": "0"
+            },
+            {
+              "time": 0.0011,
+              "value": "1"
+            },
+            {
+              "time": 0.0015999999999999999,
+              "value": "0"
+            },
+            {
+              "time": 0.0021,
+              "value": "1"
+            },
+            {
+              "time": 0.0026,
+              "value": "0"
+            },
+            {
+              "time": 0.0031,
+              "value": "1"
+            },
+            {
+              "time": 0.0036,
+              "value": "0"
+            },
+            {
+              "time": 0.0041,
+              "value": "1"
+            },
+            {
+              "time": 0.0046,
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "name": "d(d)",
+          "events": [
+            {
+              "time": 0,
+              "value": "1"
+            },
+            {
+              "time": 0.00010002,
+              "value": "0"
+            },
+            {
+              "time": 0.00110002,
+              "value": "1"
+            },
+            {
+              "time": 0.0021000199999999998,
+              "value": "0"
+            },
+            {
+              "time": 0.0031000199999999998,
+              "value": "1"
+            },
+            {
+              "time": 0.00410002,
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "name": "d(q)",
+          "events": [
+            {
+              "time": 0,
+              "value": "0"
+            },
+            {
+              "time": 0.00010001,
+              "value": "1"
+            },
+            {
+              "time": 0.00110001,
+              "value": "0"
+            },
+            {
+              "time": 0.00210001,
+              "value": "1"
+            },
+            {
+              "time": 0.00310001,
+              "value": "0"
+            },
+            {
+              "time": 0.00410001,
+              "value": "1"
+            }
+          ]
+        }
+      ],
+      "sampling": {
+        "mode": "digital-events",
+        "analogInterpolation": "none",
+        "logicContinuity": "right",
+        "timeResolution": 1e-12,
+        "description": "Change-only digital events plus time zero and run end; logic states are right-continuous after simultaneous events settle. Gate delays use 1 ps transport timing.",
+        "originalAnalogSamples": 0
+      },
+      "analogNetlists": [],
+      "warnings": []
+    },
+    {
+      "id": "example:tri-state-bus",
+      "projectTitle": "Tri-state sharing and contention",
+      "mode": "digital",
+      "points": 16,
+      "digitalEvents": [
+        {
+          "name": "d(bus)",
+          "events": [
+            {
+              "time": 0,
+              "value": "0"
+            },
+            {
+              "time": 0.00100001,
+              "value": "X"
+            },
+            {
+              "time": 0.00200001,
+              "value": "1"
+            },
+            {
+              "time": 0.00300001,
+              "value": "Z"
+            },
+            {
+              "time": 0.00400001,
+              "value": "0"
+            },
+            {
+              "time": 0.00500001,
+              "value": "X"
+            },
+            {
+              "time": 0.00600001,
+              "value": "1"
+            },
+            {
+              "time": 0.00700001,
+              "value": "Z"
+            }
+          ]
+        },
+        {
+          "name": "d(en_a)",
+          "events": [
+            {
+              "time": 0,
+              "value": "1"
+            },
+            {
+              "time": 0.002,
+              "value": "0"
+            },
+            {
+              "time": 0.004,
+              "value": "1"
+            },
+            {
+              "time": 0.006,
+              "value": "0"
+            },
+            {
+              "time": 0.008,
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "name": "d(en_b)",
+          "events": [
+            {
+              "time": 0,
+              "value": "0"
+            },
+            {
+              "time": 0.001,
+              "value": "1"
+            },
+            {
+              "time": 0.003,
+              "value": "0"
+            },
+            {
+              "time": 0.005,
+              "value": "1"
+            },
+            {
+              "time": 0.007,
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "name": "d(n1)",
+          "events": [
+            {
+              "time": 0,
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "name": "d(n2)",
+          "events": [
+            {
+              "time": 0,
+              "value": "1"
+            }
+          ]
+        }
+      ],
+      "sampling": {
+        "mode": "digital-events",
+        "analogInterpolation": "none",
+        "logicContinuity": "right",
+        "timeResolution": 1e-12,
+        "description": "Change-only digital events plus time zero and run end; logic states are right-continuous after simultaneous events settle. Gate delays use 1 ps transport timing.",
+        "originalAnalogSamples": 0
+      },
+      "analogNetlists": [],
+      "warnings": []
+    },
+    {
+      "id": "example:clock-dac-rc",
+      "projectTitle": "Clock → DAC → RC filter",
+      "mode": "mixed",
+      "points": 900,
+      "analogPoints": 895,
+      "digitalEvents": [
+        {
+          "name": "d(clock)",
+          "events": [
+            {
+              "time": 0,
+              "value": "0"
+            },
+            {
+              "time": 0.00009999999999999999,
+              "value": "1"
+            },
+            {
+              "time": 0.0006,
+              "value": "0"
+            },
+            {
+              "time": 0.0011,
+              "value": "1"
+            },
+            {
+              "time": 0.0015999999999999999,
+              "value": "0"
+            },
+            {
+              "time": 0.0021,
+              "value": "1"
+            },
+            {
+              "time": 0.0026,
+              "value": "0"
+            },
+            {
+              "time": 0.0031,
+              "value": "1"
+            },
+            {
+              "time": 0.0036,
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "sampling": {
+        "mode": "event-union",
+        "analogInterpolation": "linear",
+        "logicContinuity": "right",
+        "timeResolution": 1e-12,
+        "description": "All original ngspice sample times and values are preserved. Analog values at additional digital event times are linearly interpolated; logic states are right-continuous after simultaneous events settle.",
+        "originalAnalogSamples": 895
+      },
+      "analogNetlists": [
+        "CircuitBench - Clock → DAC → RC filter - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\n* CircuitBench mixed-signal replay: this is one analog pass, not the complete native digital experiment.\n* Import the CircuitBench JSON project to preserve logic, bridges and timing.\n* Native digital plan: {\"mode\":\"mixed\",\"duration\":0.004,\"maxStep\":0.0000049999999999999996,\"digital\":{\"sources\":[{\"id\":\"c_976e1ac9-0f5e-4d56-b07a-5ff419ac8d83\",\"output\":\"clock\",\"kind\":\"clock\",\"period\":0.001,\"duty\":0.5,\"delay\":0.00009999999999999999}],\"gates\":[],\"probes\":[{\"name\":\"d(clock)\",\"node\":\"clock\"}]},\"adcs\":[],\"dacs\":[{\"id\":\"c_79d4ac24-46aa-4e66-bb04-6b5f6eed99d2\",\"input\":\"clock\",\"sourceName\":\"V_CB_DAC1\",\"low\":0,\"high\":5,\"rise\":0.000001,\"fall\":0.000001,\"initial\":0}]}\nV_CB_DAC1 dac 0 PWL(0.000000000000e+0 0.000000000000e+0 1.000000000000e-4 0.000000000000e+0 1.010000000000e-4 5.000000000000e+0 6.000000000000e-4 5.000000000000e+0 6.010000000000e-4 0.000000000000e+0 1.100000000000e-3 0.000000000000e+0 1.101000000000e-3 5.000000000000e+0 1.600000000000e-3 5.000000000000e+0 1.601000000000e-3 0.000000000000e+0 2.100000000000e-3 0.000000000000e+0 2.101000000000e-3 5.000000000000e+0 2.600000000000e-3 5.000000000000e+0 2.601000000000e-3 0.000000000000e+0 3.100000000000e-3 0.000000000000e+0 3.101000000000e-3 5.000000000000e+0 3.600000000000e-3 5.000000000000e+0 3.601000000000e-3 0.000000000000e+0 4.000000000000e-3 0.000000000000e+0)\nR1 dac filtered 1.000000000000e+3\nC1 filtered 0 1.000000000000e-7 IC=0.000000000000e+0\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 5.000000000000e-6 4.000000000000e-3 0 5.000000000000e-6\n.end\n"
+      ],
+      "warnings": [
+        "Mixed simulation uses feed-forward replay; analog-to-digital feedback paths are unsupported."
+      ]
+    },
+    {
+      "id": "example:adc-ramp",
+      "projectTitle": "Analog ramp → ADC → logic",
+      "mode": "mixed",
+      "points": 419,
+      "analogPoints": 411,
+      "digitalEvents": [
+        {
+          "name": "d(bit)",
+          "events": [
+            {
+              "time": 0,
+              "value": "0"
+            },
+            {
+              "time": 0.0015,
+              "value": "X"
+            },
+            {
+              "time": 0.0035,
+              "value": "1"
+            },
+            {
+              "time": 0.0065,
+              "value": "X"
+            },
+            {
+              "time": 0.0085,
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "name": "d(inverted)",
+          "events": [
+            {
+              "time": 0,
+              "value": "1"
+            },
+            {
+              "time": 0.00150001,
+              "value": "X"
+            },
+            {
+              "time": 0.00350001,
+              "value": "0"
+            },
+            {
+              "time": 0.00650001,
+              "value": "X"
+            },
+            {
+              "time": 0.00850001,
+              "value": "1"
+            }
+          ]
+        }
+      ],
+      "sampling": {
+        "mode": "event-union",
+        "analogInterpolation": "linear",
+        "logicContinuity": "right",
+        "timeResolution": 1e-12,
+        "description": "All original ngspice sample times and values are preserved. Analog values at additional digital event times are linearly interpolated; logic states are right-continuous after simultaneous events settle.",
+        "originalAnalogSamples": 411
+      },
+      "analogNetlists": [
+        "CircuitBench - Analog ramp → ADC → logic - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\n* CircuitBench mixed-signal replay: this is one analog pass, not the complete native digital experiment.\n* Import the CircuitBench JSON project to preserve logic, bridges and timing.\n* Native digital plan: {\"mode\":\"mixed\",\"duration\":0.01,\"maxStep\":0.000024999999999999998,\"digital\":{\"sources\":[],\"gates\":[{\"id\":\"c_26c8806a-a24e-4211-a280-e64bda606d7b\",\"type\":\"NOT\",\"inputs\":[\"bit\"],\"output\":\"inverted\",\"delay\":1e-8}],\"probes\":[{\"name\":\"d(bit)\",\"node\":\"bit\"},{\"name\":\"d(inverted)\",\"node\":\"inverted\"}]},\"adcs\":[{\"id\":\"c_b49c52dc-c596-48db-943a-e90aafe2cb1a\",\"inputVector\":\"v(ramp)\",\"referenceVector\":\"0\",\"output\":\"bit\",\"low\":1.5,\"high\":3.5,\"mode\":\"threshold\"}],\"dacs\":[]}\nV1 ramp 0 DC 0.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0 PWL(0.000000000000e+0 0.000000000000e+0 5.000000000000e-3 5.000000000000e+0 1.000000000000e-2 0.000000000000e+0)\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 2.500000000000e-5 1.000000000000e-2 0 2.500000000000e-5\n.end\n"
+      ],
+      "warnings": [
+        "Mixed simulation uses feed-forward replay; analog-to-digital feedback paths are unsupported.",
+        "ADC crossing times are interpolated from saved analog samples and rounded to 1 ps. Reduce the transient maximum step to resolve faster analog activity."
+      ]
+    },
+    {
+      "id": "example:mixed-chain",
+      "projectTitle": "Analog → Schmitt logic → analog",
+      "mode": "mixed",
+      "points": 439,
+      "analogPoints": 435,
+      "digitalEvents": [
+        {
+          "name": "d(bit)",
+          "events": [
+            {
+              "time": 0,
+              "value": "0"
+            },
+            {
+              "time": 0.0035,
+              "value": "1"
+            },
+            {
+              "time": 0.0085,
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "name": "d(inverted)",
+          "events": [
+            {
+              "time": 0,
+              "value": "1"
+            },
+            {
+              "time": 0.00350001,
+              "value": "0"
+            },
+            {
+              "time": 0.00850001,
+              "value": "1"
+            }
+          ]
+        }
+      ],
+      "sampling": {
+        "mode": "event-union",
+        "analogInterpolation": "linear",
+        "logicContinuity": "right",
+        "timeResolution": 1e-12,
+        "description": "All original ngspice sample times and values are preserved. Analog values at additional digital event times are linearly interpolated; logic states are right-continuous after simultaneous events settle.",
+        "originalAnalogSamples": 435
+      },
+      "analogNetlists": [
+        "CircuitBench - Analog → Schmitt logic → analog - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\n* CircuitBench mixed-signal replay: this is one analog pass, not the complete native digital experiment.\n* Import the CircuitBench JSON project to preserve logic, bridges and timing.\n* Native digital plan: {\"mode\":\"mixed\",\"duration\":0.01,\"maxStep\":0.000024999999999999998,\"digital\":{\"sources\":[],\"gates\":[{\"id\":\"c_00e3d46e-7cfb-4d1f-81c9-5998b22a0203\",\"type\":\"NOT\",\"inputs\":[\"bit\"],\"output\":\"inverted\",\"delay\":1e-8}],\"probes\":[{\"name\":\"d(bit)\",\"node\":\"bit\"},{\"name\":\"d(inverted)\",\"node\":\"inverted\"}]},\"adcs\":[{\"id\":\"c_99dce82b-a5f4-4f55-9630-d968e21fbf66\",\"inputVector\":\"v(ramp)\",\"referenceVector\":\"0\",\"output\":\"bit\",\"low\":1.5,\"high\":3.5,\"mode\":\"schmitt\"}],\"dacs\":[{\"id\":\"c_b165dc51-066c-466b-82d2-24c736cdfbeb\",\"input\":\"inverted\",\"sourceName\":\"V_CB_DAC1\",\"low\":0,\"high\":5,\"rise\":0.000001,\"fall\":0.000001,\"initial\":0}]}\nV1 ramp 0 DC 0.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0 PWL(0.000000000000e+0 0.000000000000e+0 5.000000000000e-3 5.000000000000e+0 1.000000000000e-2 0.000000000000e+0)\nV_CB_DAC1 out 0 PWL(0.000000000000e+0 0.000000000000e+0 1.000000000000e-2 0.000000000000e+0)\nR1 out 0 1.000000000000e+3\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 2.500000000000e-5 1.000000000000e-2 0 2.500000000000e-5\n.end\n",
+        "CircuitBench - Analog → Schmitt logic → analog - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\n* CircuitBench mixed-signal replay: this is one analog pass, not the complete native digital experiment.\n* Import the CircuitBench JSON project to preserve logic, bridges and timing.\n* Native digital plan: {\"mode\":\"mixed\",\"duration\":0.01,\"maxStep\":0.000024999999999999998,\"digital\":{\"sources\":[],\"gates\":[{\"id\":\"c_00e3d46e-7cfb-4d1f-81c9-5998b22a0203\",\"type\":\"NOT\",\"inputs\":[\"bit\"],\"output\":\"inverted\",\"delay\":1e-8}],\"probes\":[{\"name\":\"d(bit)\",\"node\":\"bit\"},{\"name\":\"d(inverted)\",\"node\":\"inverted\"}]},\"adcs\":[{\"id\":\"c_99dce82b-a5f4-4f55-9630-d968e21fbf66\",\"inputVector\":\"v(ramp)\",\"referenceVector\":\"0\",\"output\":\"bit\",\"low\":1.5,\"high\":3.5,\"mode\":\"schmitt\"}],\"dacs\":[{\"id\":\"c_b165dc51-066c-466b-82d2-24c736cdfbeb\",\"input\":\"inverted\",\"sourceName\":\"V_CB_DAC1\",\"low\":0,\"high\":5,\"rise\":0.000001,\"fall\":0.000001,\"initial\":0}]}\nV1 ramp 0 DC 0.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0 PWL(0.000000000000e+0 0.000000000000e+0 5.000000000000e-3 5.000000000000e+0 1.000000000000e-2 0.000000000000e+0)\nV_CB_DAC1 out 0 PWL(0.000000000000e+0 5.000000000000e+0 3.500010000000e-3 5.000000000000e+0 3.501010000000e-3 0.000000000000e+0 8.500010000000e-3 0.000000000000e+0 8.501010000000e-3 5.000000000000e+0 1.000000000000e-2 5.000000000000e+0)\nR1 out 0 1.000000000000e+3\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 2.500000000000e-5 1.000000000000e-2 0 2.500000000000e-5\n.end\n"
+      ],
+      "warnings": [
+        "Mixed simulation uses feed-forward replay; analog-to-digital feedback paths are unsupported.",
+        "ADC crossing times are interpolated from saved analog samples and rounded to 1 ps. Reduce the transient maximum step to resolve faster analog activity."
+      ]
+    }
+  ],
+  "limitations": [
+    "WASM was compiled without XSPICE; digital events come from the explicit CircuitBench kernel.",
+    "Feed-forward replay rejects analog DAC-to-ADC dependency and does not solve analog/digital feedback.",
+    "ADC crossing timing is reconstructed between recorded analog samples at 1 ps event resolution.",
+    "DAC X/Z inputs are rejected; no drive-strength, metastability, setup/hold or HDL claim."
+  ]
+}

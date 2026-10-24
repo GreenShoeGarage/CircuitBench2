@@ -1,0 +1,7 @@
+RC step
+V1 in 0 PULSE(0 1 0 1e-9 1e-9 1 2)
+R1 in out 10000
+C1 out 0 1e-7 IC=0
+.options reltol=1e-6
+.tran 1e-6 0.005 0 1e-6 uic
+.end

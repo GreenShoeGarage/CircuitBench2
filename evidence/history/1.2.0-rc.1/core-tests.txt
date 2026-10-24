@@ -1,0 +1,38 @@
+CircuitBench 1.2.0-rc.1 focused test evidence
+Runtime build: c8ef3ed4d77a1672
+Command: node tests/core.test.mjs
+Recorded: 2026-10-24T06:56:43.397Z
+
+✔ human SI values distinguish mega from milli and femto from farad (5.35452ms)
+✔ PWL validates positive ordered time pairs (2.805476ms)
+✔ blank project is actually blank and cannot simulate silently (7.331001ms)
+✔ crossing geometric wires remain electrically separate (1.06056ms)
+✔ explicit shared junction joins crossing wires (0.881458ms)
+✔ all ground symbols join node zero (0.493634ms)
+✔ equal net labels connect explicitly, different labels stay distinct (0.558415ms)
+✔ move, rotate, and mirror never change electrical connectivity (1.716176ms)
+✔ project round trip preserves topology, parameters, analysis, probes and layout (90.435318ms)
+✔ validateProject rejects future schemas and invalid references with original preserved (2.050445ms)
+✔ validateProject rejects duplicate IDs, nonfinite geometry and unsupported component types (1.657378ms)
+✔ delete component removes attached wires, labels and probes without orphan endpoints (1.025514ms)
+✔ duplicate components assign new IDs and references and only internal wires (1.526908ms)
+✔ duplicated same-name labels preserve their internal net without joining original (0.662396ms)
+✔ undo-style immutable snapshot restores electrical and drawing state together (6.543928ms)
+✔ missing ground, model, invalid value and floating island are clear errors (3.578268ms)
+✔ netlist emits normalized numeric values and selected current/differential measurements (7.404676ms)
+✔ all bundled component model definitions have redistributable provenance and exercised fixtures (18.126455ms)
+✔ all worked examples preserve their actual execution and import boundary (81.016004ms)
+✔ SPICE suffixes follow SPICE M=milli; human editor M=mega (0.313166ms)
+✔ netlist import rejects commands, file access, behavioral source injection and unsupported dialects (1.454166ms)
+✔ arbitrary model substitutions fail and exact bundled model roundtrips work (0.616912ms)
+✔ imported project keeps separate netlist workspace and UI analysis settings (1.618246ms)
+✔ analysis limits reject huge sweeps, wrong step directions and impossible frequency range (0.642818ms)
+✔ per-run sample budget considers both number of nodes and step count (5.833799ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 264.869815

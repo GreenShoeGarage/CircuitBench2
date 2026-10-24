@@ -1,0 +1,5 @@
+"Row","BIN1 [2 bit input, MSB first]","INPUTS [2 bit output, MSB first]","Carry : Sum [2 bit output, MSB first]","SUM [1 bit output, MSB first]","CARRY [1 bit output, MSB first]"
+"0","00","00","00","0","0"
+"1","01","01","01","1","0"
+"2","10","10","01","1","0"
+"3","11","11","10","0","1"

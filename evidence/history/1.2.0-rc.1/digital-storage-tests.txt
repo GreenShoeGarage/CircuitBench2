@@ -1,0 +1,26 @@
+CircuitBench 1.2.0-rc.1 focused test evidence
+Runtime build: c8ef3ed4d77a1672
+Command: node tests/digital-storage.test.mjs
+Recorded: 2026-10-24T06:56:43.397Z
+
+✔ portable digital record preserves all four literal states and its snapshot (14.870325ms)
+✔ numeric pseudo-logic and unknown state tokens are rejected (3.012939ms)
+✔ logic imports require a valid transient time order (1.313299ms)
+✔ logic measurement kind and unit must agree (0.867669ms)
+✔ mixed sample provenance and exact analog inputs survive a backup round trip (1.030593ms)
+✔ mixed provenance cannot point beyond, repeat, or omit its source positions (1.335679ms)
+✔ sparse event evidence round-trips and must agree with the logic samples (1.44856ms)
+✔ sparse event evidence rejects future, nonliteral and unseeded transitions (1.043702ms)
+✔ bus backup preserves exact words, leading zeros, X/Z bits and event evidence (3.248915ms)
+✔ bus imports reject missing width/order, unsupported dimensions and padded or numeric words (6.27992ms)
+✔ bus sparse events must have coherent metadata and exact matching held words (2.508931ms)
+✔ bus measurement width cannot disagree with the stored vector (0.606719ms)
+✔ legacy single-bit evidence remains distinct from bus words (0.575073ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 55.881995

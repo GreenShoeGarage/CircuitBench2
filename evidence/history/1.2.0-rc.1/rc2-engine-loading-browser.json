@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "application": "CircuitBench",
+  "version": "1.0.0-rc.2",
+  "runtimeBuild": "57b191103609fd22",
+  "recordedAt": "2026-10-24T05:19:08Z",
+  "method": "Direct UI interaction through the managed Chrome browser; read-only visible DOM and screenshots. Separate from Node, VM, native-reference and prior rc.1 evidence.",
+  "reviewOrigin": "http://terminal.local:4173/",
+  "originalReport": "Simulation worker failed: WebAssembly could not load. Check that all engine files are present.",
+  "reproduction": {
+    "release": "1.0.0-rc.1",
+    "change": "Runtime copy with the same engine glue bytes served as .txt and worker import adjusted to that path.",
+    "observed": "The exact original generic failure was displayed. The worker static module import failed with a non-JavaScript MIME response before the loader could report the resource.",
+    "limit": "This reproduces a cause of the same message; the user's host and its response are unknown because no deployment URL was provided."
+  },
+  "confirmed": [
+    {
+      "workflow": "Root deployment and saved-project recovery",
+      "result": "Reload displayed v1.0.0-rc.2, recovered the existing RC filter at revision 7 with C1=220 nF, and completed a fresh 501-point AC run. Waveform magnitude/phase and the 100 nF baseline overlay were present."
+    },
+    {
+      "workflow": "Engine JavaScript served with wrong MIME",
+      "fixture": "/qa/rc2-module-mime/",
+      "change": "Only engine glue extension and worker import were changed to .txt.",
+      "result": "Failure identified JavaScript Content-Type rejection, exact /engine/eecircuit-engine.txt URL, HTTP 200 OK and text/plain; charset=utf-8. Complete-deploy guidance and a scope-relative recovery link were displayed. No false WASM failure assertion."
+    },
+    {
+      "workflow": "HTTP-200 HTML body in place of WebAssembly",
+      "fixture": "/qa/rc2-html-wasm/",
+      "change": "Only engine/spice.wasm body replaced by a small HTML page.",
+      "result": "Failure explicitly identified an HTML page instead of WebAssembly, exact asset URL, HTTP 200 OK and application/wasm. No numerical results were accepted."
+    },
+    {
+      "workflow": "Subdirectory and generic binary MIME",
+      "fixture": "/qa/rc2-generic-wasm/",
+      "change": "Unchanged pinned binary renamed spice.bin with worker URL adjusted.",
+      "result": "Fresh 501-point AC run completed. Visible diagnostic log confirmed 6133055 bytes, HTTP 200 and application/octet-stream, then ngspice calculation and 501 data rows."
+    },
+    {
+      "workflow": "Recovery page on non-secure HTTP",
+      "fixture": "/repair.html",
+      "result": "Layout visually reviewed. Page displayed exact installation scope and rc.2 deploy/engine filenames. Refresh was disabled with an explicit cache-controls-unavailable message and no-change statement. Return link recovered the RC filter at revision 7 and completed 501-point result."
+    }
+  ],
+  "limitations": [
+    "The managed HTTP origin is not a secure context. Actual service-worker install, offline reload, upgrade and secure cache removal remain unverified in a real browser; separate VM tests cover logic.",
+    "The user's actual deployment URL was not supplied; this record does not claim to repair or inspect that host.",
+    "No new claim is made for the earlier unresolved standalone HTML/.cir download events, native Chrome printing, other browser engines or physical touch devices."
+  ],
+  "fixtureDisposition": "Temporary dist/qa fixtures removed by the final clean build before packaging; not included in delivered archives.",
+  "releaseDecision": "Remain 1.0.0-rc.2. This is a scoped engine-loading repair; do not promote to 1.0.0 until remaining required gates pass."
+}

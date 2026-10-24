@@ -1,0 +1,3 @@
+rc: analytic, both ngspice references, and retained state passed
+rl: analytic, both ngspice references, and retained state passed
+24 coordinated numerical checks passed.

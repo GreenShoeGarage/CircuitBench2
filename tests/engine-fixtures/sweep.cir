@@ -1,0 +1,6 @@
+Divider DC sweep
+V1 in 0 0
+R1 in out 10000
+R2 out 0 10000
+.dc V1 0 10 0.5
+.end

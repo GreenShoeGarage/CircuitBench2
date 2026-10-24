@@ -1,0 +1,8 @@
+Voltage controlled switch
+V1 in 0 5
+VC control 0 5
+S1 in out control 0 CBS
+R1 out 0 1000
+.model CBS SW(Ron=1 Roff=1e9 Vt=2.5 Vh=0.1)
+.op
+.end

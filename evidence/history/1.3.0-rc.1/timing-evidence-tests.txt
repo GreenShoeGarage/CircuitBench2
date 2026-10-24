@@ -1,0 +1,27 @@
+✔ a timing record retains sparse source evidence and its immutable run revision without copying sampled vectors (15.705155ms)
+✔ project backups round-trip timing even after their full source run leaves the history (3.794341ms)
+✔ restoring, flagging and re-exporting a run preserves historical measurement provenance (9.170222ms)
+✔ saved values, summaries, selected edges and statuses must recompute from preserved events (9.056338ms)
+✔ reordered JSON object properties remain portable while changed event inputs require corresponding measured output (3.496761ms)
+✔ a retained original run must agree with the timing snapshot, event series and input hashes (6.461951ms)
+✔ retained evidence accepts historical labels from the same run without rewriting them (8.521292ms)
+✔ declared digital and sampling resolution must agree even after the source run is pruned (5.859796ms)
+✔ bus timing preserves exact original words and identifies its selected least-significant bit (2.33567ms)
+✔ a two-bit delay records one whole bus series and two explicit edge selections (1.736924ms)
+✔ invalid or oversized sparse evidence is rejected before becoming saved measurements (13.649395ms)
+✔ unselected event traces cannot be smuggled into a timing record (0.823042ms)
+✔ timing provenance validates chronology, identity, metadata and record count (10.630441ms)
+✔ retention keeps newest records and explicitly reports the number removed (2.7611ms)
+✔ byte-bound retention never silently drops the newest complete measurement (888.975363ms)
+✔ CSV keeps raw values, event polarity and missing or indeterminate numbers blank (2.521156ms)
+✔ standalone timing evidence JSON retains the complete selected events and circuit snapshot (1.359917ms)
+✔ analysis reports include exact run context, complete diagnostic rows and restored-evidence limits (4.15591ms)
+✔ timing reports escape captured labels, titles, engine strings and diagnostics (1.374144ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1003.631492

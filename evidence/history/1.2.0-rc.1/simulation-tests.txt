@@ -1,0 +1,23 @@
+CircuitBench 1.2.0-rc.1 focused test evidence
+Runtime build: c8ef3ed4d77a1672
+Command: node tests/simulation.test.mjs
+Recorded: 2026-10-24T06:56:43.397Z
+
+✔ actual digital Worker completes, fails, recovers, cancels and times out with physical termination (270.297438ms)
+✔ analog-only facade delegates the original deck and options without resampling (0.546102ms)
+✔ pure digital facade never starts an analog worker and retains event provenance (4.84355ms)
+✔ feed-forward replay executes held DAC analog input, ADC events, logic and final PWL analog output (2.13196ms)
+✔ threshold ADC unknown band stops before any final DAC analog calculation (1.025635ms)
+✔ compiler topology errors prevent all worker stages (0.424975ms)
+✔ failed digital compilation cannot fall through to the analog runner (0.203249ms)
+✔ stop at a stage announcement cannot start a new worker after cancellation (0.488597ms)
+✔ cancellation during analog replay terminates the active stage and prevents later stages (0.652908ms)
+✔ one global watchdog bounds the entire mixed run and retains timeout status (100.694446ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 392.689279

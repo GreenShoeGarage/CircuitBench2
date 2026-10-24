@@ -1,0 +1,164 @@
+{
+  "format": "CircuitBench browser validation",
+  "appVersion": "2.0.0-rc.1",
+  "recordedAt": "2026-10-24T13:47:10Z",
+  "preview": "http://terminal.local:4173/",
+  "browser": "Managed Chrome / CDP",
+  "finalRuntimeBuild": "7f06ecaf7e7b40be",
+  "earlyRuntimeBuild": "7de58c9b9e7b297b",
+  "observations": [
+    {
+      "name": "legacy recovery",
+      "result": "passed",
+      "detail": "Actual prior1.3 hazard run and timing evidence recovered after default solver normalization."
+    },
+    {
+      "name": "working SEG7 and cursor",
+      "result": "passed",
+      "runtimeBuild": "7de58c9b9e7b297b",
+      "points": 66,
+      "finalDigit": "0",
+      "finalSegments": "00111111",
+      "cursorTime": 0.007348659003831417,
+      "cursorDigit": "8",
+      "cursorSegments": "01111111"
+    },
+    {
+      "name": "continuous digital",
+      "result": "passed",
+      "runtimeBuild": "7de58c9b9e7b297b",
+      "actions": [
+        "start",
+        "pause",
+        "step",
+        "live enable=0",
+        "step",
+        "resume",
+        "pause",
+        "stop",
+        "backup",
+        "timing",
+        "reload"
+      ],
+      "artifact": "rc200-continuous-display.circuitbench.json",
+      "timingArtifact": "rc200-continuous-timing-evidence.json",
+      "window": [
+        0.21409999999999998,
+        0.2296
+      ],
+      "points": 48,
+      "droppedPoints": 664,
+      "inputChangeTime": 0.0104,
+      "finalWord": "1011",
+      "measuredClockPeriods": 14,
+      "periodSeconds": 0.001
+    },
+    {
+      "name": "Schmitt closed loop",
+      "result": "passed",
+      "runtimeBuild": "7de58c9b9e7b297b",
+      "artifact": "rc200-closed-loop-oscillator.circuitbench.json",
+      "points": 2427,
+      "duration": 0.012,
+      "maximumStep": 5e-06,
+      "measuredPeriods": 5,
+      "meanPeriod": 0.001701678496
+    },
+    {
+      "name": "multibit sampled feedback",
+      "result": "passed",
+      "runtimeBuild": "7f06ecaf7e7b40be",
+      "artifact": "rc200-sampled-feedback.circuitbench.json",
+      "points": 2699,
+      "duration": 0.01,
+      "code": "0111",
+      "displayDigit": "7",
+      "backupReopened": true
+    },
+    {
+      "name": "divider sweep",
+      "result": "passed",
+      "artifact": "rc200-divider-sweep-evidence.json",
+      "trials": 9,
+      "rangeOhms": [
+        5000,
+        15000
+      ],
+      "midpointRangeVolts": [
+        6.666666666666666,
+        4
+      ]
+    },
+    {
+      "name": "seeded tolerance study",
+      "result": "passed",
+      "artifact": "rc200-divider-tolerance-evidence.json",
+      "trials": 8,
+      "seed": 20261024,
+      "relativeTolerance": 0.05,
+      "meanVolts": 5.015231796877628,
+      "csv": "rc200-divider-tolerance.csv"
+    },
+    {
+      "name": "study backup and restore",
+      "result": "passed",
+      "artifact": "rc200-analog-studies.circuitbench.json",
+      "studies": 2,
+      "restoredEvidenceNotice": true,
+      "reportPreviewIncludesBothStudies": true
+    },
+    {
+      "name": "AC capacitance study",
+      "result": "passed",
+      "artifact": "rc200-rc-capacitance-evidence.json",
+      "trials": 3,
+      "frequencyHz": 1000,
+      "capacitancesFarads": [
+        1e-08,
+        1e-07,
+        1e-06
+      ],
+      "magnitudesVolts": [
+        0.8467330159648303,
+        0.15717672547758987,
+        0.0159134789711477
+      ]
+    },
+    {
+      "name": "continuous analog input",
+      "result": "passed",
+      "artifact": "rc200-continuous-rc.circuitbench.json",
+      "liveInputVolts": 5,
+      "inputChangeTime": 0.008,
+      "firstBatchTime": 0.009,
+      "firstBatchVoltageApprox": 3.151444,
+      "secondBatchTime": 0.01,
+      "secondBatchVoltageApprox": 4.316568
+    },
+    {
+      "name": "final mixed display demonstration",
+      "result": "passed",
+      "runtimeBuild": "7f06ecaf7e7b40be",
+      "detail": "Reopened sampled-feedback backup, ran a fresh 2699-point simulation, verified display7 and mixed waveforms, and captured the completed UI. No new application-origin console errors observed after13:27UTC.",
+      "screenshot": "Provided in the conversation, not included in the archive."
+    }
+  ],
+  "unverified": [
+    {
+      "name": "HTML report download",
+      "detail": "No download event/file received for existing link or temporary generic helper. Preview displayed both studies. Temporary code change reverted."
+    },
+    {
+      "name": "immediate-reload second continuous backup",
+      "detail": "Browser reported a path but file did not remain available. Excluded from shipped artifacts; earlier complete backup and standalone timing evidence verified."
+    },
+    {
+      "name": "target-host HTTPS/offline/update/CSP",
+      "detail": "Managed preview is HTTP and not localhost. No external host modified."
+    },
+    {
+      "name": "native print/PDF and full browser matrix",
+      "detail": "Not exercised in this release session."
+    }
+  ]
+}

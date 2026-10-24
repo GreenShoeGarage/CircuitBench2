@@ -1,0 +1,18 @@
+✔ authored half adder compiles, enumerates and retains exact word and scalar columns (36.543378ms)
+✔ project backup retains immutable table snapshots, plans and all four saved records (9.751134ms)
+✔ table imports reject missing, duplicated or reordered combinations and invalid words (26.008247ms)
+✔ table imports reject incompatible column metadata, selections and snapshot identity (22.739885ms)
+✔ unknown and released LUT outputs remain literal states in table evidence (2.3119ms)
+✔ table CSV preserves leading zeros and escapes quoted comma-bearing labels (3.633546ms)
+✔ table presentation escapes imported content and identifies stale restored evidence (2.327645ms)
+✔ truth-table setup rejects stateful and mixed experiments while preserving selectable widths (11.143189ms)
+✔ LUT row editor exposes every binary address and exact editable output word (1.062068ms)
+✔ LUT row editing distinguishes a hexadecimal prefix from a literal unknown bit (0.83237ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 130.419407

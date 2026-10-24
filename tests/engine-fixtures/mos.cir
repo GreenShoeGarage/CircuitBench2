@@ -1,0 +1,8 @@
+Generic NMOS
+V1 supply 0 5
+VG gate 0 5
+R1 supply out 100
+M1 out gate 0 0 CBM W=1e-3 L=1e-5
+.model CBM NMOS(Level=1 Vto=2 Kp=0.001 Lambda=0.01)
+.op
+.end

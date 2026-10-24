@@ -1,0 +1,287 @@
+{
+  "application": "CircuitBench",
+  "version": "1.1.0-rc.1",
+  "runtime_build": "089964ae0aed2792",
+  "recorded_at": "2026-10-24T06:28:29.926791+00:00",
+  "status": "passed",
+  "passed": 206,
+  "failed": 0,
+  "suites": {
+    "autosave": 4,
+    "core": 25,
+    "digital-editor": 6,
+    "digital-model": 23,
+    "digital-plots": 10,
+    "digital-storage": 8,
+    "digital": 22,
+    "editor": 11,
+    "engine-loading": 24,
+    "engine-raw-parser": 6,
+    "offline": 22,
+    "repair": 12,
+    "results": 14,
+    "simulation": 10,
+    "package": 9
+  },
+  "suite_results": [
+    {
+      "suite": "autosave",
+      "command": [
+        "node",
+        "tests/autosave.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 4,
+      "passed": 4,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/autosave-tests.txt"
+    },
+    {
+      "suite": "core",
+      "command": [
+        "node",
+        "tests/core.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 25,
+      "passed": 25,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/core-tests.txt"
+    },
+    {
+      "suite": "digital-editor",
+      "command": [
+        "node",
+        "tests/digital-editor.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 6,
+      "passed": 6,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/digital-editor-tests.txt"
+    },
+    {
+      "suite": "digital-model",
+      "command": [
+        "node",
+        "tests/digital-model.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 23,
+      "passed": 23,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/digital-model-tests.txt"
+    },
+    {
+      "suite": "digital-plots",
+      "command": [
+        "node",
+        "tests/digital-plots.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 10,
+      "passed": 10,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/digital-plots-tests.txt"
+    },
+    {
+      "suite": "digital-storage",
+      "command": [
+        "node",
+        "tests/digital-storage.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 8,
+      "passed": 8,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/digital-storage-tests.txt"
+    },
+    {
+      "suite": "digital",
+      "command": [
+        "node",
+        "tests/digital.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 22,
+      "passed": 22,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/digital-tests.txt"
+    },
+    {
+      "suite": "editor",
+      "command": [
+        "node",
+        "tests/editor.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 11,
+      "passed": 11,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/editor-tests.txt"
+    },
+    {
+      "suite": "engine-loading",
+      "command": [
+        "node",
+        "tests/engine-loading.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 24,
+      "passed": 24,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/engine-loading-tests.txt"
+    },
+    {
+      "suite": "engine-raw-parser",
+      "command": [
+        "node",
+        "tests/engine-raw-parser.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 6,
+      "passed": 6,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/engine-raw-parser-tests.txt"
+    },
+    {
+      "suite": "offline",
+      "command": [
+        "node",
+        "tests/offline.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 22,
+      "passed": 22,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/offline-logic.txt"
+    },
+    {
+      "suite": "repair",
+      "command": [
+        "node",
+        "tests/repair.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 12,
+      "passed": 12,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/repair-tests.txt"
+    },
+    {
+      "suite": "results",
+      "command": [
+        "node",
+        "tests/results.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 14,
+      "passed": 14,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/results-tests.txt"
+    },
+    {
+      "suite": "simulation",
+      "command": [
+        "node",
+        "tests/simulation.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 10,
+      "passed": 10,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/simulation-tests.txt"
+    },
+    {
+      "suite": "package",
+      "command": [
+        "node",
+        "tests/package.test.mjs"
+      ],
+      "status": "passed",
+      "tests": 9,
+      "passed": 9,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "evidence/package-tests.txt"
+    }
+  ],
+  "scope": "All15 tests/*.test.mjs files executed directly as node <file>, against runtime1.1.0-rc.1 /089964ae0aed2792.206tests passed. Package checks are repeated after the final documentation/evidence build before archive creation; the release receipt records final archive integrity. Browser and full numerical/native-reference proofs are separate evidence layers.",
+  "proof_evidence": {
+    "analog_foundation": {
+      "file": "evidence/engine-validation.json",
+      "status": "passed",
+      "tested_at": "2026-10-24T06:19:03.083Z",
+      "checks": 62,
+      "native_comparisons_included_in_checks": 48,
+      "workers_created": 56,
+      "workers_terminated": 56,
+      "workers_alive": 0
+    },
+    "analog_examples": {
+      "file": "evidence/example-validation.json",
+      "status": "passed",
+      "tested_at": "2026-10-24T06:18:46.846Z",
+      "fixtures": 15,
+      "authored_examples": 13,
+      "supplementary_fixtures": 2,
+      "native_vector_comparisons": 70,
+      "analytic_behavior_checks": 16
+    },
+    "digital_mixed": {
+      "file": "evidence/digital-validation.json",
+      "status": "passed",
+      "tested_at": "2026-10-24T06:15:28.832Z",
+      "fixtures": 10,
+      "authored_examples": 7,
+      "checks": 86,
+      "workers_created": 24,
+      "workers_terminated": 24,
+      "workers_alive": 0
+    }
+  }
+}

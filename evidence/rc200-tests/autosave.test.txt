@@ -1,0 +1,12 @@
+✔ completion of an older write cannot claim a newer unsaved revision is saved (5.70391ms)
+✔ writes stay serialized when a newer timer fires before an older write completes (2.246831ms)
+✔ an old failed write cannot overwrite the newer save status, and the next write can recover (1.531604ms)
+✔ rapid edits coalesce and the latest failed save advertises a session-only error (1.389678ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17.875643

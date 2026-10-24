@@ -1,0 +1,55 @@
+{
+  "recordedAt": "2026-10-24T05:57:56.454Z",
+  "engine": {
+    "name": "ngspice",
+    "version": "45.2",
+    "build": "Sat Sep 5 01:00:10 UTC 2026",
+    "package": "EEcircuit-engine",
+    "packageVersion": "1.8.0",
+    "adapterVersion": 4,
+    "wasmSha256": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4",
+    "wasmBytes": 6133055,
+    "execution": "WebAssembly \u00b7 isolated Web Worker \u00b7 fresh instance per run"
+  },
+  "buildRecipe": "public/engine/source/eecircuit-engine-1.8.0/Docker/run.sh:107",
+  "configureFlag": "--disable-xspice",
+  "xspiceDeck": "XSPICE capability probe\nVIN in 0 PULSE(0 5 10n 1n 1n 20n 40n)\nAADC [in] [din] ADC\n.model ADC adc_bridge(in_low=1.5 in_high=3.5)\nAINV din dout INV\n.model INV d_inverter(rise_delay=2n fall_delay=3n)\nADAC [dout] [out] DAC\n.model DAC dac_bridge(out_low=0 out_high=5 out_undef=2.5 t_rise=1n t_fall=1n)\nRLOAD out 0 100k\n.tran .1n 100n\n.end",
+  "actualResult": {
+    "status": "failed",
+    "message": "ngspice did not complete:  unknown device type - error  \u00b7 Error: circuit not parsed. \u00b7  unknown device type - error  \u00b7 Error: circuit not parsed.",
+    "logs": [
+      "Simulation worker ready: circuitbench-worker-protocol-4; file:///tmp/circuitbench-digital-stage-k4bAt5/src/engine-worker.js",
+      "Loading local engine JavaScript: file:///tmp/circuitbench-digital-stage-k4bAt5/engine/eecircuit-engine.js",
+      "Loading local WebAssembly: file:///tmp/circuitbench-digital-stage-k4bAt5/engine/spice.wasm",
+      "WebAssembly response validated: 6133055 bytes; HTTP 200; Content-Type application/wasm.",
+      "ngspice is calculating in a separate worker\u2026",
+      "ngspice 1 -> ngspice 1 -> ",
+      "Note: No compatibility mode selected!",
+      "Circuit: xspice capability probe",
+      "Error on line 3 or its substitute:",
+      "  aadc [in] [din] adc",
+      " unknown device type - error ",
+      "    Simulation interrupted due to error!",
+      "Error: circuit not parsed.",
+      "ngspice 2 -> ngspice 3 -> ngspice 4 -> binary raw file \"out.raw\""
+    ]
+  },
+  "finiteDacAnalogProbe": {
+    "timePoints": 2260,
+    "deterministicReplay": true,
+    "risingLowCrossing": 1.3616809599350633e-06,
+    "expectedRisingLowCrossing": 1.3616791106019216e-06,
+    "risingHighCrossing": 2.2089769525685143e-06,
+    "expectedRisingHighCrossing": 2.208976970989125e-06,
+    "fallingHighCrossing": 6.354914187651283e-06,
+    "fallingLowCrossing": 7.202213318468272e-06,
+    "final": 0.033630139830682575,
+    "adcUnknownInterval": 8.47295992633451e-07
+  },
+  "lifecycle": {
+    "created": 3,
+    "terminated": 3,
+    "alive": 0
+  },
+  "interpretation": "The bundled binary rejects XSPICE A devices. CircuitBench digital event simulation is a separate explicit JavaScript kernel, not native XSPICE. The analog engine is unchanged."
+}

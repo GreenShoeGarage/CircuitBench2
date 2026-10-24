@@ -1,0 +1,18 @@
+{
+  "command": "node tests/package.test.mjs",
+  "startedAt": "2026-10-24T13:51:38.362463+00:00",
+  "completedAt": "2026-10-24T13:51:38.853997+00:00",
+  "exitCode": 0,
+  "counts": {
+    "tests": 9,
+    "pass": 9,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "runtimeBuild": "7f06ecaf7e7b40be",
+  "testSourceSHA256": "0fc881f665547ac0f0f0ffd2e3a59051f2fa63e9d364ea785c9777fdd150dce4",
+  "transcript": "rc200-tests/package.test.txt",
+  "stage": "Gate before embedding this record. The identical package suite is repeated on the complete final build; final result is retained in the external release-integrity receipt."
+}

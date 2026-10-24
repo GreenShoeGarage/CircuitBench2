@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#15201d">
+  <meta name="robots" content="noindex">
+  <title>Refresh application files · CircuitBench</title>
+  <style>
+    :root{color-scheme:dark;--bg:#0e1715;--panel:#15201d;--raised:#21312b;--line:#3b5044;--text:#e8ede6;--muted:#b0c0b3;--accent:#b7f38a;--ink:#162b1c;--warn:#f3ce86;font:16px/1.6 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}
+    *{box-sizing:border-box}body{margin:0}main{max-width:760px;margin:auto;padding:32px 24px 48px}header{display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line);padding-bottom:22px;margin-bottom:38px}.brand{font-size:25px;line-height:1.1;letter-spacing:-.8px;font-weight:750}.brand span{color:var(--accent);font-weight:400}.brand small{display:block;margin-top:8px;color:var(--muted);font-size:9px;letter-spacing:1.8px;font-weight:700}.version{color:var(--muted);font:12px ui-monospace,monospace;white-space:nowrap}.eyebrow{text-transform:uppercase;letter-spacing:1.6px;font-size:11px;font-weight:700;color:var(--accent)}h1{font-size:clamp(28px,5vw,40px);letter-spacing:-1.1px;line-height:1.2;margin:12px 0 16px}h2{font-size:17px;line-height:1.4;margin:0 0 14px}p{margin:0 0 16px}.intro{color:var(--muted);max-width:62ch}.card{margin-top:26px;padding:24px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}ol{margin:0;padding-left:23px}li{padding-left:5px;margin:0 0 14px}li:last-child{margin-bottom:0}.files{display:block;margin-top:8px}.files code{display:block}code{font:13px/1.7 ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}.scope{border-top:1px solid var(--line);padding-top:16px;margin:20px 0 0;color:var(--muted);font-size:13px}.scope strong{display:block;color:var(--text);margin-bottom:4px}.preserved{padding:14px 17px;margin:22px 0;background:var(--raised);border-left:3px solid var(--accent);font-size:14px}.actions{display:flex;align-items:center;flex-wrap:wrap;gap:14px;margin-top:24px}button,.return-link{font:inherit;font-size:15px;font-weight:650;line-height:1.4;padding:13px 17px;border:1px solid var(--accent);border-radius:6px;cursor:pointer;text-decoration:none;text-align:center}button{color:var(--ink);background:var(--accent)}button:disabled{cursor:wait;opacity:.65}.return-link{color:var(--text);border-color:var(--line);background:var(--panel)}button:hover:not(:disabled),.return-link:hover{filter:brightness(1.1)}:focus-visible{outline:3px solid var(--accent);outline-offset:4px}#result{margin-top:24px;border-left:3px solid var(--line);padding:2px 0 2px 16px;scroll-margin:24px}#result h2{font-size:15px;margin-bottom:6px}#result p,#result ul{font-size:14px;color:var(--muted);margin:0}#result ul{padding-left:20px;margin-top:10px}#result li{margin-bottom:7px}#result[data-state=complete]{border-color:var(--accent)}#result[data-state=partial],#result[data-state=unavailable]{border-color:var(--warn)}#result:focus{outline:2px solid var(--accent);outline-offset:6px}footer{border-top:1px solid var(--line);margin-top:36px;padding-top:18px;color:var(--muted);font-size:12px}footer p{margin:0}[hidden]{display:none!important}noscript p{border-left:3px solid var(--warn);padding:12px 16px;background:var(--panel)}a{color:var(--accent)}
+    @media(prefers-color-scheme:light){:root{color-scheme:light;--bg:#eef0e8;--panel:#fafbf5;--raised:#e3ebdc;--line:#b8c8b2;--text:#22362b;--muted:#4d6253;--accent:#356b27;--ink:#fff;--warn:#886010}}
+    @media(max-width:460px){main{padding:22px 18px 32px}header{gap:12px;margin-bottom:28px}.brand{font-size:23px}.brand small{font-size:8px;letter-spacing:1.2px}.version{font-size:10px}.card{padding:19px}.actions{align-items:stretch;flex-direction:column}button,.return-link{width:100%}}
+    @media(forced-colors:active){button,.return-link,.card{border:1px solid ButtonText}.preserved,#result{border-left:3px solid CanvasText}}
+  </style>
+</head>
+<body>
+<main>
+  <header><div class="brand">Circuit<span>Bench</span><small>GREEN SHOE GARAGE</small></div><span class="version">v1.0.0-rc.3 / recovery</span></header>
+  <p class="eyebrow">Get back to your workbench</p>
+  <h1>Refresh cached application files.</h1>
+  <p class="intro">Use this page after updating CircuitBench if an older version or engine-loading error remains. It refreshes this installation’s browser-cached application files and, where supported, removes its old offline cache.</p>
+  <section class="card" aria-labelledby="before-heading">
+    <h2 id="before-heading">Before you refresh</h2>
+    <ol>
+      <li>Upload <strong>all extracted contents</strong> of <code>CircuitBench-1.0.0-rc.3-deploy.zip</code> to the same application directory, keeping its folders together.</li>
+      <li>Keep the <code>assets/1.0.0-rc.3/</code> and <code>repair/</code> directories, plus <code>recovery-manifest.json</code>. The engine files belong at:<span class="files"><code>assets/1.0.0-rc.3/engine/eecircuit-engine.js</code><code>assets/1.0.0-rc.3/engine/spice.wasm</code></span></li>
+      <li>Close other tabs running this CircuitBench installation. Keep this recovery page open, then refresh below.</li>
+    </ol>
+    <p class="scope"><strong>This installation only</strong><code id="scope-text">The application directory containing this recovery directory.</code></p>
+  </section>
+  <p class="preserved" id="data-note"><strong>Your saved projects stay on this device.</strong> This action leaves project databases, backups, preferences, and other applications’ caches untouched.</p>
+  <div class="actions">
+    <button id="refresh-button" type="button" aria-describedby="data-note scope-text">Refresh cached application files</button>
+    <a id="return-link" class="return-link" href="./" hidden>Return to CircuitBench <span aria-hidden="true">→</span></a>
+  </div>
+  <section id="result" role="status" aria-live="polite" aria-atomic="true" tabindex="-1" aria-labelledby="result-heading">
+    <h2 id="result-heading">Ready when the complete update is uploaded</h2>
+    <p id="result-description">The result will appear here. You choose when to return to the app.</p>
+    <ul id="result-details" hidden></ul>
+  </section>
+  <noscript><p>JavaScript is required to refresh these browser-cached files. After uploading the complete deployment, open the application’s main address again.</p></noscript>
+  <footer><p>Local recovery · Browser file downloads (the HTTP cache) are refreshed only for this release’s listed assets. Offline-cache removal is limited to the exact CircuitBench installation shown above. Project storage is never cleared.</p></footer>
+</main>
+<script id="recovery-core">
+  const RECOVERY_LIMITS = Object.freeze({manifestBytes: 131072, files: 128, fileBytes: 16777216, totalBytes: 33554432, navigationBytes: 2097152, requestMs: 15000, cleanupMs: 5000, totalMs: 90000, concurrency: 4});
+  const RECOVERY_JS_MIMES = new Set(['text/javascript', 'application/javascript', 'text/ecmascript', 'application/ecmascript', 'application/x-javascript', 'application/x-ecmascript', 'text/x-javascript', 'text/x-ecmascript', 'text/javascript1.0', 'text/javascript1.1', 'text/javascript1.2', 'text/javascript1.3', 'text/javascript1.4', 'text/javascript1.5', 'text/jscript', 'text/livescript']);
+  const recoveryError = error => String(error && error.message || error).slice(0, 500);
+
+  function recoveryEnvironment(environment = globalThis) {
+    const page = new URL(environment.location.href);
+    const directoryRoute = /\/repair\/(?:index\.html)?$/.test(page.pathname);
+    const directory = new URL(directoryRoute ? '../' : './', page.href);
+    const returnURL = new URL(directory.href);
+    returnURL.searchParams.set('cache-refresh', String(Date.now()));
+    const context = {scope: directory.href, returnURL: returnURL.href, environment, unavailableReason: '', notes: [], cleanupUnavailable: false};
+    if (!['http:', 'https:'].includes(directory.protocol)) {
+      context.unavailableReason = 'Open the recovery directory at the same HTTP or HTTPS address as CircuitBench. A local file cannot refresh the web installation. No files, caches or registrations were changed.';
+      return context;
+    }
+    if (typeof environment.fetch !== 'function') {
+      context.unavailableReason = 'This browser cannot request fresh application files. No files, caches or registrations were changed. After uploading the complete deployment, reopen the application address in a browser with Fetch support.';
+      return context;
+    }
+    if (environment.isSecureContext === true) {
+      try {
+        const serviceWorker = environment.navigator && environment.navigator.serviceWorker;
+        if (serviceWorker && typeof serviceWorker.getRegistrations === 'function') context.serviceWorker = serviceWorker;
+      } catch (_) { /* HTTP-cache recovery still works when this API is blocked. */ }
+      try {
+        const storage = environment.caches;
+        if (storage && typeof storage.keys === 'function' && typeof storage.delete === 'function') context.cacheStorage = storage;
+      } catch (_) { /* Keep the independent network recovery available. */ }
+      if (!context.serviceWorker || !context.cacheStorage) {
+        context.cleanupUnavailable = true;
+        context.notes.push('Some service-worker or offline-cache controls are unavailable. Browser file refresh can still run; unavailable storage will not be changed.');
+      }
+    } else {
+      context.notes.push('Service-worker and offline-cache controls are unavailable on this connection. Those stores were not changed; browser file downloads can still be refreshed.');
+    }
+    try {
+      const subtle = environment.crypto && environment.crypto.subtle;
+      if (subtle && typeof subtle.digest === 'function') context.digest = subtle.digest.bind(subtle);
+    } catch (_) { /* Absence is reported; a failing available digest is an error. */ }
+    if (!context.digest) context.notes.push('SHA-256 verification is unavailable on this connection. File checks use the manifest byte counts and usable file types; no cryptographic match is claimed.');
+    return context;
+  }
+
+  function validateRecoveryManifest(manifest, scope) {
+    if (!manifest || manifest.format !== 'CircuitBenchRecovery' || manifest.formatVersion !== 1) throw new Error('Unsupported recovery manifest. Upload the complete deploy package.');
+    const version = manifest.version;
+    if (typeof version !== 'string' || version.length > 64 || !/^\d+\.\d+\.\d+(?:-[A-Za-z0-9][A-Za-z0-9.-]*)?(?:\+[A-Za-z0-9][A-Za-z0-9.-]*)?$/.test(version)) throw new Error('Invalid release version in the recovery manifest.');
+    if (typeof manifest.buildHash !== 'string' || !/^[a-f0-9]{16,64}$/i.test(manifest.buildHash)) throw new Error('Invalid build identity in the recovery manifest.');
+    const worker = 'sw-' + version + '.js';
+    if (!manifest.shell || manifest.shell.root !== './' || manifest.shell.embeddedIn !== worker) throw new Error('The recovery manifest must identify the application root and its versioned service worker.');
+    if (!Array.isArray(manifest.files) || !manifest.files.length || manifest.files.length > RECOVERY_LIMITS.files) throw new Error('The recovery manifest has an invalid or excessive file count.');
+    const assetPrefix = 'assets/' + version + '/';
+    const rootFiles = new Set([worker, 'icon.svg', 'manifest.webmanifest']);
+    const paths = new Set();
+    let total = 0;
+    const files = manifest.files.map(file => {
+      const path = file && file.path;
+      if (typeof path !== 'string' || path.length > 240 || !/^[A-Za-z0-9_-][A-Za-z0-9._+-]*(?:\/[A-Za-z0-9_-][A-Za-z0-9._+-]*)*$/.test(path) || /\.(?:html?|xhtml)$/i.test(path)) throw new Error('Unsafe recovery asset path; absolute URLs, traversal, escapes, queries and HTML aliases are not allowed.');
+      if (!path.startsWith(assetPrefix) && !rootFiles.has(path)) throw new Error('Recovery asset is outside this release’s permitted runtime paths: ' + path);
+      const url = new URL(path, scope);
+      if (url.origin !== new URL(scope).origin || !url.href.startsWith(scope) || url.search || url.hash || paths.has(path)) throw new Error('Duplicate or out-of-scope recovery asset: ' + path);
+      if (!Number.isSafeInteger(file.bytes) || file.bytes < 1 || file.bytes > RECOVERY_LIMITS.fileBytes) throw new Error('Invalid or excessive asset size: ' + path);
+      if (typeof file.sha256 !== 'string' || !/^[a-f0-9]{64}$/i.test(file.sha256)) throw new Error('Invalid SHA-256 identity for asset: ' + path);
+      total += file.bytes;
+      if (total > RECOVERY_LIMITS.totalBytes) throw new Error('Recovery assets exceed the total download budget.');
+      paths.add(path);
+      return {path, url: url.href, bytes: file.bytes, sha256: file.sha256.toLowerCase()};
+    });
+    for (const path of [worker, assetPrefix + 'src/app.js', assetPrefix + 'src/engine-worker.js', assetPrefix + 'engine/eecircuit-engine.js', assetPrefix + 'engine/spice.wasm', assetPrefix + 'style.css']) {
+      if (!paths.has(path)) throw new Error('Recovery manifest is missing a required runtime asset: ' + path);
+    }
+    return {version, buildHash: manifest.buildHash, files};
+  }
+
+  async function boundedRecoveryStep(context, operation, label, maximumMs = RECOVERY_LIMITS.cleanupMs, onTimeout = () => {}) {
+    const waitMs = Math.min(maximumMs, context.deadline - Date.now());
+    if (waitMs <= 0) throw new Error('Recovery time limit reached before ' + label + '.');
+    let timer;
+    const timeout = new Promise((_, reject) => {
+      timer = setTimeout(() => { reject(new Error('Timed out while ' + label + '.')); onTimeout(); }, waitMs);
+    });
+    try { return await Promise.race([Promise.resolve().then(operation), timeout]); }
+    finally { clearTimeout(timer); }
+  }
+
+  async function fetchRecoveryBytes(context, url, limit, label) {
+    const controller = new AbortController();
+    return boundedRecoveryStep(context, async () => {
+      try {
+        const response = await context.environment.fetch(url, {cache: 'reload', credentials: 'same-origin', mode: 'same-origin', redirect: 'error', signal: controller.signal});
+        if (!response || !response.ok) throw new Error('HTTP ' + (response && response.status || 'response unavailable') + ' for ' + url);
+        if (response.url && response.url !== url) throw new Error('Unexpected redirected response for ' + url);
+        const declared = response.headers && response.headers.get('content-length');
+        const encoding = response.headers && response.headers.get('content-encoding');
+        const contentType = response.headers && response.headers.get('content-type');
+        const responseDetails = 'HTTP ' + response.status + '; Content-Type ' + (contentType || '(not provided)') + '; Content-Encoding ' + (encoding || '(not provided)') + '; Content-Length ' + (declared || '(not provided)');
+        const oversized = observation => new Error('Response exceeds the allowed byte count: expected at most ' + limit + ' decoded bytes; ' + observation + '. ' + responseDetails + '. URL: ' + url);
+        if ((!encoding || encoding.toLowerCase() === 'identity') && declared && /^\d+$/.test(declared) && Number(declared) > limit) throw oversized('declared Content-Length is ' + declared + ' bytes before reading the body');
+        let bytes;
+        if (response.body && typeof response.body.getReader === 'function') {
+          const reader = response.body.getReader(), chunks = [];
+          let length = 0;
+          try {
+            while (true) {
+              const next = await reader.read();
+              if (next.done) break;
+              length += next.value.length;
+              if (length > limit) { await reader.cancel(); throw oversized('read at least ' + length + ' decoded bytes before stopping'); }
+              chunks.push(next.value);
+            }
+          } finally { reader.releaseLock(); }
+          bytes = new Uint8Array(length);
+          let offset = 0;
+          for (const chunk of chunks) {bytes.set(chunk, offset);offset += chunk.length;}
+        } else {
+          bytes = new Uint8Array(await response.arrayBuffer());
+          if (bytes.length > limit) throw oversized('read ' + bytes.length + ' decoded bytes');
+        }
+        const mime = (contentType || '').split(';')[0].trim().toLowerCase();
+        return {bytes, mime};
+      } catch (error) { controller.abort(); throw error; }
+    }, label, RECOVERY_LIMITS.requestMs, () => controller.abort());
+  }
+
+  async function refreshCachedApplicationFiles(environment = globalThis, onProgress = () => {}) {
+    const context = recoveryEnvironment(environment);
+    context.deadline = Date.now() + RECOVERY_LIMITS.totalMs;
+    const result = {scope: context.scope, returnURL: context.returnURL, status: 'complete', registrationsRemoved: 0, cachesRemoved: 0, filesExpected: 0, filesRefreshed: 0, filesHashed: 0, navigationRefreshed: false, sha256Available: Boolean(context.digest), notes: context.notes.slice(), errors: []};
+    if (context.unavailableReason) {
+      result.status = 'unavailable';
+      result.message = context.unavailableReason;
+      return result;
+    }
+    const progress = message => {try {onProgress(message);} catch (_) {}};
+    progress('Checking this installation’s offline cache, then requesting fresh browser files…');
+    if (context.cleanupUnavailable) result.errors.push('Some offline-cache cleanup controls were unavailable. Browser file refresh was still attempted.');
+    if (context.serviceWorker) {
+      try {
+        const registrations = await boundedRecoveryStep(context, () => context.serviceWorker.getRegistrations(), 'reading service-worker registrations');
+        for (const registration of registrations) {
+          if (registration.scope !== context.scope) continue;
+          try {
+            if (await boundedRecoveryStep(context, () => registration.unregister(), 'removing this service-worker registration')) result.registrationsRemoved++;
+          } catch (error) {result.errors.push('Could not remove this installation’s service-worker registration: ' + recoveryError(error));}
+        }
+      } catch (error) {result.errors.push('Could not inspect service-worker registrations: ' + recoveryError(error));}
+    }
+    if (context.cacheStorage) {
+      try {
+        const prefix = 'circuitbench:' + context.scope + '|';
+        const names = await boundedRecoveryStep(context, () => context.cacheStorage.keys(), 'reading offline-cache names');
+        for (const name of names) {
+          if (!name.startsWith(prefix)) continue;
+          try {
+            if (await boundedRecoveryStep(context, () => context.cacheStorage.delete(name), 'removing this offline cache')) result.cachesRemoved++;
+          } catch (error) {result.errors.push('Could not remove an offline cache for this installation: ' + recoveryError(error));}
+        }
+      } catch (error) {result.errors.push('Could not inspect offline caches: ' + recoveryError(error));}
+    }
+    try {
+      progress('Downloading the current recovery manifest…');
+      const manifestURL = new URL('recovery-manifest.json', context.scope);
+      manifestURL.searchParams.set('cache-refresh', new URL(context.returnURL).searchParams.get('cache-refresh'));
+      const fetched = await fetchRecoveryBytes(context, manifestURL.href, RECOVERY_LIMITS.manifestBytes, 'downloading the recovery manifest');
+      let document;
+      try {document = JSON.parse(new TextDecoder('utf-8', {fatal: true}).decode(fetched.bytes));}
+      catch (_) {throw new Error('The recovery manifest is not valid JSON. Upload the complete deploy package and check that recovery-manifest.json is served as a file.');}
+      const manifest = validateRecoveryManifest(document, context.scope);
+      result.manifestVersion = manifest.version;
+      result.buildHash = manifest.buildHash;
+      result.filesExpected = manifest.files.length;
+      let next = 0, finished = 0;
+      const worker = async () => {
+        while (next < manifest.files.length) {
+          const file = manifest.files[next++];
+          try {
+            const response = await fetchRecoveryBytes(context, file.url, file.bytes, 'refreshing ' + file.path);
+            if (response.bytes.length !== file.bytes) throw new Error('Expected ' + file.bytes + ' bytes; received ' + response.bytes.length + '.');
+            if (file.path.endsWith('.js') && !RECOVERY_JS_MIMES.has(response.mime)) throw new Error('JavaScript MIME is unusable: ' + (response.mime || '(missing)') + '.');
+            if (file.path.endsWith('.css') && response.mime !== 'text/css') throw new Error('Stylesheet MIME is unusable: ' + (response.mime || '(missing)') + '.');
+            if (file.path.endsWith('.wasm') && ![0, 97, 115, 109, 1, 0, 0, 0].every((byte, index) => response.bytes[index] === byte)) throw new Error('The response is not a WebAssembly version-1 binary.');
+            if (context.digest) {
+              const digest = await boundedRecoveryStep(context, () => context.digest('SHA-256', response.bytes), 'checking ' + file.path);
+              const actual = Array.from(new Uint8Array(digest), byte => byte.toString(16).padStart(2, '0')).join('');
+              if (actual !== file.sha256) throw new Error('SHA-256 differs from the uploaded release manifest.');
+              result.filesHashed++;
+            }
+            result.filesRefreshed++;
+          } catch (error) {result.errors.push(file.path + ': ' + recoveryError(error));}
+          progress('Checked ' + (++finished) + ' of ' + manifest.files.length + ' runtime files…');
+        }
+      };
+      await Promise.all(Array.from({length: Math.min(RECOVERY_LIMITS.concurrency, manifest.files.length)}, worker));
+    } catch (error) {result.errors.push('Runtime file refresh: ' + recoveryError(error));}
+    try {
+      progress('Refreshing the application’s main address…');
+      const navigation = await fetchRecoveryBytes(context, context.returnURL, RECOVERY_LIMITS.navigationBytes, 'refreshing the application root');
+      const text = new TextDecoder().decode(navigation.bytes);
+      if (!['text/html', 'application/xhtml+xml'].includes(navigation.mime) || !/<html[\s>]/i.test(text) || !/<title[^>]*>[^<]*CircuitBench/i.test(text)) {
+        throw new Error('The main application address did not return CircuitBench HTML. Check the directory route after uploading all files.');
+      }
+      // Hosting may inject analytics. Navigation is deliberately not hash-matched.
+      result.navigationRefreshed = true;
+    } catch (error) {result.errors.push('Application root refresh: ' + recoveryError(error));}
+    result.status = result.errors.length ? 'partial' : 'complete';
+    result.message = result.status === 'complete'
+      ? 'The browser-file refresh finished. Your saved projects and preferences were preserved. Review the checks below, then return to CircuitBench and try the experiment again.'
+      : 'The refresh did not finish completely. Your saved projects and preferences were preserved. Review the details below, then retry or return to the app.';
+    return result;
+  }
+</script>
+<script id="recovery-ui">
+  const refreshButton = document.getElementById('refresh-button');
+  const returnLink = document.getElementById('return-link');
+  const resultRegion = document.getElementById('result');
+  const resultHeading = document.getElementById('result-heading');
+  const resultDescription = document.getElementById('result-description');
+  const resultDetails = document.getElementById('result-details');
+  const initialContext = recoveryEnvironment();
+  document.getElementById('scope-text').textContent = initialContext.scope;
+  returnLink.href = initialContext.returnURL;
+
+  function showRecoveryResult(result) {
+    resultRegion.dataset.state = result.status;
+    resultHeading.textContent = result.status === 'complete' ? 'Browser files refreshed — ready to return' : result.status === 'unavailable' ? 'File refresh unavailable here — ready to return' : 'Refresh needs attention — review the result';
+    resultDescription.textContent = result.message;
+    resultDetails.replaceChildren();
+    const details = result.status === 'unavailable' ? [] : [
+      result.manifestVersion ? 'Recovery manifest: ' + result.manifestVersion + ' · build ' + result.buildHash + '.' : 'The recovery manifest could not be validated; its listed runtime files were not requested.',
+      'Runtime files downloaded and checked: ' + result.filesRefreshed + ' of ' + result.filesExpected + '.',
+      result.sha256Available ? 'Runtime files with a matching SHA-256: ' + result.filesHashed + '.' : 'Cryptographic verification was unavailable; see the check limitations below.',
+      'Application main address refreshed: ' + (result.navigationRefreshed ? 'Yes.' : 'No.'),
+      'Service-worker registrations removed for this exact directory: ' + result.registrationsRemoved + '.',
+      'CircuitBench offline caches removed for this exact directory: ' + result.cachesRemoved + '.',
+      ...(result.notes || []),
+      ...result.errors
+    ];
+    for (const detail of details) {
+      const item = document.createElement('li');
+      item.textContent = detail;
+      resultDetails.append(item);
+    }
+    resultDetails.hidden = !details.length;
+    returnLink.href = result.returnURL;
+    returnLink.hidden = false;
+  }
+
+  if (initialContext.unavailableReason) {
+    refreshButton.disabled = true;
+    showRecoveryResult({status: 'unavailable', message: initialContext.unavailableReason, returnURL: initialContext.returnURL});
+  } else if (globalThis.isSecureContext !== true) {
+    resultHeading.textContent = 'Ready to refresh browser files over HTTP';
+    resultDescription.textContent = 'Offline-cache controls are unavailable on this connection. Fresh runtime downloads can still be requested; your saved projects are preserved.';
+  } else if (initialContext.cleanupUnavailable) {
+    resultDescription.textContent = 'Browser-file refresh is available. Some offline-cache controls are unavailable; the result will identify which steps completed.';
+  }
+
+  refreshButton.addEventListener('click', async () => {
+    if (refreshButton.disabled) return;
+    refreshButton.disabled = true;
+    returnLink.hidden = true;
+    refreshButton.textContent = 'Refreshing application files…';
+    resultRegion.dataset.state = 'working';
+    resultHeading.textContent = 'Refreshing this installation’s browser files';
+    resultDescription.textContent = 'Keep this page open. The result will appear before you return to CircuitBench.';
+    resultDetails.replaceChildren();
+    resultDetails.hidden = true;
+    try {
+      showRecoveryResult(await refreshCachedApplicationFiles(globalThis, message => {resultDescription.textContent = message;}));
+    } catch (error) {
+      showRecoveryResult({status: 'partial', message: 'The browser could not finish the refresh. No project data was changed. You can retry or return to the app.', registrationsRemoved: 0, cachesRemoved: 0, filesExpected: 0, filesRefreshed: 0, filesHashed: 0, navigationRefreshed: false, sha256Available: false, notes: [], errors: [recoveryError(error)], returnURL: initialContext.returnURL});
+    }
+    refreshButton.disabled = resultRegion.dataset.state === 'unavailable';
+    refreshButton.textContent = resultRegion.dataset.state === 'partial' ? 'Retry cache refresh' : 'Refresh cached application files';
+    resultRegion.focus();
+  });
+</script>
+</body>
+</html>

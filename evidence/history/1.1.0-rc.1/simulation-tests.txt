@@ -1,0 +1,18 @@
+✔ actual digital Worker completes, fails, recovers, cancels and times out with physical termination (997.147326ms)
+✔ analog-only facade delegates the original deck and options without resampling (0.620426ms)
+✔ pure digital facade never starts an analog worker and retains event provenance (4.54552ms)
+✔ feed-forward replay executes held DAC analog input, ADC events, logic and final PWL analog output (1.72055ms)
+✔ threshold ADC unknown band stops before any final DAC analog calculation (1.047581ms)
+✔ compiler topology errors prevent all worker stages (0.73055ms)
+✔ failed digital compilation cannot fall through to the analog runner (0.186421ms)
+✔ stop at a stage announcement cannot start a new worker after cancellation (0.72206ms)
+✔ cancellation during analog replay terminates the active stage and prevents later stages (1.358234ms)
+✔ one global watchdog bounds the entire mixed run and retains timeout status (100.130742ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1117.703228

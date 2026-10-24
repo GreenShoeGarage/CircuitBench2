@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "application": "CircuitBench",
+  "version": "1.0.0-rc.1",
+  "runtimeBuild": "804d39c2687b9a27",
+  "recordedAt": "2026-10-24T04:39:40.544Z",
+  "method": "Direct interaction and screenshots through the managed Chrome browser. This is an observed manual QA record, separate from Node, VM and native-reference evidence.",
+  "reviewOrigin": "http://terminal.local:4173/",
+  "confirmed": [
+    {
+      "workflow": "RC experiment",
+      "result": "100 nF baseline and 220 nF changed-capacitor runs completed with 501 raw points; magnitude/phase overlay visible."
+    },
+    {
+      "workflow": "Undo/redo and stale results",
+      "result": "Parameter undo and redo created new revisions and clearly marked older results outdated."
+    },
+    {
+      "workflow": "Connected editing",
+      "result": "Arrow-key move, toolbar rotation, inspector mirror and refresh preserved C1 electrical connections. Subsequent endpoint-routing fix visually reviewed and computed successfully."
+    },
+    {
+      "workflow": "Wire failure and recovery",
+      "result": "Delete R1-C1 wire -> Failed with R1 pin 2 unconnected. Enter on both pins in Wire mode restored the wire and a fresh 501-point AC run."
+    },
+    {
+      "workflow": "Crossings and junctions",
+      "result": "Two independent dividers measured 5 V / 2 V with 8 connections. An explicit junction at the crossing produced 3.5 V / 3.5 V with 10 connections. Undo restored 5 V / 2 V with 8 connections."
+    },
+    {
+      "workflow": "Unicode regression",
+      "result": "Original QA middle-dot title failed upstream byte-offset parsing. Adapter 2 rerun with unchanged Unicode title completed with 5 V / 2 V."
+    },
+    {
+      "workflow": "Cancellation",
+      "result": "Transient requested at 100 us duration / 1 ns maximum step; Stop produced Cancelled with worker termination. Subsequent AC run completed with 501 points."
+    },
+    {
+      "workflow": "SPICE subset import",
+      "result": "Imported a 10 V/two-10-kohm divider from a .cir file into a netlist workspace and computed 5 V. No schematic reconstruction was presented."
+    },
+    {
+      "workflow": "Portable backup",
+      "result": "Browser JSON download, chooser import, replacement, refresh recovery and final revision-7/501-point round trip passed. Imported-results provenance notice was visible."
+    },
+    {
+      "workflow": "CSV",
+      "result": "Downloaded 502 lines: header plus 501 rows, frequency plus twelve real/imaginary trace columns; no display decimation in numerical export."
+    },
+    {
+      "workflow": "Cursors",
+      "result": "A 114.8 Hz, B 1.622 kHz, delta 1.507 kHz; output magnitude difference -488.5 mV displayed."
+    },
+    {
+      "workflow": "Themes",
+      "result": "Dark, light and high-contrast screenshots reviewed."
+    },
+    {
+      "workflow": "Constrained responsive viewports",
+      "result": "Same-origin iframe widths 390 px (375 px client area with scrollbar) and 768 px. No document horizontal overflow; inspector editing, Values/plots and panel toggles accessible. Phone-width change 220 nF -> 330 nF completed another 501-point AC run."
+    },
+    {
+      "workflow": "Subdirectory hosting",
+      "result": "Exact build copied beneath /qa/circuitbench/. App, module worker and WASM loaded; fresh Unicode-title OP run returned 5 V / 2 V."
+    },
+    {
+      "workflow": "Report preview",
+      "result": "Browser-generated report contained immutable circuit/configuration, numerical plots with named legend, raw evidence metadata, model/engine identification, interpretation and logs. Exact HTML independently rendered and reviewed; see report-layout.json."
+    }
+  ],
+  "unverified": [
+    {
+      "workflow": "Browser offline reload and update activation",
+      "reason": "The managed non-localhost HTTP origin is not a secure context, so service-worker registration cannot be tested here. VM logic and bundled assets are separately verified."
+    },
+    {
+      "workflow": "Standalone HTML report and .cir download events",
+      "reason": "Controls ran and status changed; no completed download was observed. JSON and CSV downloads did work. Cause unresolved; no browser-policy cause is asserted."
+    },
+    {
+      "workflow": "Native Chrome Print / Save as PDF",
+      "reason": "The browser-generated HTML was rendered with WeasyPrint, not the native Chrome print dialog."
+    },
+    {
+      "workflow": "Physical touch devices and other browser engines",
+      "reason": "Responsive checks were constrained desktop-Chrome viewports, not physical mobile/tablet hardware or Safari/Firefox."
+    }
+  ],
+  "releaseDecision": "Remain 1.0.0-rc.1; do not promote until required browser offline and remaining output checks are actually verified."
+}

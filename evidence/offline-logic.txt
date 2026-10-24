@@ -1,19 +1,32 @@
 LOGIC-LEVEL OFFLINE VERIFICATION ONLY. No browser service-worker or disconnected-network reload is claimed.
-Generated dist/sw.js SHA-256: 813c0067520d87157ede25bad4c7d7f7c97b7b872404526b96514776f9345e04; version 1.0.0-rc.1; build 804d39c2687b9a27
-✔ generated precache lists every real runtime asset, including actual WebAssembly bytes (68.597818ms)
-✔ scope-relative install and cached offline fetch work in VM at / (25.765907ms)
-✔ scope-relative install and cached offline fetch work in VM at /tools/circuitbench/ (18.324192ms)
-✔ uncached resources fall back to network and fail honestly while offline (4.331486ms)
-✔ non-GET, foreign-origin, and out-of-scope requests are not intercepted (2.027511ms)
-✔ a failed cache.addAll cannot advertise offline readiness (2.077285ms)
-✔ readiness checks every cached runtime asset instead of accepting only the HTML shell (1.618755ms)
-✔ cache activation cleans only older builds of the exact scope, preserving nested and sibling installs (7.05219ms)
-✔ waiting updates are activated only by explicit SKIP_WAITING message (1.789702ms)
-ℹ tests 9
+Generated dist/sw-1.1.0-rc.1.js SHA-256: 619fa7cb5a84b48cc9b38a0ef39b0a1755115620ebaee2059bfee656f97fed0f; version 1.1.0-rc.1; build 089964ae0aed2792
+✔ generated precache lists every real runtime asset, including actual WebAssembly bytes (478.960298ms)
+✔ scope-relative install and cached offline fetch work in VM at / (347.964828ms)
+✔ scope-relative install and cached offline fetch work in VM at /tools/circuitbench/ (162.524208ms)
+✔ canonical shell caching avoids injected host HTML and a redirected/missing index.html alias (40.747388ms)
+✔ asset release directories and query pins never substitute one another in the cache (20.634136ms)
+✔ reload and no-store asset diagnostics observe the network without stale-cache fallback (26.50011ms)
+✔ canonical navigation reload uses fresh responses and falls back only on network failure (22.08227ms)
+✔ uncached resources fall back to network and fail honestly while offline (15.461199ms)
+✔ non-GET, foreign-origin, and out-of-scope requests are not intercepted (17.333701ms)
+✔ a failed runtime fetch cannot advertise offline readiness or leave a partial install (4.115656ms)
+✔ HTTP-200 HTML in place of the WASM binary is rejected before caching (4.043492ms)
+✔ module and stylesheet content types must be usable by the browser (37.747287ms)
+✔ valid binary bytes with generic MIME remain usable with the buffered WASM loader (380.41605ms)
+✔ SHA-256 rejects same-length stale JavaScript and modified WASM with valid magic (41.647012ms)
+✔ fresh installation bypasses a stale HTTP cache after the hosting files are repaired (32.578743ms)
+✔ a verified new build replaces a poisoned prior build without deleting other scopes (32.602863ms)
+✔ failed cache writes clean the incomplete new cache while preserving the prior build (14.054062ms)
+✔ missing secure digest support refuses installation instead of weakening integrity checks (6.673014ms)
+✔ readiness checks every cached runtime asset instead of accepting only the HTML shell (22.552448ms)
+✔ readiness rejects poisoned bytes and unusable MIME even when every cache key exists (44.149449ms)
+✔ cache activation cleans only older builds of the exact scope, preserving nested and sibling installs (41.774184ms)
+✔ waiting updates are activated only by explicit SKIP_WAITING message (12.707152ms)
+ℹ tests 22
 ℹ suites 0
-ℹ pass 9
+ℹ pass 22
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 146.43005
+ℹ duration_ms 1824.880837

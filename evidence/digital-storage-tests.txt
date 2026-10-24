@@ -1,0 +1,21 @@
+✔ portable digital record preserves all four literal states and its snapshot (21.001883ms)
+✔ numeric pseudo-logic and unknown state tokens are rejected (5.297937ms)
+✔ logic imports require a valid transient time order (1.647725ms)
+✔ logic measurement kind and unit must agree (0.615886ms)
+✔ mixed sample provenance and exact analog inputs survive a backup round trip (2.789329ms)
+✔ mixed provenance cannot point beyond, repeat, or omit its source positions (1.674099ms)
+✔ sparse event evidence round-trips and must agree with the logic samples (2.586819ms)
+✔ sparse event evidence rejects future, nonliteral and unseeded transitions (0.861097ms)
+✔ bus backup preserves exact words, leading zeros, X/Z bits and event evidence (1.327064ms)
+✔ bus imports reject missing width/order, unsupported dimensions and padded or numeric words (4.903916ms)
+✔ bus sparse events must have coherent metadata and exact matching held words (0.896751ms)
+✔ bus measurement width cannot disagree with the stored vector (0.268889ms)
+✔ legacy single-bit evidence remains distinct from bus words (1.817126ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 63.889536

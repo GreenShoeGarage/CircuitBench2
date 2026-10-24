@@ -1,303 +1,207 @@
 # Release validation and handoff
 
-**Candidate: 1.0.0-rc.1 · Record date: October 24, 2026**
+**Candidate: 2.0.0-rc.1 · Runtime build: `7f06ecaf7e7b40be` · October 24, 2026**
 
-CircuitBench has passed its numerical, data-model, editor-logic, result,
-autosave, package and service-worker logic checks. The managed browser has also
-completed the RC experiment, baseline comparison, portable-project round trip
-and report-preview workflows described below. This is a **release candidate**,
-not a declaration that every v1.0.0 release gate has passed.
+All requested batches are implemented: a working seven-segment display,
+coordinated analog/digital feedback, closed-loop execution, multibit converters,
+advanced analog studies and continuous simulation in state-preserving batches.
+The package includes 41 parts, 35 model records and 38 worked examples
+(16 analog, 14 digital and eight mixed).
 
-The remaining secure-context browser offline gate is blocked by the supplied
-review surface: it serves plain HTTP on `terminal.local`, which is not
-localhost. The browser therefore cannot install a service worker there. Local
-asset checks and a simulated service-worker environment passed; neither proves
-real browser offline reload or update activation. The candidate label remains
-until that required gate is actually verified on HTTPS or localhost.
+This is a release candidate prepared for self-hosting. No external website was
+modified. Actual target-host installation, secure offline updates and the full
+browser matrix remain separate acceptance gates.
 
-## Evidence layers
+## Delivered execution contract
 
-The layers below establish different things. Counts are kept separate because
-an assertion about electrical connectivity, a native vector comparison and a
-browser interaction are not interchangeable tests.
-
-| Layer | Result | What it establishes |
-|---|---|---|
-| Core model/netlist tests | 25 passed | Authoritative topology, units, schema round trips, model binding, import rejection and analysis bounds |
-| Editor logic tests | 11 passed | Explicit junctions, connection-preserving edits, isolated drag previews, clipboard, keyboard actions, transformed-part wire routing and historical SVG rendering |
-| Result/report/import tests | 13 passed | Complex measurements, current direction, axes, descending sweeps, CSV, baseline compatibility, immutable saved evidence and escaped reports |
-| Package tests | 6 passed against the built candidate | Manifest hashes, matching source/build bytes, real WASM filename, complete local assets and relative module paths |
-| Service-worker VM tests | 9 passed | Generated install/fetch/update logic with simulated CacheStorage and network; root and subdirectory scope isolation |
-| Autosave logic tests | 4 passed | Serialized writes, latest-revision status, rapid-edit coalescing and failure/recovery behavior |
-| Raw-parser regression tests | 6 passed | UTF-8 titles, real/complex binary offsets, CRLF headers, typed-array offsets and explicit malformed-payload rejection |
-| Actual WASM foundation | 62 checks passed | Real ngspice analyses, Unicode-title dividers, analytic references, native comparisons, failure/cancel/timeout recovery and disposable workers |
-| Authored example circuits | 15 fixtures passed | All 13 project examples plus independent-current-source and PWL fixtures; 70 native vector comparisons and 16 analytic/behavior checks |
-| Managed browser session | Confirmed workflows below | Actual UI, browser module/worker loading, computation, plotting, backup import/reload and report preview |
-| Independent report PDF layout | Passed, three A4 pages | Exact browser-generated HTML rendered with WeasyPrint 66.0, rasterized with Poppler 26.05.0 at 110 dpi and visually reviewed on every page |
-
-The first seven rows total 74 Node/VM tests. Their source is shipped in the source
-package's `tests/` directory. Captured logic output is provided for
-[core](../evidence/core-tests.txt),
-[autosave](../evidence/autosave-logic.txt) and
-[offline logic](../evidence/offline-logic.txt). The numerical records include
-their own timestamps, measured values, tolerances and pass/fail results:
-[`engine-validation.json`](../evidence/engine-validation.json) and
-[`example-validation.json`](../evidence/example-validation.json).
-
-## Actual numerical results
-
-The production engine is EEcircuit-engine **1.8.0**, containing ngspice **45.2**
-WebAssembly. The test harness runs the production engine facade and worker
-adapter using Node `worker_threads` through a small Worker API shim. The shim
-supplies worker messaging and local WASM loading; it does not replace the
-numerical solver or manufacture traces.
-
-The development reference is native ngspice **42+ds-3build1**, with executable
-SHA-256
-`820658317b0b54035208da41936fd6871ce924036e5ea4113a4168b821b7fc45`.
-The native and WASM versions differ. Agreement demonstrates the recorded
-fixtures within their stated tolerances; it is not a claim that every possible
-model or dialect is equivalent between versions.
-
-### Analytic acceptance fixtures
-
-| Fixture | Measured result | Reference and allowed absolute error |
-|---|---:|---|
-| Equal 10 kΩ divider, 10 V input | 5 V | 5 V; 1 nV |
-| Divider source current | −0.0005 A | −0.0005 A into the source positive terminal; 1 pA |
-| DC-sweep final midpoint | 5 V | 5 V; 1 nV |
-| Independent dividers with a Unicode project title | 5 V and 2 V | 5 V and 2 V; 1 nV each |
-| RC cutoff, R = 10 kΩ and C = 100 nF | 159.15494309189532 Hz | `1/(2πRC)`; 1 nHz for the direct frequency fixture |
-| RC gain at that exact cutoff | −3.0102999566398116 dB | `20 log10(1/√2)`; 1e−8 dB |
-| RC phase at that exact cutoff | −44.99999999999999° | −45°; 1e−8° |
-| RC step after 1 ms | 0.63212040006794 V | `1 − exp(−1)` V; 20 µV |
-| Bounded generic op-amp closed-loop gain | 10.998786728280285 V/V | 11 V/V; 0.01 V/V |
-
-The precise cutoff fixture deliberately evaluates the analytic frequency. The
-worked example instead uses a 501-point logarithmic sweep, so the example
-suite interpolates around the cutoff and applies its separate 0.002 dB and
-0.01° tolerances. The RC step fixture uses zero initial capacitor voltage, a
-1 ns source rise, a 1 µs maximum step and `reltol=1e−6`; interpolation at 1 ms
-is described in the [engine evaluation](engine-evaluation.md).
-
-### Worked examples and model behavior
-
-Every shipped example is executed from its real schema and generated netlist.
-Coverage includes RC/RL response, the divider, rectification, an LED driver,
-NPN/PNP and NMOS/PMOS switching, a controlled switch, an amplifier and sensor
-conditioning. Two supplementary circuits cover an independent current source
-and a PWL ramp. All 70 canonical native vector comparisons and 16 behavior
-checks passed.
-
-For that suite, the native comparison allowance is the greater of 2 mV and
-0.5% of native peak for voltages, or 1 µA and 0.5% of native peak for currents.
-Transient native samples are interpolated onto the WASM sample times. The
-individual tolerances and exact generated decks are retained in the example
-evidence. Analytic checks provide additional independent references.
-
-Generic educational model behavior does not establish accuracy for any
-specific manufactured diode, transistor, LED or op amp. See the
-[model provenance](component-models.md) and
-[compatibility matrix](compatibility.md). The engine's occasional redundant
-single-node `v(all)` raw vector is retained and recorded separately; canonical
-circuit measurements determine the displayed signals. No genuine node is
-discarded by its name.
-
-## Cancellation, failure and resource evidence
-
-The recorded foundation sequence created **56 workers and terminated all 56**;
-none remained alive. Each run uses a fresh worker, including runs after a
-failed circuit, cancellation or timeout. Stop and the watchdog call the actual
-worker termination API, and the test observes worker exit.
-
-An intentionally long computation left the test harness's main-thread
-heartbeat running. Cancellation rejection was acknowledged in approximately
-0.312 ms in that environment; the subsequent divider run returned 5 V.
-Timeout and invalid-model failures also recovered through a new successful
-run. These are Node worker measurements, not a browser responsiveness or
-latency guarantee.
-
-Forty repeated runs met the defined memory criterion: observed mean process
-RSS change was approximately +0.73 MiB, below the 64 MiB growth allowance.
-Process RSS can fluctuate with the operating system and allocator. The result
-supports disposal for the measured sequence, not unlimited-duration or
-all-device memory guarantees. The UI independently limits an ordinary run to
-30 seconds and enforces documented analysis/output budgets.
-
-## Browser workflows already confirmed
-
-These checks were performed through the actual managed browser surface, not
-inferred from the Node shim or a successful build.
-
-| Workflow | Observed result |
+| Capability | Contract |
 |---|---|
-| Load RC low-pass example and run AC | Completed with 501 computed points; magnitude and phase displayed |
-| Pin baseline, edit C1 from 100 nF to 220 nF, rerun | New computed response displayed with the earlier baseline overlay |
-| Edit circuit and use undo/redo | Revision changes and stale-result state followed the edits |
-| Move, rotate and mirror a connected component | C1 moved with ArrowRight, rotated with the toolbar and mirrored with the inspector; the rotated revision persisted after refresh |
-| Delete a connection and run | Deleting the R1-to-C1 wire produced a Failed run with an unconnected R1 pin 2 diagnostic; the working project remained intact |
-| Reconnect using the keyboard | Wire mode plus Enter on R1 pin 2 and C1 pin 1 snapped both endpoints and restored four connections |
-| Run after reconnecting | The repaired revision completed another real 501-point AC run |
-| Stop and recover | A requested long transient was cancelled with the worker-termination status; the subsequent AC run completed with 501 points |
-| Unicode project title | The original `QA · Independent wire crossing` title ran successfully through adapter version 2 and returned 5 V / 2 V |
-| Independent crossing, explicit junction and undo | Before joining: 5 V / 2 V and eight connections. Junction placement made ten connections and 3.5 V / 3.5 V with warnings preserved. Undo restored eight connections and 5 V / 2 V |
-| SPICE subset import | A divider file opened in the separate netlist-oriented workspace and computed 5 V; no schematic reconstruction was implied |
-| Save backup and reopen portable JSON | Export/import completed; working project and recorded evidence reopened |
-| Final backup evidence round trip | Revision 7 and its 501-point run exported and reopened; the imported-results provenance warning appeared as expected |
-| Reload after backup workflow | Stored project/run state returned in the browser |
-| Numerical cursors | Cursor A read 114.8 Hz and B read 1.622 kHz; the displayed differences were 1.507 kHz and −488.5 mV |
-| Results CSV download | Verified 502 lines: a header and all 501 data rows, with frequency plus twelve real/imaginary trace columns; raw output was not decimated |
-| Open analysis report | Designed HTML preview displayed the circuit, numerical evidence and captured experiment details |
-| Theme review | Dark, light and high-contrast screenshots reviewed |
-| Phone/tablet viewport review | Same production app at a 390 px outer phone viewport (375 px document client width) and 768 px tablet viewport had no document horizontal overflow; component editing, plots, numerical Values and tablet drawer toggles were accessible |
-| Run in the constrained phone viewport | C1 changed from 220 nF to 330 nF through its inspector; a fresh AC run completed with 501 points |
-| Subdirectory loading | App, module worker and local WASM loaded at `/qa/circuitbench/`; a fresh Unicode-title OP run returned 5 V / 2 V |
+| SEG7 / HEX7 | Eight actual digital segment bits, bit 0=a through bit 6=g and bit 7=decimal point; active-high/low; hex and BCD decoder; preserved X/Z; cursor or latest result state |
+| Coordinated transient | Original stateful modified nodal analysis with backward Euler for R/C/L and independent V/I sources, coupled to incremental digital events |
+| Feedback | ADC crossings or sample completions alter digital state; delayed logic alters a DAC; the resulting analog response feeds the same circuit |
+| ADCBUS | Differential 2–8 bit unsigned quantizer; endpoint clipping and nearest-code rounding; samples at k×period, publishes after positive delay; rounded delay strictly below rounded period |
+| DACBUS | 2–8 bit unsigned ideal voltage source, explicit initial code and finite linear rise/fall; initial code held until first known word; subsequent X/Z is an error |
+| Continuous | One worker retains C/L history, clock phase, queued events and private word state; Pause/Resume/Step; boundary-timestamped live DC and DIN/BUSIN inputs |
+| Studies | Up to 64 independent trials, linear/log sweep or seeded uniform-relative Monte Carlo over up to eight parameters; selected raw evidence, arithmetic validation and statistics excluding failed trials |
+| Persistence | Existing schema-1 projects; independent timing/study evidence; complete stopped windows or non-resumable continuous snapshots; original circuit revision and input history |
 
-The browser capacitor change above was **220 nF**. The introductory guide uses
-**200 nF** to make the theoretical factor-of-two cutoff change easy to see;
-the independent example proof also checks that factor-of-two experiment.
-Those are separate experiments, and the baseline always belongs to its own
-recorded parameter values.
+The coordinated subset explicitly rejects diodes, transistors, opamps,
+controlled switches and imported SPICE decks. Those existing analog models and
+OP/DC/AC experiments remain available through the pinned ngspice engine.
+The ngspice mixed path retains scalar feed-forward replay semantics. The new
+engine is identified as `cb-coordinated-1`; it is not an XSPICE-enabled build.
 
-The independent PDF layout check is described below. Native Chrome's Print /
-Save as PDF dialog was not tested. **Standalone report HTML and SPICE `.cir` downloads have not
-been verified in the managed browser:** their actions ran, but no download event
-was observed. HTML was also tried with a native download anchor. JSON backup
-and results CSV downloads did work. The cause is unresolved; this record does
-not assume a browser policy caused it. Internal browser download inspection was
-unavailable under the managed tool's navigation policy. The preview remains a
-confirmed separate workflow.
+The 1 ps digital grid is a representation and scheduling grid. Threshold
+localization occurs on the backward-Euler trial-step solution and does not
+imply 1 ps physical accuracy. Reducing the maximum time step and comparing
+results is the appropriate numerical convergence check. The display/converters
+are behavioral parts without characterized IC timing, LED loading, noise,
+aperture jitter, glitches or physical metastability.
 
-Importing a saved run preserves the supplied record; it does not independently
-recompute and certify that record. The app identifies such imported evidence
-accordingly.
+## Integrated tests
 
-The responsive checks used constrained viewports in desktop Chrome, not a
-physical phone/tablet or iOS Safari. No cross-browser or physical touch-device
-certification is claimed. The browser-tested runtime build is
-`804d39c2687b9a27`; documentation updates do not change that runtime identity.
+Every application test file was executed directly with Node. Direct execution
+preserves the individual test-case counts in this environment. The final
+summary is [rc200-test-summary.json](../evidence/rc200-test-summary.json), with
+one transcript per suite in `evidence/rc200-tests/`.
 
-### Report layout and interpretation
+| Layer | Passing tests | What is exercised |
+|---|---:|---|
+| Core, digital model and bus compiler | 72 | All examples, domain/width checks, model/source parsing and compilation |
+| Digital kernel, expansion and truth tables | 43 | Four-state resolution, private state, transport events and enumeration |
+| Coordinated numerical engine and facade | 45 | Analog equations, crossings, converters, exact boundaries, real worker protocol and bounded continuation |
+| Converter integration | 9 | Differential references, output polarity, code order, zero loading, generated names, malformed values, rounded timing and backups |
+| Continuous controller, app and storage/timing | 47 | Pause/Resume/Step, asynchronous cancellation, live inputs, rolling windows, worker failures and independent provenance |
+| Displays | 17 | Segment mapping, decoder/BCD/active levels, X/Z, run identity, cursor reads, continuous states and rendering |
+| Analog studies | 65 | Trial generation, seed reproducibility, numeric measurements, budgets, cancellation, actual WASM workers, UI and app persistence |
+| Editor and symbols | 27 | Electrical wiring, transforms, aliases, accessible bus widths and new display/converter ports |
+| Results, plots and reports | 26 | Raw values/events, cursor/CSV, exact words, comparisons and escaped output |
+| Storage, truth-table evidence/UI/app and autosave | 44 | Snapshot integrity, corruption rejection, immutable histories and app workflows |
+| Simulation coordination | 10 | Worker exclusivity, cancellation, timeout and existing mixed stages |
+| Engine loading and raw parser | 30 | Missing/invalid assets, protocol failures and raw result parsing |
+| Offline and repair logic | 34 | Content-verified assets and installation-scoped recovery in controlled tests |
+| Timing core, evidence, presentation and app | 81 | All five metrics, preserved edges, X/Z, boundaries, legacy 1.3 migration, reports and original-run navigation |
+| **Application subtotal** | **550** | **36 files** |
+| Final built package | 9 | Exact asset/source identity, imports, precache, recovery manifests, WASM and versioned paths |
+| **Total** | **559** | **37 files** |
 
-The final report uses a fresh completed revision-7 AC run with 501 samples per
-vector, a 220 nF capacitor and the corrected approximately 72.34 Hz cutoff
-interpretation. It retains the revision-0 baseline. The exact 83,424-character
-HTML captured from the browser preview was rendered independently using
-**WeasyPrint 66.0** into **three A4 pages**. Poppler `pdftoppm` **26.05.0**
-rasterized each page at **110 dpi**, and every page was visually reviewed.
+All application processes exited zero, with no failures, cancellations, skipped
+cases, TODOs or timeouts. Counts refer to Node test cases; individual assertion
+calls were not counted. The [package gate](../evidence/rc200-package-tests.json) is captured separately
+because its generated manifest also authenticates these documentation/evidence
+bytes. The external integrity receipt records the repeated final package pass.
 
-The schematic, component values, two-signal legend, baseline semantics,
-magnitude/phase plot, measurements, assumptions, interpretation, configuration,
-netlist, log and footer fit without clipping or an orphan page. The model/engine
-provenance and exact run snapshot remain in the report. The detailed evidence
-and sample artifact hashes are in
-[report-layout.json](../evidence/report-layout.json).
+The app suites execute actual extracted application functions with controlled
+DOM, hashing and asynchronous boundaries. They verify logic and ownership,
+while browser observations below verify rendering and user actions. Controlled
+service-worker tests do not substitute for an actual HTTPS installation.
 
-This is actual browser-generated report content plus independent PDF-renderer
-layout verification. It does not establish operation of Chrome's native print
-dialog, Chrome PDF export or a physical printer. The sample report uses a fresh
-run; the imported-results warning was checked separately through the final
-backup round trip.
+### Concrete integration regressions closed
 
-### Regression found and fixed during browser review
+- Stop, editing or project replacement during either startup hash cannot launch
+  a stale worker or append an old run to a replacement project. An older
+  cancelled preparation cannot clear a newer preparation's state. Hash errors
+  release controls without a half-started run.
+- Full-window and independent timing imports require matching continuous
+  bounds and complete live-input history. Removing provenance or pretending a
+  clipped window is an ordinary zero-origin run is rejected.
+- The actual 1.3 browser timing backup now normalizes the newly introduced
+  solver default and survives repeated saves; genuine analysis mismatches are
+  still rejected.
+- ADC delay and period are checked after rounding to the actual 1 ps clock.
+  Compiler entry points reject DAC startup words containing X/Z before integer
+  parsing can truncate them.
+- Study evidence budgets reserve space for all remaining worst-case failure
+  rows. Invalid runner metadata fails its trial, and signed-zero AC phase is
+  stable across JSON export/import.
 
-The crossing project exposed a real adapter defect: the upstream raw reader
-located `Binary:` in a UTF-8-decoded string and used its character index as a
-byte offset. The middle dot in the title shifted the binary location, causing
-`Offset is outside the bounds of the DataView` after ngspice had correctly
-computed a row. Changing only the title to ASCII made the same circuit pass,
-which isolated the failure to parsing.
+## Fresh numerical comparison
 
-Adapter version 2 searches for the marker in raw bytes, decodes only the header
-and validates the declared binary payload length before reading doubles. It
-preserves the user's Unicode title and leaves the WASM binary unchanged. The
-exact failing deck is now a permanent foundation fixture; six parser tests cover
-the related boundary cases. The full numerical and example suites were rerun
-successfully after this fix, followed by the successful browser Unicode run.
+[coordinated-validation.json](../evidence/coordinated-validation.json) records
+**24/24 checks over four numerical fixtures**. It executes actual pinned
+ngspice 45.2 WASM and native ngspice 42 references and records six source hashes
+matching the shipped implementation.
 
-## Offline and deployment: completed logic versus unverified browser gate
+| Fixture | Maximum step | Observed comparison | Acceptance |
+|---|---:|---:|---:|
+| RC step, 1 ms time constant | 100 ns | 18.394 µV maximum voltage difference | ≤25 µV |
+| RL step, 1 ms time constant | 100 ns | 183.935 nA maximum current difference | ≤250 nA |
+| Underdamped RLC | 50 ns | 1.519 mV maximum voltage difference | ≤2 mV |
+| Schmitt-controlled RC feedback | See recorded fixture | Coordinated 1.69544838 ms; ngspice reference 1.69537218 ms mean period | Analytic within 2 µs; reference within 0.3% |
 
-The generated release contains the exact local JavaScript and `spice.wasm`
-referenced by the engine. Package tests verify hashes, all precache entries,
-relative imports and subdirectory resolution. The service-worker tests execute
-the generated worker in a VM with simulated storage and network. They cover
-installation, cached offline fetches, honest uncached failures, readiness only
-after every essential asset is cached, ignored foreign/out-of-scope requests,
-and updates that preserve sibling and nested installations.
+The feedback reference uses an independently implemented hysteretic ngspice
+switch and explicit pull-up. Its topology differs from the coordinated
+ADC/inverter/DAC implementation; the comparison allowance includes these
+stated differences and maximum-step error. It is not a claim that unlike
+circuits are byte-identical. See [closed-loop-engine.md](closed-loop-engine.md).
 
-This establishes deterministic asset availability and service-worker logic.
-It does **not** establish registration, quota behavior, network-disconnected
-reload or update activation in a real secure browser context. The managed
-`http://terminal.local` review origin is not permitted to install the worker.
-The managed hosting infrastructure was not replaced to bypass that boundary.
+The study engine tests additionally run 13 real production workers and verify
+that all 13 terminate. They compare divider sweeps/tolerance draws with the
+resistor formula and RC AC/transient measurements with independent
+expectations. The facade tests also exercise actual retained workers across
+chunk limits, pause/resume and shutdown.
 
-The pending browser gate is concrete:
+## Browser workflows and exported evidence
 
-1. Serve the complete final candidate over HTTPS or `http://localhost`.
-2. Open it online and wait for **Offline ready**.
-3. Disconnect the browser from the network, reload, open a project and run a
-   fresh simulation that loads the local WASM.
-4. Reconnect, install a changed build, close all tabs for that installation,
-   reopen and confirm the visible new version and offline readiness.
-5. Repeat offline reload and a fresh run at a subdirectory URL; confirm that
-   another installation's cache was preserved.
+The managed Chrome preview is `http://terminal.local:4173/`. It is not a secure
+localhost/HTTPS origin, so it cannot establish offline-install acceptance.
+The browser record is [rc200-browser-validation.json](../evidence/rc200-browser-validation.json).
 
-A downloaded release can also be served by a local HTTP server without an
-internet connection, because all runtime assets are included. That deployment
-property is separate from a service worker continuing to serve the app after
-its original web server becomes unavailable. `file://` is unsupported.
+Early display and Schmitt observations used runtime `7de58c9b9e7b297b`; the final
+converter-hardening build `7f06ecaf7e7b40be` was then used for sampled feedback,
+analog studies, restoration and live analog operation. The early records are
+not relabeled as later-build observations. All exported data are validated
+again by the final production import code.
 
-## Reproduce the developer checks
+| Browser workflow | Observed result |
+|---|---|
+| Existing 1.3 project | Recovered its saved hazard run and timing record without resetting browser storage |
+| Seven-segment counter | 66 event times; final digit 0 from `00111111`; selecting a waveform time changed the display to 8 from `01111111` |
+| Continuous counter | Pause, Step and Resume retained state; changing enable to 0 held count `1011` and display b |
+| Rolling window and timing | Stopped window 214.1–229.6 ms retained 48 points, with 664 earlier points dropped; its 10.4 ms live change remained recorded; 14 full clock periods measured 1 ms plus one unfinished cycle |
+| Schmitt feedback example | 2,427 mixed points over 12 ms; five full periods measured 1.701678496 ms with the example's 5 µs maximum step |
+| Sampled feedback example | 2,699 points over 10 ms; final ADC `0111`, command `1000`, sense 2.5038312595 V and display 7; backup reopened with the same data |
+| Divider parameter sweep | Nine R1 values from 5 kΩ to 15 kΩ produced midpoint values from 6.6666666667 V to 4 V, including 5 V at 10 kΩ |
+| Seeded tolerance study | Eight two-resistor ±5% trials, seed 20261024; mean 5.0152317969 V; exact inputs/results retained |
+| Study persistence | Two studies restored from the downloaded project; restored-evidence notice correctly says import checks arithmetic without rerunning circuits; CSV and standalone JSON exported |
+| AC capacitance sweep | 10 nF, 100 nF and 1 µF at 1 kHz produced 0.846733016, 0.1571767255 and 0.015913479 V |
+| Continuous RC | Live DC input changed 0→5 V at 8 ms; successive completed batches gave 3.15144394 V at 9 ms and 4.3165681 V at 10 ms, preserving stored charge |
+| Report preview | Included both saved analog studies with their captured circuit and statistics even without a selected full run |
 
-Use Node.js 20 or newer and Python 3. No npm dependency installation is needed.
-From the source package:
+The browser-generated JSON/CSV artifacts are included as `evidence/rc200-*`.
+[scripts/verify-browser-evidence.mjs](../scripts/verify-browser-evidence.mjs)
+uses production validators, checks repeated JSON round trips, independently
+recomputes divider/AC/discrete RC expectations, and records file/source hashes
+in [rc200-export-validation.json](../evidence/rc200-export-validation.json).
+Its check count is reported in that generated record, not mixed into the Node
+suite total.
 
-```sh
-node scripts/build.mjs
-node --test tests/*.test.mjs
-node --expose-gc scripts/prove-engine.mjs
-node --expose-gc scripts/prove-examples.mjs
-python3 -m http.server 8080 --directory dist
-```
+One attempt to download a second continuous backup immediately before a page
+reload yielded a browser path whose file was unavailable; it is not included
+or counted as a successful artifact. The earlier complete continuous backup
+and separately downloaded timing evidence were available and verified.
 
-The numerical scripts require native ngspice. The foundation script verifies
-the executable hash above and rejects a mismatch. The example script uses the
-installed `ngspice`; run it in the same verified reference environment. If using
-a different native build for development, establish and document a new
-comparison baseline. Native ngspice is not a production dependency for the
-browser application.
+HTML report download did not produce a file in this cloud browser. Both its
+existing link and a temporary use of the working generic download helper were
+tried; no successful HTML download or cause is claimed. The unproven change was
+reverted. The report preview worked. Native print/PDF remains unverified.
 
-The six package tests require `dist/` from the current source. If source changes
-after a build, the source/build-byte test should fail until the distribution is
-rebuilt. Final packaging enforces the built manifest and verifies the completed
-ZIPs. The accompanying release receipt,
-`CircuitBench-1.0.0-rc.1-release-integrity.json`, is generated only after the
-final archive checks pass and is delivered beside the ZIPs and `SHA256SUMS`.
-It records the actual handoff archive identities; it is kept outside the
-archives to avoid self-referential hashes. This document does not attest to an
-archive before that receipt has been produced.
+## Engine and historical evidence
 
-## Source, notices and reproducibility
+The analog engine remains EEcircuit-engine **1.8.0**, ngspice **45.2**, adapter
+**4**. The pinned WASM is **6,133,055 bytes**, SHA-256:
 
-The distribution must retain `engine/NOTICE.txt`, the EEcircuit MIT license,
-full ngspice 45.2 COPYING and Emscripten notices. ngspice contains mixed upstream
-licenses, including LGPL portions; it is not represented as exclusively BSD.
-The full ngspice 45.2 source archive and the pinned upstream integration/build
-sources are included under `engine/source/`. In the source checkout these
-materials are under `public/engine/`.
+`ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4`
 
-The local WASM SHA-256 is
-`ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4`.
-The vendoring script verifies the published package integrity before its
-deterministic extraction and adapter changes. Upstream's moving compiler
-recipe does not supply a reproducible compiler environment, so a byte-identical
-rebuild from C source is not claimed. The shipped published binary, extracted
-runtime and release files are pinned and hash-verifiable. The source is present
-for review, modification and rebuilding.
+The original digital kernel remains `cb-digital-kernel-2`. Coordinated mode
+adds its own incremental scheduler and explicitly identified solver; existing
+batch/feed-forward paths remain available. Current tests exercise their
+integration with the new compiler and schema defaults.
 
-Read [third-party notices](../THIRD_PARTY_NOTICES.md) and the
-[engine evaluation](engine-evaluation.md) for exact versions, source URLs,
-patches, licenses and the unavailable sibling schematic-dependency finding.
-No external repository, public domain or hosting destination is deployed by
-these release artifacts. The source and deployable packages have distinct
-launch instructions in [installation](installation.md).
+Previous analog, digital/mixed and timing proof files retain their original
+versions and timestamps. They are historical evidence, not newly rerun 2.0
+claims. The 1.3 source-era observations and test logs are preserved under
+`evidence/history/1.3.0-rc.1/` and
+[history/VALIDATION-1.3.0-rc.1.md](history/VALIDATION-1.3.0-rc.1.md).
+
+## Packaging and remaining acceptance
+
+The final deploy includes every module, both worker families, the pinned WASM,
+versioned runtime assets, service-worker/recovery files and documentation.
+Source packaging omits a duplicated dist tree; `node scripts/build.mjs`
+reconstructs it without installing npm dependencies. The package gate checks
+local imports at a nested URL, manifest hashes, original source mappings and
+exact runtime/recovery lists. ZIP CRCs and complete archive SHA-256 values are
+recorded in the accompanying release-integrity receipt and checksum file.
+
+Unclosed acceptance gates are:
+
+- Uploading the exact candidate to the intended HTTPS host, then checking fresh
+  and upgraded startup, actual worker/CSP behavior, offline reload and scoped
+  cache repair while preserving projects.
+- HTML report download and native print/PDF in supported browsers.
+- The complete browser/viewport/accessibility matrix, including touch devices.
+
+These gates do not change the documented solver subset or silently defer a
+requested feature batch. The work is delivered as a complete, tested candidate;
+no public deployment or stable-release certification is implied.

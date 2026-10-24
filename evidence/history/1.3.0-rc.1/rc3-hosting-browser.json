@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "application": "CircuitBench",
+  "version": "1.0.0-rc.3",
+  "adapter": 4,
+  "runtimeBuild": "1fe544875c664ff7",
+  "recordedAt": "2026-10-24T05:46:44Z",
+  "method": "Direct interaction through managed Chrome; read-only visible DOM, UI actions and visual review. This is separate from Node/VM tests and the preceding live rc.2 inspection.",
+  "reviewOrigin": "http://terminal.local:4173/",
+  "confirmed": [
+    {
+      "workflow": "Versioned runtime computation",
+      "result": "Reload displayed v1.0.0-rc.3 and recovered the RC filter at revision 7. A fresh AC run completed with 501 points. Visible logs included circuitbench-worker-protocol-4 and worker/glue/WASM paths beneath assets/1.0.0-rc.3/. The binary response was 6133055 bytes, HTTP 200, application/wasm."
+    },
+    {
+      "workflow": "Recovery folder scope and partial outcome",
+      "path": "/repair/",
+      "result": "The directory route rendered correctly and identified the parent application scope http://terminal.local:4173/. Refresh downloaded/checked 17 of 18 runtime assets and refreshed the root. It reported an oversize icon.svg response instead of claiming full success. Return recovered the existing RC project."
+    },
+    {
+      "workflow": "Preview instrumentation identified",
+      "path": "/icon.svg",
+      "result": "Read-only SVG DOM inspection showed the expected icon plus a 'Code injected by live-server' WebSocket script. The managed preview therefore changes this asset's bytes. The separate live-host rc.2 inspection found the production icon matches the release's 443-byte body."
+    },
+    {
+      "workflow": "Complete recovery flow with controlled preview fixture",
+      "path": "/qa/rc3-recovery/repair/",
+      "fixtureChange": "Only optional icon.svg was omitted from the fixture recovery manifest; required executable assets, service worker and their bytes/hashes were unchanged. No production integrity check was weakened.",
+      "result": "All 17 listed files downloaded and passed the available byte/type checks. Root navigation refreshed. The page explicitly reported unavailable SHA-256 and service-worker controls on HTTP, then enabled a separate Return action. Return loaded v1.0.0-rc.3 and the preserved RC filter."
+    },
+    {
+      "workflow": "Legacy worker bootstrap failure is actionable",
+      "path": "/qa/rc3-stale-worker/",
+      "fixtureChange": "The rc.3 distribution's worker alone was replaced by the exact rc.1 worker from the previous deploy archive, whose static .mjs dependency was absent.",
+      "result": "The browser reproduced an opaque worker-startup failure. The new adapter inspected the exact worker URL and reported HTTP 200, text/javascript, and missing circuitbench-worker-protocol-4, identifying an older/different response as a possibility. No numerical result was accepted."
+    },
+    {
+      "workflow": "Healthy run after legacy-worker failure",
+      "result": "Returning to the unmodified root rc.3 page and running again completed 501 AC points at revision 7; waveform view and baseline overlay were visible."
+    }
+  ],
+  "limitations": [
+    "Ordinary HTTP prevents actual browser service-worker installation, secure cache removal and SHA-256 API use in this preview. VM tests exercise those paths separately; no secure or offline browser pass is claimed.",
+    "The production-layout browser recovery correctly reported 17/18 because the preview injected script into SVG. The controlled success fixture does not substitute for complete production-host recovery verification.",
+    "The user's actual no-message bootstrap failure was not reproduced at the live HTTPS host in a clean browser. Live rc.2 runs succeeded; stale browser/CDN bytes remain an inference.",
+    "rc.3 was not uploaded to the user's server. Prior native-print, standalone HTML/.cir download and cross-browser release gates remain open."
+  ],
+  "fixtureDisposition": "Temporary QA fixture trees are removed by the final clean build and excluded from the release archives.",
+  "releaseDecision": "Remain 1.0.0-rc.3; this addresses observed hosting incompatibilities without claiming all v1.0.0 gates or the user's browser state have been verified."
+}

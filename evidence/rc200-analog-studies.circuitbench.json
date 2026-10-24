@@ -1,0 +1,1804 @@
+{
+  "format": "CircuitBench",
+  "formatVersion": 1,
+  "appVersion": "2.0.0-rc.1",
+  "savedAt": "2026-10-24T13:40:10.134Z",
+  "project": {
+    "schemaVersion": 1,
+    "appVersion": "2.0.0-rc.1",
+    "id": "project_mvmfy3j1_76mkf4l4ux6",
+    "title": "Resistor tolerance and divider sensitivity",
+    "revision": 0,
+    "createdAt": "2026-10-24T13:35:03.517Z",
+    "updatedAt": "2026-10-24T13:35:03.517Z",
+    "question": "How much does component variation move a divider output?",
+    "notes": "Expected: The nominal midpoint is 5 V. Sweeping the upper resistor from 10k to 30k gives 5 V, 3.333 V and 2.5 V at three equally spaced trials. Independent resistor tolerances produce a distribution around the nominal voltage.\nTry: Open Analog experiments. Choose a parameter sweep of R1.value from 10k to 30k, 3 trials, and Midpoint final value. Then try a seeded tolerance study with both resistors at ±5%.",
+    "assumptions": [
+      "Lumped circuit elements and ideal independent sources.",
+      "Model outputs are numerical predictions; validate a physical design using component data and measurements."
+    ],
+    "circuit": {
+      "components": [
+        {
+          "id": "c_mvmfy3j1_gr1mij1w38l",
+          "ref": "V1",
+          "type": "V",
+          "params": {
+            "waveform": "dc",
+            "dc": "10",
+            "ac": "0",
+            "phase": "0",
+            "offset": "0",
+            "amplitude": "1",
+            "frequency": "1k",
+            "delay": "0",
+            "low": "0",
+            "high": "1",
+            "rise": "1u",
+            "fall": "1u",
+            "width": "5m",
+            "period": "10m",
+            "pwl": "0,0; 1m,1; 2m,0"
+          },
+          "model": null
+        },
+        {
+          "id": "c_mvmfy3j1_cele98ge1vq",
+          "ref": "R1",
+          "type": "R",
+          "params": {
+            "value": "10k"
+          },
+          "model": null
+        },
+        {
+          "id": "c_mvmfy3j2_255qx3xmqni",
+          "ref": "R2",
+          "type": "R",
+          "params": {
+            "value": "10k"
+          },
+          "model": null
+        },
+        {
+          "id": "c_mvmfy3j2_fry69k38oa",
+          "ref": "G1",
+          "type": "GND",
+          "params": {},
+          "model": null
+        }
+      ],
+      "connections": [
+        {
+          "id": "w_mvmfy3j2_yliym23cigo",
+          "a": "c_mvmfy3j1_gr1mij1w38l:p",
+          "b": "c_mvmfy3j1_cele98ge1vq:1"
+        },
+        {
+          "id": "w_mvmfy3j2_71hah57tmkv",
+          "a": "c_mvmfy3j1_cele98ge1vq:2",
+          "b": "c_mvmfy3j2_255qx3xmqni:1"
+        },
+        {
+          "id": "w_mvmfy3j2_vfejrfyfiao",
+          "a": "c_mvmfy3j2_255qx3xmqni:2",
+          "b": "c_mvmfy3j2_fry69k38oa:0"
+        },
+        {
+          "id": "w_mvmfy3j2_w5c6e8s9mtd",
+          "a": "c_mvmfy3j1_gr1mij1w38l:n",
+          "b": "c_mvmfy3j2_fry69k38oa:0"
+        }
+      ],
+      "junctions": [],
+      "labels": [
+        {
+          "id": "label_mvmfy3j3_azom80atty",
+          "name": "supply",
+          "target": "c_mvmfy3j1_gr1mij1w38l:p"
+        },
+        {
+          "id": "label_mvmfy3j3_i4aj0hix64a",
+          "name": "mid",
+          "target": "c_mvmfy3j1_cele98ge1vq:2"
+        }
+      ]
+    },
+    "layout": {
+      "components": {
+        "c_mvmfy3j1_gr1mij1w38l": {
+          "x": 140,
+          "y": 300,
+          "rotation": 0,
+          "mirror": false
+        },
+        "c_mvmfy3j1_cele98ge1vq": {
+          "x": 340,
+          "y": 220,
+          "rotation": 90,
+          "mirror": false
+        },
+        "c_mvmfy3j2_255qx3xmqni": {
+          "x": 340,
+          "y": 340,
+          "rotation": 90,
+          "mirror": false
+        },
+        "c_mvmfy3j2_fry69k38oa": {
+          "x": 140,
+          "y": 460,
+          "rotation": 0,
+          "mirror": false
+        }
+      },
+      "wires": {
+        "w_mvmfy3j2_yliym23cigo": {
+          "points": [
+            {
+              "x": 140,
+              "y": 180
+            }
+          ]
+        },
+        "w_mvmfy3j2_71hah57tmkv": {
+          "points": []
+        },
+        "w_mvmfy3j2_vfejrfyfiao": {
+          "points": [
+            {
+              "x": 340,
+              "y": 440
+            }
+          ]
+        },
+        "w_mvmfy3j2_w5c6e8s9mtd": {
+          "points": []
+        }
+      },
+      "junctions": {},
+      "annotations": []
+    },
+    "analysis": {
+      "type": "op",
+      "solver": "ngspice",
+      "start": "1",
+      "stop": "100k",
+      "points": 60,
+      "step": "10u",
+      "duration": "10m",
+      "source": "V1",
+      "sweepStart": "0",
+      "sweepStop": "10",
+      "sweepStep": "0.1",
+      "temperature": 27,
+      "reltol": "1e-4",
+      "uic": false
+    },
+    "probes": [
+      {
+        "id": "probe_mvmfy3j3_zndg7p0eny",
+        "kind": "voltage",
+        "label": "Midpoint",
+        "a": "c_mvmfy3j1_cele98ge1vq:2",
+        "b": null
+      },
+      {
+        "id": "probe_mvmfy3j3_t1rnfkthyxp",
+        "kind": "current",
+        "label": "Supply current · + → −",
+        "componentId": "c_mvmfy3j1_gr1mij1w38l",
+        "a": "c_mvmfy3j1_gr1mij1w38l"
+      }
+    ],
+    "workspace": "schematic",
+    "netlistText": ""
+  },
+  "runs": [],
+  "analogExperiments": [
+    {
+      "id": "experiment_mvmfyg3w_046hglpvrd2f",
+      "kind": "analog-experiment",
+      "method": "cb-analog-experiments-1",
+      "projectId": "project_mvmfy3j1_76mkf4l4ux6",
+      "revision": 0,
+      "createdAt": "2026-10-24T13:35:19.820Z",
+      "startedAt": "2026-10-24T13:35:19.820Z",
+      "completedAt": "2026-10-24T13:35:21.161Z",
+      "status": "completed",
+      "projectSnapshot": {
+        "schemaVersion": 1,
+        "appVersion": "2.0.0-rc.1",
+        "id": "project_mvmfy3j1_76mkf4l4ux6",
+        "title": "Resistor tolerance and divider sensitivity",
+        "revision": 0,
+        "createdAt": "2026-10-24T13:35:03.517Z",
+        "updatedAt": "2026-10-24T13:35:03.517Z",
+        "question": "How much does component variation move a divider output?",
+        "notes": "Expected: The nominal midpoint is 5 V. Sweeping the upper resistor from 10k to 30k gives 5 V, 3.333 V and 2.5 V at three equally spaced trials. Independent resistor tolerances produce a distribution around the nominal voltage.\nTry: Open Analog experiments. Choose a parameter sweep of R1.value from 10k to 30k, 3 trials, and Midpoint final value. Then try a seeded tolerance study with both resistors at ±5%.",
+        "assumptions": [
+          "Lumped circuit elements and ideal independent sources.",
+          "Model outputs are numerical predictions; validate a physical design using component data and measurements."
+        ],
+        "circuit": {
+          "components": [
+            {
+              "id": "c_mvmfy3j1_gr1mij1w38l",
+              "ref": "V1",
+              "type": "V",
+              "params": {
+                "waveform": "dc",
+                "dc": "10",
+                "ac": "0",
+                "phase": "0",
+                "offset": "0",
+                "amplitude": "1",
+                "frequency": "1k",
+                "delay": "0",
+                "low": "0",
+                "high": "1",
+                "rise": "1u",
+                "fall": "1u",
+                "width": "5m",
+                "period": "10m",
+                "pwl": "0,0; 1m,1; 2m,0"
+              },
+              "model": null
+            },
+            {
+              "id": "c_mvmfy3j1_cele98ge1vq",
+              "ref": "R1",
+              "type": "R",
+              "params": {
+                "value": "10k"
+              },
+              "model": null
+            },
+            {
+              "id": "c_mvmfy3j2_255qx3xmqni",
+              "ref": "R2",
+              "type": "R",
+              "params": {
+                "value": "10k"
+              },
+              "model": null
+            },
+            {
+              "id": "c_mvmfy3j2_fry69k38oa",
+              "ref": "G1",
+              "type": "GND",
+              "params": {},
+              "model": null
+            }
+          ],
+          "connections": [
+            {
+              "id": "w_mvmfy3j2_yliym23cigo",
+              "a": "c_mvmfy3j1_gr1mij1w38l:p",
+              "b": "c_mvmfy3j1_cele98ge1vq:1"
+            },
+            {
+              "id": "w_mvmfy3j2_71hah57tmkv",
+              "a": "c_mvmfy3j1_cele98ge1vq:2",
+              "b": "c_mvmfy3j2_255qx3xmqni:1"
+            },
+            {
+              "id": "w_mvmfy3j2_vfejrfyfiao",
+              "a": "c_mvmfy3j2_255qx3xmqni:2",
+              "b": "c_mvmfy3j2_fry69k38oa:0"
+            },
+            {
+              "id": "w_mvmfy3j2_w5c6e8s9mtd",
+              "a": "c_mvmfy3j1_gr1mij1w38l:n",
+              "b": "c_mvmfy3j2_fry69k38oa:0"
+            }
+          ],
+          "junctions": [],
+          "labels": [
+            {
+              "id": "label_mvmfy3j3_azom80atty",
+              "name": "supply",
+              "target": "c_mvmfy3j1_gr1mij1w38l:p"
+            },
+            {
+              "id": "label_mvmfy3j3_i4aj0hix64a",
+              "name": "mid",
+              "target": "c_mvmfy3j1_cele98ge1vq:2"
+            }
+          ]
+        },
+        "layout": {
+          "components": {
+            "c_mvmfy3j1_gr1mij1w38l": {
+              "x": 140,
+              "y": 300,
+              "rotation": 0,
+              "mirror": false
+            },
+            "c_mvmfy3j1_cele98ge1vq": {
+              "x": 340,
+              "y": 220,
+              "rotation": 90,
+              "mirror": false
+            },
+            "c_mvmfy3j2_255qx3xmqni": {
+              "x": 340,
+              "y": 340,
+              "rotation": 90,
+              "mirror": false
+            },
+            "c_mvmfy3j2_fry69k38oa": {
+              "x": 140,
+              "y": 460,
+              "rotation": 0,
+              "mirror": false
+            }
+          },
+          "wires": {
+            "w_mvmfy3j2_yliym23cigo": {
+              "points": [
+                {
+                  "x": 140,
+                  "y": 180
+                }
+              ]
+            },
+            "w_mvmfy3j2_71hah57tmkv": {
+              "points": []
+            },
+            "w_mvmfy3j2_vfejrfyfiao": {
+              "points": [
+                {
+                  "x": 340,
+                  "y": 440
+                }
+              ]
+            },
+            "w_mvmfy3j2_w5c6e8s9mtd": {
+              "points": []
+            }
+          },
+          "junctions": {},
+          "annotations": []
+        },
+        "analysis": {
+          "type": "op",
+          "solver": "ngspice",
+          "start": "1",
+          "stop": "100k",
+          "points": 60,
+          "step": "10u",
+          "duration": "10m",
+          "source": "V1",
+          "sweepStart": "0",
+          "sweepStop": "10",
+          "sweepStep": "0.1",
+          "temperature": 27,
+          "reltol": "1e-4",
+          "uic": false
+        },
+        "probes": [
+          {
+            "id": "probe_mvmfy3j3_zndg7p0eny",
+            "kind": "voltage",
+            "label": "Midpoint",
+            "a": "c_mvmfy3j1_cele98ge1vq:2",
+            "b": null
+          },
+          {
+            "id": "probe_mvmfy3j3_t1rnfkthyxp",
+            "kind": "current",
+            "label": "Supply current · + → −",
+            "componentId": "c_mvmfy3j1_gr1mij1w38l",
+            "a": "c_mvmfy3j1_gr1mij1w38l"
+          }
+        ],
+        "workspace": "schematic",
+        "netlistText": ""
+      },
+      "spec": {
+        "kind": "sweep",
+        "count": 9,
+        "target": {
+          "componentId": "c_mvmfy3j1_cele98ge1vq",
+          "ref": "R1",
+          "key": "value",
+          "unit": "Ω",
+          "nominal": 10000
+        },
+        "spacing": "linear",
+        "start": 5000,
+        "stop": 15000,
+        "measurement": {
+          "signal": "probe_mvmfy3j3_zndg7p0eny",
+          "kind": "final"
+        }
+      },
+      "trials": [
+        {
+          "index": 0,
+          "parameters": [
+            {
+              "componentId": "c_mvmfy3j1_cele98ge1vq",
+              "ref": "R1",
+              "key": "value",
+              "unit": "Ω",
+              "value": 5000,
+              "text": "5000"
+            }
+          ],
+          "status": "completed",
+          "startedAt": "2026-10-24T13:35:19.824Z",
+          "completedAt": "2026-10-24T13:35:20.038Z",
+          "sourceRunId": "trial_mvmfyg9w_r77kmhnk56q",
+          "engine": {
+            "name": "ngspice",
+            "version": "45.2",
+            "build": "Sat Sep 5 01:00:10 UTC 2026",
+            "package": "EEcircuit-engine",
+            "packageVersion": "1.8.0",
+            "adapterVersion": 4,
+            "wasmSha256": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4",
+            "wasmBytes": 6133055,
+            "execution": "WebAssembly · isolated Web Worker · fresh instance per run",
+            "startup": "Warning: can't find the initialization file spinit.\n\n******\n** ngspice-45.2 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Sat Sep  5 01:00:10 UTC 2026\n******\n"
+          },
+          "netlist": "CircuitBench - Resistor tolerance and divider sensitivity - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 supply 0 DC 1.000000000000e+1 AC 0.000000000000e+0 0.000000000000e+0\nR1 supply mid 5.000000000000e+3\nR2 mid 0 1.000000000000e+4\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.op\n.end\n",
+          "netlistHash": "unavailable-in-insecure-context",
+          "warnings": [],
+          "source": {
+            "analysis": "op",
+            "signal": {
+              "id": "probe_mvmfy3j3_zndg7p0eny",
+              "label": "Midpoint",
+              "unit": "V"
+            },
+            "axis": {
+              "name": "operating-point",
+              "unit": "",
+              "values": [
+                0
+              ]
+            },
+            "real": [
+              6.666666666666666
+            ],
+            "sampling": "complete-selected-trial-samples"
+          },
+          "measurement": {
+            "method": "cb-analog-experiments-1",
+            "kind": "final",
+            "signal": "probe_mvmfy3j3_zndg7p0eny",
+            "value": 6.666666666666666,
+            "unit": "V",
+            "details": {
+              "pointsUsed": 1,
+              "interpretation": "Single operating-point sample."
+            }
+          }
+        },
+        {
+          "index": 1,
+          "parameters": [
+            {
+              "componentId": "c_mvmfy3j1_cele98ge1vq",
+              "ref": "R1",
+              "key": "value",
+              "unit": "Ω",
+              "value": 6250,
+              "text": "6250"
+            }
+          ],
+          "status": "completed",
+          "startedAt": "2026-10-24T13:35:20.039Z",
+          "completedAt": "2026-10-24T13:35:20.203Z",
+          "sourceRunId": "trial_mvmfygeh_3xh0j44zdhf",
+          "engine": {
+            "name": "ngspice",
+            "version": "45.2",
+            "build": "Sat Sep 5 01:00:10 UTC 2026",
+            "package": "EEcircuit-engine",
+            "packageVersion": "1.8.0",
+            "adapterVersion": 4,
+            "wasmSha256": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4",
+            "wasmBytes": 6133055,
+            "execution": "WebAssembly · isolated Web Worker · fresh instance per run",
+            "startup": "Warning: can't find the initialization file spinit.\n\n******\n** ngspice-45.2 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Sat Sep  5 01:00:10 UTC 2026\n******\n"
+          },
+          "netlist": "CircuitBench - Resistor tolerance and divider sensitivity - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 supply 0 DC 1.000000000000e+1 AC 0.000000000000e+0 0.000000000000e+0\nR1 supply mid 6.250000000000e+3\nR2 mid 0 1.000000000000e+4\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.op\n.end\n",
+          "netlistHash": "unavailable-in-insecure-context",
+          "warnings": [],
+          "source": {
+            "analysis": "op",
+            "signal": {
+              "id": "probe_mvmfy3j3_zndg7p0eny",
+              "label": "Midpoint",
+              "unit": "V"
+            },
+            "axis": {
+              "name": "operating-point",
+              "unit": "",
+              "values": [
+                0
+              ]
+            },
+            "real": [
+              6.153846153846153
+            ],
+            "sampling": "complete-selected-trial-samples"
+          },
+          "measurement": {
+            "method": "cb-analog-experiments-1",
+            "kind": "final",
+            "signal": "probe_mvmfy3j3_zndg7p0eny",
+            "value": 6.153846153846153,
+            "unit": "V",
+            "details": {
+              "pointsUsed": 1,
+              "interpretation": "Single operating-point sample."
+            }
+          }
+        },
+        {
+          "index": 2,
+          "parameters": [
+            {
+              "componentId": "c_mvmfy3j1_cele98ge1vq",
+              "ref": "R1",
+              "key": "value",
+              "unit": "Ω",
+              "value": 7500,
+              "text": "7500"
+            }
+          ],
+          "status": "completed",
+          "startedAt": "2026-10-24T13:35:20.206Z",
+          "completedAt": "2026-10-24T13:35:20.393Z",
+          "sourceRunId": "trial_mvmfygjs_s4rr2oq7fve",
+          "engine": {
+            "name": "ngspice",
+            "version": "45.2",
+            "build": "Sat Sep 5 01:00:10 UTC 2026",
+            "package": "EEcircuit-engine",
+            "packageVersion": "1.8.0",
+            "adapterVersion": 4,
+            "wasmSha256": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4",
+            "wasmBytes": 6133055,
+            "execution": "WebAssembly · isolated Web Worker · fresh instance per run",
+            "startup": "Warning: can't find the initialization file spinit.\n\n******\n** ngspice-45.2 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Sat Sep  5 01:00:10 UTC 2026\n******\n"
+          },
+          "netlist": "CircuitBench - Resistor tolerance and divider sensitivity - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 supply 0 DC 1.000000000000e+1 AC 0.000000000000e+0 0.000000000000e+0\nR1 supply mid 7.500000000000e+3\nR2 mid 0 1.000000000000e+4\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.op\n.end\n",
+          "netlistHash": "unavailable-in-insecure-context",
+          "warnings": [],
+          "source": {
+            "analysis": "op",
+            "signal": {
+              "id": "probe_mvmfy3j3_zndg7p0eny",
+              "label": "Midpoint",
+              "unit": "V"
+            },
+            "axis": {
+              "name": "operating-point",
+              "unit": "",
+              "values": [
+                0
+              ]
+            },
+            "real": [
+              5.714285714285713
+            ],
+            "sampling": "complete-selected-trial-samples"
+          },
+          "measurement": {
+            "method": "cb-analog-experiments-1",
+            "kind": "final",
+            "signal": "probe_mvmfy3j3_zndg7p0eny",
+            "value": 5.714285714285713,
+            "unit": "V",
+            "details": {
+              "pointsUsed": 1,
+              "interpretation": "Single operating-point sample."
+            }
+          }
+        },
+        {
+          "index": 3,
+          "parameters": [
+            {
+              "componentId": "c_mvmfy3j1_cele98ge1vq",
+              "ref": "R1",
+              "key": "value",
+              "unit": "Ω",
+              "value": 8750,
+              "text": "8750"
+            }
+          ],
+          "status": "completed",
+          "startedAt": "2026-10-24T13:35:20.394Z",
+          "completedAt": "2026-10-24T13:35:20.528Z",
+          "sourceRunId": "trial_mvmfygni_pud1ycxm6gq",
+          "engine": {
+            "name": "ngspice",
+            "version": "45.2",
+            "build": "Sat Sep 5 01:00:10 UTC 2026",
+            "package": "EEcircuit-engine",
+            "packageVersion": "1.8.0",
+            "adapterVersion": 4,
+            "wasmSha256": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4",
+            "wasmBytes": 6133055,
+            "execution": "WebAssembly · isolated Web Worker · fresh instance per run",
+            "startup": "Warning: can't find the initialization file spinit.\n\n******\n** ngspice-45.2 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Sat Sep  5 01:00:10 UTC 2026\n******\n"
+          },
+          "netlist": "CircuitBench - Resistor tolerance and divider sensitivity - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 supply 0 DC 1.000000000000e+1 AC 0.000000000000e+0 0.000000000000e+0\nR1 supply mid 8.750000000000e+3\nR2 mid 0 1.000000000000e+4\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.op\n.end\n",
+          "netlistHash": "unavailable-in-insecure-context",
+          "warnings": [],
+          "source": {
+            "analysis": "op",
+            "signal": {
+              "id": "probe_mvmfy3j3_zndg7p0eny",
+              "label": "Midpoint",
+              "unit": "V"
+            },
+            "axis": {
+              "name": "operating-point",
+              "unit": "",
+              "values": [
+                0
+              ]
+            },
+            "real": [
+              5.333333333333334
+            ],
+            "sampling": "complete-selected-trial-samples"
+          },
+          "measurement": {
+            "method": "cb-analog-experiments-1",
+            "kind": "final",
+            "signal": "probe_mvmfy3j3_zndg7p0eny",
+            "value": 5.333333333333334,
+            "unit": "V",
+            "details": {
+              "pointsUsed": 1,
+              "interpretation": "Single operating-point sample."
+            }
+          }
+        },
+        {
+          "index": 4,
+          "parameters": [
+            {
+              "componentId": "c_mvmfy3j1_cele98ge1vq",
+              "ref": "R1",
+              "key": "value",
+              "unit": "Ω",
+              "value": 10000,
+              "text": "10000"
+            }
+          ],
+          "status": "completed",
+          "startedAt": "2026-10-24T13:35:20.530Z",
+          "completedAt": "2026-10-24T13:35:20.656Z",
+          "sourceRunId": "trial_mvmfygr2_j8l5a5x1on",
+          "engine": {
+            "name": "ngspice",
+            "version": "45.2",
+            "build": "Sat Sep 5 01:00:10 UTC 2026",
+            "package": "EEcircuit-engine",
+            "packageVersion": "1.8.0",
+            "adapterVersion": 4,
+            "wasmSha256": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4",
+            "wasmBytes": 6133055,
+            "execution": "WebAssembly · isolated Web Worker · fresh instance per run",
+            "startup": "Warning: can't find the initialization file spinit.\n\n******\n** ngspice-45.2 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Sat Sep  5 01:00:10 UTC 2026\n******\n"
+          },
+          "netlist": "CircuitBench - Resistor tolerance and divider sensitivity - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 supply 0 DC 1.000000000000e+1 AC 0.000000000000e+0 0.000000000000e+0\nR1 supply mid 1.000000000000e+4\nR2 mid 0 1.000000000000e+4\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.op\n.end\n",
+          "netlistHash": "unavailable-in-insecure-context",
+          "warnings": [],
+          "source": {
+            "analysis": "op",
+            "signal": {
+              "id": "probe_mvmfy3j3_zndg7p0eny",
+              "label": "Midpoint",
+              "unit": "V"
+            },
+            "axis": {
+              "name": "operating-point",
+              "unit": "",
+              "values": [
+                0
+              ]
+            },
+            "real": [
+              5
+            ],
+            "sampling": "complete-selected-trial-samples"
+          },
+          "measurement": {
+            "method": "cb-analog-experiments-1",
+            "kind": "final",
+            "signal": "probe_mvmfy3j3_zndg7p0eny",
+            "value": 5,
+            "unit": "V",
+            "details": {
+              "pointsUsed": 1,
+              "interpretation": "Single operating-point sample."
+            }
+          }
+        },
+        {
+          "index": 5,
+          "parameters": [
+            {
+              "componentId": "c_mvmfy3j1_cele98ge1vq",
+              "ref": "R1",
+              "key": "value",
+              "unit": "Ω",
+              "value": 11250,
+              "text": "11250"
+            }
+          ],
+          "status": "completed",
+          "startedAt": "2026-10-24T13:35:20.657Z",
+          "completedAt": "2026-10-24T13:35:20.781Z",
+          "sourceRunId": "trial_mvmfyguk_s26wkro9u3m",
+          "engine": {
+            "name": "ngspice",
+            "version": "45.2",
+            "build": "Sat Sep 5 01:00:10 UTC 2026",
+            "package": "EEcircuit-engine",
+            "packageVersion": "1.8.0",
+            "adapterVersion": 4,
+            "wasmSha256": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4",
+            "wasmBytes": 6133055,
+            "execution": "WebAssembly · isolated Web Worker · fresh instance per run",
+            "startup": "Warning: can't find the initialization file spinit.\n\n******\n** ngspice-45.2 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Sat Sep  5 01:00:10 UTC 2026\n******\n"
+          },
+          "netlist": "CircuitBench - Resistor tolerance and divider sensitivity - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 supply 0 DC 1.000000000000e+1 AC 0.000000000000e+0 0.000000000000e+0\nR1 supply mid 1.125000000000e+4\nR2 mid 0 1.000000000000e+4\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.op\n.end\n",
+          "netlistHash": "unavailable-in-insecure-context",
+          "warnings": [],
+          "source": {
+            "analysis": "op",
+            "signal": {
+              "id": "probe_mvmfy3j3_zndg7p0eny",
+              "label": "Midpoint",
+              "unit": "V"
+            },
+            "axis": {
+              "name": "operating-point",
+              "unit": "",
+              "values": [
+                0
+              ]
+            },
+            "real": [
+              4.705882352941177
+            ],
+            "sampling": "complete-selected-trial-samples"
+          },
+          "measurement": {
+            "method": "cb-analog-experiments-1",
+            "kind": "final",
+            "signal": "probe_mvmfy3j3_zndg7p0eny",
+            "value": 4.705882352941177,
+            "unit": "V",
+            "details": {
+              "pointsUsed": 1,
+              "interpretation": "Single operating-point sample."
+            }
+          }
+        },
+        {
+          "index": 6,
+          "parameters": [
+            {
+              "componentId": "c_mvmfy3j1_cele98ge1vq",
+              "ref": "R1",
+              "key": "value",
+              "unit": "Ω",
+              "value": 12500,
+              "text": "12500"
+            }
+          ],
+          "status": "completed",
+          "startedAt": "2026-10-24T13:35:20.782Z",
+          "completedAt": "2026-10-24T13:35:20.909Z",
+          "sourceRunId": "trial_mvmfygy3_3wa9edw0o4",
+          "engine": {
+            "name": "ngspice",
+            "version": "45.2",
+            "build": "Sat Sep 5 01:00:10 UTC 2026",
+            "package": "EEcircuit-engine",
+            "packageVersion": "1.8.0",
+            "adapterVersion": 4,
+            "wasmSha256": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4",
+            "wasmBytes": 6133055,
+            "execution": "WebAssembly · isolated Web Worker · fresh instance per run",
+            "startup": "Warning: can't find the initialization file spinit.\n\n******\n** ngspice-45.2 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Sat Sep  5 01:00:10 UTC 2026\n******\n"
+          },
+          "netlist": "CircuitBench - Resistor tolerance and divider sensitivity - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 supply 0 DC 1.000000000000e+1 AC 0.000000000000e+0 0.000000000000e+0\nR1 supply mid 1.250000000000e+4\nR2 mid 0 1.000000000000e+4\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.op\n.end\n",
+          "netlistHash": "unavailable-in-insecure-context",
+          "warnings": [],
+          "source": {
+            "analysis": "op",
+            "signal": {
+              "id": "probe_mvmfy3j3_zndg7p0eny",
+              "label": "Midpoint",
+              "unit": "V"
+            },
+            "axis": {
+              "name": "operating-point",
+              "unit": "",
+              "values": [
+                0
+              ]
+            },
+            "real": [
+              4.444444444444445
+            ],
+            "sampling": "complete-selected-trial-samples"
+          },
+          "measurement": {
+            "method": "cb-analog-experiments-1",
+            "kind": "final",
+            "signal": "probe_mvmfy3j3_zndg7p0eny",
+            "value": 4.444444444444445,
+            "unit": "V",
+            "details": {
+              "pointsUsed": 1,
+              "interpretation": "Single operating-point sample."
+            }
+          }
+        },
+        {
+          "index": 7,
+          "parameters": [
+            {
+              "componentId": "c_mvmfy3j1_cele98ge1vq",
+              "ref": "R1",
+              "key": "value",
+              "unit": "Ω",
+              "value": 13750,
+              "text": "13750"
+            }
+          ],
+          "status": "completed",
+          "startedAt": "2026-10-24T13:35:20.911Z",
+          "completedAt": "2026-10-24T13:35:21.030Z",
+          "sourceRunId": "trial_mvmfyh1g_ajq9b48zjed",
+          "engine": {
+            "name": "ngspice",
+            "version": "45.2",
+            "build": "Sat Sep 5 01:00:10 UTC 2026",
+            "package": "EEcircuit-engine",
+            "packageVersion": "1.8.0",
+            "adapterVersion": 4,
+            "wasmSha256": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4",
+            "wasmBytes": 6133055,
+            "execution": "WebAssembly · isolated Web Worker · fresh instance per run",
+            "startup": "Warning: can't find the initialization file spinit.\n\n******\n** ngspice-45.2 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Sat Sep  5 01:00:10 UTC 2026\n******\n"
+          },
+          "netlist": "CircuitBench - Resistor tolerance and divider sensitivity - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 supply 0 DC 1.000000000000e+1 AC 0.000000000000e+0 0.000000000000e+0\nR1 supply mid 1.375000000000e+4\nR2 mid 0 1.000000000000e+4\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.op\n.end\n",
+          "netlistHash": "unavailable-in-insecure-context",
+          "warnings": [],
+          "source": {
+            "analysis": "op",
+            "signal": {
+              "id": "probe_mvmfy3j3_zndg7p0eny",
+              "label": "Midpoint",
+              "unit": "V"
+            },
+            "axis": {
+              "name": "operating-point",
+              "unit": "",
+              "values": [
+                0
+              ]
+            },
+            "real": [
+              4.2105263157894735
+            ],
+            "sampling": "complete-selected-trial-samples"
+          },
+          "measurement": {
+            "method": "cb-analog-experiments-1",
+            "kind": "final",
+            "signal": "probe_mvmfy3j3_zndg7p0eny",
+            "value": 4.2105263157894735,
+            "unit": "V",
+            "details": {
+              "pointsUsed": 1,
+              "interpretation": "Single operating-point sample."
+            }
+          }
+        },
+        {
+          "index": 8,
+          "parameters": [
+            {
+              "componentId": "c_mvmfy3j1_cele98ge1vq",
+              "ref": "R1",
+              "key": "value",
+              "unit": "Ω",
+              "value": 15000,
+              "text": "15000"
+            }
+          ],
+          "status": "completed",
+          "startedAt": "2026-10-24T13:35:21.030Z",
+          "completedAt": "2026-10-24T13:35:21.161Z",
+          "sourceRunId": "trial_mvmfyh53_lej5ztq2bjp",
+          "engine": {
+            "name": "ngspice",
+            "version": "45.2",
+            "build": "Sat Sep 5 01:00:10 UTC 2026",
+            "package": "EEcircuit-engine",
+            "packageVersion": "1.8.0",
+            "adapterVersion": 4,
+            "wasmSha256": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4",
+            "wasmBytes": 6133055,
+            "execution": "WebAssembly · isolated Web Worker · fresh instance per run",
+            "startup": "Warning: can't find the initialization file spinit.\n\n******\n** ngspice-45.2 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Sat Sep  5 01:00:10 UTC 2026\n******\n"
+          },
+          "netlist": "CircuitBench - Resistor tolerance and divider sensitivity - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 supply 0 DC 1.000000000000e+1 AC 0.000000000000e+0 0.000000000000e+0\nR1 supply mid 1.500000000000e+4\nR2 mid 0 1.000000000000e+4\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.op\n.end\n",
+          "netlistHash": "unavailable-in-insecure-context",
+          "warnings": [],
+          "source": {
+            "analysis": "op",
+            "signal": {
+              "id": "probe_mvmfy3j3_zndg7p0eny",
+              "label": "Midpoint",
+              "unit": "V"
+            },
+            "axis": {
+              "name": "operating-point",
+              "unit": "",
+              "values": [
+                0
+              ]
+            },
+            "real": [
+              4
+            ],
+            "sampling": "complete-selected-trial-samples"
+          },
+          "measurement": {
+            "method": "cb-analog-experiments-1",
+            "kind": "final",
+            "signal": "probe_mvmfy3j3_zndg7p0eny",
+            "value": 4,
+            "unit": "V",
+            "details": {
+              "pointsUsed": 1,
+              "interpretation": "Single operating-point sample."
+            }
+          }
+        }
+      ],
+      "summary": {
+        "requestedCount": 9,
+        "attemptedCount": 9,
+        "measuredCount": 9,
+        "failedCount": 0,
+        "cancelledCount": 0,
+        "notRunCount": 0,
+        "minimum": 4,
+        "maximum": 6.666666666666666,
+        "mean": 5.1365538868118845,
+        "standardDeviation": 0.8551183871850209,
+        "standardDeviationDefinition": "population of completed trials only"
+      },
+      "warnings": []
+    },
+    {
+      "id": "experiment_mvmfzw05_bdiwcm6xf0c",
+      "kind": "analog-experiment",
+      "method": "cb-analog-experiments-1",
+      "projectId": "project_mvmfy3j1_76mkf4l4ux6",
+      "revision": 0,
+      "createdAt": "2026-10-24T13:36:27.077Z",
+      "startedAt": "2026-10-24T13:36:27.077Z",
+      "completedAt": "2026-10-24T13:36:28.322Z",
+      "status": "completed",
+      "projectSnapshot": {
+        "schemaVersion": 1,
+        "appVersion": "2.0.0-rc.1",
+        "id": "project_mvmfy3j1_76mkf4l4ux6",
+        "title": "Resistor tolerance and divider sensitivity",
+        "revision": 0,
+        "createdAt": "2026-10-24T13:35:03.517Z",
+        "updatedAt": "2026-10-24T13:35:03.517Z",
+        "question": "How much does component variation move a divider output?",
+        "notes": "Expected: The nominal midpoint is 5 V. Sweeping the upper resistor from 10k to 30k gives 5 V, 3.333 V and 2.5 V at three equally spaced trials. Independent resistor tolerances produce a distribution around the nominal voltage.\nTry: Open Analog experiments. Choose a parameter sweep of R1.value from 10k to 30k, 3 trials, and Midpoint final value. Then try a seeded tolerance study with both resistors at ±5%.",
+        "assumptions": [
+          "Lumped circuit elements and ideal independent sources.",
+          "Model outputs are numerical predictions; validate a physical design using component data and measurements."
+        ],
+        "circuit": {
+          "components": [
+            {
+              "id": "c_mvmfy3j1_gr1mij1w38l",
+              "ref": "V1",
+              "type": "V",
+              "params": {
+                "waveform": "dc",
+                "dc": "10",
+                "ac": "0",
+                "phase": "0",
+                "offset": "0",
+                "amplitude": "1",
+                "frequency": "1k",
+                "delay": "0",
+                "low": "0",
+                "high": "1",
+                "rise": "1u",
+                "fall": "1u",
+                "width": "5m",
+                "period": "10m",
+                "pwl": "0,0; 1m,1; 2m,0"
+              },
+              "model": null
+            },
+            {
+              "id": "c_mvmfy3j1_cele98ge1vq",
+              "ref": "R1",
+              "type": "R",
+              "params": {
+                "value": "10k"
+              },
+              "model": null
+            },
+            {
+              "id": "c_mvmfy3j2_255qx3xmqni",
+              "ref": "R2",
+              "type": "R",
+              "params": {
+                "value": "10k"
+              },
+              "model": null
+            },
+            {
+              "id": "c_mvmfy3j2_fry69k38oa",
+              "ref": "G1",
+              "type": "GND",
+              "params": {},
+              "model": null
+            }
+          ],
+          "connections": [
+            {
+              "id": "w_mvmfy3j2_yliym23cigo",
+              "a": "c_mvmfy3j1_gr1mij1w38l:p",
+              "b": "c_mvmfy3j1_cele98ge1vq:1"
+            },
+            {
+              "id": "w_mvmfy3j2_71hah57tmkv",
+              "a": "c_mvmfy3j1_cele98ge1vq:2",
+              "b": "c_mvmfy3j2_255qx3xmqni:1"
+            },
+            {
+              "id": "w_mvmfy3j2_vfejrfyfiao",
+              "a": "c_mvmfy3j2_255qx3xmqni:2",
+              "b": "c_mvmfy3j2_fry69k38oa:0"
+            },
+            {
+              "id": "w_mvmfy3j2_w5c6e8s9mtd",
+              "a": "c_mvmfy3j1_gr1mij1w38l:n",
+              "b": "c_mvmfy3j2_fry69k38oa:0"
+            }
+          ],
+          "junctions": [],
+          "labels": [
+            {
+              "id": "label_mvmfy3j3_azom80atty",
+              "name": "supply",
+              "target": "c_mvmfy3j1_gr1mij1w38l:p"
+            },
+            {
+              "id": "label_mvmfy3j3_i4aj0hix64a",
+              "name": "mid",
+              "target": "c_mvmfy3j1_cele98ge1vq:2"
+            }
+          ]
+        },
+        "layout": {
+          "components": {
+            "c_mvmfy3j1_gr1mij1w38l": {
+              "x": 140,
+              "y": 300,
+              "rotation": 0,
+              "mirror": false
+            },
+            "c_mvmfy3j1_cele98ge1vq": {
+              "x": 340,
+              "y": 220,
+              "rotation": 90,
+              "mirror": false
+            },
+            "c_mvmfy3j2_255qx3xmqni": {
+              "x": 340,
+              "y": 340,
+              "rotation": 90,
+              "mirror": false
+            },
+            "c_mvmfy3j2_fry69k38oa": {
+              "x": 140,
+              "y": 460,
+              "rotation": 0,
+              "mirror": false
+            }
+          },
+          "wires": {
+            "w_mvmfy3j2_yliym23cigo": {
+              "points": [
+                {
+                  "x": 140,
+                  "y": 180
+                }
+              ]
+            },
+            "w_mvmfy3j2_71hah57tmkv": {
+              "points": []
+            },
+            "w_mvmfy3j2_vfejrfyfiao": {
+              "points": [
+                {
+                  "x": 340,
+                  "y": 440
+                }
+              ]
+            },
+            "w_mvmfy3j2_w5c6e8s9mtd": {
+              "points": []
+            }
+          },
+          "junctions": {},
+          "annotations": []
+        },
+        "analysis": {
+          "type": "op",
+          "solver": "ngspice",
+          "start": "1",
+          "stop": "100k",
+          "points": 60,
+          "step": "10u",
+          "duration": "10m",
+          "source": "V1",
+          "sweepStart": "0",
+          "sweepStop": "10",
+          "sweepStep": "0.1",
+          "temperature": 27,
+          "reltol": "1e-4",
+          "uic": false
+        },
+        "probes": [
+          {
+            "id": "probe_mvmfy3j3_zndg7p0eny",
+            "kind": "voltage",
+            "label": "Midpoint",
+            "a": "c_mvmfy3j1_cele98ge1vq:2",
+            "b": null
+          },
+          {
+            "id": "probe_mvmfy3j3_t1rnfkthyxp",
+            "kind": "current",
+            "label": "Supply current · + → −",
+            "componentId": "c_mvmfy3j1_gr1mij1w38l",
+            "a": "c_mvmfy3j1_gr1mij1w38l"
+          }
+        ],
+        "workspace": "schematic",
+        "netlistText": ""
+      },
+      "spec": {
+        "kind": "monte-carlo",
+        "count": 8,
+        "targets": [
+          {
+            "componentId": "c_mvmfy3j1_cele98ge1vq",
+            "ref": "R1",
+            "key": "value",
+            "unit": "Ω",
+            "nominal": 10000,
+            "tolerance": 5
+          },
+          {
+            "componentId": "c_mvmfy3j2_255qx3xmqni",
+            "ref": "R2",
+            "key": "value",
+            "unit": "Ω",
+            "nominal": 10000,
+            "tolerance": 5
+          }
+        ],
+        "seed": 20261024,
+        "distribution": "independent-uniform-relative",
+        "generator": "mulberry32",
+        "measurement": {
+          "signal": "probe_mvmfy3j3_zndg7p0eny",
+          "kind": "final"
+        }
+      },
+      "trials": [
+        {
+          "index": 0,
+          "parameters": [
+            {
+              "componentId": "c_mvmfy3j1_cele98ge1vq",
+              "ref": "R1",
+              "key": "value",
+              "unit": "Ω",
+              "value": 9784.07089272514,
+              "text": "9784.07089272514"
+            },
+            {
+              "componentId": "c_mvmfy3j2_255qx3xmqni",
+              "ref": "R2",
+              "key": "value",
+              "unit": "Ω",
+              "value": 10036.89138777554,
+              "text": "10036.89138777554"
+            }
+          ],
+          "status": "completed",
+          "startedAt": "2026-10-24T13:36:27.082Z",
+          "completedAt": "2026-10-24T13:36:27.307Z",
+          "sourceRunId": "trial_mvmfzw6f_oh420dmyr",
+          "engine": {
+            "name": "ngspice",
+            "version": "45.2",
+            "build": "Sat Sep 5 01:00:10 UTC 2026",
+            "package": "EEcircuit-engine",
+            "packageVersion": "1.8.0",
+            "adapterVersion": 4,
+            "wasmSha256": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4",
+            "wasmBytes": 6133055,
+            "execution": "WebAssembly · isolated Web Worker · fresh instance per run",
+            "startup": "Warning: can't find the initialization file spinit.\n\n******\n** ngspice-45.2 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Sat Sep  5 01:00:10 UTC 2026\n******\n"
+          },
+          "netlist": "CircuitBench - Resistor tolerance and divider sensitivity - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 supply 0 DC 1.000000000000e+1 AC 0.000000000000e+0 0.000000000000e+0\nR1 supply mid 9.784070892725e+3\nR2 mid 0 1.003689138778e+4\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.op\n.end\n",
+          "netlistHash": "unavailable-in-insecure-context",
+          "warnings": [],
+          "source": {
+            "analysis": "op",
+            "signal": {
+              "id": "probe_mvmfy3j3_zndg7p0eny",
+              "label": "Midpoint",
+              "unit": "V"
+            },
+            "axis": {
+              "name": "operating-point",
+              "unit": "",
+              "values": [
+                0
+              ]
+            },
+            "real": [
+              5.063776039598154
+            ],
+            "sampling": "complete-selected-trial-samples"
+          },
+          "measurement": {
+            "method": "cb-analog-experiments-1",
+            "kind": "final",
+            "signal": "probe_mvmfy3j3_zndg7p0eny",
+            "value": 5.063776039598154,
+            "unit": "V",
+            "details": {
+              "pointsUsed": 1,
+              "interpretation": "Single operating-point sample."
+            }
+          }
+        },
+        {
+          "index": 1,
+          "parameters": [
+            {
+              "componentId": "c_mvmfy3j1_cele98ge1vq",
+              "ref": "R1",
+              "key": "value",
+              "unit": "Ω",
+              "value": 10136.07406266965,
+              "text": "10136.07406266965"
+            },
+            {
+              "componentId": "c_mvmfy3j2_255qx3xmqni",
+              "ref": "R2",
+              "key": "value",
+              "unit": "Ω",
+              "value": 9968.083939515054,
+              "text": "9968.083939515054"
+            }
+          ],
+          "status": "completed",
+          "startedAt": "2026-10-24T13:36:27.308Z",
+          "completedAt": "2026-10-24T13:36:27.522Z",
+          "sourceRunId": "trial_mvmfzwch_2lnmsot2aro",
+          "engine": {
+            "name": "ngspice",
+            "version": "45.2",
+            "build": "Sat Sep 5 01:00:10 UTC 2026",
+            "package": "EEcircuit-engine",
+            "packageVersion": "1.8.0",
+            "adapterVersion": 4,
+            "wasmSha256": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4",
+            "wasmBytes": 6133055,
+            "execution": "WebAssembly · isolated Web Worker · fresh instance per run",
+            "startup": "Warning: can't find the initialization file spinit.\n\n******\n** ngspice-45.2 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Sat Sep  5 01:00:10 UTC 2026\n******\n"
+          },
+          "netlist": "CircuitBench - Resistor tolerance and divider sensitivity - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 supply 0 DC 1.000000000000e+1 AC 0.000000000000e+0 0.000000000000e+0\nR1 supply mid 1.013607406267e+4\nR2 mid 0 9.968083939515e+3\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.op\n.end\n",
+          "netlistHash": "unavailable-in-insecure-context",
+          "warnings": [],
+          "source": {
+            "analysis": "op",
+            "signal": {
+              "id": "probe_mvmfy3j3_zndg7p0eny",
+              "label": "Midpoint",
+              "unit": "V"
+            },
+            "axis": {
+              "name": "operating-point",
+              "unit": "",
+              "values": [
+                0
+              ]
+            },
+            "real": [
+              4.958220054991425
+            ],
+            "sampling": "complete-selected-trial-samples"
+          },
+          "measurement": {
+            "method": "cb-analog-experiments-1",
+            "kind": "final",
+            "signal": "probe_mvmfy3j3_zndg7p0eny",
+            "value": 4.958220054991425,
+            "unit": "V",
+            "details": {
+              "pointsUsed": 1,
+              "interpretation": "Single operating-point sample."
+            }
+          }
+        },
+        {
+          "index": 2,
+          "parameters": [
+            {
+              "componentId": "c_mvmfy3j1_cele98ge1vq",
+              "ref": "R1",
+              "key": "value",
+              "unit": "Ω",
+              "value": 10386.252925731242,
+              "text": "10386.252925731242"
+            },
+            {
+              "componentId": "c_mvmfy3j2_255qx3xmqni",
+              "ref": "R2",
+              "key": "value",
+              "unit": "Ω",
+              "value": 10101.015644613653,
+              "text": "10101.015644613653"
+            }
+          ],
+          "status": "completed",
+          "startedAt": "2026-10-24T13:36:27.527Z",
+          "completedAt": "2026-10-24T13:36:27.674Z",
+          "sourceRunId": "trial_mvmfzwgo_8o780lpusgt",
+          "engine": {
+            "name": "ngspice",
+            "version": "45.2",
+            "build": "Sat Sep 5 01:00:10 UTC 2026",
+            "package": "EEcircuit-engine",
+            "packageVersion": "1.8.0",
+            "adapterVersion": 4,
+            "wasmSha256": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4",
+            "wasmBytes": 6133055,
+            "execution": "WebAssembly · isolated Web Worker · fresh instance per run",
+            "startup": "Warning: can't find the initialization file spinit.\n\n******\n** ngspice-45.2 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Sat Sep  5 01:00:10 UTC 2026\n******\n"
+          },
+          "netlist": "CircuitBench - Resistor tolerance and divider sensitivity - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 supply 0 DC 1.000000000000e+1 AC 0.000000000000e+0 0.000000000000e+0\nR1 supply mid 1.038625292573e+4\nR2 mid 0 1.010101564461e+4\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.op\n.end\n",
+          "netlistHash": "unavailable-in-insecure-context",
+          "warnings": [],
+          "source": {
+            "analysis": "op",
+            "signal": {
+              "id": "probe_mvmfy3j3_zndg7p0eny",
+              "label": "Midpoint",
+              "unit": "V"
+            },
+            "axis": {
+              "name": "operating-point",
+              "unit": "",
+              "values": [
+                0
+              ]
+            },
+            "real": [
+              4.930386698416951
+            ],
+            "sampling": "complete-selected-trial-samples"
+          },
+          "measurement": {
+            "method": "cb-analog-experiments-1",
+            "kind": "final",
+            "signal": "probe_mvmfy3j3_zndg7p0eny",
+            "value": 4.930386698416951,
+            "unit": "V",
+            "details": {
+              "pointsUsed": 1,
+              "interpretation": "Single operating-point sample."
+            }
+          }
+        },
+        {
+          "index": 3,
+          "parameters": [
+            {
+              "componentId": "c_mvmfy3j1_cele98ge1vq",
+              "ref": "R1",
+              "key": "value",
+              "unit": "Ω",
+              "value": 10045.701432973146,
+              "text": "10045.701432973146"
+            },
+            {
+              "componentId": "c_mvmfy3j2_255qx3xmqni",
+              "ref": "R2",
+              "key": "value",
+              "unit": "Ω",
+              "value": 10054.270114284009,
+              "text": "10054.270114284009"
+            }
+          ],
+          "status": "completed",
+          "startedAt": "2026-10-24T13:36:27.676Z",
+          "completedAt": "2026-10-24T13:36:27.811Z",
+          "sourceRunId": "trial_mvmfzwki_54x1rie39jr",
+          "engine": {
+            "name": "ngspice",
+            "version": "45.2",
+            "build": "Sat Sep 5 01:00:10 UTC 2026",
+            "package": "EEcircuit-engine",
+            "packageVersion": "1.8.0",
+            "adapterVersion": 4,
+            "wasmSha256": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4",
+            "wasmBytes": 6133055,
+            "execution": "WebAssembly · isolated Web Worker · fresh instance per run",
+            "startup": "Warning: can't find the initialization file spinit.\n\n******\n** ngspice-45.2 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Sat Sep  5 01:00:10 UTC 2026\n******\n"
+          },
+          "netlist": "CircuitBench - Resistor tolerance and divider sensitivity - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 supply 0 DC 1.000000000000e+1 AC 0.000000000000e+0 0.000000000000e+0\nR1 supply mid 1.004570143297e+4\nR2 mid 0 1.005427011428e+4\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.op\n.end\n",
+          "netlistHash": "unavailable-in-insecure-context",
+          "warnings": [],
+          "source": {
+            "analysis": "op",
+            "signal": {
+              "id": "probe_mvmfy3j3_zndg7p0eny",
+              "label": "Midpoint",
+              "unit": "V"
+            },
+            "axis": {
+              "name": "operating-point",
+              "unit": "",
+              "values": [
+                0
+              ]
+            },
+            "real": [
+              5.00213151578097
+            ],
+            "sampling": "complete-selected-trial-samples"
+          },
+          "measurement": {
+            "method": "cb-analog-experiments-1",
+            "kind": "final",
+            "signal": "probe_mvmfy3j3_zndg7p0eny",
+            "value": 5.00213151578097,
+            "unit": "V",
+            "details": {
+              "pointsUsed": 1,
+              "interpretation": "Single operating-point sample."
+            }
+          }
+        },
+        {
+          "index": 4,
+          "parameters": [
+            {
+              "componentId": "c_mvmfy3j1_cele98ge1vq",
+              "ref": "R1",
+              "key": "value",
+              "unit": "Ω",
+              "value": 10236.965950811282,
+              "text": "10236.965950811282"
+            },
+            {
+              "componentId": "c_mvmfy3j2_255qx3xmqni",
+              "ref": "R2",
+              "key": "value",
+              "unit": "Ω",
+              "value": 10038.740913849324,
+              "text": "10038.740913849324"
+            }
+          ],
+          "status": "completed",
+          "startedAt": "2026-10-24T13:36:27.812Z",
+          "completedAt": "2026-10-24T13:36:27.930Z",
+          "sourceRunId": "trial_mvmfzwnt_s7pnm6ke8s",
+          "engine": {
+            "name": "ngspice",
+            "version": "45.2",
+            "build": "Sat Sep 5 01:00:10 UTC 2026",
+            "package": "EEcircuit-engine",
+            "packageVersion": "1.8.0",
+            "adapterVersion": 4,
+            "wasmSha256": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4",
+            "wasmBytes": 6133055,
+            "execution": "WebAssembly · isolated Web Worker · fresh instance per run",
+            "startup": "Warning: can't find the initialization file spinit.\n\n******\n** ngspice-45.2 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Sat Sep  5 01:00:10 UTC 2026\n******\n"
+          },
+          "netlist": "CircuitBench - Resistor tolerance and divider sensitivity - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 supply 0 DC 1.000000000000e+1 AC 0.000000000000e+0 0.000000000000e+0\nR1 supply mid 1.023696595081e+4\nR2 mid 0 1.003874091385e+4\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.op\n.end\n",
+          "netlistHash": "unavailable-in-insecure-context",
+          "warnings": [],
+          "source": {
+            "analysis": "op",
+            "signal": {
+              "id": "probe_mvmfy3j3_zndg7p0eny",
+              "label": "Midpoint",
+              "unit": "V"
+            },
+            "axis": {
+              "name": "operating-point",
+              "unit": "",
+              "values": [
+                0
+              ]
+            },
+            "real": [
+              4.951117601402716
+            ],
+            "sampling": "complete-selected-trial-samples"
+          },
+          "measurement": {
+            "method": "cb-analog-experiments-1",
+            "kind": "final",
+            "signal": "probe_mvmfy3j3_zndg7p0eny",
+            "value": 4.951117601402716,
+            "unit": "V",
+            "details": {
+              "pointsUsed": 1,
+              "interpretation": "Single operating-point sample."
+            }
+          }
+        },
+        {
+          "index": 5,
+          "parameters": [
+            {
+              "componentId": "c_mvmfy3j1_cele98ge1vq",
+              "ref": "R1",
+              "key": "value",
+              "unit": "Ω",
+              "value": 10020.479459082708,
+              "text": "10020.479459082708"
+            },
+            {
+              "componentId": "c_mvmfy3j2_255qx3xmqni",
+              "ref": "R2",
+              "key": "value",
+              "unit": "Ω",
+              "value": 9922.926873201504,
+              "text": "9922.926873201504"
+            }
+          ],
+          "status": "completed",
+          "startedAt": "2026-10-24T13:36:27.931Z",
+          "completedAt": "2026-10-24T13:36:28.057Z",
+          "sourceRunId": "trial_mvmfzwrb_b6ktgd8aj1",
+          "engine": {
+            "name": "ngspice",
+            "version": "45.2",
+            "build": "Sat Sep 5 01:00:10 UTC 2026",
+            "package": "EEcircuit-engine",
+            "packageVersion": "1.8.0",
+            "adapterVersion": 4,
+            "wasmSha256": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4",
+            "wasmBytes": 6133055,
+            "execution": "WebAssembly · isolated Web Worker · fresh instance per run",
+            "startup": "Warning: can't find the initialization file spinit.\n\n******\n** ngspice-45.2 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Sat Sep  5 01:00:10 UTC 2026\n******\n"
+          },
+          "netlist": "CircuitBench - Resistor tolerance and divider sensitivity - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 supply 0 DC 1.000000000000e+1 AC 0.000000000000e+0 0.000000000000e+0\nR1 supply mid 1.002047945908e+4\nR2 mid 0 9.922926873202e+3\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.op\n.end\n",
+          "netlistHash": "unavailable-in-insecure-context",
+          "warnings": [],
+          "source": {
+            "analysis": "op",
+            "signal": {
+              "id": "probe_mvmfy3j3_zndg7p0eny",
+              "label": "Midpoint",
+              "unit": "V"
+            },
+            "axis": {
+              "name": "operating-point",
+              "unit": "",
+              "values": [
+                0
+              ]
+            },
+            "real": [
+              4.9755426469649535
+            ],
+            "sampling": "complete-selected-trial-samples"
+          },
+          "measurement": {
+            "method": "cb-analog-experiments-1",
+            "kind": "final",
+            "signal": "probe_mvmfy3j3_zndg7p0eny",
+            "value": 4.9755426469649535,
+            "unit": "V",
+            "details": {
+              "pointsUsed": 1,
+              "interpretation": "Single operating-point sample."
+            }
+          }
+        },
+        {
+          "index": 6,
+          "parameters": [
+            {
+              "componentId": "c_mvmfy3j1_cele98ge1vq",
+              "ref": "R1",
+              "key": "value",
+              "unit": "Ω",
+              "value": 10048.033252824098,
+              "text": "10048.033252824098"
+            },
+            {
+              "componentId": "c_mvmfy3j2_255qx3xmqni",
+              "ref": "R2",
+              "key": "value",
+              "unit": "Ω",
+              "value": 10421.475694980472,
+              "text": "10421.475694980472"
+            }
+          ],
+          "status": "completed",
+          "startedAt": "2026-10-24T13:36:28.057Z",
+          "completedAt": "2026-10-24T13:36:28.177Z",
+          "sourceRunId": "trial_mvmfzwun_3bxjj5prcgi",
+          "engine": {
+            "name": "ngspice",
+            "version": "45.2",
+            "build": "Sat Sep 5 01:00:10 UTC 2026",
+            "package": "EEcircuit-engine",
+            "packageVersion": "1.8.0",
+            "adapterVersion": 4,
+            "wasmSha256": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4",
+            "wasmBytes": 6133055,
+            "execution": "WebAssembly · isolated Web Worker · fresh instance per run",
+            "startup": "Warning: can't find the initialization file spinit.\n\n******\n** ngspice-45.2 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Sat Sep  5 01:00:10 UTC 2026\n******\n"
+          },
+          "netlist": "CircuitBench - Resistor tolerance and divider sensitivity - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 supply 0 DC 1.000000000000e+1 AC 0.000000000000e+0 0.000000000000e+0\nR1 supply mid 1.004803325282e+4\nR2 mid 0 1.042147569498e+4\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.op\n.end\n",
+          "netlistHash": "unavailable-in-insecure-context",
+          "warnings": [],
+          "source": {
+            "analysis": "op",
+            "signal": {
+              "id": "probe_mvmfy3j3_zndg7p0eny",
+              "label": "Midpoint",
+              "unit": "V"
+            },
+            "axis": {
+              "name": "operating-point",
+              "unit": "",
+              "values": [
+                0
+              ]
+            },
+            "real": [
+              5.091219199032163
+            ],
+            "sampling": "complete-selected-trial-samples"
+          },
+          "measurement": {
+            "method": "cb-analog-experiments-1",
+            "kind": "final",
+            "signal": "probe_mvmfy3j3_zndg7p0eny",
+            "value": 5.091219199032163,
+            "unit": "V",
+            "details": {
+              "pointsUsed": 1,
+              "interpretation": "Single operating-point sample."
+            }
+          }
+        },
+        {
+          "index": 7,
+          "parameters": [
+            {
+              "componentId": "c_mvmfy3j1_cele98ge1vq",
+              "ref": "R1",
+              "key": "value",
+              "unit": "Ω",
+              "value": 9718.917132355273,
+              "text": "9718.917132355273"
+            },
+            {
+              "componentId": "c_mvmfy3j2_255qx3xmqni",
+              "ref": "R2",
+              "key": "value",
+              "unit": "Ω",
+              "value": 10317.858922062442,
+              "text": "10317.858922062442"
+            }
+          ],
+          "status": "completed",
+          "startedAt": "2026-10-24T13:36:28.177Z",
+          "completedAt": "2026-10-24T13:36:28.321Z",
+          "sourceRunId": "trial_mvmfzwym_vpv05su8968",
+          "engine": {
+            "name": "ngspice",
+            "version": "45.2",
+            "build": "Sat Sep 5 01:00:10 UTC 2026",
+            "package": "EEcircuit-engine",
+            "packageVersion": "1.8.0",
+            "adapterVersion": 4,
+            "wasmSha256": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4",
+            "wasmBytes": 6133055,
+            "execution": "WebAssembly · isolated Web Worker · fresh instance per run",
+            "startup": "Warning: can't find the initialization file spinit.\n\n******\n** ngspice-45.2 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Sat Sep  5 01:00:10 UTC 2026\n******\n"
+          },
+          "netlist": "CircuitBench - Resistor tolerance and divider sensitivity - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 supply 0 DC 1.000000000000e+1 AC 0.000000000000e+0 0.000000000000e+0\nR1 supply mid 9.718917132355e+3\nR2 mid 0 1.031785892206e+4\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.op\n.end\n",
+          "netlistHash": "unavailable-in-insecure-context",
+          "warnings": [],
+          "source": {
+            "analysis": "op",
+            "signal": {
+              "id": "probe_mvmfy3j3_zndg7p0eny",
+              "label": "Midpoint",
+              "unit": "V"
+            },
+            "axis": {
+              "name": "operating-point",
+              "unit": "",
+              "values": [
+                0
+              ]
+            },
+            "real": [
+              5.149460618833694
+            ],
+            "sampling": "complete-selected-trial-samples"
+          },
+          "measurement": {
+            "method": "cb-analog-experiments-1",
+            "kind": "final",
+            "signal": "probe_mvmfy3j3_zndg7p0eny",
+            "value": 5.149460618833694,
+            "unit": "V",
+            "details": {
+              "pointsUsed": 1,
+              "interpretation": "Single operating-point sample."
+            }
+          }
+        }
+      ],
+      "summary": {
+        "requestedCount": 8,
+        "attemptedCount": 8,
+        "measuredCount": 8,
+        "failedCount": 0,
+        "cancelledCount": 0,
+        "notRunCount": 0,
+        "minimum": 4.930386698416951,
+        "maximum": 5.149460618833694,
+        "mean": 5.015231796877628,
+        "standardDeviation": 0.07284788168155283,
+        "standardDeviationDefinition": "population of completed trials only"
+      },
+      "warnings": [
+        "Independent uniform relative tolerances are a user-selected model. This finite sample is not a manufacturing yield or worst-case guarantee."
+      ]
+    }
+  ],
+  "truthTables": [],
+  "timingMeasurements": [],
+  "activeRunId": null,
+  "baselineId": null
+}

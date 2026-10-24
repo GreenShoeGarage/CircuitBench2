@@ -1,0 +1,13 @@
+CircuitBench - QA · Independent wire crossing - revision 0
+* Reproducible analysis from schema 1. Generic models are educational.
+V1 n1 0 DC 1.000000000000e+1 AC 0.000000000000e+0 0.000000000000e+0
+V2 n2 0 DC 4.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0
+R1 n1 channel_a 1.000000000000e+4
+R2 channel_a 0 1.000000000000e+4
+R3 n2 channel_b 1.000000000000e+4
+R4 channel_b 0 1.000000000000e+4
+.temp 27
+.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100
+.save all
+.op
+.end

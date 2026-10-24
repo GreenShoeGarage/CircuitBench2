@@ -1,14 +1,15 @@
 {
-  "testedAt": "2026-10-24T04:33:50.591Z",
-  "scope": "All actual authored example project schemas and generated netlists, production WASM adapter with Node Worker API shim, compared with native ngspice 42. Browser operation is verified separately.",
+  "testedAt": "2026-10-24T06:53:59.503Z",
+  "scope": "All authored analog example project schemas and generated netlists (digital and mixed-signal examples have a separate proof), production WASM adapter with Node Worker API shim, compared with native ngspice 42. Browser operation is verified separately.",
   "engine": {
     "name": "ngspice",
     "version": "45.2",
     "build": "Sat Sep 5 01:00:10 UTC 2026",
     "package": "EEcircuit-engine",
     "packageVersion": "1.8.0",
-    "adapterVersion": 2,
+    "adapterVersion": 4,
     "wasmSha256": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4",
+    "wasmBytes": 6133055,
     "execution": "WebAssembly · isolated Web Worker · fresh instance per run"
   },
   "tolerances": {
@@ -40,7 +41,7 @@
       "models": [],
       "netlist": "CircuitBench - RC low-pass filter - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 in 0 DC 1.000000000000e+0 AC 1.000000000000e+0 0.000000000000e+0\nR1 in out 1.000000000000e+4\nC1 out 0 1.000000000000e-7 IC=0.000000000000e+0\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.ac dec 100 1.000000000000e+0 1.000000000000e+5\n.end\n",
       "points": 501,
-      "durationMs": 36.98833199999996,
+      "durationMs": 37.64392099999998,
       "warnings": [],
       "comparisons": [
         {
@@ -87,7 +88,7 @@
       "models": [],
       "netlist": "CircuitBench - Voltage divider - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 supply 0 DC 1.000000000000e+1 AC 0.000000000000e+0 0.000000000000e+0\nR1 supply mid 1.000000000000e+4\nR2 mid 0 1.000000000000e+4\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.op\n.end\n",
       "points": 1,
-      "durationMs": 31.472938,
+      "durationMs": 22.89414099999999,
       "warnings": [],
       "comparisons": [
         {
@@ -134,7 +135,7 @@
       "models": [],
       "netlist": "CircuitBench - RC step response - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 in 0 DC 0.000000000000e+0 AC 1.000000000000e+0 0.000000000000e+0 PULSE(0.000000000000e+0 1.000000000000e+0 0.000000000000e+0 1.000000000000e-9 1.000000000000e-9 1.000000000000e-2 2.000000000000e-2)\nR1 in out 1.000000000000e+4\nC1 out 0 1.000000000000e-7 IC=0.000000000000e+0\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 5.000000000000e-6 5.000000000000e-3 0 5.000000000000e-6 uic\n.end\n",
       "points": 1028,
-      "durationMs": 45.50570400000004,
+      "durationMs": 41.62411399999996,
       "warnings": [],
       "comparisons": [
         {
@@ -191,7 +192,7 @@
       ],
       "netlist": "CircuitBench - Diode rectifier - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 in 0 DC 0.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0 SIN(0.000000000000e+0 5.000000000000e+0 6.000000000000e+1 0.000000000000e+0)\nD1 in out CB_DIODE\nR1 out 0 1.000000000000e+3\nC1 out 0 1.000000000000e-6 IC=0.000000000000e+0\n.model CB_DIODE D(IS=1e-14 N=1 RS=0.5 CJO=2e-12 TT=5e-9 BV=100 IBV=1e-6)\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 5.000000000000e-5 1.000000000000e-1 0 5.000000000000e-5\n.end\n",
       "points": 2129,
-      "durationMs": 63.87919499999998,
+      "durationMs": 61.00051099999996,
       "warnings": [],
       "comparisons": [
         {
@@ -248,7 +249,7 @@
       ],
       "netlist": "CircuitBench - NPN transistor driver - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 supply 0 DC 5.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0\nV2 drive 0 DC 0.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0 PULSE(0.000000000000e+0 3.300000000000e+0 0.000000000000e+0 1.000000000000e-6 1.000000000000e-6 1.000000000000e-3 2.000000000000e-3)\nR1 supply load 4.700000000000e+2\nQ1 load n1 0 CB_NPN\nR2 drive n1 4.700000000000e+3\n.model CB_NPN NPN(IS=1e-14 BF=100 VAF=100 IKF=0.1 CJE=10e-12 CJC=5e-12 TF=400e-12 TR=20e-9)\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 5.000000000000e-6 5.000000000000e-3 0 5.000000000000e-6\n.end\n",
       "points": 1220,
-      "durationMs": 53.25447299999996,
+      "durationMs": 58.51041000000009,
       "warnings": [],
       "comparisons": [
         {
@@ -323,7 +324,7 @@
       ],
       "netlist": "CircuitBench - MOSFET switching load - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 supply 0 DC 1.200000000000e+1 AC 0.000000000000e+0 0.000000000000e+0\nV2 drive 0 DC 0.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0 PULSE(0.000000000000e+0 5.000000000000e+0 0.000000000000e+0 1.000000000000e-6 1.000000000000e-6 1.000000000000e-3 2.000000000000e-3)\nR1 supply load 1.000000000000e+2\nM1 load n1 0 0 CB_NMOS W=1.000000000000e-4 L=1.000000000000e-5\nR2 drive n1 1.000000000000e+2\n.model CB_NMOS NMOS(LEVEL=1 VTO=2 KP=0.02 LAMBDA=0.02 RD=0.5 RS=0.5 CGSO=100e-12 CGDO=100e-12 CBD=50e-12 CBS=50e-12)\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 5.000000000000e-6 5.000000000000e-3 0 5.000000000000e-6\n.end\n",
       "points": 1169,
-      "durationMs": 57.89019899999994,
+      "durationMs": 49.03361399999994,
       "warnings": [],
       "comparisons": [
         {
@@ -398,7 +399,7 @@
       ],
       "netlist": "CircuitBench - Non-inverting amplifier - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 in 0 DC 0.000000000000e+0 AC 1.000000000000e+0 0.000000000000e+0 SIN(0.000000000000e+0 1.000000000000e-1 1.000000000000e+3 0.000000000000e+0)\nX1 in n1 vplus vminus out CB_OPAMP\nR1 n1 out 1.000000000000e+4\nR2 0 n1 1.000000000000e+3\nV2 vplus 0 DC 1.200000000000e+1 AC 0.000000000000e+0 0.000000000000e+0\nV3 vminus 0 DC -1.200000000000e+1 AC 0.000000000000e+0 0.000000000000e+0\n.subckt CB_OPAMP inp inn vp vn out\nRdiff inp inn 1e9\nBdrive drive 0 V=0.5*(v(vp)+v(vn))+0.5*(v(vp)-v(vn))*tanh(2e5*v(inp,inn)/(abs(v(vp)-v(vn))+1e-6))\nRout drive out 10\n.ends CB_OPAMP\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 5.000000000000e-6 3.000000000000e-3 0 5.000000000000e-6\n.end\n",
       "points": 608,
-      "durationMs": 77.18279500000017,
+      "durationMs": 49.256873999999925,
       "warnings": [],
       "comparisons": [
         {
@@ -487,7 +488,7 @@
       "models": [],
       "netlist": "CircuitBench - Resistive sensor interface - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 supply 0 DC 5.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0\nR1 supply sensor 1.000000000000e+4\nR2 sensor 0 1.000000000000e+4\nR3 sensor adc 1.000000000000e+3\nC1 adc 0 1.000000000000e-6 IC=0.000000000000e+0\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.op\n.end\n",
       "points": 1,
-      "durationMs": 37.35414600000013,
+      "durationMs": 26.37268899999981,
       "warnings": [],
       "comparisons": [
         {
@@ -559,7 +560,7 @@
       ],
       "netlist": "CircuitBench - LED transistor driver - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 supply 0 DC 5.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0\nV2 drive 0 DC 0.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0 PULSE(0.000000000000e+0 3.300000000000e+0 0.000000000000e+0 1.000000000000e-6 1.000000000000e-6 1.000000000000e-3 2.000000000000e-3)\nR1 supply n1 3.300000000000e+2\nQ1 load n2 0 CB_NPN\nR2 drive n2 4.700000000000e+3\nD1 n1 load CB_LED\n.model CB_NPN NPN(IS=1e-14 BF=100 VAF=100 IKF=0.1 CJE=10e-12 CJC=5e-12 TF=400e-12 TR=20e-9)\n.model CB_LED D(IS=1e-20 N=2 RS=8 CJO=10e-12 BV=5 IBV=1e-6)\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 5.000000000000e-6 5.000000000000e-3 0 5.000000000000e-6\n.end\n",
       "points": 1254,
-      "durationMs": 66.03580899999997,
+      "durationMs": 63.16279599999962,
       "warnings": [],
       "comparisons": [
         {
@@ -640,7 +641,7 @@
       ],
       "netlist": "CircuitBench - PNP high-side driver - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 n1 0 DC 5.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0\nV2 drive 0 DC 5.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0 PULSE(5.000000000000e+0 0.000000000000e+0 0.000000000000e+0 1.000000000000e-6 1.000000000000e-6 1.000000000000e-3 2.000000000000e-3)\nQ1 out n2 n1 CB_PNP\nR1 n2 drive 4.700000000000e+3\nR2 out 0 4.700000000000e+2\n.model CB_PNP PNP(IS=1e-14 BF=80 VAF=80 IKF=0.1 CJE=10e-12 CJC=5e-12 TF=500e-12 TR=20e-9)\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 5.000000000000e-6 5.000000000000e-3 0 5.000000000000e-6\n.end\n",
       "points": 1227,
-      "durationMs": 56.22773999999981,
+      "durationMs": 44.97289799999999,
       "warnings": [],
       "comparisons": [
         {
@@ -715,7 +716,7 @@
       ],
       "netlist": "CircuitBench - PMOS high-side driver - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 n1 0 DC 5.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0\nV2 drive 0 DC 5.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0 PULSE(5.000000000000e+0 0.000000000000e+0 0.000000000000e+0 1.000000000000e-6 1.000000000000e-6 1.000000000000e-3 2.000000000000e-3)\nM1 out n2 n1 n1 CB_PMOS W=1.000000000000e-4 L=1.000000000000e-5\nR1 n2 drive 1.000000000000e+2\nR2 out 0 4.700000000000e+2\n.model CB_PMOS PMOS(LEVEL=1 VTO=-2 KP=0.01 LAMBDA=0.02 RD=0.5 RS=0.5 CGSO=100e-12 CGDO=100e-12 CBD=50e-12 CBS=50e-12)\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 5.000000000000e-6 5.000000000000e-3 0 5.000000000000e-6\n.end\n",
       "points": 1166,
-      "durationMs": 60.07764300000008,
+      "durationMs": 50.76400999999987,
       "warnings": [],
       "comparisons": [
         {
@@ -790,7 +791,7 @@
       ],
       "netlist": "CircuitBench - Controlled analog switch - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 n1 0 DC 5.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0\nV2 control 0 DC 0.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0 PULSE(0.000000000000e+0 5.000000000000e+0 0.000000000000e+0 1.000000000000e-6 1.000000000000e-6 1.000000000000e-3 2.000000000000e-3)\nS1 n1 out control 0 CB_SWITCH\nR1 out 0 1.000000000000e+3\n.model CB_SWITCH SW(RON=1 ROFF=1e9 VT=2.5 VH=0.1)\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 5.000000000000e-6 5.000000000000e-3 0 5.000000000000e-6\n.end\n",
       "points": 1100,
-      "durationMs": 47.56616699999995,
+      "durationMs": 52.53813799999989,
       "warnings": [],
       "comparisons": [
         {
@@ -849,7 +850,7 @@
       "models": [],
       "netlist": "CircuitBench - Inductor step response - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 in 0 DC 0.000000000000e+0 AC 1.000000000000e+0 0.000000000000e+0 PULSE(0.000000000000e+0 1.000000000000e+0 0.000000000000e+0 1.000000000000e-9 1.000000000000e-9 1.000000000000e-2 2.000000000000e-2)\nR1 in out 1.000000000000e+2\nL1 out 0 1.000000000000e-1 IC=0.000000000000e+0\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 5.000000000000e-6 5.000000000000e-3 0 5.000000000000e-6 uic\n.end\n",
       "points": 1035,
-      "durationMs": 39.392773000000034,
+      "durationMs": 38.93157800000017,
       "warnings": [],
       "comparisons": [
         {
@@ -902,7 +903,7 @@
       "models": [],
       "netlist": "CircuitBench - Current source validation - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nI1 0 out DC 1.000000000000e-3 AC 1.000000000000e-3 0.000000000000e+0\nR1 out 0 1.000000000000e+3\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.op\n.end\n",
       "points": 1,
-      "durationMs": 25.583844000000227,
+      "durationMs": 28.277755999999954,
       "warnings": [],
       "comparisons": [
         {
@@ -943,7 +944,7 @@
       "models": [],
       "netlist": "CircuitBench - PWL ramp validation - revision 0\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 in 0 DC 0.000000000000e+0 AC 0.000000000000e+0 0.000000000000e+0 PWL(0.000000000000e+0 0.000000000000e+0 1.000000000000e-3 1.000000000000e+0 2.000000000000e-3 0.000000000000e+0 4.000000000000e-3 0.000000000000e+0)\nR1 in out 1.000000000000e+4\nC1 out 0 1.000000000000e-7 IC=0.000000000000e+0\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 5.000000000000e-6 5.000000000000e-3 0 5.000000000000e-6 uic\n.end\n",
       "points": 1024,
-      "durationMs": 44.29698099999996,
+      "durationMs": 35.224599000000126,
       "warnings": [],
       "comparisons": [
         {

@@ -1,0 +1,34 @@
+✔ real pinned WASM bytes load with correct, generic, absent or misleading MIME types (796.350777ms)
+✔ missing WASM reports the exact subdirectory URL, HTTP status and response MIME (3.474261ms)
+✔ a status-200 HTML route fallback is identified instead of sent to WebAssembly (1.646356ms)
+✔ truncated valid-header WASM and non-WASM files fail with distinct diagnostics (1.237104ms)
+✔ network/policy failures preserve the real cause without inventing an HTTP status (0.724329ms)
+✔ response read failures retain URL and successful response metadata (0.333189ms)
+✔ successful local glue import performs no diagnostic fetch or external fallback (0.512423ms)
+✔ missing engine glue is caught after bootstrap and gives source-checkout guidance (0.601839ms)
+✔ a rejected engine module reports wrong MIME and status-200 HTML responses explicitly (6.23342ms)
+✔ opaque engine import failures keep the browser reason when response inspection is blocked (1.014777ms)
+failed to asynchronously prepare wasm: CompileError: WebAssembly.instantiate(): expected magic word 00 61 73 6d, found 01 02 03 04 @+0
+Aborted(CompileError: WebAssembly.instantiate(): expected magic word 00 61 73 6d, found 01 02 03 04 @+0)
+✔ vendor start rejects an actual invalid supplied binary instead of leaving startup pending (17.203446ms)
+✔ an actual disposable worker computes from one validated WASM fetch with generic MIME (373.156049ms)
+✔ empty worker error keeps startup phase and exact worker URL without asserting a WASM cause (7.371558ms)
+✔ worker-constructor policy errors retain the denied worker URL (0.524491ms)
+✔ the public facade retains structured worker asset diagnostics and terminates the failed worker (2.542246ms)
+✔ a stalled loader is bounded and reports the loading stage when terminated (197.777414ms)
+✔ worker reload inspection reports observed HTTP, MIME, HTML and current protocol accurately (7.25537ms)
+✔ worker response inspection bounds the inspected body without executing it (1.593337ms)
+✔ worker response inspection times out even when the injected fetch ignores abort (180.005591ms)
+✔ worker response inspection respects external cancellation and preserves its abort identity (1.635676ms)
+✔ opaque startup diagnostics distinguish bad responses while healthy responses keep the cause unknown (6.851882ms)
+✔ Stop during startup inspection wins over diagnostics and terminates the worker exactly once (0.65353ms)
+✔ the original run watchdog wins during startup inspection and aborts its fetch (101.370951ms)
+✔ accepted worker protocol is visible before computation and incompatible protocols fail without inspection (0.791007ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1724.51792

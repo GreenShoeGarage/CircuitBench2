@@ -1,0 +1,37 @@
+CircuitBench 1.2.0-rc.1 focused test evidence
+Runtime build: c8ef3ed4d77a1672
+Command: node tests/offline.test.mjs
+Recorded: 2026-10-24T06:56:43.397Z
+
+LOGIC-LEVEL OFFLINE VERIFICATION ONLY. No browser service-worker or disconnected-network reload is claimed.
+Generated dist/sw-1.2.0-rc.1.js SHA-256: 64fe20268cf6b7bdebca383672ecb70df0eb3fb78526565ddeb7fdb11cf74cb4; version 1.2.0-rc.1; build c8ef3ed4d77a1672
+✔ generated precache lists every real runtime asset, including actual WebAssembly bytes (136.168613ms)
+✔ scope-relative install and cached offline fetch work in VM at / (67.010049ms)
+✔ scope-relative install and cached offline fetch work in VM at /tools/circuitbench/ (33.579582ms)
+✔ canonical shell caching avoids injected host HTML and a redirected/missing index.html alias (46.347079ms)
+✔ asset release directories and query pins never substitute one another in the cache (14.747235ms)
+✔ reload and no-store asset diagnostics observe the network without stale-cache fallback (27.795664ms)
+✔ canonical navigation reload uses fresh responses and falls back only on network failure (24.111008ms)
+✔ uncached resources fall back to network and fail honestly while offline (14.360119ms)
+✔ non-GET, foreign-origin, and out-of-scope requests are not intercepted (13.157726ms)
+✔ a failed runtime fetch cannot advertise offline readiness or leave a partial install (5.010199ms)
+✔ HTTP-200 HTML in place of the WASM binary is rejected before caching (4.620018ms)
+✔ module and stylesheet content types must be usable by the browser (35.008127ms)
+✔ valid binary bytes with generic MIME remain usable with the buffered WASM loader (35.969917ms)
+✔ SHA-256 rejects same-length stale JavaScript and modified WASM with valid magic (44.733724ms)
+✔ fresh installation bypasses a stale HTTP cache after the hosting files are repaired (32.395608ms)
+✔ a verified new build replaces a poisoned prior build without deleting other scopes (26.813243ms)
+✔ failed cache writes clean the incomplete new cache while preserving the prior build (22.611238ms)
+✔ missing secure digest support refuses installation instead of weakening integrity checks (5.801011ms)
+✔ readiness checks every cached runtime asset instead of accepting only the HTML shell (13.587371ms)
+✔ readiness rejects poisoned bytes and unusable MIME even when every cache key exists (50.043305ms)
+✔ cache activation cleans only older builds of the exact scope, preserving nested and sibling installs (36.06972ms)
+✔ waiting updates are activated only by explicit SKIP_WAITING message (11.474332ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 729.253917

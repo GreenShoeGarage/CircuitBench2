@@ -1,0 +1,19 @@
+CircuitBench 1.2.0-rc.1 focused test evidence
+Runtime build: c8ef3ed4d77a1672
+Command: node tests/engine-raw-parser.test.mjs
+Recorded: 2026-10-24T06:56:43.397Z
+
+✔ UTF-8 project titles do not shift real raw-data byte offsets (5.446315ms)
+✔ Binary marker text within a title is not mistaken for the payload line (1.636768ms)
+✔ Unicode CRLF headers preserve complex point-major sample order (0.833678ms)
+✔ a raw-data subarray with a nonzero backing offset parses correctly (2.161448ms)
+✔ truncated, trailing and misdeclared binary payloads fail explicitly (1.632495ms)
+✔ missing binary markers and invalid declared counts are rejected (1.466591ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 28.184393

@@ -1,0 +1,141 @@
+{
+  "application": "CircuitBench",
+  "version": "1.1.0-rc.1",
+  "runtime_build": "089964ae0aed2792",
+  "recorded_at": "2026-10-24T06:27:43.035608+00:00",
+  "environment": {
+    "browser": "Managed Chrome through CUA",
+    "url": "http://terminal.local:4173/",
+    "secure_context": false,
+    "production_deployment_modified": false
+  },
+  "early_integration_build": "220d09829102c215",
+  "early_checks": [
+    {
+      "name": "Prior analog project retained and fresh AC",
+      "result": "passed",
+      "points": 501,
+      "worker_protocol": 4
+    },
+    {
+      "name": "Half adder timing",
+      "result": "passed",
+      "points": 14
+    },
+    {
+      "name": "DFF divider timing",
+      "result": "passed",
+      "points": 22
+    },
+    {
+      "name": "Clock DAC RC",
+      "result": "passed",
+      "points": 900,
+      "original_analog_times": 895
+    },
+    {
+      "name": "C1 change100n to220n and baseline",
+      "result": "passed",
+      "revision": 1,
+      "points": 894,
+      "original_analog_times": 889
+    },
+    {
+      "name": "Mixed backup open and reload",
+      "result": "passed",
+      "revision": 1,
+      "runs": 3,
+      "baseline_retained": true
+    },
+    {
+      "name": "Mixed cursor",
+      "result": "passed",
+      "observed": "Analog ramp approximately4.593V labeled interpolated; Schmitt state1; inverted logic0"
+    },
+    {
+      "name": "Cross-domain wire rejection",
+      "result": "passed",
+      "project_revision_unchanged": 0
+    }
+  ],
+  "final_build_checks": [
+    {
+      "name": "Two-pass analog Schmitt logic analog",
+      "result": "passed",
+      "points": 439,
+      "original_analog_times": 435,
+      "executed_analog_decks": 2
+    },
+    {
+      "name": "Tri-state timing",
+      "result": "passed",
+      "points": 16,
+      "states": [
+        "0",
+        "X",
+        "1",
+        "Z"
+      ]
+    },
+    {
+      "name": "Digital backup open and reload",
+      "result": "passed",
+      "states_retained": [
+        "0",
+        "X",
+        "1",
+        "Z"
+      ]
+    },
+    {
+      "name": "Mixed report preview",
+      "result": "passed",
+      "details": "Recorded analog and digital engine identities, final-pass provenance, bridge parameters, captured plan and two decks"
+    },
+    {
+      "name": "Digital report preview",
+      "result": "passed",
+      "details": "Literal X/Z, no numeric extrema,1ps event timing, unused analog settings omitted"
+    }
+  ],
+  "download_checks": {
+    "digital_csv": {
+      "verified": true,
+      "data_rows": 16,
+      "literal_states": [
+        "0",
+        "1",
+        "X",
+        "Z"
+      ]
+    },
+    "mixed_csv": {
+      "verified": true,
+      "data_rows": 894,
+      "ngspice_original": 889,
+      "linear_interpolated": 5
+    },
+    "project_backups": {
+      "verified_by_production_validator": [
+        "digital",
+        "mixed-baseline",
+        "two-pass-mixed-chain"
+      ]
+    },
+    "html_report": {
+      "verified": false,
+      "observation": "Click updated status to download requested;10-second event wait produced no verified download. Cause undetermined."
+    }
+  },
+  "not_verified": [
+    "Secure-context browser offline installation/reload/update",
+    "Native browser print/PDF",
+    "Final-candidate target HTTPS hosting",
+    "Current phone/tablet layouts"
+  ],
+  "notes": [
+    "Insecure preview honestly displays unavailable-in-insecure-context for WebCrypto hashes.",
+    "Earlier version browser evidence remains historical.",
+    "Test counts and numerical proofs are separate records."
+  ]
+}

@@ -1,0 +1,20 @@
+✔ timing setup offers five measurement kinds and individual bits with accessible labels (16.057273ms)
+✔ setup values round-trip through engineering inputs and select the intended bus bit (4.229208ms)
+✔ changing the measurement kind preserves the draft and excludes hidden target fields (0.858858ms)
+✔ malformed and out-of-range drafts remain editable with specific validation errors (5.283231ms)
+✔ ineligible runs show actionable notices and do not offer a dead measurement action (0.555332ms)
+✔ result presentation retains exact edge times and separates missing rows from measured statistics (30.552612ms)
+✔ duty-cycle presentation shows percent high and the retained high/cycle durations (0.91662ms)
+✔ retained source runs expose only observed event pairs for waveform inspection (2.192916ms)
+✔ ambiguous signals produce no invented zero, frequency or summary value (1.888653ms)
+✔ saved results identify stale circuit revisions, restored event checking and bounded summaries (4.603931ms)
+✔ imported titles, labels, IDs, warnings and provenance render as text (1.013362ms)
+✔ history preserves immutable creation order and shows each record’s revision and kind (1.727844ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 97.625284

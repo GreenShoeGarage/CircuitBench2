@@ -1,0 +1,26 @@
+{
+  "recorded_at": "2026-10-24T06:35:43.966047+00:00",
+  "scope": "Read-only target-host preflight; no deployment changed",
+  "responses": [
+    {
+      "requested_url": "https://greenshoegarage.com/projects/circuitbench2/",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "requested_url": "https://greenshoegarage.com/projects/circuitbench2/release-manifest.json",
+      "error": "HTTP Error 403: Forbidden"
+    }
+  ],
+  "browser": {
+    "observed_at": "2026-10-24T06:44:18.272102+00:00",
+    "displayed_version": "1.0.0-rc.2",
+    "fresh_ac_points": 501,
+    "offline_label": "Offline cache installation failed",
+    "html_report_download": {
+      "bytes": 55188,
+      "complete_html": true,
+      "report_version": "1.0.0-rc.2"
+    },
+    "scope": "Historical deployed version observed; does not establish1.1 or1.2 target-host acceptance."
+  }
+}

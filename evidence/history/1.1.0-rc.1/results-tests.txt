@@ -1,0 +1,22 @@
+✔ complex differential voltage and resistor current retain signed real/imaginary values and reference (15.001639ms)
+✔ ground voltage is a real zero trace including in complex AC runs (1.434996ms)
+✔ axis identity and units match AC, transient, operating point, and current sweep (1.218769ms)
+✔ CSV exports full raw sample order and complex values with correctly quoted labels (2.417839ms)
+✔ descending sweeps are normalized only for plotting; zoom and SVG remain finite (7.487669ms)
+✔ first completed result selects useful traces even when the running record had the same id (1.79158ms)
+✔ AC plots use independent magnitude/phase clipping and state correct dB reference units (2.490281ms)
+✔ baseline comparisons reject unlike horizontal units and the same run (0.743615ms)
+✔ run import validates immutable circuit identity and numerical evidence status (7.065054ms)
+✔ interrupted running records recover as failed with no invented result (1.20421ms)
+✔ startup failures retain bounded diagnostic details across backup import (1.818304ms)
+✔ invalid vector shapes, nonfinite values, and excessive import budgets are rejected (78.084235ms)
+✔ reports use historical circuit/configuration and escape imported titles, notes, diagnostics, and netlists (7.144395ms)
+✔ reports identify cancelled runs and have no fabricated numerical evidence (1.151952ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 150.584964

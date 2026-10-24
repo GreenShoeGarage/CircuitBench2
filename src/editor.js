@@ -1,6 +1,6 @@
 /* CircuitBench SVG schematic editor. Electrical intent lives in project.circuit. */
-import { getPart } from './library.js';
-import { addComponent, removeItems, duplicateItems, endpointPosition, uid, clone, buildNets } from './model.js';
+import { getPart, getPins, parseLogicWord } from './library.js';
+import { addComponent, removeItems, duplicateItems, endpointPosition, uid, clone, buildNets, getEndpointDomain, canConnect } from './model.js';
 import { symbolMarkup, escapeXML, SYMBOL_CSS } from './symbols.js';
 
 const NS = 'http://www.w3.org/2000/svg';
@@ -11,12 +11,16 @@ const equal = (a, b) => dist(a, b) < .01;
 const itemIds = p => [...p.circuit.components, ...p.circuit.connections, ...p.circuit.junctions, ...p.circuit.labels, ...(p.layout.annotations || [])].map(i => i.id);
 const safePoint = p => p && Number.isFinite(p.x) && Number.isFinite(p.y);
 const compact = points => points.filter((p, i) => safePoint(p) && (i === 0 || !equal(p, points[i - 1])));
+function networkView(project) {
+  try { const built = buildNets(project), domains = Object.create(null), widths = Object.create(null), conflicts = Object.create(null); for (const net of built.nets) for (const endpoint of net.endpoints) { domains[endpoint] = net.domain; widths[endpoint] = net.width; conflicts[endpoint] = net.widthConflict; } return { nets: built.endpointToNet, domains, widths, conflicts }; }
+  catch { return { nets: {}, domains: {}, widths: {}, conflicts: {} }; }
+}
 
 function bodyBounds(project, componentId) {
   const component = project.circuit.components.find(c => c.id === componentId), l = project.layout.components[componentId];
   if (!component || !l) return null;
-  const boxes = { R: [-29,-13,29,13], C: [-12,-25,12,25], L: [-30,-23,30,5], V: [-26,-26,26,26], I: [-26,-26,26,26], D: [-19,-21,19,21], LED: [-19,-21,19,21], GND: [-23,-4,23,18], NPN: [-18,-26,26,35], PNP: [-18,-26,26,35], NMOS: [-23,-27,25,27], PMOS: [-23,-27,25,27], SW: [-23,-22,23,24], OPAMP: [-27,-34,31,34] };
-  const [x0,y0,x1,y1] = boxes[component.type] || [-28,-28,28,28], angle = (l.rotation || 0) * Math.PI / 180;
+  const boxes = { R: [-29,-13,29,13], C: [-12,-25,12,25], L: [-30,-23,30,5], V: [-26,-26,26,26], I: [-26,-26,26,26], D: [-19,-21,19,21], LED: [-19,-21,19,21], GND: [-23,-4,23,18], NPN: [-18,-26,26,35], PNP: [-18,-26,26,35], NMOS: [-23,-27,25,27], PMOS: [-23,-27,25,27], SW: [-23,-22,23,24], OPAMP: [-27,-34,31,34], DIN: [-29,-25,29,25], CLOCK: [-29,-25,29,25], BUF: [-28,-28,28,28], NOT: [-28,-28,33,28], AND: [-28,-31,27,31], NAND: [-28,-31,36,31], OR: [-31,-31,27,31], NOR: [-31,-31,36,31], XOR: [-36,-31,27,31], XNOR: [-36,-31,36,31], TRI: [-29,-32,29,32], DFF: [-29,-33,29,33], ADC: [-29,-33,31,33], DAC: [-31,-33,31,33], SEG7: [-27,-34,34,34], HEX7: [-29,-33,29,33], ADCBUS: [-29,-33,31,33], DACBUS: [-31,-33,31,33] };
+  const [x0,y0,x1,y1] = boxes[component.type] || (['REGISTER','COUNTER','MUX','DECODER','LUT','JOIN'].includes(component.type) ? [-30,-33,30,33] : [-28,-28,28,28]), angle = (l.rotation || 0) * Math.PI / 180;
   const points = [[x0,y0],[x1,y0],[x1,y1],[x0,y1]].map(([px,py]) => { const x = l.mirror ? -px : px; return { x: l.x + Math.round(x*Math.cos(angle)-py*Math.sin(angle)), y: l.y + Math.round(x*Math.sin(angle)+py*Math.cos(angle)) }; });
   return { x0: Math.min(...points.map(p=>p.x)), y0: Math.min(...points.map(p=>p.y)), x1: Math.max(...points.map(p=>p.x)), y1: Math.max(...points.map(p=>p.y)) };
 }
@@ -90,8 +94,15 @@ ${SYMBOL_CSS}
 .schematic-svg:focus-visible { outline:2px solid var(--accent,#b9ed8e); outline-offset:-3px; }
 .schematic-grid-dot { fill:var(--grid,#34413a); }
 .wire { fill:none; stroke:var(--wire,#8fb49e); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+.wire-digital { stroke:var(--blue,#89bdf2); }
+.wire-bus { stroke-width:3.6; }
+.wire-mixed,.wire-width-conflict { stroke:var(--danger,#fb969d); stroke-dasharray:5 3; }
+.bus-width-marker { pointer-events:none; }
+.bus-width-marker path { stroke:var(--blue,#89bdf2); stroke-width:1.8; }
+.bus-width-marker text { fill:var(--blue,#89bdf2); font:600 10px ui-monospace,monospace; }
 .wire-hit { fill:none; stroke:transparent; stroke-width:14; cursor:pointer; }
 .selected-wire { stroke:var(--accent,#b9ed8e); stroke-width:3; }
+.wire-bus.selected-wire { stroke-width:4.8; }
 .component-hit { fill:transparent; stroke:transparent; stroke-width:1; rx:5; }
 .component.selected .component-hit { fill:var(--selection,rgba(167,223,128,.07)); stroke:var(--accent,#b9ed8e); stroke-dasharray:5 3; }
 .component:focus .component-hit,.junction:focus .junction-focus,.annotation:focus rect { stroke:var(--accent,#b9ed8e); stroke-width:2; }
@@ -99,11 +110,16 @@ ${SYMBOL_CSS}
 .component-label { fill:var(--text,#e7ece8); font:600 13px system-ui,sans-serif; text-anchor:middle; pointer-events:none; }
 .component-value { fill:var(--muted,#aebdb3); font:12px ui-monospace,SFMono-Regular,Consolas,monospace; text-anchor:middle; pointer-events:none; }
 .pin { fill:var(--canvas,#121a18); stroke:var(--wire,#8fb49e); stroke-width:1.7; cursor:crosshair; outline:none; }
+.pin-digital { stroke:var(--blue,#89bdf2); }
+.pin-bus { stroke-width:2.4; }
+.pin-width { fill:var(--blue,#89bdf2); font:600 9px ui-monospace,monospace; pointer-events:none; }
 .pin:focus,.pin:hover { fill:var(--accent,#b9ed8e); stroke:var(--text,#e7ece8); stroke-width:2.5; }
 .pin-hit { fill:transparent; cursor:crosshair; }
 .pin:focus ~ .pin-name { opacity:1; }
 .pin-name { fill:var(--muted,#aebdb3); font:10px ui-monospace,monospace; opacity:0; pointer-events:none; }
 .junction-dot { fill:var(--wire,#8fb49e); stroke:var(--canvas,#121a18); stroke-width:1; }
+.junction-digital { fill:var(--blue,#89bdf2); }
+.junction-mixed,.junction-width-conflict { fill:var(--danger,#fb969d); }
 .junction-focus { fill:transparent; stroke:transparent; }
 .junction.selected .junction-focus { stroke:var(--accent,#b9ed8e); }
 .net-label { fill:var(--accent,#b9ed8e); font:600 12px ui-monospace,SFMono-Regular,monospace; cursor:pointer; }
@@ -115,9 +131,11 @@ ${SYMBOL_CSS}
 .wire-handle { fill:var(--canvas,#121a18); stroke:var(--accent,#b9ed8e); stroke-width:2; cursor:move; }
 .draft-wire { fill:none; stroke:var(--accent,#b9ed8e); stroke-width:2.5; stroke-dasharray:7 4; pointer-events:none; }
 .snap-ring { fill:var(--selection,rgba(167,223,128,.08)); stroke:var(--accent,#b9ed8e); stroke-width:2; pointer-events:none; }
+.snap-invalid { stroke:var(--danger,#fb969d); stroke-dasharray:3 3; }
 .select-box { fill:var(--selection,rgba(167,223,128,.10)); stroke:var(--accent,#b9ed8e); stroke-dasharray:5 3; pointer-events:none; }
 .placement-ghost { opacity:.5; pointer-events:none; }
 .probe-marker { fill:var(--accent,#b9ed8e); stroke:var(--canvas,#121a18); stroke-width:1; pointer-events:none; }
+.probe-logic { fill:var(--blue,#89bdf2); }
 .workspace-message { fill:var(--muted,#aebdb3); font:14px system-ui,sans-serif; text-anchor:middle; }
 .workspace-message-title { fill:var(--text,#e7ece8); font:600 20px system-ui,sans-serif; text-anchor:middle; }
 .schematic-svg[data-mode=pan] { cursor:grab; }
@@ -188,7 +206,7 @@ export class SchematicEditor {
       junction: 'Junction: click a wire or crossing to connect it explicitly. Crossing lines otherwise remain separate.',
       label: 'Label: click a pin, junction, or wire. Equal net labels join electrically.',
       note: 'Note: click the canvas to add an annotation.',
-      probe: 'Probe: click a pin for voltage. Shift-click a second pin for a differential measurement.'
+      probe: 'Probe: click for voltage or logic state. Shift-click a second analog pin for a voltage difference.'
     };
     this.status(hints[mode] || 'Click the canvas to place a component.');
     this.render();
@@ -213,17 +231,16 @@ export class SchematicEditor {
     this.selection = new Set([...this.selection].filter(id => valid.has(id)));
     this.svg.dataset.mode = this.mode;
     this.svg.setAttribute('viewBox', `${this.view.x} ${this.view.y} ${this.view.width} ${this.view.height}`);
-    let nets;
-    try { nets = buildNets(project).endpointToNet || {}; } catch { nets = {}; }
+    const network = networkView(project), { nets } = network;
     const parts = [];
     parts.push(`<title>${escapeXML(project.title || 'Circuit schematic')}</title><desc>Electrical connections use explicit wires and junctions; crossings do not connect automatically.</desc><style>${STYLE}</style>`);
     parts.push(`<defs><pattern id="cb-grid" width="20" height="20" patternUnits="userSpaceOnUse"><circle class="schematic-grid-dot" cx="0" cy="0" r="1"/></pattern></defs><rect x="${this.view.x - 3000}" y="${this.view.y - 3000}" width="${this.view.width + 6000}" height="${this.view.height + 6000}" fill="url(#cb-grid)"/>`);
-    parts.push(this.renderWires(project));
+    parts.push(this.renderWires(project, network));
     parts.push(this.renderComponents(project, nets));
-    parts.push(this.renderJunctions(project, nets));
+    parts.push(this.renderJunctions(project, nets, network));
     parts.push(this.renderLabels(project));
     parts.push(this.renderNotes(project));
-    parts.push(this.renderProbes(project));
+    parts.push(this.renderProbes(project, network.widths));
     if (this.wireDraft) {
       const start = this.position(this.wireDraft.start);
       if (start && this.pointer) {
@@ -232,12 +249,12 @@ export class SchematicEditor {
         parts.push(`<path class="draft-wire" d="${pathD(route)}"/>`);
       }
     }
-    if (this.snapTarget) parts.push(`<circle class="snap-ring" cx="${this.snapTarget.point.x}" cy="${this.snapTarget.point.y}" r="10"/>`);
+    if (this.snapTarget) parts.push(`<circle class="snap-ring${this.snapTarget.compatible === false ? ' snap-invalid' : ''}" cx="${this.snapTarget.point.x}" cy="${this.snapTarget.point.y}" r="10"/>`);
     if (this.drag?.kind === 'box' && this.drag.box) {
       const b = this.drag.box;
       parts.push(`<rect class="select-box" x="${b.x}" y="${b.y}" width="${b.width}" height="${b.height}"/>`);
     }
-    if (this.mode === 'place' && this.placeType && this.pointer) parts.push(`<g class="placement-ghost symbol-art" transform="translate(${snap(this.pointer.x)} ${snap(this.pointer.y)})">${symbolMarkup(this.placeType)}</g>`);
+    if (this.mode === 'place' && this.placeType && this.pointer) parts.push(`<g class="placement-ghost symbol-art" transform="translate(${snap(this.pointer.x)} ${snap(this.pointer.y)})">${symbolMarkup(this.placeType, getPart(this.placeType).defaults)}</g>`);
     if (!project.circuit.components.length && !project.circuit.connections.length && !project.layout.annotations?.length && this.mode === 'select') {
       const x = this.view.x + this.view.width / 2, y = this.view.y + this.view.height / 2;
       parts.push(`<text class="workspace-message-title" x="${x}" y="${y - 32}">Your next circuit starts here</text><text class="workspace-message" x="${x}" y="${y}">Choose a part from the drawer, or open a worked example.</text><text class="workspace-message" x="${x}" y="${y + 26}">Place → wire → run → measure</text>`);
@@ -247,12 +264,17 @@ export class SchematicEditor {
     if (focusKey && !this.drag) [...this.svg.querySelectorAll('[data-focus-key]')].find(el => el.dataset.focusKey === focusKey)?.focus({ preventScroll: true });
   }
 
-  renderWires(project) {
+  renderWires(project, network = networkView(project)) {
     return project.circuit.connections.map(connection => {
       const points = wirePolyline(project, connection);
       if (points.length < 2) return '';
       const selected = this.selection.has(connection.id), d = pathD(points);
-      let html = `<g data-item="${escapeXML(connection.id)}" data-wire="${escapeXML(connection.id)}"><path class="wire${selected ? ' selected-wire' : ''}" d="${d}"/><path class="wire-hit" d="${d}" tabindex="0" role="button" data-focus-key="wire-${escapeXML(connection.id)}" aria-label="Wire ${escapeXML(connection.a)} to ${escapeXML(connection.b)}. Delete removes it; Enter selects it."/></g>`;
+      const domain = network.domains[connection.a], width = network.widths[connection.a], conflict = network.conflicts[connection.a];
+      let html = `<g data-item="${escapeXML(connection.id)}" data-wire="${escapeXML(connection.id)}"><path class="wire${domain ? ' wire-' + domain : ''}${width > 1 ? ' wire-bus' : ''}${conflict ? ' wire-width-conflict' : ''}${selected ? ' selected-wire' : ''}" d="${d}"/><path class="wire-hit" d="${d}" tabindex="0" role="button" data-focus-key="wire-${escapeXML(connection.id)}" aria-label="${escapeXML(domain || 'Unassigned')} ${width > 1 ? width + '-bit bus' : 'wire'}${conflict ? ' with conflicting widths' : ''} ${escapeXML(connection.a)} to ${escapeXML(connection.b)}. Delete removes it; Enter selects it."/></g>`;
+      if (width > 1) {
+        const longest = points.slice(1).map((point, index) => ({ a: points[index], b: point, length: dist(points[index], point) })).sort((a,b) => b.length-a.length)[0];
+        if (longest?.length >= 40) { const x = (longest.a.x+longest.b.x)/2, y = (longest.a.y+longest.b.y)/2; html += `<g class="bus-width-marker" aria-hidden="true"><path d="M${x-4} ${y+5}L${x+4} ${y-5}"/><text x="${x+8}" y="${y-7}">${width}</text></g>`; }
+      }
       if (selected && this.mode === 'select') {
         const handles = project.layout.wires?.[connection.id]?.points || [];
         html += handles.map((point, index) => `<rect class="wire-handle" x="${point.x - 5}" y="${point.y - 5}" width="10" height="10" data-handle="${index}" data-wire="${escapeXML(connection.id)}" data-item="${escapeXML(connection.id)}" tabindex="0" role="button" data-focus-key="handle-${escapeXML(connection.id)}-${index}" aria-label="Wire bend ${index + 1}. Arrow keys move; Delete removes bend."/>`).join('');
@@ -262,30 +284,55 @@ export class SchematicEditor {
   }
 
   renderComponents(project, nets) {
+    const displays = this.callbacks.getDisplayStates?.(project) ?? {};
     return project.circuit.components.map(component => {
       const part = getPart(component.type), l = project.layout.components[component.id];
       if (!part || !l) return '';
-      const pins = part.pins || [];
+      const pins = getPins(component);
       const selected = this.selection.has(component.id);
       const rotatedVertical = Math.abs((l.rotation || 0) % 180) === 90;
-      const value = this.componentValue(component, part);
-      const labelX = component.type === 'V' || component.type === 'I' || component.type === 'GND' || rotatedVertical ? l.x + 57 : l.x;
-      const labelY = component.type === 'V' || component.type === 'I' || component.type === 'GND' || rotatedVertical ? l.y - 6 : l.y - 39;
-      let html = `<g class="component${selected ? ' selected' : ''}" data-item="${escapeXML(component.id)}" data-component="${escapeXML(component.id)}" role="button" tabindex="0" data-focus-key="component-${escapeXML(component.id)}" aria-label="${escapeXML(component.ref)} ${escapeXML(part.name)} ${escapeXML(value)}. Arrow keys move; R rotates; M mirrors; Enter selects."><g transform="${componentTransform(l)}"><rect class="component-hit" x="-48" y="-48" width="96" height="96"/><g class="symbol-art">${symbolMarkup(component.type)}</g></g><text class="component-label" x="${labelX}" y="${labelY}">${escapeXML(component.ref)}</text>${value ? `<text class="component-value" x="${labelX}" y="${labelY + 17}">${escapeXML(value)}</text>` : ''}</g>`;
+      const display = displays[component.id];
+      const value = this.componentValue(component, part, display);
+      const hasLogic = pins.some(pin => pin.domain === 'digital');
+      const sideLabel = !hasLogic && (component.type === 'V' || component.type === 'I' || component.type === 'GND' || rotatedVertical);
+      const labelX = sideLabel ? l.x + 57 : l.x;
+      const labelY = sideLabel ? l.y - 6 : l.y - (hasLogic ? rotatedVertical ? 72 : 56 : 39);
+      let html = `<g class="component${selected ? ' selected' : ''}" data-item="${escapeXML(component.id)}" data-component="${escapeXML(component.id)}" role="button" tabindex="0" data-focus-key="component-${escapeXML(component.id)}" aria-label="${escapeXML(component.ref)} ${escapeXML(part.name)} ${escapeXML(value)}. Arrow keys move; R rotates; M mirrors; Enter selects."><g transform="${componentTransform(l)}"><rect class="component-hit" x="-48" y="-48" width="96" height="96"/><g class="symbol-art">${symbolMarkup(component.type, component.params, display)}</g></g><text class="component-label" x="${labelX}" y="${labelY}">${escapeXML(component.ref)}</text>${value ? `<text class="component-value" x="${labelX}" y="${labelY + 17}">${escapeXML(value)}</text>` : ''}</g>`;
       html += pins.map(pin => {
         const ep = `${component.id}:${pin.id}`;
         let point;
         try { point = endpointPosition(project, ep); } catch { return ''; }
         if (!safePoint(point)) return '';
-        return `<g data-endpoint="${escapeXML(ep)}"><circle class="pin-hit" cx="${point.x}" cy="${point.y}" r="10"/><circle class="pin" cx="${point.x}" cy="${point.y}" r="3.8" role="button" tabindex="0" data-focus-key="pin-${escapeXML(ep)}" aria-label="${escapeXML(component.ref)} ${escapeXML(pin.name || pin.id)} pin, net ${escapeXML(nets[ep] ?? 'unconnected')}. Enter connects in Wire mode or measures voltage."><title>${escapeXML(component.ref)} · ${escapeXML(pin.name || pin.id)} · ${escapeXML(nets[ep] ?? 'unconnected')}</title></circle><text class="pin-name" x="${point.x + 7}" y="${point.y - 7}">${escapeXML(pin.name || pin.id)}</text></g>`;
+        const digital = pin.domain === 'digital', bus = digital && pin.width > 1, radius = bus ? 4.8 : 3.8, tag = digital ? 'rect' : 'circle', geometry = digital ? `x="${point.x - radius}" y="${point.y - radius}" width="${radius*2}" height="${radius*2}"` : `cx="${point.x}" cy="${point.y}" r="3.8"`;
+        const pinDescription = `${bus ? pin.width + '-bit ' : ''}${digital ? 'digital' : 'analog'} ${pin.direction || 'passive'}`;
+        const leftPin = point.x < l.x-20, horizontalPin = Math.abs(point.x-l.x)>20, range = bus ? `<text class="pin-width" x="${point.x+(leftPin?-9:9)}" y="${point.y+(horizontalPin?-8:4)}" text-anchor="${leftPin?'end':'start'}">[${pin.width-1}:0]</text>` : '';
+        return `<g data-endpoint="${escapeXML(ep)}"><circle class="pin-hit" cx="${point.x}" cy="${point.y}" r="10"/><${tag} class="pin${digital ? ' pin-digital' : ''}${bus ? ' pin-bus' : ''}" ${geometry} role="button" tabindex="0" data-focus-key="pin-${escapeXML(ep)}" aria-label="${escapeXML(component.ref)} ${escapeXML(pin.name || pin.id)} ${pinDescription} pin, net ${escapeXML(nets[ep] ?? 'unconnected')}. Enter connects in Wire mode or measures ${bus ? 'bus word' : digital ? 'logic state' : 'voltage'}."><title>${escapeXML(component.ref)} · ${escapeXML(pin.name || pin.id)} · ${pinDescription} · ${escapeXML(nets[ep] ?? 'unconnected')}</title></${tag}>${range}${bus ? '' : `<text class="pin-name" x="${point.x + 7}" y="${point.y - 7}">${escapeXML(pin.name || pin.id)}</text>`}</g>`;
       }).join('');
       return html;
     }).join('');
   }
 
-  componentValue(component, part) {
+  componentValue(component, part, displayState = null) {
     const params = component.params || {};
     if (component.type === 'GND') return '';
+    if (component.type === 'SEG7') return displayState?.available ? `${displayState.glyph} · ${displayState.word}` : `8 segments · ${params.active ?? 'high'} active`;
+    if (component.type === 'HEX7') return `${String(params.mode ?? 'hex').toUpperCase()} · ${params.active ?? 'high'} active`;
+    if (component.type === 'DIN') return `State ${params.state ?? '0'}`;
+    if (component.type === 'BUSIN') { let word; try { word = parseLogicWord(params.value, params.width); } catch { word = String(params.value).slice(0,12); } return `${params.width}-bit · ${word}`; }
+    if (component.type === 'PATTERN') return `${params.width}-bit pattern`;
+    if (component.type === 'SLICE') return Number(params.count) === 1 ? `bit [${params.lsb}]` : `bits [${Number(params.lsb)+Number(params.count)-1}:${params.lsb}]`;
+    if (component.type === 'JOIN') return `B:A · ${Number(params.aWidth)+Number(params.bWidth)} bits`;
+    if (['REGISTER','COUNTER'].includes(component.type)) return `${params.width}-bit · init ${String(params.initial).slice(0,10)}`;
+    if (component.type === 'MUX') return `${params.width}-bit mux`;
+    if (component.type === 'DECODER') return `${params.inputBits} → ${2**Number(params.inputBits)} bits`;
+    if (component.type === 'LUT') return `${params.inputBits} → ${params.outputBits} bits`;
+    if (component.type === 'CLOCK') return `${params.period} s · ${params.duty}%`;
+    if (component.type === 'DFF') return `DFF · starts ${params.initial ?? 'X'}`;
+    if (component.type === 'ADCBUS') return `${params.width}-bit · ${params.vmin} / ${params.vmax} V`;
+    if (component.type === 'DACBUS') return `${params.width}-bit · ${params.low} / ${params.high} V`;
+    if (component.type === 'ADC') return `${params.low} / ${params.high} V${params.mode === 'schmitt' ? ' · Schmitt' : ''}`;
+    if (component.type === 'DAC') return `${params.low} / ${params.high} V`;
+    if (part.pins?.some(pin => pin.domain === 'digital')) return params.delay && params.delay !== '0' ? `delay ${params.delay} s` : '';
     if (['V', 'I'].includes(component.type)) {
       const waveform = params.waveform || params.mode || 'DC';
       if (String(waveform).toUpperCase() !== 'DC') return String(waveform).toUpperCase();
@@ -296,12 +343,13 @@ export class SchematicEditor {
     return '';
   }
 
-  renderJunctions(project, nets) {
+  renderJunctions(project, nets, network = networkView(project)) {
     return project.circuit.junctions.map(junction => {
       const point = project.layout.junctions[junction.id];
       if (!safePoint(point)) return '';
       const ep = `j:${junction.id}`;
-      return `<g class="junction${this.selection.has(junction.id) ? ' selected' : ''}" data-item="${escapeXML(junction.id)}" data-endpoint="${escapeXML(ep)}" role="button" tabindex="0" data-focus-key="junction-${escapeXML(junction.id)}" aria-label="Junction, net ${escapeXML(nets[ep] ?? 'unconnected')}. Enter measures or connects."><circle class="junction-focus" cx="${point.x}" cy="${point.y}" r="11"/><circle class="junction-dot" cx="${point.x}" cy="${point.y}" r="5"/></g>`;
+      const domain = network.domains[ep], width = network.widths[ep], conflict = network.conflicts[ep], radius = width > 1 ? 6 : 4.5, dot = domain === 'digital' ? `<rect class="junction-dot junction-digital${conflict?' junction-width-conflict':''}" x="${point.x - radius}" y="${point.y - radius}" width="${radius*2}" height="${radius*2}"/>` : `<circle class="junction-dot${domain === 'mixed' ? ' junction-mixed' : ''}" cx="${point.x}" cy="${point.y}" r="5"/>`;
+      return `<g class="junction${this.selection.has(junction.id) ? ' selected' : ''}" data-item="${escapeXML(junction.id)}" data-endpoint="${escapeXML(ep)}" role="button" tabindex="0" data-focus-key="junction-${escapeXML(junction.id)}" aria-label="${escapeXML(domain || 'Unassigned')} ${width > 1 ? width+'-bit bus ' : ''}junction${conflict?' with conflicting widths':''}, net ${escapeXML(nets[ep] ?? 'unconnected')}. Enter measures or connects."><circle class="junction-focus" cx="${point.x}" cy="${point.y}" r="11"/>${dot}</g>`;
     }).join('');
   }
 
@@ -319,12 +367,12 @@ export class SchematicEditor {
     }).join('');
   }
 
-  renderProbes(project) {
+  renderProbes(project, widths = networkView(project).widths) {
     return (project.probes || []).filter(p => p.a && p.kind !== 'current').map((probe, i) => {
       let pos;
       try { pos = endpointPosition(project, probe.a); } catch { return ''; }
       if (!safePoint(pos)) return '';
-      return `<g><path class="probe-marker" d="M${pos.x + 8} ${pos.y - 16}h22v17h-14l-8 8Z"/><text x="${pos.x + 19}" y="${pos.y - 4}" text-anchor="middle" fill="var(--canvas,#121a18)" font-family="system-ui,sans-serif" font-size="10" font-weight="700" pointer-events="none">${i + 1}</text></g>`;
+      return `<g><title>${probe.kind === 'logic' ? widths[probe.a] > 1 ? widths[probe.a]+'-bit bus' : 'Logic' : 'Voltage'} probe ${i + 1}</title><path class="probe-marker${probe.kind === 'logic' ? ' probe-logic' : ''}" d="M${pos.x + 8} ${pos.y - 16}h22v17h-14l-8 8Z"/><text x="${pos.x + 19}" y="${pos.y - 4}" text-anchor="middle" fill="var(--canvas,#121a18)" font-family="system-ui,sans-serif" font-size="10" font-weight="700" pointer-events="none">${i + 1}</text></g>`;
     }).join('');
   }
 
@@ -346,7 +394,7 @@ export class SchematicEditor {
     const project = this.displayProject;
     let best = null, limit = 13 / this.pixelScale();
     for (const component of project.circuit.components) {
-      for (const pin of getPart(component.type)?.pins || []) {
+      for (const pin of getPins(component)) {
         const ep = `${component.id}:${pin.id}`, at = this.position(ep);
         if (!safePoint(at)) continue;
         const d = dist(point, at);
@@ -359,6 +407,7 @@ export class SchematicEditor {
       const d = dist(point, at);
       if (d < limit && (!best || d < best.distance)) best = { endpoint: ep, point: at, distance: d };
     }
+    if (best && this.mode === 'wire' && this.wireDraft) { const check = canConnect(project, this.wireDraft.start, best.endpoint); best.compatible = check.ok; best.message = check.message; }
     return best;
   }
 
@@ -389,7 +438,12 @@ export class SchematicEditor {
     if (this.mode === 'wire') {
       event.preventDefault();
       let target = endpoint;
-      if (!target && wireId) target = this.addJunctionAt(point.x, point.y, wireId);
+      if (!target && wireId) {
+        const wire = this.project.circuit.connections.find(w => w.id === wireId);
+        if (wire && this.wireDraft && wire.a !== this.wireDraft.start) { const check = canConnect(this.project, this.wireDraft.start, wire.a); if (!check.ok) { this.status(check.message); this.focus(); return; } }
+        target = this.addJunctionAt(point.x, point.y, wireId);
+        if (!target) return;
+      }
       if (target) this.activateWireEndpoint(target);
       else if (this.wireDraft) {
         const p = { x: snap(point.x), y: snap(point.y) };
@@ -418,7 +472,7 @@ export class SchematicEditor {
       let target = endpoint;
       if (!target && wireId) target = this.project.circuit.connections.find(w => w.id === wireId)?.a;
       if (target) this.measure(target, event.shiftKey);
-      else this.status('Click a pin, junction, or wire to measure its voltage.');
+      else this.status('Click a pin, junction, or wire to measure voltage or logic state.');
       return;
     }
     // Select mode keeps pin clicks useful without changing connectivity.
@@ -458,7 +512,9 @@ export class SchematicEditor {
     const point = this.world(event);
     this.pointer = point;
     if (!this.drag) {
+      const previous = this.snapTarget;
       this.snapTarget = ['wire', 'label', 'probe', 'junction'].includes(this.mode) ? this.findSnap(point) : null;
+      if (this.snapTarget && this.mode === 'wire' && (previous?.endpoint !== this.snapTarget.endpoint || previous?.compatible !== this.snapTarget.compatible)) this.status(this.snapTarget.compatible === false ? this.snapTarget.message : 'Pin snapped. Click to connect; digital nets must have matching widths.');
       if (this.wireDraft || this.mode === 'place' || this.snapTarget || ['wire', 'probe', 'label'].includes(this.mode)) this.render();
       return;
     }
@@ -538,14 +594,15 @@ export class SchematicEditor {
       this.status('Choose a different destination pin. Escape cancels this wire.');
     } else {
       const connected = this.connectEndpoints(this.wireDraft.start, endpoint, this.wireDraft.points);
-      this.wireDraft = null;
-      if (connected) this.status('Wire connected to both pins. Click a pin to start another.');
+      if (connected) { this.wireDraft = null; this.status('Wire connected to both pins. Click a pin to start another.'); }
     }
     this.render();
   }
 
   connectEndpoints(a, b, points = []) {
     if (!a || !b || a === b || !this.position(a) || !this.position(b)) { this.status('Choose two distinct, existing pins or junctions.'); return null; }
+    const check = canConnect(this.project, a, b);
+    if (!check.ok) { this.status(check.message); return null; }
     const exists = this.project.circuit.connections.find(w => (w.a === a && w.b === b) || (w.a === b && w.b === a));
     if (exists) { this.status('These endpoints already have a wire.'); return exists.id; }
     const id = uid('wire');
@@ -584,6 +641,10 @@ export class SchematicEditor {
     const junctionId = old?.id || uid('junction');
     const endpoint = `j:${junctionId}`;
     const affected = project.circuit.connections.filter(w => !onlyWireId || w.id === onlyWireId).map(w => ({ wire: w, points: wirePolyline(project, w) })).map(w => ({ ...w, nearest: nearestSegment(at, w.points) })).filter(w => w.nearest && w.nearest.distance < .1);
+    const network = networkView(project), domains = network.domains, joining = [...affected.map(w => w.wire.a), ...(old ? [endpoint] : [])], joinedDomains = new Set(joining.map(ep => domains[ep]).filter(Boolean));
+    if (joinedDomains.has('mixed') || joinedDomains.size > 1) { this.status('This crossing contains analog and digital nets. Use an explicit ADC or DAC bridge; a junction cannot convert signals.'); return null; }
+    const joinedWidths = new Set(joining.map(ep => network.widths[ep]).filter(width => width != null));
+    if (joinedWidths.size > 1 || joining.some(ep => network.conflicts[ep])) { this.status('This crossing has different digital widths. Use explicit SLICE or JOIN parts; a junction cannot resize a bus.'); return null; }
     if (old && affected.every(w => w.wire.a === endpoint || w.wire.b === endpoint)) return endpoint;
     this.change(p => {
       if (!old) { p.circuit.junctions.push({ id: junctionId }); p.layout.junctions[junctionId] = { x: at.x, y: at.y }; }
@@ -612,8 +673,18 @@ export class SchematicEditor {
     const name = window.prompt('Net label (equal labels connect electrically)', 'out');
     if (name === null || !name.trim()) return;
     if (!/^(?:0|[A-Za-z_][A-Za-z0-9_]{0,31})$/.test(name.trim())) { this.status('Use a letter or underscore first, then letters, digits, or underscores (up to 32 characters), or 0 for ground.'); return; }
+    if (!this.labelAllowed(endpoint, name.trim())) return;
     this.change(p => { p.circuit.labels.push({ id: uid('label'), name: name.trim(), target: endpoint }); }, 'Add net label');
     this.status(`Net labeled ${name.trim()}. Equal labels are electrically joined.`);
+  }
+
+  labelAllowed(endpoint, name, replacedId = null) {
+    const candidate = clone(this.project);
+    candidate.circuit.labels = candidate.circuit.labels.filter(label => label.id !== replacedId);
+    candidate.circuit.labels.push({ id: '__proposed_label__', target: endpoint, name });
+    if (getEndpointDomain(candidate, endpoint) === 'mixed') { this.status('This label would join analog and digital nets. Use an explicit ADC or DAC bridge; 0 names analog ground.'); return false; }
+    if (networkView(candidate).conflicts[endpoint]) { this.status('This label would join different digital widths. Use explicit SLICE or JOIN parts; equal names do not resize a bus.'); return false; }
+    return true;
   }
 
   addNote(x, y) {
@@ -623,13 +694,18 @@ export class SchematicEditor {
   }
 
   measure(endpoint, differential) {
+    const domain = getEndpointDomain(this.project, endpoint);
+    const network = networkView(this.project);
+    if (network.conflicts[endpoint]) { this.status('This net has conflicting bit widths. Repair its connections with matching widths or explicit SLICE/JOIN parts before probing.'); return; }
+    if (domain === 'mixed') { this.status('This net mixes analog and digital pins. Repair its connections using explicit ADC or DAC bridges before probing.'); return; }
+    if (differential && (domain === 'digital' || this.probeAnchor && getEndpointDomain(this.project, this.probeAnchor) === 'digital')) { this.status('Differential voltage needs two analog pins. Probe digital pins individually for logic state.'); return; }
     if (differential && this.probeAnchor && this.probeAnchor !== endpoint) {
       this.callbacks.onProbe?.(this.probeAnchor, endpoint);
       this.status('Differential voltage probe added: first node minus second node.');
     } else {
       this.callbacks.onProbe?.(endpoint);
       this.probeAnchor = endpoint;
-      this.status('Voltage probe added. Shift-click a second pin to measure the voltage difference.');
+      this.status(domain === 'digital' ? network.widths[endpoint] > 1 ? `${network.widths[endpoint]}-bit bus probe added. Words are MSB first, with bit 0 at right; X/Z remain explicit.` : 'Logic probe added. States are 0, 1, X (unknown), or Z (high impedance).' : 'Voltage probe added. Shift-click a second analog pin to measure the voltage difference.');
     }
     this.render();
   }
@@ -767,6 +843,7 @@ export class SchematicEditor {
     const name = window.prompt('Edit net label (equal labels connect electrically)', label.name);
     if (name === null) return;
     if (!/^(?:0|[A-Za-z_][A-Za-z0-9_]{0,31})$/.test(name.trim())) { this.status('Use a valid net name: letter/underscore first, then letters, digits, underscores; 0 names ground.'); return; }
+    if (!this.labelAllowed(label.target, name.trim(), id)) return;
     this.change(p => { p.circuit.labels.find(l => l.id === id).name = name.trim(); }, 'Edit net label');
   }
 
@@ -871,7 +948,8 @@ export class SchematicEditor {
     const oldSelection = this.selection;
     this.selection = new Set();
     let body;
-    try { body = this.renderWires(p) + this.renderComponents(p, {}) + this.renderJunctions(p, {}) + this.renderLabels(p) + this.renderNotes(p) + this.renderProbes(p); }
+    const network = networkView(p), { nets } = network;
+    try { body = this.renderWires(p, network) + this.renderComponents(p, nets) + this.renderJunctions(p, nets, network) + this.renderLabels(p) + this.renderNotes(p) + this.renderProbes(p, network.widths); }
     finally { this.selection = oldSelection; }
     // SVG consumers include print renderers and vector editors that do not
     // implement CSS custom properties. Export a literal, independent palette.
@@ -879,13 +957,17 @@ export class SchematicEditor {
       .symbol-art{fill:none;stroke:#18271f;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
       .symbol-arrow{fill:#18271f;stroke-width:1}.symbol-type,.pin-sign{fill:#18271f;stroke:none;font:12px sans-serif;text-anchor:middle}
       .wire{fill:none;stroke:#315f49;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+      .wire-digital{stroke:#315e8c}.wire-bus{stroke-width:3.6}.wire-mixed,.wire-width-conflict{stroke:#a82739;stroke-dasharray:5 3}
+      .bus-width-marker path{stroke:#315e8c;stroke-width:1.8}.bus-width-marker text{fill:#315e8c;font:600 10px monospace}
       .component-label{fill:#18271f;font:600 13px sans-serif;text-anchor:middle}.component-value{fill:#425a4c;font:12px monospace;text-anchor:middle}
       .pin{fill:#ffffff;stroke:#315f49;stroke-width:1.7}.junction-dot{fill:#315f49;stroke:#ffffff;stroke-width:1}
+      .pin-digital{stroke:#315e8c}.pin-bus{stroke-width:2.4}.pin-width{fill:#315e8c;font:600 9px monospace}.junction-digital{fill:#315e8c}.junction-mixed,.junction-width-conflict{fill:#a82739}
       .net-label{fill:#2c702e;font:600 12px monospace}.annotation text{fill:#425a4c;font:13px sans-serif}.annotation rect{fill:#ffffff;stroke:none}
       .probe-marker{fill:#2c702e;stroke:#ffffff;stroke-width:1}
+      .probe-logic{fill:#315e8c}
       .pin-hit,.wire-hit,.component-hit,.junction-focus,.pin-name{display:none}
     `;
     body = body.replaceAll('var(--canvas,#121a18)', '#ffffff');
-    return `<svg xmlns="${NS}" viewBox="${b.x} ${b.y} ${b.width} ${b.height}" width="${Math.ceil(b.width)}" height="${Math.ceil(b.height)}" role="img" aria-label="${escapeXML(p.title)} schematic"><title>${escapeXML(p.title)}</title><desc>Exported from CircuitBench. Junction dots indicate connected wire crossings.</desc><style>${exportStyle}</style><rect x="${b.x}" y="${b.y}" width="${b.width}" height="${b.height}" fill="#ffffff"/>${body}</svg>`;
+    return `<svg xmlns="${NS}" viewBox="${b.x} ${b.y} ${b.width} ${b.height}" width="${Math.ceil(b.width)}" height="${Math.ceil(b.height)}" role="img" aria-label="${escapeXML(p.title)} schematic"><title>${escapeXML(p.title)}</title><desc>Exported from CircuitBench. Junction dots indicate connected wire crossings. Square pins are digital; round pins are analog. Heavier digital wires and slash-number marks identify bus widths; bit ranges are MSB:LSB. ADC and DAC symbols mark explicit domain bridges.</desc><style>${exportStyle}</style><rect x="${b.x}" y="${b.y}" width="${b.width}" height="${b.height}" fill="#ffffff"/>${body}</svg>`;
   }
 }

@@ -1,0 +1,9 @@
+Generic NPN
+V1 supply 0 5
+VB bias 0 1
+RB bias base 10000
+RC supply out 1000
+Q1 out base 0 CBN
+.model CBN NPN(Is=1e-14 Bf=100 Vaf=100)
+.op
+.end

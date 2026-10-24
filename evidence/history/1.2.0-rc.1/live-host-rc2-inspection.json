@@ -1,0 +1,413 @@
+{
+  "schemaVersion": 1,
+  "application": "CircuitBench",
+  "deployedVersion": "1.0.0-rc.2",
+  "deployedBuild": "57b191103609fd22",
+  "reviewedAt": "2026-10-24T05:33:59Z",
+  "site": "https://greenshoegarage.com/projects/circuitbench2/",
+  "methods": [
+    "Read-only HTTP GET headers and decoded-byte comparison against the delivered rc.2 distribution.",
+    "Actual Chrome UI: open supplied site, load RC example, Run, inspect diagnostics, reload, Run again.",
+    "Actual Chrome navigation to supplied repair.html, observing the final URL and rendered 404."
+  ],
+  "responses": [
+    {
+      "name": "engine/eecircuit-engine.js",
+      "url": "https://greenshoegarage.com/projects/circuitbench2/engine/eecircuit-engine.js",
+      "final_url": "https://greenshoegarage.com/projects/circuitbench2/engine/eecircuit-engine.js",
+      "status": 200,
+      "bytes": 78294,
+      "sha256": "97f14b3da89a2e3f16a73e9eab9eba2e503b02548cfa788bcf9d330a6a9021c6",
+      "local_bytes": 78294,
+      "local_sha256": "97f14b3da89a2e3f16a73e9eab9eba2e503b02548cfa788bcf9d330a6a9021c6",
+      "matches_local": true,
+      "headers": {
+        "date": "Sat, 24 Oct 2026 05:28:56 GMT",
+        "content-type": "application/javascript",
+        "cache-control": "public, max-age=604800",
+        "age": "135",
+        "cf-cache-status": "HIT"
+      }
+    },
+    {
+      "name": "engine/spice.wasm",
+      "url": "https://greenshoegarage.com/projects/circuitbench2/engine/spice.wasm",
+      "final_url": "https://greenshoegarage.com/projects/circuitbench2/engine/spice.wasm",
+      "status": 200,
+      "bytes": 6133055,
+      "sha256": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4",
+      "local_bytes": 6133055,
+      "local_sha256": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4",
+      "matches_local": true,
+      "headers": {
+        "date": "Sat, 24 Oct 2026 05:28:56 GMT",
+        "content-type": "application/octet-stream",
+        "cf-cache-status": "DYNAMIC"
+      }
+    },
+    {
+      "name": "icon.svg",
+      "url": "https://greenshoegarage.com/projects/circuitbench2/icon.svg",
+      "final_url": "https://greenshoegarage.com/projects/circuitbench2/icon.svg",
+      "status": 200,
+      "bytes": 443,
+      "sha256": "64019d8a493c11c1bb52aa59bf8215ee3cfb818fb66619ae3537db663c9f116b",
+      "local_bytes": 443,
+      "local_sha256": "64019d8a493c11c1bb52aa59bf8215ee3cfb818fb66619ae3537db663c9f116b",
+      "matches_local": true,
+      "headers": {
+        "date": "Sat, 24 Oct 2026 05:28:56 GMT",
+        "content-type": "image/svg+xml",
+        "cache-control": "public, max-age=604800",
+        "age": "136",
+        "cf-cache-status": "HIT"
+      }
+    },
+    {
+      "name": "index.html",
+      "url": "https://greenshoegarage.com/projects/circuitbench2/index.html",
+      "final_url": "https://greenshoegarage.com/projects/circuitbench2/index/",
+      "status": 404,
+      "bytes": 7218,
+      "sha256": "f9b2ce5187b32157736ea1ad1cdfebe8dc405ac290b7a389e39fedd8de36d2e7",
+      "local_bytes": 10840,
+      "local_sha256": "4530cd6a16dc8d57f6006497a8686fba906b0b045cdedef7301a85fc188ceb2e",
+      "matches_local": false,
+      "headers": {
+        "date": "Sat, 24 Oct 2026 05:28:56 GMT",
+        "content-type": "text/html",
+        "cf-cache-status": "DYNAMIC"
+      }
+    },
+    {
+      "name": "manifest.webmanifest",
+      "url": "https://greenshoegarage.com/projects/circuitbench2/manifest.webmanifest",
+      "final_url": "https://greenshoegarage.com/projects/circuitbench2/manifest.webmanifest",
+      "status": 200,
+      "bytes": 298,
+      "sha256": "30714b8837a966ec1717e9048b4a8d47a7dc084c05d356f28d89839e6abfe7b1",
+      "local_bytes": 298,
+      "local_sha256": "30714b8837a966ec1717e9048b4a8d47a7dc084c05d356f28d89839e6abfe7b1",
+      "matches_local": true,
+      "headers": {
+        "date": "Sat, 24 Oct 2026 05:28:56 GMT",
+        "content-type": "application/octet-stream",
+        "cf-cache-status": "DYNAMIC"
+      }
+    },
+    {
+      "name": "src/app.js",
+      "url": "https://greenshoegarage.com/projects/circuitbench2/src/app.js",
+      "final_url": "https://greenshoegarage.com/projects/circuitbench2/src/app.js",
+      "status": 200,
+      "bytes": 46241,
+      "sha256": "01fc144464a8ce10c91a690e834940fa83a2d7ffd60881c8113abd108ebe8962",
+      "local_bytes": 46241,
+      "local_sha256": "01fc144464a8ce10c91a690e834940fa83a2d7ffd60881c8113abd108ebe8962",
+      "matches_local": true,
+      "headers": {
+        "date": "Sat, 24 Oct 2026 05:28:56 GMT",
+        "content-type": "application/javascript",
+        "cache-control": "public, max-age=604800",
+        "age": "134",
+        "cf-cache-status": "HIT"
+      }
+    },
+    {
+      "name": "src/editor.js",
+      "url": "https://greenshoegarage.com/projects/circuitbench2/src/editor.js",
+      "final_url": "https://greenshoegarage.com/projects/circuitbench2/src/editor.js",
+      "status": 200,
+      "bytes": 53661,
+      "sha256": "42db28eeafdf7f734ff438cdbd44ab19dd8ffd8bb56dc9da3fd2e86e9ee9e582",
+      "local_bytes": 53661,
+      "local_sha256": "42db28eeafdf7f734ff438cdbd44ab19dd8ffd8bb56dc9da3fd2e86e9ee9e582",
+      "matches_local": true,
+      "headers": {
+        "date": "Sat, 24 Oct 2026 05:28:56 GMT",
+        "content-type": "application/javascript",
+        "cache-control": "public, max-age=604800",
+        "age": "101",
+        "cf-cache-status": "HIT"
+      }
+    },
+    {
+      "name": "src/engine-worker.js",
+      "url": "https://greenshoegarage.com/projects/circuitbench2/src/engine-worker.js",
+      "final_url": "https://greenshoegarage.com/projects/circuitbench2/src/engine-worker.js",
+      "status": 200,
+      "bytes": 9080,
+      "sha256": "45e7221977b242c7bebb43cedd9271d1602617ee81aba9c088a30e9a773a76cf",
+      "local_bytes": 9080,
+      "local_sha256": "45e7221977b242c7bebb43cedd9271d1602617ee81aba9c088a30e9a773a76cf",
+      "matches_local": true,
+      "headers": {
+        "date": "Sat, 24 Oct 2026 05:28:56 GMT",
+        "content-type": "application/javascript",
+        "cache-control": "public, max-age=604800",
+        "age": "128",
+        "cf-cache-status": "HIT"
+      }
+    },
+    {
+      "name": "src/engine.js",
+      "url": "https://greenshoegarage.com/projects/circuitbench2/src/engine.js",
+      "final_url": "https://greenshoegarage.com/projects/circuitbench2/src/engine.js",
+      "status": 200,
+      "bytes": 4055,
+      "sha256": "ef189f87a12d349c5e788a7c451e5628a8bc964814d35153d1ac925814dbdc1b",
+      "local_bytes": 4055,
+      "local_sha256": "ef189f87a12d349c5e788a7c451e5628a8bc964814d35153d1ac925814dbdc1b",
+      "matches_local": true,
+      "headers": {
+        "date": "Sat, 24 Oct 2026 05:28:56 GMT",
+        "content-type": "application/javascript",
+        "cache-control": "public, max-age=604800",
+        "age": "117",
+        "cf-cache-status": "HIT"
+      }
+    },
+    {
+      "name": "src/examples.js",
+      "url": "https://greenshoegarage.com/projects/circuitbench2/src/examples.js",
+      "final_url": "https://greenshoegarage.com/projects/circuitbench2/src/examples.js",
+      "status": 200,
+      "bytes": 14488,
+      "sha256": "52f7de73d70c3acdf407c1fc10ec67beefbc9273f95285a277fe896723ad35ea",
+      "local_bytes": 14488,
+      "local_sha256": "52f7de73d70c3acdf407c1fc10ec67beefbc9273f95285a277fe896723ad35ea",
+      "matches_local": true,
+      "headers": {
+        "date": "Sat, 24 Oct 2026 05:28:56 GMT",
+        "content-type": "application/javascript",
+        "cache-control": "public, max-age=604800",
+        "cf-cache-status": "MISS"
+      }
+    },
+    {
+      "name": "src/library.js",
+      "url": "https://greenshoegarage.com/projects/circuitbench2/src/library.js",
+      "final_url": "https://greenshoegarage.com/projects/circuitbench2/src/library.js",
+      "status": 200,
+      "bytes": 10186,
+      "sha256": "ef709e24794d8708f664dc3859e02546b7d4c1e0be67a410ccf1f7148e3c48d7",
+      "local_bytes": 10186,
+      "local_sha256": "ef709e24794d8708f664dc3859e02546b7d4c1e0be67a410ccf1f7148e3c48d7",
+      "matches_local": true,
+      "headers": {
+        "date": "Sat, 24 Oct 2026 05:28:56 GMT",
+        "content-type": "application/javascript",
+        "cache-control": "public, max-age=604800",
+        "cf-cache-status": "MISS"
+      }
+    },
+    {
+      "name": "src/model.js",
+      "url": "https://greenshoegarage.com/projects/circuitbench2/src/model.js",
+      "final_url": "https://greenshoegarage.com/projects/circuitbench2/src/model.js",
+      "status": 200,
+      "bytes": 17791,
+      "sha256": "1182bf18873625b1afd8871657fbae8e2955c08539afa70338d6cc8b766da482",
+      "local_bytes": 17791,
+      "local_sha256": "1182bf18873625b1afd8871657fbae8e2955c08539afa70338d6cc8b766da482",
+      "matches_local": true,
+      "headers": {
+        "date": "Sat, 24 Oct 2026 05:28:56 GMT",
+        "content-type": "application/javascript",
+        "cache-control": "public, max-age=604800",
+        "cf-cache-status": "MISS"
+      }
+    },
+    {
+      "name": "src/netlist.js",
+      "url": "https://greenshoegarage.com/projects/circuitbench2/src/netlist.js",
+      "final_url": "https://greenshoegarage.com/projects/circuitbench2/src/netlist.js",
+      "status": 200,
+      "bytes": 22420,
+      "sha256": "2235fe17c8f9d2fe71767c695e5585637c7795adc93a831c16cefba3b22f2d4d",
+      "local_bytes": 22420,
+      "local_sha256": "2235fe17c8f9d2fe71767c695e5585637c7795adc93a831c16cefba3b22f2d4d",
+      "matches_local": true,
+      "headers": {
+        "date": "Sat, 24 Oct 2026 05:28:56 GMT",
+        "content-type": "application/javascript",
+        "cache-control": "public, max-age=604800",
+        "cf-cache-status": "MISS"
+      }
+    },
+    {
+      "name": "src/plots.js",
+      "url": "https://greenshoegarage.com/projects/circuitbench2/src/plots.js",
+      "final_url": "https://greenshoegarage.com/projects/circuitbench2/src/plots.js",
+      "status": 200,
+      "bytes": 17544,
+      "sha256": "ed1c70ab4e5f302bc984b083a433c88431091e6e8a124bded9e191a79ec48f85",
+      "local_bytes": 17544,
+      "local_sha256": "ed1c70ab4e5f302bc984b083a433c88431091e6e8a124bded9e191a79ec48f85",
+      "matches_local": true,
+      "headers": {
+        "date": "Sat, 24 Oct 2026 05:28:56 GMT",
+        "content-type": "application/javascript",
+        "cache-control": "public, max-age=604800",
+        "cf-cache-status": "MISS"
+      }
+    },
+    {
+      "name": "src/reports.js",
+      "url": "https://greenshoegarage.com/projects/circuitbench2/src/reports.js",
+      "final_url": "https://greenshoegarage.com/projects/circuitbench2/src/reports.js",
+      "status": 200,
+      "bytes": 11770,
+      "sha256": "775ea8623bc26586067dd908269d69579e791478fc8366cc2c2641c6fb83f83e",
+      "local_bytes": 11770,
+      "local_sha256": "775ea8623bc26586067dd908269d69579e791478fc8366cc2c2641c6fb83f83e",
+      "matches_local": true,
+      "headers": {
+        "date": "Sat, 24 Oct 2026 05:28:56 GMT",
+        "content-type": "application/javascript",
+        "cache-control": "public, max-age=604800",
+        "cf-cache-status": "MISS"
+      }
+    },
+    {
+      "name": "src/storage.js",
+      "url": "https://greenshoegarage.com/projects/circuitbench2/src/storage.js",
+      "final_url": "https://greenshoegarage.com/projects/circuitbench2/src/storage.js",
+      "status": 200,
+      "bytes": 7663,
+      "sha256": "10675328b3195ef7c7f428a9460afca99ac602fd04043eef989d7d8e96f4f77c",
+      "local_bytes": 7663,
+      "local_sha256": "10675328b3195ef7c7f428a9460afca99ac602fd04043eef989d7d8e96f4f77c",
+      "matches_local": true,
+      "headers": {
+        "date": "Sat, 24 Oct 2026 05:28:56 GMT",
+        "content-type": "application/javascript",
+        "cache-control": "public, max-age=604800",
+        "cf-cache-status": "MISS"
+      }
+    },
+    {
+      "name": "src/symbols.js",
+      "url": "https://greenshoegarage.com/projects/circuitbench2/src/symbols.js",
+      "final_url": "https://greenshoegarage.com/projects/circuitbench2/src/symbols.js",
+      "status": 200,
+      "bytes": 3072,
+      "sha256": "5b95904e1a806c30c585aa54995d809f5058e0a71d34047e1f887e53870a0640",
+      "local_bytes": 3072,
+      "local_sha256": "5b95904e1a806c30c585aa54995d809f5058e0a71d34047e1f887e53870a0640",
+      "matches_local": true,
+      "headers": {
+        "date": "Sat, 24 Oct 2026 05:28:56 GMT",
+        "content-type": "application/javascript",
+        "cache-control": "public, max-age=604800",
+        "cf-cache-status": "MISS"
+      }
+    },
+    {
+      "name": "style.css",
+      "url": "https://greenshoegarage.com/projects/circuitbench2/style.css",
+      "final_url": "https://greenshoegarage.com/projects/circuitbench2/style.css",
+      "status": 200,
+      "bytes": 24916,
+      "sha256": "d430c0cf29b984d6c13095f282e3414e6257cc3c10e3a435a85b21aaa79a26ab",
+      "local_bytes": 24916,
+      "local_sha256": "d430c0cf29b984d6c13095f282e3414e6257cc3c10e3a435a85b21aaa79a26ab",
+      "matches_local": true,
+      "headers": {
+        "date": "Sat, 24 Oct 2026 05:28:56 GMT",
+        "content-type": "text/css",
+        "cache-control": "public, max-age=604800",
+        "age": "136",
+        "cf-cache-status": "HIT"
+      }
+    },
+    {
+      "name": "sw.js",
+      "url": "https://greenshoegarage.com/projects/circuitbench2/sw.js",
+      "final_url": "https://greenshoegarage.com/projects/circuitbench2/sw.js",
+      "status": 200,
+      "bytes": 6478,
+      "sha256": "9b12680eb9c6e28346fd3bda46150a156ba467f6140b34ec8a00eff56a7e2bb6",
+      "local_bytes": 6478,
+      "local_sha256": "9b12680eb9c6e28346fd3bda46150a156ba467f6140b34ec8a00eff56a7e2bb6",
+      "matches_local": true,
+      "headers": {
+        "date": "Sat, 24 Oct 2026 05:28:56 GMT",
+        "content-type": "application/javascript",
+        "cache-control": "public, max-age=604800",
+        "age": "136",
+        "cf-cache-status": "HIT"
+      }
+    },
+    {
+      "name": "release-manifest.json",
+      "url": "https://greenshoegarage.com/projects/circuitbench2/release-manifest.json",
+      "final_url": "https://greenshoegarage.com/projects/circuitbench2/release-manifest.json",
+      "status": 200,
+      "bytes": 7173,
+      "sha256": "7351ad9953c8a68fc4dba9f55c873d84fbae45cf426f0f6276f1b57ebd77914d",
+      "local_bytes": 7173,
+      "local_sha256": "7351ad9953c8a68fc4dba9f55c873d84fbae45cf426f0f6276f1b57ebd77914d",
+      "matches_local": true,
+      "headers": {
+        "date": "Sat, 24 Oct 2026 05:28:56 GMT",
+        "content-type": "application/json",
+        "cf-cache-status": "DYNAMIC"
+      }
+    }
+  ],
+  "htmlRedirects": [
+    {
+      "requestedPath": "index.html",
+      "chain": [
+        {
+          "url": "https://greenshoegarage.com/projects/circuitbench2/index.html",
+          "status": 301,
+          "location": "https://greenshoegarage.com/projects/circuitbench2/index/"
+        }
+      ],
+      "finalURL": "https://greenshoegarage.com/projects/circuitbench2/index/",
+      "finalStatus": 404
+    },
+    {
+      "requestedPath": "repair.html",
+      "chain": [
+        {
+          "url": "https://greenshoegarage.com/projects/circuitbench2/repair.html",
+          "status": 301,
+          "location": "https://greenshoegarage.com/projects/circuitbench2/repair/"
+        }
+      ],
+      "finalURL": "https://greenshoegarage.com/projects/circuitbench2/repair/",
+      "finalStatus": 404
+    }
+  ],
+  "browserObservations": [
+    {
+      "workflow": "Fresh live page and reloaded page",
+      "result": "Both completed a new RC AC calculation with 501 points. ngspice reported a valid 6133055-byte WASM response with HTTP 200 and application/octet-stream."
+    },
+    {
+      "workflow": "Offline installation",
+      "result": "Footer explicitly reported Offline cache installation failed. The failure remained after reload."
+    },
+    {
+      "workflow": "Recovery URL",
+      "result": "repair.html navigated to /projects/circuitbench2/repair/ and displayed the Green Shoe Garage page-not-found screen."
+    }
+  ],
+  "findings": [
+    "The live worker and engine facade match delivered rc.2 bytes and have a JavaScript MIME type; no CSP response header was present in the inspected responses.",
+    "Executable responses advertise Cache-Control public,max-age=604800; Cloudflare HIT was observed for the worker.",
+    "Root HTML is modified by an injected Cloudflare analytics script, so exact rc.2 shell length/hash checks cannot pass.",
+    "Explicit index.html and repair.html requests redirect to directories ending in 404; the first is independently sufficient to reject the old precache install."
+  ],
+  "inference": "A stale browser or CDN worker is consistent with the reported no-message bootstrap failure. The actual failure inside the user browser was not reproduced in the clean review browser, so this is not a confirmed per-browser root cause.",
+  "resultingChanges": [
+    "Release-specific executable asset directories and service-worker filename.",
+    "Canonical offline shell embedded in service worker instead of fetching host-modified or redirected HTML.",
+    "Recovery directory entry and HTTP-cache refresh in addition to scoped CacheStorage cleanup.",
+    "Worker-ready handshake and bounded exact-response inspection on opaque bootstrap failures."
+  ],
+  "externalMutation": "None. The current hosted deployment was inspected and its example was run in the review browser; no server files or hosting settings were changed."
+}

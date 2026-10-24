@@ -1,0 +1,151 @@
+{
+  "format": "CircuitBenchBrowserValidation",
+  "appVersion": "1.3.0-rc.1",
+  "recordedAt": "2026-10-24T12:55:42.286949+00:00",
+  "runtimeBuild": "352ddfa1ccaa148b",
+  "initialIntegrationBuild": "6aa6e8b210e9aa53",
+  "browser": "Managed Chrome cloud browser",
+  "url": "http://terminal.local:4173/",
+  "secureContext": false,
+  "observations": [
+    {
+      "check": "v1.2 project recovery",
+      "status": "passed",
+      "detail": "The existing authored LUT project recovered after the 1.3 refresh; the visible app version was 1.3.0-rc.1."
+    },
+    {
+      "check": "clock propagation delay",
+      "status": "passed",
+      "measuredRows": 5,
+      "meanSeconds": 2e-08,
+      "detail": "Rising Clock to After 20 ns pairs."
+    },
+    {
+      "check": "clock period",
+      "status": "passed",
+      "measuredRows": 4,
+      "missingRows": 1,
+      "meanSeconds": 1e-07
+    },
+    {
+      "check": "clock frequency",
+      "status": "passed",
+      "measuredRows": 4,
+      "missingRows": 1,
+      "meanHertz": 10000000
+    },
+    {
+      "check": "clock duty cycle",
+      "status": "passed",
+      "measuredRows": 4,
+      "missingRows": 1,
+      "meanPercentHigh": 25
+    },
+    {
+      "check": "clock high pulse width",
+      "status": "passed",
+      "measuredRows": 5,
+      "meanSeconds": 2.5e-08
+    },
+    {
+      "check": "invalid window",
+      "status": "passed",
+      "detail": "500 ns start beyond 450 ns run end returned an actionable error and kept history at 5 records."
+    },
+    {
+      "check": "source-run removal",
+      "status": "passed",
+      "detail": "All 5 records remained readable after the source run was removed; View pair buttons were absent without that run."
+    },
+    {
+      "check": "report preview without source run",
+      "status": "passed",
+      "detail": "The report rendered a Digital timing measurements section containing all 5 metric records despite no retained full source run."
+    },
+    {
+      "check": "timing CSV download",
+      "status": "passed",
+      "artifact": "rc130-timing-duty.csv",
+      "bytes": 2801,
+      "detail": "Inspected5 rows: four 25 percent values and one missing-edge row with empty numeric value."
+    },
+    {
+      "check": "timing evidence JSON download",
+      "status": "passed",
+      "artifact": "rc130-timing-duty.json",
+      "bytes": 13676,
+      "detail": "Inspected complete snapshot,11 source events,4 measured rows and 1 missing-edge row."
+    },
+    {
+      "check": "project backup download and reopen",
+      "status": "passed",
+      "artifact": "rc130-timing-project.circuitbench.json",
+      "bytes": 102087,
+      "detail": "Downloaded 1 run + 5 timing records; reopened the exact returned browser file through Project/Open, accepted replacement, verified restored-evidence notice and reloaded again with all 5 records locally saved."
+    },
+    {
+      "check": "X/Z and unfinished pulse",
+      "status": "passed",
+      "measuredRows": 1,
+      "indeterminateRows": 2,
+      "missingRows": 1,
+      "meanSeconds": 4e-08,
+      "detail": "Direct pattern source; X/Z interruptions retained exact interruption times without numerical widths."
+    },
+    {
+      "check": "explicit bus bit in actual mixed run",
+      "status": "passed",
+      "source": "b(word)",
+      "bit": 2,
+      "meanSeconds": 0.001,
+      "points": 635,
+      "detail": "Actual bundled analog engine run completed with warnings; selected bus bit rose at 1 ms and fell at 2 ms."
+    },
+    {
+      "check": "reconvergent hazard",
+      "status": "passed",
+      "measuredRows": 2,
+      "pairsSeconds": [
+        [
+          1.15e-07,
+          1.35e-07
+        ],
+        [
+          2.65e-07,
+          2.85e-07
+        ]
+      ],
+      "meanSeconds": 2e-08
+    },
+    {
+      "check": "event-pair waveform navigation",
+      "status": "passed",
+      "detail": "Final build View pair selected only Hazard pulse and showed cursor A 115 ns = 1, cursor B 135 ns = 0, delta 20 ns."
+    },
+    {
+      "check": "visual desktop inspection",
+      "status": "passed",
+      "detail": "Timing setup/results inspected in existing dark theme. Summary cards, rows, status explanations and actions rendered; large tables scroll."
+    }
+  ],
+  "unverified": [
+    {
+      "check": "HTML report download",
+      "status": "unverified",
+      "detail": "Clicking the visible blob download link timed out after 15 seconds. The link retained a nonempty filename and blob: href. Browser extension metadata errors were visible, but causation was not established. No successful download claimed."
+    },
+    {
+      "check": "native print/PDF",
+      "status": "not-exercised"
+    },
+    {
+      "check": "exact target HTTPS install/offline/update/recovery",
+      "status": "not-exercised",
+      "detail": "This is an insecure preview on a non-localhost origin. No external host was modified."
+    },
+    {
+      "check": "full supported browser/phone/tablet matrix",
+      "status": "not-exercised"
+    }
+  ]
+}

@@ -1,0 +1,469 @@
+{
+  "format": "CircuitBench timing evidence",
+  "formatVersion": 1,
+  "measurement": {
+    "id": "timing_mvme5t28_genlw1qp5ht",
+    "kind": "timing",
+    "status": "completed",
+    "projectId": "project_mvmdzitt_77mlzq95628",
+    "revision": 0,
+    "sourceRunId": "run_mvmdzj1k_v8j5ct2izvl",
+    "createdAt": "2026-10-24T12:45:03.968Z",
+    "projectSnapshot": {
+      "schemaVersion": 1,
+      "appVersion": "1.3.0-rc.1",
+      "id": "project_mvmdzitt_77mlzq95628",
+      "title": "Measure clock timing and gate delay",
+      "revision": 0,
+      "createdAt": "2026-10-24T12:40:10.769Z",
+      "updatedAt": "2026-10-24T12:40:10.769Z",
+      "question": "How do clock timing and propagation delay appear in preserved logic events?",
+      "notes": "Expected: Rising-edge delay from Clock to After 20 ns is 20 ns. Complete clock cycles are 100 ns, 10 MHz and 25% duty. High pulses are 25 ns. The final cycle is incomplete at the run boundary.\nTry: Measure falling-to-falling delay, then change the second buffer delay to 20n and compare the saved measurements from both revisions.",
+      "assumptions": [
+        "Native 0/1/X/Z event logic with transport delays and 1 ps timing; initial combinational settling does not create a clock edge.",
+        "No drive strengths, setup/hold timing, physical metastability, or supply-current model."
+      ],
+      "circuit": {
+        "components": [
+          {
+            "id": "c_mvmdzitt_2gjd4ypi5a5",
+            "ref": "CLK1",
+            "type": "CLOCK",
+            "params": {
+              "period": "100n",
+              "duty": "25",
+              "delay": "10n"
+            },
+            "model": "CB_CLOCK"
+          },
+          {
+            "id": "c_mvmdzitt_apmo8ezo2pc",
+            "ref": "U1",
+            "type": "BUF",
+            "params": {
+              "delay": "8n"
+            },
+            "model": "CB_BUF"
+          },
+          {
+            "id": "c_mvmdzitt_vqc7fnwt0w",
+            "ref": "U2",
+            "type": "BUF",
+            "params": {
+              "delay": "12n"
+            },
+            "model": "CB_BUF"
+          }
+        ],
+        "connections": [
+          {
+            "id": "w_mvmdzitt_cqmf60xlbn",
+            "a": "c_mvmdzitt_2gjd4ypi5a5:out",
+            "b": "c_mvmdzitt_apmo8ezo2pc:in"
+          },
+          {
+            "id": "w_mvmdzitt_p912mx66ixb",
+            "a": "c_mvmdzitt_apmo8ezo2pc:out",
+            "b": "c_mvmdzitt_vqc7fnwt0w:in"
+          }
+        ],
+        "junctions": [],
+        "labels": [
+          {
+            "id": "label_mvmdzitt_b1l7yt0kk2",
+            "name": "clock",
+            "target": "c_mvmdzitt_2gjd4ypi5a5:out"
+          },
+          {
+            "id": "label_mvmdzitt_gyxi2ciuvb5",
+            "name": "stage1",
+            "target": "c_mvmdzitt_apmo8ezo2pc:out"
+          },
+          {
+            "id": "label_mvmdzitu_kk4gh1bgk4k",
+            "name": "delayed",
+            "target": "c_mvmdzitt_vqc7fnwt0w:out"
+          }
+        ]
+      },
+      "layout": {
+        "components": {
+          "c_mvmdzitt_2gjd4ypi5a5": {
+            "x": 140,
+            "y": 220,
+            "rotation": 0,
+            "mirror": false
+          },
+          "c_mvmdzitt_apmo8ezo2pc": {
+            "x": 380,
+            "y": 220,
+            "rotation": 0,
+            "mirror": false
+          },
+          "c_mvmdzitt_vqc7fnwt0w": {
+            "x": 620,
+            "y": 220,
+            "rotation": 0,
+            "mirror": false
+          }
+        },
+        "wires": {
+          "w_mvmdzitt_cqmf60xlbn": {
+            "points": []
+          },
+          "w_mvmdzitt_p912mx66ixb": {
+            "points": []
+          }
+        },
+        "junctions": {},
+        "annotations": [
+          {
+            "id": "note_mvmdzitu_r0vzq6lm4zj",
+            "x": 100,
+            "y": 100,
+            "text": "Run, then choose Timing to measure the saved edge pairs."
+          }
+        ]
+      },
+      "analysis": {
+        "type": "tran",
+        "start": "1",
+        "stop": "100k",
+        "points": 60,
+        "step": "1n",
+        "duration": "450n",
+        "source": "V1",
+        "sweepStart": "0",
+        "sweepStop": "10",
+        "sweepStep": "0.1",
+        "temperature": 27,
+        "reltol": "1e-4",
+        "uic": false
+      },
+      "probes": [
+        {
+          "id": "probe_mvmdzitt_ru16pkekaa",
+          "kind": "logic",
+          "label": "Clock · 10 MHz",
+          "a": "c_mvmdzitt_2gjd4ypi5a5:out",
+          "b": null
+        },
+        {
+          "id": "probe_mvmdzitt_rkoiu8a6dh",
+          "kind": "logic",
+          "label": "After 8 ns",
+          "a": "c_mvmdzitt_apmo8ezo2pc:out",
+          "b": null
+        },
+        {
+          "id": "probe_mvmdzitu_m4zyz0oojhq",
+          "kind": "logic",
+          "label": "After 20 ns",
+          "a": "c_mvmdzitt_vqc7fnwt0w:out",
+          "b": null
+        }
+      ],
+      "workspace": "schematic",
+      "netlistText": ""
+    },
+    "sourceRun": {
+      "id": "run_mvmdzj1k_v8j5ct2izvl",
+      "status": "completed",
+      "startedAt": "2026-10-24T12:40:11.048Z",
+      "completedAt": "2026-10-24T12:40:11.121Z",
+      "analysis": {
+        "type": "tran",
+        "start": "1",
+        "stop": "100k",
+        "points": 60,
+        "step": "1n",
+        "duration": "450n",
+        "source": "V1",
+        "sweepStart": "0",
+        "sweepStop": "10",
+        "sweepStep": "0.1",
+        "temperature": 27,
+        "reltol": "1e-4",
+        "uic": false
+      },
+      "engine": {
+        "name": "CircuitBench event logic",
+        "version": "2",
+        "package": "CircuitBench event kernel",
+        "packageVersion": "2",
+        "build": "cb-digital-kernel-2",
+        "execution": "JavaScript · isolated Web Worker · fresh instance per run",
+        "states": [
+          "0",
+          "1",
+          "X",
+          "Z"
+        ],
+        "timeResolution": 1e-12,
+        "delayModel": "transport",
+        "initialization": "Combinational logic settles at time zero; flip-flops, registers and counters use their explicit initial state.",
+        "simultaneousInputs": "All driver changes at one timestamp resolve together. Rising-edge state elements sample the resulting inputs; register and counter words update atomically.",
+        "sequentialControls": "Register/counter reset and enable are synchronous and active high; reset wins. Ambiguous edges or controls retain only bit values common to every possible outcome.",
+        "limitations": "No setup/hold, metastability, drive strengths, HDL, or analog feedback coupling.",
+        "mode": "digital",
+        "digital": {
+          "name": "CircuitBench event logic",
+          "version": "2",
+          "package": "CircuitBench event kernel",
+          "packageVersion": "2",
+          "build": "cb-digital-kernel-2",
+          "execution": "JavaScript · isolated Web Worker · fresh instance per run",
+          "states": [
+            "0",
+            "1",
+            "X",
+            "Z"
+          ],
+          "timeResolution": 1e-12,
+          "delayModel": "transport",
+          "initialization": "Combinational logic settles at time zero; flip-flops, registers and counters use their explicit initial state.",
+          "simultaneousInputs": "All driver changes at one timestamp resolve together. Rising-edge state elements sample the resulting inputs; register and counter words update atomically.",
+          "sequentialControls": "Register/counter reset and enable are synchronous and active high; reset wins. Ambiguous edges or controls retain only bit values common to every possible outcome.",
+          "limitations": "No setup/hold, metastability, drive strengths, HDL, or analog feedback coupling."
+        }
+      },
+      "netlistHash": "unavailable-in-insecure-context",
+      "simulationHash": "unavailable-in-insecure-context",
+      "sampling": {
+        "mode": "digital-events",
+        "description": "Change-only digital events plus time zero and run end; logic states are right-continuous after simultaneous events settle. Gate delays use 1 ps transport timing.",
+        "analogInterpolation": "none",
+        "logicContinuity": "right",
+        "timeResolution": 1e-12
+      },
+      "bridgeAssumptions": [],
+      "warnings": [],
+      "importedFromBackup": false
+    },
+    "source": {
+      "timeBounds": [
+        0,
+        4.5e-7
+      ],
+      "signals": [
+        {
+          "name": "d(clock)",
+          "label": "Clock · 10 MHz",
+          "kind": "logic",
+          "width": 1,
+          "bitOrder": "msb-first",
+          "events": [
+            {
+              "time": 0,
+              "value": "0"
+            },
+            {
+              "time": 1e-8,
+              "value": "1"
+            },
+            {
+              "time": 3.5e-8,
+              "value": "0"
+            },
+            {
+              "time": 1.0999999999999999e-7,
+              "value": "1"
+            },
+            {
+              "time": 1.35e-7,
+              "value": "0"
+            },
+            {
+              "time": 2.1e-7,
+              "value": "1"
+            },
+            {
+              "time": 2.35e-7,
+              "value": "0"
+            },
+            {
+              "time": 3.1e-7,
+              "value": "1"
+            },
+            {
+              "time": 3.3499999999999997e-7,
+              "value": "0"
+            },
+            {
+              "time": 4.1e-7,
+              "value": "1"
+            },
+            {
+              "time": 4.35e-7,
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "timeResolution": 1e-12,
+      "eventSource": "preserved-digital-events"
+    },
+    "spec": {
+      "kind": "duty-cycle",
+      "source": {
+        "name": "d(clock)"
+      },
+      "edge": "rising",
+      "window": {
+        "start": 0,
+        "end": 4.5e-7
+      }
+    },
+    "result": {
+      "kind": "timing",
+      "method": "cb-event-timing-1",
+      "spec": {
+        "kind": "duty-cycle",
+        "source": {
+          "name": "d(clock)"
+        },
+        "edge": "rising",
+        "window": {
+          "start": 0,
+          "end": 4.5e-7
+        }
+      },
+      "unit": "%",
+      "rows": [
+        {
+          "index": 1,
+          "status": "measured",
+          "value": 25,
+          "start": 1e-8,
+          "end": 1.0999999999999999e-7,
+          "sourceEvent": {
+            "time": 1e-8,
+            "from": "0",
+            "to": "1",
+            "index": 1
+          },
+          "targetEvent": {
+            "time": 1.0999999999999999e-7,
+            "from": "0",
+            "to": "1",
+            "index": 3
+          },
+          "reason": "",
+          "details": {
+            "elapsed": 1e-7,
+            "cycleTime": 1e-7,
+            "highTime": 2.5e-8
+          }
+        },
+        {
+          "index": 2,
+          "status": "measured",
+          "value": 25,
+          "start": 1.0999999999999999e-7,
+          "end": 2.1e-7,
+          "sourceEvent": {
+            "time": 1.0999999999999999e-7,
+            "from": "0",
+            "to": "1",
+            "index": 3
+          },
+          "targetEvent": {
+            "time": 2.1e-7,
+            "from": "0",
+            "to": "1",
+            "index": 5
+          },
+          "reason": "",
+          "details": {
+            "elapsed": 1e-7,
+            "cycleTime": 1e-7,
+            "highTime": 2.5e-8
+          }
+        },
+        {
+          "index": 3,
+          "status": "measured",
+          "value": 25,
+          "start": 2.1e-7,
+          "end": 3.1e-7,
+          "sourceEvent": {
+            "time": 2.1e-7,
+            "from": "0",
+            "to": "1",
+            "index": 5
+          },
+          "targetEvent": {
+            "time": 3.1e-7,
+            "from": "0",
+            "to": "1",
+            "index": 7
+          },
+          "reason": "",
+          "details": {
+            "elapsed": 1e-7,
+            "cycleTime": 1e-7,
+            "highTime": 2.5e-8
+          }
+        },
+        {
+          "index": 4,
+          "status": "measured",
+          "value": 25,
+          "start": 3.1e-7,
+          "end": 4.1e-7,
+          "sourceEvent": {
+            "time": 3.1e-7,
+            "from": "0",
+            "to": "1",
+            "index": 7
+          },
+          "targetEvent": {
+            "time": 4.1e-7,
+            "from": "0",
+            "to": "1",
+            "index": 9
+          },
+          "reason": "",
+          "details": {
+            "elapsed": 1e-7,
+            "cycleTime": 1e-7,
+            "highTime": 2.5e-8
+          }
+        },
+        {
+          "index": 5,
+          "status": "missing-edge",
+          "value": null,
+          "start": 4.1e-7,
+          "end": null,
+          "sourceEvent": {
+            "time": 4.1e-7,
+            "from": "0",
+            "to": "1",
+            "index": 9
+          },
+          "targetEvent": null,
+          "reason": "No next source edge of the selected polarity closes this cycle inside the window.",
+          "details": {
+            "observedUntil": 4.5e-7
+          }
+        }
+      ],
+      "summary": {
+        "measuredCount": 4,
+        "indeterminateCount": 0,
+        "missingCount": 1,
+        "totalCount": 5,
+        "minimum": 25,
+        "maximum": 25,
+        "mean": 25
+      },
+      "truncated": false,
+      "candidateCount": 5,
+      "warnings": [],
+      "pairing": "Between consecutive source edges of the selected polarity, divide the complete known high-state duration by the cycle duration. The result is always percent high, including cycles that begin on a falling edge.",
+      "timeResolution": 1e-12,
+      "eventSource": "preserved-digital-events"
+    }
+  }
+}

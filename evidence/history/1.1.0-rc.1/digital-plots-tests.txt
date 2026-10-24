@@ -1,0 +1,18 @@
+✔ literal four-state traces are retained beside preferred analog probes and CSV never coerces them (4.630447ms)
+✔ malformed logic vectors are rejected rather than displayed as numerical ramps (0.561432ms)
+✔ union provenance identifies only recorded original analog times and leaves analog-only CSV unchanged (0.577466ms)
+✔ right-continuous cursor state and clipped lanes use the predecessor, including settled simultaneous events (1.320508ms)
+✔ logic lanes draw exact horizontal/vertical corners, with distinct X and Z states (7.011078ms)
+✔ all logic transitions survive large traces and zoom clipping preserves the state active at the left edge (21.07048ms)
+✔ Mixed automatically displays logic beside voltage and cursor interpolation is explicitly identified (2.885181ms)
+✔ logic baseline uses its own event times and export preserves named legend, states and literal colors (1.529054ms)
+✔ pure digital report preserves real four-state results and identifies event timing without analog solver settings (36.18522ms)
+✔ mixed report preserves both executed decks, bridge snapshot, union provenance and distinct engine identities (27.615172ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 127.53767

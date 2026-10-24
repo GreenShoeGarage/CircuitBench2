@@ -1,0 +1,17 @@
+CircuitBench 1.2.0-rc.1 focused test evidence
+Runtime build: c8ef3ed4d77a1672
+Command: node tests/autosave.test.mjs
+Recorded: 2026-10-24T06:56:43.397Z
+
+✔ completion of an older write cannot claim a newer unsaved revision is saved (36.403629ms)
+✔ writes stay serialized when a newer timer fires before an older write completes (7.579768ms)
+✔ an old failed write cannot overwrite the newer save status, and the next write can recover (15.574068ms)
+✔ rapid edits coalesce and the latest failed save advertises a session-only error (2.485363ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 108.108256

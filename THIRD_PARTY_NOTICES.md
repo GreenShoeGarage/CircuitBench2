@@ -19,6 +19,10 @@ application and makes no affiliation claim.
 | Upstream integration/build source | Selected files from the EEcircuit-engine package's exact gitHead | `engine/source/eecircuit-engine-1.8.0/` and source manifest |
 
 In the source package, the corresponding paths begin with `public/engine/`.
+In the rc.3 deploy package, the executing glue and WASM reside in
+`assets/1.1.0-rc.1/engine/`; the license notices, manifest and upstream source
+remain in the root `engine/` directory. Packaging relocates those runtime bytes
+without modifying the numerical binary or the vendored glue.
 Keep the license and source materials when redistributing the prebuilt release.
 
 ngspice is **not exclusively BSD**. Its COPYING document identifies Modified BSD,
@@ -32,6 +36,13 @@ The upstream ESM bundle was adapted deterministically: two duplicate base64
 WASM copies become one unchanged local binary; all implicit PDK preloads are
 removed; binary header offsets use byte positions so Unicode titles are safe;
 payload lengths are checked; parser failures propagate; diagnostics are bounded.
+CircuitBench 1.0.0-rc.2 uses adapter version 3. Its ordinary `.js` module
+filename replaces the earlier `.mjs` runtime filename. The adapter accepts
+already-fetched WASM bytes and an explicit local asset URL, and rejects
+initialization failures rather than leaving startup pending. CircuitBench's
+worker supplies those bytes after checking the WASM header and expected length;
+the release service worker separately checks cached asset SHA-256 identities.
+The numerical WASM binary and upstream version remain unchanged.
 No numerical algorithm was changed. `scripts/vendor-engine.py`, the readable
 `scripts/vendor-raw-parser.js` patch and `engine/manifest.json`
 record the extraction and hashes. Upstream's moving Emscripten recipe does not

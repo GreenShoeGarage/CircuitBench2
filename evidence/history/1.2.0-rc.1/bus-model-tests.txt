@@ -1,0 +1,37 @@
+CircuitBench 1.2.0-rc.1 focused test evidence
+Runtime build: c8ef3ed4d77a1672
+Command: node tests/bus-model.test.mjs
+Recorded: 2026-10-24T06:56:43.397Z
+
+✔ nine bounded parts have trusted fixed ports and separate original model provenance (96.836249ms)
+✔ all six bus examples compile and roundtrip without changing schema1 or probe addresses (78.013206ms)
+✔ old scalar and analog projects retain pin identities, widths and scalar vectors (11.162174ms)
+✔ fixed pin addresses survive width edits, movement, rotation and duplication (4.346667ms)
+✔ width-conflicting edits fail before mutation with a component-scoped error (5.309508ms)
+✔ wire, junction and equal-label widths never broadcast or truncate silently (4.41081ms)
+✔ label-linked width changes are rejected without destroying labels or wires (0.615124ms)
+✔ slice/join expansion preserves LSB ordering as zero-delay electrical aliases (0.854132ms)
+✔ slice/join aliases are bidirectional and do not create artificial drivers (0.835777ms)
+✔ contention and missing input drivers are checked per expanded bit (2.221545ms)
+✔ feedback checking uses real per-bit dependencies after aliases collapse (1.015144ms)
+✔ sequential bus feedback is explicit state and never a combinational cycle (1.904808ms)
+✔ word parser preserves literal X/Z and rejects overflow rather than inventing bits (0.397583ms)
+✔ pattern parser requires explicit t0 and distinct safe picosecond events (7.081213ms)
+✔ LUT rows are complete bounded data with stable binary address order (1.80181ms)
+✔ compiler lowers constant and pattern words LSB first and keeps truth inputs explicit (2.975707ms)
+✔ register/counter plans retain private synchronous state and ordered control nets (15.889331ms)
+✔ MUX, decoder and LUT lowering preserves actual per-bit truth semantics (1.331805ms)
+✔ logic project probes derive bus width/kind from trusted electrical nets (7.769863ms)
+✔ width1 bus parts remain scalar and bridges require explicit one-bit slices (5.278342ms)
+✔ expanded scalar bit budget cannot be bypassed with wide public buses (9.948661ms)
+✔ oversized pattern plans fail compilation while retaining a portable failed-run input (84.354327ms)
+✔ copy/delete keeps alias topology and grouped labels separate from the original (9.434013ms)
+✔ public labels cannot collide with lowered bit names or object prototypes (2.157542ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 412.911406

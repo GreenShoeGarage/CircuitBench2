@@ -1,0 +1,1601 @@
+{
+  "format": "CircuitBench browser export verification",
+  "formatVersion": 1,
+  "verifiedAt": "2026-10-24T13:47:31.415Z",
+  "hashesFinalized": true,
+  "scope": "Production import validation of downloaded browser JSON, independent divider/RC arithmetic, exact sparse-event timing and preserved continuous input history. No circuit was resimulated; this record does not independently establish UI actions, HTML/PDF download, offline installation or physical-device accuracy.",
+  "reportedBrowserBuilds": {
+    "provenance": "Build identities supplied by the browser-capture operator; they are not inferred from import validation.",
+    "earlier": {
+      "buildHash": "7de58c9b9e7b297b",
+      "artifacts": [
+        "rc200-continuous-display.circuitbench.json",
+        "rc200-continuous-timing-evidence.json",
+        "rc200-closed-loop-oscillator.circuitbench.json"
+      ]
+    },
+    "final": {
+      "buildHash": "7f06ecaf7e7b40be",
+      "scope": "Sampled feedback, divider studies/CSV, RC capacitance study and continuous RC exports after narrow converter-validation hardening."
+    }
+  },
+  "artifacts": [
+    {
+      "file": "evidence/rc200-analog-studies.circuitbench.json",
+      "format": "CircuitBench",
+      "bytes": 71473,
+      "sha256": "9754022050a4d551d464f1ffb5a8879145fe41f74783e3681ee2d36c774aaf86",
+      "title": "Resistor tolerance and divider sensitivity",
+      "projectId": "project_mvmfy3j1_76mkf4l4ux6",
+      "appVersion": "2.0.0-rc.1",
+      "runs": [],
+      "studyCount": 2,
+      "timingCount": 0,
+      "status": "passed"
+    },
+    {
+      "file": "evidence/rc200-closed-loop-oscillator.circuitbench.json",
+      "format": "CircuitBench",
+      "bytes": 475431,
+      "sha256": "28f9ab78ea8c04db2c134697186c11bbf7daaed0cc9d8459da5440fff27d0ad9",
+      "title": "Closed-loop Schmitt RC oscillator",
+      "projectId": "project_mvmfue3z_w543dplde7s",
+      "appVersion": "2.0.0-rc.1",
+      "runs": [
+        {
+          "id": "run_mvmfuexc_aff5r8v9ruc",
+          "status": "completed-with-warnings",
+          "analysis": "tran",
+          "solver": "coordinated",
+          "engine": "CircuitBench coordinated transient",
+          "points": 2427,
+          "vectorCount": 6
+        }
+      ],
+      "studyCount": 0,
+      "timingCount": 1,
+      "status": "passed"
+    },
+    {
+      "file": "evidence/rc200-continuous-display.circuitbench.json",
+      "format": "CircuitBench",
+      "bytes": 199347,
+      "sha256": "9f39da1d202c23925f4029d751ee2d0167dce65e18cac5963f99e13c458a0853",
+      "title": "Hex counter with a working seven-segment display",
+      "projectId": "project_mvmfodcz_7y4c77d3p29",
+      "appVersion": "2.0.0-rc.1",
+      "runs": [
+        {
+          "id": "run_mvmfoe8r_l5l94cv35n",
+          "status": "completed",
+          "analysis": "tran",
+          "solver": "ngspice",
+          "engine": "CircuitBench event logic",
+          "points": 66,
+          "vectorCount": 6
+        },
+        {
+          "id": "run_mvmfpiyr_dtop45c8wx4",
+          "status": "completed-with-warnings",
+          "analysis": "tran",
+          "solver": "coordinated",
+          "engine": "CircuitBench coordinated transient",
+          "points": 48,
+          "vectorCount": 6,
+          "continuous": {
+            "formatVersion": 1,
+            "startedAtTime": 0,
+            "windowStart": 0.21409999999999998,
+            "currentTime": 0.2296,
+            "totalPoints": 712,
+            "droppedPoints": 664,
+            "inputChanges": [
+              {
+                "time": 0.0104,
+                "updates": [
+                  {
+                    "id": "c_mvmfodcz_cncaes7jqi",
+                    "value": "0"
+                  },
+                  {
+                    "id": "c_mvmfodcz_puk2f76b0jk",
+                    "value": "0"
+                  }
+                ]
+              }
+            ],
+            "stateRetained": true,
+            "sessionStatus": "stopped"
+          }
+        }
+      ],
+      "studyCount": 0,
+      "timingCount": 0,
+      "status": "passed"
+    },
+    {
+      "file": "evidence/rc200-continuous-rc.circuitbench.json",
+      "format": "CircuitBench",
+      "bytes": 106180,
+      "sha256": "d2dd27c631dd9402bf9ec2d3fe9aa6af5f4c672910fed4217d39d29a975b014e",
+      "title": "Continuous RC with live input changes",
+      "projectId": "project_mvmg9hjw_ox6kvyclcz",
+      "appVersion": "2.0.0-rc.1",
+      "runs": [
+        {
+          "id": "run_mvmg9ihi_ro05hqdzzgk",
+          "status": "completed-with-warnings",
+          "analysis": "tran",
+          "solver": "coordinated",
+          "engine": "CircuitBench coordinated transient",
+          "points": 1001,
+          "vectorCount": 4,
+          "continuous": {
+            "formatVersion": 1,
+            "startedAtTime": 0,
+            "windowStart": 0,
+            "currentTime": 0.01,
+            "totalPoints": 1001,
+            "droppedPoints": 0,
+            "inputChanges": [
+              {
+                "time": 0.008,
+                "updates": [
+                  {
+                    "id": "c_mvmg9hjw_d2la7lk6ign",
+                    "value": 5
+                  }
+                ]
+              }
+            ],
+            "stateRetained": true,
+            "sessionStatus": "stopped"
+          }
+        }
+      ],
+      "studyCount": 0,
+      "timingCount": 0,
+      "status": "passed"
+    },
+    {
+      "file": "evidence/rc200-continuous-timing-evidence.json",
+      "format": "CircuitBench timing evidence",
+      "bytes": 23723,
+      "sha256": "1dd82ba1d6b6d943dd2991b488ecdcb539c4a169b5e48d87f051518fd15401b7",
+      "id": "timing_mvmftart_waalpy3hk",
+      "status": "passed"
+    },
+    {
+      "file": "evidence/rc200-divider-sweep-evidence.json",
+      "format": "CircuitBench analog experiment evidence",
+      "bytes": 31625,
+      "sha256": "b48482f9214aa79a080b26546c7eed3da348b37fca10891f695f323597b134e8",
+      "id": "experiment_mvmfyg3w_046hglpvrd2f",
+      "status": "passed"
+    },
+    {
+      "file": "evidence/rc200-divider-tolerance-evidence.json",
+      "format": "CircuitBench analog experiment evidence",
+      "bytes": 31498,
+      "sha256": "d3b2306a0a41f0029e5117e6580cf2d545eb348fdd910b62645919e863e5364f",
+      "id": "experiment_mvmfzw05_bdiwcm6xf0c",
+      "status": "passed"
+    },
+    {
+      "file": "evidence/rc200-rc-capacitance-evidence.json",
+      "format": "CircuitBench analog experiment evidence",
+      "bytes": 167677,
+      "sha256": "24907be774df4c4d77447352d478a9b538a761fc635bb2ca6f76e42a9f137749",
+      "id": "experiment_mvmg847g_4cbg94cwb3s",
+      "status": "passed"
+    },
+    {
+      "file": "evidence/rc200-sampled-feedback.circuitbench.json",
+      "format": "CircuitBench",
+      "bytes": 750039,
+      "sha256": "fa960f4d8d61510829252764678b6c4572c212addbd3d624a4e5b445b08664e0",
+      "title": "Sampled 4-bit feedback controller and display",
+      "projectId": "project_mvmfvzoj_hzlkygq49ls",
+      "appVersion": "2.0.0-rc.1",
+      "runs": [
+        {
+          "id": "run_mvmfw0h4_tnh5irdfs2",
+          "status": "completed-with-warnings",
+          "analysis": "tran",
+          "solver": "coordinated",
+          "engine": "CircuitBench coordinated transient",
+          "points": 2699,
+          "vectorCount": 8
+        }
+      ],
+      "studyCount": 0,
+      "timingCount": 0,
+      "status": "passed"
+    },
+    {
+      "file": "evidence/rc200-divider-tolerance.csv",
+      "format": "CircuitBench experiment CSV",
+      "bytes": 1937,
+      "sha256": "13c77282eb472771074fe685ea35eb59f2611ea6fb57785c58b603a316e7a6c1",
+      "rows": 8,
+      "sourceStudyId": "experiment_mvmfzw05_bdiwcm6xf0c",
+      "status": "passed"
+    }
+  ],
+  "studies": [
+    {
+      "id": "experiment_mvmfyg3w_046hglpvrd2f",
+      "files": [
+        "evidence/rc200-analog-studies.circuitbench.json",
+        "evidence/rc200-divider-sweep-evidence.json"
+      ],
+      "kind": "sweep",
+      "seed": null,
+      "trialCount": 9,
+      "formula": "Vout = Vin × Rbottom / (Rtop + Rbottom)",
+      "absoluteTolerance": 1e-10,
+      "maximumAbsoluteError": 1.7763568394002505e-15,
+      "summary": {
+        "requestedCount": 9,
+        "attemptedCount": 9,
+        "measuredCount": 9,
+        "failedCount": 0,
+        "cancelledCount": 0,
+        "notRunCount": 0,
+        "minimum": 4,
+        "maximum": 6.666666666666666,
+        "mean": 5.1365538868118845,
+        "standardDeviation": 0.8551183871850209,
+        "standardDeviationDefinition": "population of completed trials only"
+      },
+      "trials": [
+        {
+          "index": 0,
+          "inputVoltage": 10,
+          "upperResistance": 5000,
+          "lowerResistance": 10000,
+          "actualVoltage": 6.666666666666666,
+          "expectedVoltage": 6.666666666666667,
+          "absoluteError": 8.881784197001252e-16
+        },
+        {
+          "index": 1,
+          "inputVoltage": 10,
+          "upperResistance": 6250,
+          "lowerResistance": 10000,
+          "actualVoltage": 6.153846153846153,
+          "expectedVoltage": 6.153846153846154,
+          "absoluteError": 8.881784197001252e-16
+        },
+        {
+          "index": 2,
+          "inputVoltage": 10,
+          "upperResistance": 7500,
+          "lowerResistance": 10000,
+          "actualVoltage": 5.714285714285713,
+          "expectedVoltage": 5.714285714285714,
+          "absoluteError": 1.7763568394002505e-15
+        },
+        {
+          "index": 3,
+          "inputVoltage": 10,
+          "upperResistance": 8750,
+          "lowerResistance": 10000,
+          "actualVoltage": 5.333333333333334,
+          "expectedVoltage": 5.333333333333333,
+          "absoluteError": 8.881784197001252e-16
+        },
+        {
+          "index": 4,
+          "inputVoltage": 10,
+          "upperResistance": 10000,
+          "lowerResistance": 10000,
+          "actualVoltage": 5,
+          "expectedVoltage": 5,
+          "absoluteError": 0
+        },
+        {
+          "index": 5,
+          "inputVoltage": 10,
+          "upperResistance": 11250,
+          "lowerResistance": 10000,
+          "actualVoltage": 4.705882352941177,
+          "expectedVoltage": 4.705882352941177,
+          "absoluteError": 0
+        },
+        {
+          "index": 6,
+          "inputVoltage": 10,
+          "upperResistance": 12500,
+          "lowerResistance": 10000,
+          "actualVoltage": 4.444444444444445,
+          "expectedVoltage": 4.444444444444445,
+          "absoluteError": 0
+        },
+        {
+          "index": 7,
+          "inputVoltage": 10,
+          "upperResistance": 13750,
+          "lowerResistance": 10000,
+          "actualVoltage": 4.2105263157894735,
+          "expectedVoltage": 4.2105263157894735,
+          "absoluteError": 0
+        },
+        {
+          "index": 8,
+          "inputVoltage": 10,
+          "upperResistance": 15000,
+          "lowerResistance": 10000,
+          "actualVoltage": 4,
+          "expectedVoltage": 4,
+          "absoluteError": 0
+        }
+      ]
+    },
+    {
+      "id": "experiment_mvmfzw05_bdiwcm6xf0c",
+      "files": [
+        "evidence/rc200-analog-studies.circuitbench.json",
+        "evidence/rc200-divider-tolerance-evidence.json"
+      ],
+      "kind": "monte-carlo",
+      "seed": 20261024,
+      "trialCount": 8,
+      "formula": "Vout = Vin × Rbottom / (Rtop + Rbottom)",
+      "absoluteTolerance": 1e-10,
+      "maximumAbsoluteError": 1.1466383398328617e-12,
+      "summary": {
+        "requestedCount": 8,
+        "attemptedCount": 8,
+        "measuredCount": 8,
+        "failedCount": 0,
+        "cancelledCount": 0,
+        "notRunCount": 0,
+        "minimum": 4.930386698416951,
+        "maximum": 5.149460618833694,
+        "mean": 5.015231796877628,
+        "standardDeviation": 0.07284788168155283,
+        "standardDeviationDefinition": "population of completed trials only"
+      },
+      "trials": [
+        {
+          "index": 0,
+          "inputVoltage": 10,
+          "upperResistance": 9784.07089272514,
+          "lowerResistance": 10036.89138777554,
+          "actualVoltage": 5.063776039598154,
+          "expectedVoltage": 5.063776039597007,
+          "absoluteError": 1.1466383398328617e-12
+        },
+        {
+          "index": 1,
+          "inputVoltage": 10,
+          "upperResistance": 10136.07406266965,
+          "lowerResistance": 9968.083939515054,
+          "actualVoltage": 4.958220054991425,
+          "expectedVoltage": 4.958220054991525,
+          "absoluteError": 1.0036416142611415e-13
+        },
+        {
+          "index": 2,
+          "inputVoltage": 10,
+          "upperResistance": 10386.252925731242,
+          "lowerResistance": 10101.015644613653,
+          "actualVoltage": 4.930386698416951,
+          "expectedVoltage": 4.930386698417556,
+          "absoluteError": 6.048495038157853e-13
+        },
+        {
+          "index": 3,
+          "inputVoltage": 10,
+          "upperResistance": 10045.701432973146,
+          "lowerResistance": 10054.270114284009,
+          "actualVoltage": 5.00213151578097,
+          "expectedVoltage": 5.002131515781183,
+          "absoluteError": 2.1316282072803006e-13
+        },
+        {
+          "index": 4,
+          "inputVoltage": 10,
+          "upperResistance": 10236.965950811282,
+          "lowerResistance": 10038.740913849324,
+          "actualVoltage": 4.951117601402716,
+          "expectedVoltage": 4.951117601402235,
+          "absoluteError": 4.813927034774679e-13
+        },
+        {
+          "index": 5,
+          "inputVoltage": 10,
+          "upperResistance": 10020.479459082708,
+          "lowerResistance": 9922.926873201504,
+          "actualVoltage": 4.9755426469649535,
+          "expectedVoltage": 4.975542646964153,
+          "absoluteError": 8.002487561498128e-13
+        },
+        {
+          "index": 6,
+          "inputVoltage": 10,
+          "upperResistance": 10048.033252824098,
+          "lowerResistance": 10421.475694980472,
+          "actualVoltage": 5.091219199032163,
+          "expectedVoltage": 5.091219199031257,
+          "absoluteError": 9.059419880941277e-13
+        },
+        {
+          "index": 7,
+          "inputVoltage": 10,
+          "upperResistance": 9718.917132355273,
+          "lowerResistance": 10317.858922062442,
+          "actualVoltage": 5.149460618833694,
+          "expectedVoltage": 5.1494606188342145,
+          "absoluteError": 5.204725539442734e-13
+        }
+      ]
+    },
+    {
+      "id": "experiment_mvmg847g_4cbg94cwb3s",
+      "files": [
+        "evidence/rc200-rc-capacitance-evidence.json"
+      ],
+      "kind": "sweep",
+      "trialCount": 3,
+      "formula": "Vout(f) = Vin(f) / (1 + j·2πfRC)",
+      "absoluteTolerance": 1e-9,
+      "maximumAbsoluteError": 1.1102230246251565e-16,
+      "maximumTraceError": 3.925231146709438e-16,
+      "summary": {
+        "requestedCount": 3,
+        "attemptedCount": 3,
+        "measuredCount": 3,
+        "failedCount": 0,
+        "cancelledCount": 0,
+        "notRunCount": 0,
+        "minimum": 0.0159134789711477,
+        "maximum": 0.8467330159648303,
+        "mean": 0.3399410734711893,
+        "standardDeviation": 0.3629668312998158,
+        "standardDeviationDefinition": "population of completed trials only"
+      },
+      "trials": [
+        {
+          "index": 0,
+          "capacitance": 1e-8,
+          "timeConstant": 0.0001,
+          "points": 501,
+          "frequency": 1000,
+          "actual": 0.8467330159648303,
+          "expected": 0.8467330159648304,
+          "absoluteError": 1.1102230246251565e-16,
+          "maximumTraceError": 3.3306803676289514e-16
+        },
+        {
+          "index": 1,
+          "capacitance": 9.999999999999994e-8,
+          "timeConstant": 0.0009999999999999994,
+          "points": 501,
+          "frequency": 1000,
+          "actual": 0.15717672547758987,
+          "expected": 0.15717672547758996,
+          "absoluteError": 8.326672684688674e-17,
+          "maximumTraceError": 3.925231146709438e-16
+        },
+        {
+          "index": 2,
+          "capacitance": 0.000001,
+          "timeConstant": 0.01,
+          "points": 501,
+          "frequency": 1000,
+          "actual": 0.0159134789711477,
+          "expected": 0.0159134789711477,
+          "absoluteError": 0,
+          "maximumTraceError": 2.355138688025663e-16
+        }
+      ]
+    }
+  ],
+  "timing": [
+    {
+      "id": "timing_mvmfv3n9_puyd0x7t3ik",
+      "files": [
+        "evidence/rc200-closed-loop-oscillator.circuitbench.json"
+      ],
+      "kind": "period",
+      "timeBounds": [
+        0,
+        0.012
+      ],
+      "summary": {
+        "measuredCount": 5,
+        "indeterminateCount": 0,
+        "missingCount": 1,
+        "totalCount": 6,
+        "minimum": 0.001701678496,
+        "maximum": 0.001701678496,
+        "mean": 0.001701678496
+      },
+      "independentPeriods": [
+        0.001701678496,
+        0.001701678496,
+        0.001701678496,
+        0.001701678496,
+        0.001701678496
+      ],
+      "risingEdges": [
+        0.002058815525,
+        0.003760494021,
+        0.005462172517,
+        0.007163851013,
+        0.008865529509,
+        0.010567208005
+      ]
+    },
+    {
+      "id": "timing_mvmftart_waalpy3hk",
+      "files": [
+        "evidence/rc200-continuous-timing-evidence.json"
+      ],
+      "kind": "period",
+      "timeBounds": [
+        0.21409999999999998,
+        0.2296
+      ],
+      "summary": {
+        "measuredCount": 14,
+        "indeterminateCount": 0,
+        "missingCount": 1,
+        "totalCount": 15,
+        "minimum": 0.001,
+        "maximum": 0.001,
+        "mean": 0.0010000000000000005
+      },
+      "continuous": {
+        "formatVersion": 1,
+        "startedAtTime": 0,
+        "windowStart": 0.21409999999999998,
+        "currentTime": 0.2296,
+        "totalPoints": 712,
+        "droppedPoints": 664,
+        "inputChanges": [
+          {
+            "time": 0.0104,
+            "updates": [
+              {
+                "id": "c_mvmfodcz_cncaes7jqi",
+                "value": "0"
+              },
+              {
+                "id": "c_mvmfodcz_puk2f76b0jk",
+                "value": "0"
+              }
+            ]
+          }
+        ],
+        "stateRetained": true,
+        "sessionStatus": "stopped"
+      },
+      "independentPeriods": [
+        0.001,
+        0.001,
+        0.001,
+        0.001,
+        0.001,
+        0.001,
+        0.001,
+        0.001,
+        0.001,
+        0.001,
+        0.001,
+        0.001,
+        0.001,
+        0.001
+      ],
+      "risingEdges": [
+        0.21509999999999999,
+        0.2161,
+        0.2171,
+        0.2181,
+        0.2191,
+        0.2201,
+        0.2211,
+        0.2221,
+        0.2231,
+        0.2241,
+        0.2251,
+        0.2261,
+        0.2271,
+        0.2281,
+        0.2291
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "name": "evidence/rc200-analog-studies.circuitbench.json: version-1 export wrapper",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "evidence/rc200-analog-studies.circuitbench.json: production import validation",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "evidence/rc200-closed-loop-oscillator.circuitbench.json: version-1 export wrapper",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "evidence/rc200-closed-loop-oscillator.circuitbench.json/run_mvmfuexc_aff5r8v9ruc/netlist: unavailable hash is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "evidence/rc200-closed-loop-oscillator.circuitbench.json/run_mvmfuexc_aff5r8v9ruc/simulation: unavailable hash is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "evidence/rc200-closed-loop-oscillator.circuitbench.json: production import validation",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "evidence/rc200-continuous-display.circuitbench.json: version-1 export wrapper",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "evidence/rc200-continuous-display.circuitbench.json/run_mvmfoe8r_l5l94cv35n/netlist: unavailable hash is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "evidence/rc200-continuous-display.circuitbench.json/run_mvmfoe8r_l5l94cv35n/simulation: unavailable hash is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "evidence/rc200-continuous-display.circuitbench.json/run_mvmfpiyr_dtop45c8wx4/netlist: unavailable hash is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "evidence/rc200-continuous-display.circuitbench.json/run_mvmfpiyr_dtop45c8wx4/simulation: unavailable hash is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "evidence/rc200-continuous-display.circuitbench.json: production import validation",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "evidence/rc200-continuous-rc.circuitbench.json: version-1 export wrapper",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "evidence/rc200-continuous-rc.circuitbench.json/run_mvmg9ihi_ro05hqdzzgk/netlist: unavailable hash is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "evidence/rc200-continuous-rc.circuitbench.json/run_mvmg9ihi_ro05hqdzzgk/simulation: unavailable hash is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "evidence/rc200-continuous-rc.circuitbench.json: production import validation",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "evidence/rc200-continuous-timing-evidence.json: version-1 export wrapper",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "evidence/rc200-continuous-timing-evidence.json: production import validation",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "evidence/rc200-divider-sweep-evidence.json: version-1 export wrapper",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "evidence/rc200-divider-sweep-evidence.json: duplicate study experiment_mvmfyg3w_046hglpvrd2f matches standalone/backup evidence",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "evidence/rc200-divider-sweep-evidence.json: production import validation",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "evidence/rc200-divider-tolerance-evidence.json: version-1 export wrapper",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "evidence/rc200-divider-tolerance-evidence.json: duplicate study experiment_mvmfzw05_bdiwcm6xf0c matches standalone/backup evidence",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "evidence/rc200-divider-tolerance-evidence.json: production import validation",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "evidence/rc200-rc-capacitance-evidence.json: version-1 export wrapper",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "evidence/rc200-rc-capacitance-evidence.json: production import validation",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "evidence/rc200-sampled-feedback.circuitbench.json: version-1 export wrapper",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "evidence/rc200-sampled-feedback.circuitbench.json/run_mvmfw0h4_tnh5irdfs2/netlist: unavailable hash is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "evidence/rc200-sampled-feedback.circuitbench.json/run_mvmfw0h4_tnh5irdfs2/simulation: unavailable hash is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "evidence/rc200-sampled-feedback.circuitbench.json: production import validation",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Required captured exports are present and valid",
+      "passed": true,
+      "details": {
+        "required": [
+          "rc200-analog-studies.circuitbench.json",
+          "rc200-closed-loop-oscillator.circuitbench.json",
+          "rc200-continuous-display.circuitbench.json",
+          "rc200-continuous-rc.circuitbench.json",
+          "rc200-continuous-timing-evidence.json",
+          "rc200-divider-sweep-evidence.json",
+          "rc200-divider-tolerance-evidence.json",
+          "rc200-rc-capacitance-evidence.json",
+          "rc200-sampled-feedback.circuitbench.json"
+        ]
+      }
+    },
+    {
+      "name": "experiment_mvmfyg3w_046hglpvrd2f: selected output is an unloaded grounded divider",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "experiment_mvmfyg3w_046hglpvrd2f/trial-0: completed",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "experiment_mvmfyg3w_046hglpvrd2f/trial-0/netlist: unavailable hash is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "experiment_mvmfyg3w_046hglpvrd2f/trial-0: independent divider formula",
+      "passed": true,
+      "details": {
+        "actual": 6.666666666666666,
+        "expected": 6.666666666666667,
+        "absoluteError": 8.881784197001252e-16,
+        "absoluteTolerance": 1e-10
+      }
+    },
+    {
+      "name": "experiment_mvmfyg3w_046hglpvrd2f/trial-1: completed",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "experiment_mvmfyg3w_046hglpvrd2f/trial-1/netlist: unavailable hash is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "experiment_mvmfyg3w_046hglpvrd2f/trial-1: independent divider formula",
+      "passed": true,
+      "details": {
+        "actual": 6.153846153846153,
+        "expected": 6.153846153846154,
+        "absoluteError": 8.881784197001252e-16,
+        "absoluteTolerance": 1e-10
+      }
+    },
+    {
+      "name": "experiment_mvmfyg3w_046hglpvrd2f/trial-2: completed",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "experiment_mvmfyg3w_046hglpvrd2f/trial-2/netlist: unavailable hash is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "experiment_mvmfyg3w_046hglpvrd2f/trial-2: independent divider formula",
+      "passed": true,
+      "details": {
+        "actual": 5.714285714285713,
+        "expected": 5.714285714285714,
+        "absoluteError": 1.7763568394002505e-15,
+        "absoluteTolerance": 1e-10
+      }
+    },
+    {
+      "name": "experiment_mvmfyg3w_046hglpvrd2f/trial-3: completed",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "experiment_mvmfyg3w_046hglpvrd2f/trial-3/netlist: unavailable hash is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "experiment_mvmfyg3w_046hglpvrd2f/trial-3: independent divider formula",
+      "passed": true,
+      "details": {
+        "actual": 5.333333333333334,
+        "expected": 5.333333333333333,
+        "absoluteError": 8.881784197001252e-16,
+        "absoluteTolerance": 1e-10
+      }
+    },
+    {
+      "name": "experiment_mvmfyg3w_046hglpvrd2f/trial-4: completed",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "experiment_mvmfyg3w_046hglpvrd2f/trial-4/netlist: unavailable hash is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "experiment_mvmfyg3w_046hglpvrd2f/trial-4: independent divider formula",
+      "passed": true,
+      "details": {
+        "actual": 5,
+        "expected": 5,
+        "absoluteError": 0,
+        "absoluteTolerance": 1e-10
+      }
+    },
+    {
+      "name": "experiment_mvmfyg3w_046hglpvrd2f/trial-5: completed",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "experiment_mvmfyg3w_046hglpvrd2f/trial-5/netlist: unavailable hash is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "experiment_mvmfyg3w_046hglpvrd2f/trial-5: independent divider formula",
+      "passed": true,
+      "details": {
+        "actual": 4.705882352941177,
+        "expected": 4.705882352941177,
+        "absoluteError": 0,
+        "absoluteTolerance": 1e-10
+      }
+    },
+    {
+      "name": "experiment_mvmfyg3w_046hglpvrd2f/trial-6: completed",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "experiment_mvmfyg3w_046hglpvrd2f/trial-6/netlist: unavailable hash is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "experiment_mvmfyg3w_046hglpvrd2f/trial-6: independent divider formula",
+      "passed": true,
+      "details": {
+        "actual": 4.444444444444445,
+        "expected": 4.444444444444445,
+        "absoluteError": 0,
+        "absoluteTolerance": 1e-10
+      }
+    },
+    {
+      "name": "experiment_mvmfyg3w_046hglpvrd2f/trial-7: completed",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "experiment_mvmfyg3w_046hglpvrd2f/trial-7/netlist: unavailable hash is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "experiment_mvmfyg3w_046hglpvrd2f/trial-7: independent divider formula",
+      "passed": true,
+      "details": {
+        "actual": 4.2105263157894735,
+        "expected": 4.2105263157894735,
+        "absoluteError": 0,
+        "absoluteTolerance": 1e-10
+      }
+    },
+    {
+      "name": "experiment_mvmfyg3w_046hglpvrd2f/trial-8: completed",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "experiment_mvmfyg3w_046hglpvrd2f/trial-8/netlist: unavailable hash is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "experiment_mvmfyg3w_046hglpvrd2f/trial-8: independent divider formula",
+      "passed": true,
+      "details": {
+        "actual": 4,
+        "expected": 4,
+        "absoluteError": 0,
+        "absoluteTolerance": 1e-10
+      }
+    },
+    {
+      "name": "experiment_mvmfzw05_bdiwcm6xf0c: selected output is an unloaded grounded divider",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "experiment_mvmfzw05_bdiwcm6xf0c/trial-0: completed",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "experiment_mvmfzw05_bdiwcm6xf0c/trial-0/netlist: unavailable hash is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "experiment_mvmfzw05_bdiwcm6xf0c/trial-0: independent divider formula",
+      "passed": true,
+      "details": {
+        "actual": 5.063776039598154,
+        "expected": 5.063776039597007,
+        "absoluteError": 1.1466383398328617e-12,
+        "absoluteTolerance": 1e-10
+      }
+    },
+    {
+      "name": "experiment_mvmfzw05_bdiwcm6xf0c/trial-1: completed",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "experiment_mvmfzw05_bdiwcm6xf0c/trial-1/netlist: unavailable hash is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "experiment_mvmfzw05_bdiwcm6xf0c/trial-1: independent divider formula",
+      "passed": true,
+      "details": {
+        "actual": 4.958220054991425,
+        "expected": 4.958220054991525,
+        "absoluteError": 1.0036416142611415e-13,
+        "absoluteTolerance": 1e-10
+      }
+    },
+    {
+      "name": "experiment_mvmfzw05_bdiwcm6xf0c/trial-2: completed",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "experiment_mvmfzw05_bdiwcm6xf0c/trial-2/netlist: unavailable hash is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "experiment_mvmfzw05_bdiwcm6xf0c/trial-2: independent divider formula",
+      "passed": true,
+      "details": {
+        "actual": 4.930386698416951,
+        "expected": 4.930386698417556,
+        "absoluteError": 6.048495038157853e-13,
+        "absoluteTolerance": 1e-10
+      }
+    },
+    {
+      "name": "experiment_mvmfzw05_bdiwcm6xf0c/trial-3: completed",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "experiment_mvmfzw05_bdiwcm6xf0c/trial-3/netlist: unavailable hash is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "experiment_mvmfzw05_bdiwcm6xf0c/trial-3: independent divider formula",
+      "passed": true,
+      "details": {
+        "actual": 5.00213151578097,
+        "expected": 5.002131515781183,
+        "absoluteError": 2.1316282072803006e-13,
+        "absoluteTolerance": 1e-10
+      }
+    },
+    {
+      "name": "experiment_mvmfzw05_bdiwcm6xf0c/trial-4: completed",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "experiment_mvmfzw05_bdiwcm6xf0c/trial-4/netlist: unavailable hash is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "experiment_mvmfzw05_bdiwcm6xf0c/trial-4: independent divider formula",
+      "passed": true,
+      "details": {
+        "actual": 4.951117601402716,
+        "expected": 4.951117601402235,
+        "absoluteError": 4.813927034774679e-13,
+        "absoluteTolerance": 1e-10
+      }
+    },
+    {
+      "name": "experiment_mvmfzw05_bdiwcm6xf0c/trial-5: completed",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "experiment_mvmfzw05_bdiwcm6xf0c/trial-5/netlist: unavailable hash is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "experiment_mvmfzw05_bdiwcm6xf0c/trial-5: independent divider formula",
+      "passed": true,
+      "details": {
+        "actual": 4.9755426469649535,
+        "expected": 4.975542646964153,
+        "absoluteError": 8.002487561498128e-13,
+        "absoluteTolerance": 1e-10
+      }
+    },
+    {
+      "name": "experiment_mvmfzw05_bdiwcm6xf0c/trial-6: completed",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "experiment_mvmfzw05_bdiwcm6xf0c/trial-6/netlist: unavailable hash is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "experiment_mvmfzw05_bdiwcm6xf0c/trial-6: independent divider formula",
+      "passed": true,
+      "details": {
+        "actual": 5.091219199032163,
+        "expected": 5.091219199031257,
+        "absoluteError": 9.059419880941277e-13,
+        "absoluteTolerance": 1e-10
+      }
+    },
+    {
+      "name": "experiment_mvmfzw05_bdiwcm6xf0c/trial-7: completed",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "experiment_mvmfzw05_bdiwcm6xf0c/trial-7/netlist: unavailable hash is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "experiment_mvmfzw05_bdiwcm6xf0c/trial-7: independent divider formula",
+      "passed": true,
+      "details": {
+        "actual": 5.149460618833694,
+        "expected": 5.1494606188342145,
+        "absoluteError": 5.204725539442734e-13,
+        "absoluteTolerance": 1e-10
+      }
+    },
+    {
+      "name": "experiment_mvmg847g_4cbg94cwb3s/trial-0: completed",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "experiment_mvmg847g_4cbg94cwb3s/trial-0/netlist: unavailable hash is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "experiment_mvmg847g_4cbg94cwb3s/trial-0: measured output is the RC junction",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "experiment_mvmg847g_4cbg94cwb3s/trial-0: every AC sample follows the independent RC transfer",
+      "passed": true,
+      "details": {
+        "points": 501,
+        "maximumTraceError": 3.3306803676289514e-16,
+        "absoluteTolerance": 1e-9
+      }
+    },
+    {
+      "name": "experiment_mvmg847g_4cbg94cwb3s/trial-0: requested-frequency metric agrees with independent RC formula",
+      "passed": true,
+      "details": {
+        "actual": 0.8467330159648303,
+        "expected": 0.8467330159648304,
+        "absoluteError": 1.1102230246251565e-16,
+        "absoluteTolerance": 1e-9,
+        "metric": "ac-magnitude"
+      }
+    },
+    {
+      "name": "experiment_mvmg847g_4cbg94cwb3s/trial-1: completed",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "experiment_mvmg847g_4cbg94cwb3s/trial-1/netlist: unavailable hash is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "experiment_mvmg847g_4cbg94cwb3s/trial-1: measured output is the RC junction",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "experiment_mvmg847g_4cbg94cwb3s/trial-1: every AC sample follows the independent RC transfer",
+      "passed": true,
+      "details": {
+        "points": 501,
+        "maximumTraceError": 3.925231146709438e-16,
+        "absoluteTolerance": 1e-9
+      }
+    },
+    {
+      "name": "experiment_mvmg847g_4cbg94cwb3s/trial-1: requested-frequency metric agrees with independent RC formula",
+      "passed": true,
+      "details": {
+        "actual": 0.15717672547758987,
+        "expected": 0.15717672547758996,
+        "absoluteError": 8.326672684688674e-17,
+        "absoluteTolerance": 1e-9,
+        "metric": "ac-magnitude"
+      }
+    },
+    {
+      "name": "experiment_mvmg847g_4cbg94cwb3s/trial-2: completed",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "experiment_mvmg847g_4cbg94cwb3s/trial-2/netlist: unavailable hash is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "experiment_mvmg847g_4cbg94cwb3s/trial-2: measured output is the RC junction",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "experiment_mvmg847g_4cbg94cwb3s/trial-2: every AC sample follows the independent RC transfer",
+      "passed": true,
+      "details": {
+        "points": 501,
+        "maximumTraceError": 2.355138688025663e-16,
+        "absoluteTolerance": 1e-9
+      }
+    },
+    {
+      "name": "experiment_mvmg847g_4cbg94cwb3s/trial-2: requested-frequency metric agrees with independent RC formula",
+      "passed": true,
+      "details": {
+        "actual": 0.0159134789711477,
+        "expected": 0.0159134789711477,
+        "absoluteError": 0,
+        "absoluteTolerance": 1e-9,
+        "metric": "ac-magnitude"
+      }
+    },
+    {
+      "name": "timing_mvmfv3n9_puyd0x7t3ik: preserved direct edges reproduce every measured period",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "timing_mvmfv3n9_puyd0x7t3ik: retained boundary state is not counted as an edge",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "timing_mvmftart_waalpy3hk: preserved direct edges reproduce every measured period",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "timing_mvmftart_waalpy3hk: retained boundary state is not counted as an edge",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Continuous timing is independently valid without its source run",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Continuous timing matches its separately captured source run",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Earlier continuous backup predates timing creation and contains no fabricated timing record",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Independent timing preserves the complete continuous provenance and inputChanges",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Continuous retained window is nonzero with earlier source changes preserved",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Disabled counter remains 1011 throughout the exported window",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Counter word 11 maps to the captured b segment pattern",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Production display state helper reads the actual retained word",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "All complete periods in the continuous window equal 1 ms",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Sampled feedback contains finite actual analog values",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Sampled feedback final code and command are known four-bit words",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Sampled feedback final command is 15 minus captured ADC code",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Sampled feedback final DAC voltage matches its settled command",
+      "passed": true,
+      "details": {
+        "drive": 2.6666666666666665,
+        "expectedDrive": 2.6666666666666665
+      }
+    },
+    {
+      "name": "Sampled feedback display retains code 7",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Closed-loop oscillator contains finite actual analog values",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Closed-loop oscillator has multiple complete recorded cycles",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "evidence/rc200-continuous-rc.circuitbench.json/run_mvmg9ihi_ro05hqdzzgk: live DC changes are retained with finite analog samples",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "evidence/rc200-continuous-rc.circuitbench.json/run_mvmg9ihi_ro05hqdzzgk: retained RC trajectory agrees with piecewise exponential state",
+      "passed": true,
+      "details": {
+        "maximumAbsoluteError": 0.009158855788373277,
+        "absoluteTolerance": 0.04999999999999999,
+        "rationale": "First-order step allowance: total excitation variation × maximum step / RC (capped at total variation)."
+      }
+    },
+    {
+      "name": "evidence/rc200-continuous-rc.circuitbench.json/run_mvmg9ihi_ro05hqdzzgk: every retained source change has an accepted boundary",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "evidence/rc200-continuous-rc.circuitbench.json/run_mvmg9ihi_ro05hqdzzgk: every retained sample matches independent backward-Euler recurrence",
+      "passed": true,
+      "details": {
+        "backwardEulerMaximumError": 3.4638958368304884e-14,
+        "absoluteTolerance": 1e-10,
+        "recurrence": "V[n] = (RC·V[n−1] + Δt·Vin[n−1]) / (RC + Δt); a live source change at the current endpoint affects the following step without changing capacitor voltage."
+      }
+    },
+    {
+      "name": "evidence/rc200-divider-tolerance.csv: exact headings and completed row count",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "evidence/rc200-divider-tolerance.csv/row-1: identities, applied values and numerical result agree with JSON",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "evidence/rc200-divider-tolerance.csv/row-2: identities, applied values and numerical result agree with JSON",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "evidence/rc200-divider-tolerance.csv/row-3: identities, applied values and numerical result agree with JSON",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "evidence/rc200-divider-tolerance.csv/row-4: identities, applied values and numerical result agree with JSON",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "evidence/rc200-divider-tolerance.csv/row-5: identities, applied values and numerical result agree with JSON",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "evidence/rc200-divider-tolerance.csv/row-6: identities, applied values and numerical result agree with JSON",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "evidence/rc200-divider-tolerance.csv/row-7: identities, applied values and numerical result agree with JSON",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "evidence/rc200-divider-tolerance.csv/row-8: identities, applied values and numerical result agree with JSON",
+      "passed": true,
+      "details": {}
+    }
+  ],
+  "continuousDisplay": {
+    "sourceRunId": "run_mvmfpiyr_dtop45c8wx4",
+    "points": 48,
+    "timeBounds": [
+      0.21409999999999998,
+      0.2296
+    ],
+    "lastCount": "1011",
+    "lastSegments": "01111100",
+    "glyph": "b",
+    "inputChanges": [
+      {
+        "time": 0.0104,
+        "updates": [
+          {
+            "id": "c_mvmfodcz_cncaes7jqi",
+            "value": "0"
+          },
+          {
+            "id": "c_mvmfodcz_puk2f76b0jk",
+            "value": "0"
+          }
+        ]
+      }
+    ]
+  },
+  "sampledFeedback": {
+    "runId": "run_mvmfw0h4_tnh5irdfs2",
+    "points": 2699,
+    "finalTime": 0.01,
+    "code": "0111",
+    "command": "1000",
+    "senseVoltage": 2.503831259520097,
+    "dacVoltage": 2.6666666666666665,
+    "segments": "00000111",
+    "glyph": "7"
+  },
+  "oscillator": {
+    "runId": "run_mvmfuexc_aff5r8v9ruc",
+    "points": 2427,
+    "finalTime": 0.012,
+    "measuredPeriods": [
+      0.001701678496,
+      0.001701678496,
+      0.001701678496,
+      0.001701678496,
+      0.001701678496
+    ],
+    "idealZeroDelayPeriod": 0.0016945957207744073,
+    "differenceFromIdeal": 0.000007082775225592756,
+    "modelDifference": "Captured circuit includes 1 µs logic delay, 1 µs DAC edges and 5 µs maximum backward-Euler step. The zero-delay RC expression is context, not an exact expected numerical trace."
+  },
+  "analogChecks": [
+    {
+      "file": "evidence/rc200-continuous-rc.circuitbench.json",
+      "runId": "run_mvmg9ihi_ro05hqdzzgk",
+      "type": "rc-live",
+      "points": 1001,
+      "timeBounds": [
+        0,
+        0.01
+      ],
+      "inputChanges": [
+        {
+          "time": 0.008,
+          "value": 5
+        }
+      ],
+      "finalVoltage": 4.316568097390684,
+      "analyticFinalVoltage": 4.323323583816936,
+      "maximumAbsoluteError": 0.009158855788373277,
+      "absoluteTolerance": 0.04999999999999999,
+      "backwardEulerMaximumError": 3.4638958368304884e-14,
+      "backwardEulerTolerance": 1e-10,
+      "timeConstant": 0.001,
+      "checkpoints": [
+        {
+          "time": 0.008,
+          "actualVoltage": 0,
+          "backwardEulerVoltage": 0,
+          "continuousTimeIdealVoltage": 0
+        },
+        {
+          "time": 0.009,
+          "actualVoltage": 3.1514439383544133,
+          "backwardEulerVoltage": 3.151443938354403,
+          "continuousTimeIdealVoltage": 3.1606027941427866
+        },
+        {
+          "time": 0.01,
+          "actualVoltage": 4.316568097390684,
+          "backwardEulerVoltage": 4.3165680973906495,
+          "continuousTimeIdealVoltage": 4.323323583816936
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "exportedArtifacts": 10,
+    "jsonExports": 9,
+    "csvExports": 1,
+    "validatedArtifacts": 10,
+    "distinctStudies": 3,
+    "distinctTrials": 20,
+    "timingRecords": 2,
+    "passedChecks": 132,
+    "failedChecks": 0
+  },
+  "status": "passed",
+  "validators": {
+    "src/displays.js": "512f45df58359d8773ff34e8281be5782700e0914dedbf1a2fa9a680b4fb78b0",
+    "src/library.js": "227c1a48e68b9053a1939e4e4c012a61eeb396d000e79f7ad881e40356e0f46b",
+    "src/model.js": "fbdb0cb7d9c9cd6213f78b191241121d8529cd6269efebbd1c191c226e0c8f02",
+    "src/experiments.js": "dc2314da3aa6bf0202345f2af4e8bb973ba230ada0e936d445b94ad2cbf043c1",
+    "src/netlist.js": "e149a5938813f76203ffa89b03a946ed722a68cced1cc6a7a420aba05c95103e",
+    "src/timing-evidence.js": "0fb5e73c2e5679fab7bfe969072dbc59df53e54c6eef6f31124e9f002bcfeb5e",
+    "src/continuous-evidence.js": "a64f5c49328d4ef0d964ba5201e0a295fefd907f9ab124d8c86cfa0b0d812ce8",
+    "src/timing.js": "6b68bb2e175182eae949ed2623368632971d347d52c597bb2c65573f4647fb9c",
+    "src/storage.js": "4987c11bbf7a37ffb24feb77ccab410169cc0f282e3f00de32794301ae27d43e",
+    "src/truth-table-evidence.js": "81d891f186ed388f91692b2297ae7c8c9a18797509ac821edeb1c6d92c083feb"
+  },
+  "verifier": {
+    "file": "scripts/verify-browser-evidence.mjs",
+    "sha256": "268880d8b398af58f0adb4bd416014fcf0114cdab7c7c67157182c83863cbd99"
+  },
+  "localDistribution": {
+    "version": "2.0.0-rc.1",
+    "buildHash": "7f06ecaf7e7b40be",
+    "runtimeBase": "assets/2.0.0-rc.1"
+  }
+}

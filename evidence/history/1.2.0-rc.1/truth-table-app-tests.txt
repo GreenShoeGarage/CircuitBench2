@@ -1,0 +1,30 @@
+CircuitBench 1.2.0-rc.1 focused test evidence
+Runtime build: 7ad78c372946c614
+Command: node tests/truth-table-app.test.mjs
+Recorded: 2026-10-24T07:03:37.763Z
+
+✔ modal Stop during plan hashing prevents worker startup and evidence append (19.790271ms)
+✔ global Stop cancels preparation and a subsequent table can complete (17.263048ms)
+✔ project replacement cancels a preparing truth table before replacing its state (4.28264ms)
+✔ a late successful worker response cannot append evidence after Stop (8.950957ms)
+✔ Stop without a truth-table task retains the ordinary engine stop behavior (1.655246ms)
+✔ completed evidence retains the captured circuit after later working edits (6.327254ms)
+✔ an incomplete imported LUT opens a repair draft and Cancel preserves every project byte (3.581548ms)
+✔ incorrect repair text reports its parse error without changing the circuit (1.814822ms)
+✔ corrected repair text normalizes numeric and unknown words, then applies atomically (3.483006ms)
+✔ resetting a repair draft is explicit and cancelling its row editor keeps the original (2.68829ms)
+✔ a reset draft changes the component only when Apply truth table succeeds (2.498251ms)
+✔ a repaired width conflict keeps both the circuit and draft available for correction (1.817425ms)
+✔ valid LUTs retain direct row editing and numeric-word normalization (1.878457ms)
+✔ a truly empty new project can be replaced without a confirmation dialog (1.638751ms)
+✔ deleting the circuit does not bypass backup confirmation for retained truth tables (6.45744ms)
+✔ retained run history also requires explicit replacement confirmation (1.099181ms)
+✔ non-component project content disables the empty-project shortcut (6.748715ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 99.612637

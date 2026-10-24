@@ -1,0 +1,886 @@
+{
+  "started_at": "2026-10-24T13:27:32.191464+00:00",
+  "scope": "Direct node execution of every tests/*.test.mjs except final built package suite.",
+  "commands": [
+    {
+      "file": "tests/autosave.test.mjs",
+      "command": [
+        "node",
+        "tests/autosave.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:27:32.191476+00:00",
+      "completed_at": "2026-10-24T13:27:32.279399+00:00",
+      "duration_seconds": 0.08793534000142245,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/autosave.test.txt",
+      "test_source_sha256": "7fa6183eb0fa16f6500135092675bfc7a112bd08341ae28716bb8a6142524c5d",
+      "status": "passed"
+    },
+    {
+      "file": "tests/bus-model.test.mjs",
+      "command": [
+        "node",
+        "tests/bus-model.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:31:46.774351+00:00",
+      "completed_at": "2026-10-24T13:31:46.987034+00:00",
+      "duration_seconds": 0.2126901320007164,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 24,
+        "pass": 24,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/bus-model.test.txt",
+      "test_source_sha256": "07041ead119c67dd2c89e03a0167be722cf1e71663bd1d4930418071ceda5dbf",
+      "status": "passed"
+    },
+    {
+      "file": "tests/bus-report.test.mjs",
+      "command": [
+        "node",
+        "tests/bus-report.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:27:32.527985+00:00",
+      "completed_at": "2026-10-24T13:27:32.670206+00:00",
+      "duration_seconds": 0.1422592450035154,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/bus-report.test.txt",
+      "test_source_sha256": "f65479849fcebaf1bc26d9a8068a5376d006f768225aab72e7101f085c444ce7",
+      "status": "passed"
+    },
+    {
+      "file": "tests/bus-ui.test.mjs",
+      "command": [
+        "node",
+        "tests/bus-ui.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:27:32.670682+00:00",
+      "completed_at": "2026-10-24T13:27:32.835858+00:00",
+      "duration_seconds": 0.16518528300366597,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 10,
+        "pass": 10,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/bus-ui.test.txt",
+      "test_source_sha256": "ed94dee2abde076d9af81d8b11cf41db2bf24646bb9fa71d194ba3aa8744e42f",
+      "status": "passed"
+    },
+    {
+      "file": "tests/continuous-app.test.mjs",
+      "command": [
+        "node",
+        "tests/continuous-app.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:27:32.836354+00:00",
+      "completed_at": "2026-10-24T13:27:33.109164+00:00",
+      "duration_seconds": 0.2728198499971768,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 17,
+        "pass": 17,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/continuous-app.test.txt",
+      "test_source_sha256": "4d76779f618cbd055857911c9e3f96fe3ed0e622de4120016639279a55ed2cfe",
+      "status": "passed"
+    },
+    {
+      "file": "tests/continuous-storage.test.mjs",
+      "command": [
+        "node",
+        "tests/continuous-storage.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:31:48.896506+00:00",
+      "completed_at": "2026-10-24T13:31:49.292929+00:00",
+      "duration_seconds": 0.396432415000163,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 9,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/continuous-storage.test.txt",
+      "test_source_sha256": "75c84c3437f28bf43cb8aa32edc887d818fe6952c4bbfeec499bea8c31e07b53",
+      "status": "passed"
+    },
+    {
+      "file": "tests/continuous.test.mjs",
+      "command": [
+        "node",
+        "tests/continuous.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:27:33.426464+00:00",
+      "completed_at": "2026-10-24T13:27:33.574620+00:00",
+      "duration_seconds": 0.14816629800043302,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 21,
+        "pass": 21,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/continuous.test.txt",
+      "test_source_sha256": "0ce42c4b7a7e88886b8a3f725b88c23a87c31882aa774c259debaba06a177f5c",
+      "status": "passed"
+    },
+    {
+      "file": "tests/converters-integration.test.mjs",
+      "command": [
+        "node",
+        "tests/converters-integration.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:31:46.024004+00:00",
+      "completed_at": "2026-10-24T13:31:46.203385+00:00",
+      "duration_seconds": 0.17939455000305315,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 9,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/converters-integration.test.txt",
+      "test_source_sha256": "eae642973e97e8ba19762e9e2bd1b84fc7fc14a9cc0194bc80907cae2534752b",
+      "status": "passed"
+    },
+    {
+      "file": "tests/coordinated-facade.test.mjs",
+      "command": [
+        "node",
+        "tests/coordinated-facade.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:31:47.766988+00:00",
+      "completed_at": "2026-10-24T13:31:48.379360+00:00",
+      "duration_seconds": 0.6123812049991102,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 14,
+        "pass": 14,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/coordinated-facade.test.txt",
+      "test_source_sha256": "15d26c9d2c2fa5dd6aae646ae666ba1b4b45af36e5e2dea958d250f227c1a692",
+      "status": "passed"
+    },
+    {
+      "file": "tests/coordinated.test.mjs",
+      "command": [
+        "node",
+        "tests/coordinated.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:31:47.101176+00:00",
+      "completed_at": "2026-10-24T13:31:47.765420+00:00",
+      "duration_seconds": 0.6642929290028405,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 31,
+        "pass": 31,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/coordinated.test.txt",
+      "test_source_sha256": "c73e3822eca14b039ffced05f338d7975126637af6c53b30b2526c3360f677e9",
+      "status": "passed"
+    },
+    {
+      "file": "tests/core.test.mjs",
+      "command": [
+        "node",
+        "tests/core.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:31:46.204316+00:00",
+      "completed_at": "2026-10-24T13:31:46.468251+00:00",
+      "duration_seconds": 0.2635608510026941,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 25,
+        "pass": 25,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/core.test.txt",
+      "test_source_sha256": "bb64e674c5fff078fbe56a7803cf57497bf568646b402dd75a12b00eb784964c",
+      "status": "passed"
+    },
+    {
+      "file": "tests/digital-editor.test.mjs",
+      "command": [
+        "node",
+        "tests/digital-editor.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:27:34.980906+00:00",
+      "completed_at": "2026-10-24T13:27:35.092406+00:00",
+      "duration_seconds": 0.11150719100260176,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 6,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/digital-editor.test.txt",
+      "test_source_sha256": "63ea30a9911dd9a6f8c21f1d7c1daa10239c7bbc6c4009f62ee1f39c79c028dd",
+      "status": "passed"
+    },
+    {
+      "file": "tests/digital-expansion.test.mjs",
+      "command": [
+        "node",
+        "tests/digital-expansion.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:31:46.988288+00:00",
+      "completed_at": "2026-10-24T13:31:47.100078+00:00",
+      "duration_seconds": 0.11179979699954856,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 14,
+        "pass": 14,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/digital-expansion.test.txt",
+      "test_source_sha256": "4eeb911d5f876146a24c91dd0e6bcf12b5fdd207a2fd5e995a633b8d844a4668",
+      "status": "passed"
+    },
+    {
+      "file": "tests/digital-model.test.mjs",
+      "command": [
+        "node",
+        "tests/digital-model.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:31:46.469418+00:00",
+      "completed_at": "2026-10-24T13:31:46.772423+00:00",
+      "duration_seconds": 0.30301937400508905,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 23,
+        "pass": 23,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/digital-model.test.txt",
+      "test_source_sha256": "e92b8fe19f151f9c6d9546e4f2e7409078f7424fc60fdbbe66bbf68de49eebc5",
+      "status": "passed"
+    },
+    {
+      "file": "tests/digital-plots.test.mjs",
+      "command": [
+        "node",
+        "tests/digital-plots.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:27:35.507003+00:00",
+      "completed_at": "2026-10-24T13:27:35.690843+00:00",
+      "duration_seconds": 0.1838494530020398,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 10,
+        "pass": 10,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/digital-plots.test.txt",
+      "test_source_sha256": "2c5d60e0c42d92e2960bb90904639ca29ed7ff23f4154b1e0eb5e5a1610748f1",
+      "status": "passed"
+    },
+    {
+      "file": "tests/digital-storage.test.mjs",
+      "command": [
+        "node",
+        "tests/digital-storage.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:27:35.691832+00:00",
+      "completed_at": "2026-10-24T13:27:35.818676+00:00",
+      "duration_seconds": 0.12684988200635416,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 13,
+        "pass": 13,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/digital-storage.test.txt",
+      "test_source_sha256": "0f815dc0a24597042549b06c9dea42e96f1601933bdc18f388e1e06a7d595e4a",
+      "status": "passed"
+    },
+    {
+      "file": "tests/digital.test.mjs",
+      "command": [
+        "node",
+        "tests/digital.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:27:35.819504+00:00",
+      "completed_at": "2026-10-24T13:27:35.940972+00:00",
+      "duration_seconds": 0.1214744500030065,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 22,
+        "pass": 22,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/digital.test.txt",
+      "test_source_sha256": "6d542dc202305401ceff56d661c96421edb7f2017cd97e787ae234e72068df93",
+      "status": "passed"
+    },
+    {
+      "file": "tests/displays.test.mjs",
+      "command": [
+        "node",
+        "tests/displays.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:27:35.941969+00:00",
+      "completed_at": "2026-10-24T13:27:36.231187+00:00",
+      "duration_seconds": 0.2892265109985601,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 17,
+        "pass": 17,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/displays.test.txt",
+      "test_source_sha256": "575f0b745e42fbd33ed3c6879352854e8c3b327a44ddfe89f61426f1f5e490f0",
+      "status": "passed"
+    },
+    {
+      "file": "tests/editor.test.mjs",
+      "command": [
+        "node",
+        "tests/editor.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:27:36.231814+00:00",
+      "completed_at": "2026-10-24T13:27:36.357742+00:00",
+      "duration_seconds": 0.12593927799753146,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 11,
+        "pass": 11,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/editor.test.txt",
+      "test_source_sha256": "932b5b582d2a117d4e20c0d9f356cdc1cc77c4c0c6b9deb4f384ce759ead4ca0",
+      "status": "passed"
+    },
+    {
+      "file": "tests/engine-loading.test.mjs",
+      "command": [
+        "node",
+        "tests/engine-loading.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:27:36.358358+00:00",
+      "completed_at": "2026-10-24T13:27:37.108986+00:00",
+      "duration_seconds": 0.7506407109976863,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 24,
+        "pass": 24,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/engine-loading.test.txt",
+      "test_source_sha256": "8d420d78eeea2613befea4e44bb0c6d45b4474c318b5f7dad55a36fc3d7ef629",
+      "status": "passed"
+    },
+    {
+      "file": "tests/engine-raw-parser.test.mjs",
+      "command": [
+        "node",
+        "tests/engine-raw-parser.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:27:37.109998+00:00",
+      "completed_at": "2026-10-24T13:27:37.212984+00:00",
+      "duration_seconds": 0.10299380999640562,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 6,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/engine-raw-parser.test.txt",
+      "test_source_sha256": "64544c5e963ff4c0be68f26cca88b11b4bf39860da8572c37b5392d7778cf0a0",
+      "status": "passed"
+    },
+    {
+      "file": "tests/experiments-app.test.mjs",
+      "command": [
+        "node",
+        "tests/experiments-app.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:27:37.214266+00:00",
+      "completed_at": "2026-10-24T13:27:37.769974+00:00",
+      "duration_seconds": 0.5557145639977534,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 18,
+        "pass": 18,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/experiments-app.test.txt",
+      "test_source_sha256": "3180a1650d9b06d7895689fec7829418ee90cc833c043c1834ddeb22c00233ce",
+      "status": "passed"
+    },
+    {
+      "file": "tests/experiments-engine.test.mjs",
+      "command": [
+        "node",
+        "tests/experiments-engine.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:27:37.770750+00:00",
+      "completed_at": "2026-10-24T13:27:41.419917+00:00",
+      "duration_seconds": 3.6491771540022455,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/experiments-engine.test.txt",
+      "test_source_sha256": "4cbf60dab5dab47b7d1d93ce280557ee85d46053987d48adbbf241e5d72ad330",
+      "status": "passed"
+    },
+    {
+      "file": "tests/experiments-ui.test.mjs",
+      "command": [
+        "node",
+        "tests/experiments-ui.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:27:41.421113+00:00",
+      "completed_at": "2026-10-24T13:27:41.646505+00:00",
+      "duration_seconds": 0.22539907400641823,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 11,
+        "pass": 11,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/experiments-ui.test.txt",
+      "test_source_sha256": "c0ca3993fc28271ab6725d6ee6b6003e6306d8ed5b1e9d163055b90af789e454",
+      "status": "passed"
+    },
+    {
+      "file": "tests/experiments.test.mjs",
+      "command": [
+        "node",
+        "tests/experiments.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:27:41.647527+00:00",
+      "completed_at": "2026-10-24T13:27:42.483603+00:00",
+      "duration_seconds": 0.8360836100036977,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 31,
+        "pass": 31,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/experiments.test.txt",
+      "test_source_sha256": "1d691884eea04ac802289290d87328838827c13141e143592b800d625f82405f",
+      "status": "passed"
+    },
+    {
+      "file": "tests/offline.test.mjs",
+      "command": [
+        "node",
+        "tests/offline.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:27:42.484704+00:00",
+      "completed_at": "2026-10-24T13:27:43.384127+00:00",
+      "duration_seconds": 0.8994311620044755,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 22,
+        "pass": 22,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/offline.test.txt",
+      "test_source_sha256": "50200bdd515505a85ad1a87aabde5caa3e837ad4d306a9376e778e9db94824da",
+      "status": "passed"
+    },
+    {
+      "file": "tests/repair.test.mjs",
+      "command": [
+        "node",
+        "tests/repair.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:27:43.385712+00:00",
+      "completed_at": "2026-10-24T13:27:43.640615+00:00",
+      "duration_seconds": 0.25483639299636707,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 12,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/repair.test.txt",
+      "test_source_sha256": "9cb5fbd0feab522c2eaf696d9fabe0b0473646f23260389a4683a15d70d5a62e",
+      "status": "passed"
+    },
+    {
+      "file": "tests/results.test.mjs",
+      "command": [
+        "node",
+        "tests/results.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:27:43.641779+00:00",
+      "completed_at": "2026-10-24T13:27:43.830801+00:00",
+      "duration_seconds": 0.1890294519980671,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 14,
+        "pass": 14,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/results.test.txt",
+      "test_source_sha256": "82121a0e66a6db66dc3795c0c636a8d168b30f50d40ebeec698cecf4c111efe9",
+      "status": "passed"
+    },
+    {
+      "file": "tests/simulation.test.mjs",
+      "command": [
+        "node",
+        "tests/simulation.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:31:48.380402+00:00",
+      "completed_at": "2026-10-24T13:31:48.895279+00:00",
+      "duration_seconds": 0.5148881749992142,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 10,
+        "pass": 10,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/simulation.test.txt",
+      "test_source_sha256": "a9b097db4907b1ff113efd21930ee82e2837912dc03d0186d937b95b82df328d",
+      "status": "passed"
+    },
+    {
+      "file": "tests/timing-app.test.mjs",
+      "command": [
+        "node",
+        "tests/timing-app.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:27:44.288954+00:00",
+      "completed_at": "2026-10-24T13:27:44.719125+00:00",
+      "duration_seconds": 0.4301802219997626,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 15,
+        "pass": 15,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/timing-app.test.txt",
+      "test_source_sha256": "53dee35d776876382510ba52b79329b43d14e6df22d222b04e27c94fbb670061",
+      "status": "passed"
+    },
+    {
+      "file": "tests/timing-evidence.test.mjs",
+      "command": [
+        "node",
+        "tests/timing-evidence.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:27:44.719978+00:00",
+      "completed_at": "2026-10-24T13:27:45.630850+00:00",
+      "duration_seconds": 0.9107854730027611,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 20,
+        "pass": 20,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/timing-evidence.test.txt",
+      "test_source_sha256": "725fccae18e4825dfb6a8ce4a135f2da1a67aaf1b7854a142ff0aa6256c8c8fd",
+      "status": "passed"
+    },
+    {
+      "file": "tests/timing-ui.test.mjs",
+      "command": [
+        "node",
+        "tests/timing-ui.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:27:45.631863+00:00",
+      "completed_at": "2026-10-24T13:27:45.934902+00:00",
+      "duration_seconds": 0.3030493570040562,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 12,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/timing-ui.test.txt",
+      "test_source_sha256": "195d04458d0243d0db06213563f32cbe5c2c53716858e345ac14f1f6b44c8934",
+      "status": "passed"
+    },
+    {
+      "file": "tests/timing.test.mjs",
+      "command": [
+        "node",
+        "tests/timing.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:27:45.936544+00:00",
+      "completed_at": "2026-10-24T13:27:46.269039+00:00",
+      "duration_seconds": 0.33250281200162135,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 34,
+        "pass": 34,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/timing.test.txt",
+      "test_source_sha256": "8a09e80021b0d4ba0b6ecc5fdfa40292cf70da3c6652d69d73af20d7bc5daf93",
+      "status": "passed"
+    },
+    {
+      "file": "tests/truth-table-app.test.mjs",
+      "command": [
+        "node",
+        "tests/truth-table-app.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:27:46.270251+00:00",
+      "completed_at": "2026-10-24T13:27:46.514173+00:00",
+      "duration_seconds": 0.2439290960028302,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 17,
+        "pass": 17,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/truth-table-app.test.txt",
+      "test_source_sha256": "7a9ebe07201311cbc1937372df35b0425913e4b2e0b18986cf83df7d3e3de798",
+      "status": "passed"
+    },
+    {
+      "file": "tests/truth-table-evidence-ui.test.mjs",
+      "command": [
+        "node",
+        "tests/truth-table-evidence-ui.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:27:46.515287+00:00",
+      "completed_at": "2026-10-24T13:27:46.779651+00:00",
+      "duration_seconds": 0.2643730019990471,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 10,
+        "pass": 10,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/truth-table-evidence-ui.test.txt",
+      "test_source_sha256": "803ee6fa2400f63d80d59e0d3408f730442912e2ccc44cc9527d399fb548084a",
+      "status": "passed"
+    },
+    {
+      "file": "tests/truth-table.test.mjs",
+      "command": [
+        "node",
+        "tests/truth-table.test.mjs"
+      ],
+      "started_at": "2026-10-24T13:27:46.780663+00:00",
+      "completed_at": "2026-10-24T13:27:47.120030+00:00",
+      "duration_seconds": 0.3392719740004395,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 7,
+        "pass": 7,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc200-tests/truth-table.test.txt",
+      "test_source_sha256": "df43d25b1bcdc3f261bd6d3a9fe82031408f88f4ff46d5aeebd8b042ecab6609",
+      "status": "passed"
+    }
+  ],
+  "passed": 550,
+  "failed": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "executed_files": 36,
+  "failing_files": [],
+  "completed_at": "2026-10-24T13:31:49.293098+00:00",
+  "status": "passed",
+  "counts_semantics": "Node test reporter test-case counts; assertion calls were not instrumented or counted.",
+  "follow_up_runs": [
+    {
+      "started_at": "2026-10-24T13:31:46.023673+00:00",
+      "reason": "Converter validation hardening: enforce conversion delay after quantization to 1 ps ticks, reject unknown DACBUS startup words in compilation.",
+      "files": [
+        "tests/converters-integration.test.mjs",
+        "tests/core.test.mjs",
+        "tests/digital-model.test.mjs",
+        "tests/bus-model.test.mjs",
+        "tests/digital-expansion.test.mjs",
+        "tests/coordinated.test.mjs",
+        "tests/coordinated-facade.test.mjs",
+        "tests/simulation.test.mjs",
+        "tests/continuous-storage.test.mjs"
+      ],
+      "completed_at": "2026-10-24T13:31:49.296430+00:00"
+    }
+  ],
+  "transcript_review": {
+    "reviewed_at": "2026-10-24T13:32:01.570094+00:00",
+    "all_exit_codes_zero": true,
+    "all_reporter_pass_counts_match_individual_records": true,
+    "all_test_source_hashes_current": true,
+    "numerical_proof_source_hashes_current": {
+      "src/coordinated.js": true,
+      "src/coordinated-digital.js": true,
+      "src/digital.js": true,
+      "src/library.js": true,
+      "src/model.js": true,
+      "src/netlist.js": true
+    }
+  },
+  "numerical_proof": {
+    "file": "coordinated-validation.json",
+    "transcript": "rc200-tests/coordinated-proof.txt",
+    "tested_at": "2026-10-24T13:31:44.669Z",
+    "passed": 24,
+    "failed": 0,
+    "status": "passed",
+    "exit_code": 0
+  },
+  "appVersion": "2.0.0-rc.1",
+  "runtimeBuild": "7f06ecaf7e7b40be"
+}
