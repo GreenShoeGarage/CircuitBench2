@@ -14,7 +14,7 @@ const wire=(p,a,b)=>{const id=uid('w');p.circuit.connections.push({id,a,b});p.la
 const label=(p,name,target)=>p.circuit.labels.push({id:uid('label'),name,target});
 
 test('nine bounded parts have trusted fixed ports and separate original model provenance',()=>{
- assert.equal(LIBRARY.length,41);assert.equal(BUS_TYPES.length,9);assert.equal(Object.keys(MODELS).length,35);
+ assert.equal(LIBRARY.length,43);assert.equal(BUS_TYPES.length,9);assert.equal(Object.keys(MODELS).length,37);
  for(const type of BUS_TYPES){const d=getPart(type),m=MODELS[d.model],c={type,params:d.defaults};assert.equal(m.version,BUS_MODEL_VERSION);assert.equal(m.license,'MIT');assert.ok(JSON.parse(m.definition).widthPolicy);assert.ok(getPins(c).every(pin=>pin.width>=1&&pin.width<=8));assert.deepEqual(getPins(c).map(pin=>pin.id),d.pins.map(pin=>pin.id));assert.ok(EXAMPLES.find(e=>e.id===m.fixture).create().circuit.components.some(c=>c.type===type));}
  assert.equal(getPins({type:'COUNTER',params:{width:'8'}}).find(p=>p.id==='q').width,8);
  assert.deepEqual(getPins({type:'DECODER',params:{inputBits:'3'}}).map(p=>p.width),[3,1,8]);

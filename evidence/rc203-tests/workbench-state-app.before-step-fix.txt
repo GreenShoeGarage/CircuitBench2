@@ -1,0 +1,55 @@
+✔ actual result and selection renderers keep the persistent strip and DVS initial state current (83.789893ms)
+✔ the actual Return to latest action clears only Cursor A and never changes or resumes simulation (14.227949ms)
+✔ unchanged renders retain keyboard focus and changed state cleans up old view-action listeners (13.495794ms)
+✔ actual history selection can show an older run while the retained continuous session remains paused (34.587889ms)
+✔ async bounded-run completion after an edit shows its captured revision without lighting current indicators (15.531291ms)
+✔ replacement tracks restored run identities without adding persistence-schema fields (16.211005ms)
+✔ actual paused source controls show last confirmed drive until acknowledgement and retain initial state (16.981317ms)
+✔ a late input response from an ended session cannot replace the new session state strip (13.874364ms)
+✔ stopping through the actual lifecycle converts the strip to a non-resumable saved window (7.269418ms)
+✖ the Step button finishes with an idle paused strip after publishing a completed update (10.888571ms)
+✖ a stopped Step finishing after a new session starts cannot repaint or report errors for that new session (9.655623ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 9
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 267.917305
+
+✖ failing tests:
+
+test at tests/workbench-state-app.test.mjs:200:1
+✖ the Step button finishes with an idle paused strip after publishing a completed update (10.888571ms)
+  AssertionError [ERR_ASSERTION]: The input was expected to not match the regular expression /Advancing one step/. Input:
+  
+  '<div class="workbench-state" role="group" aria-label="Simulation state and result time" data-workbench-mode="paused" data-tone="paused"><div class="workbench-state-summary"><strong class="workbench-state-label">Paused</strong><span class="workbench-state-detail">Advancing one step; the session remains paused afterward.</span></div><div class="workbench-observation" data-observation="latest"><span class="workbench-time" title="0.00009999999999999999 seconds">Latest · 100 µs</span><span class="workbench-observation-detail">Latest completed window; an in-progress update is not displayed.</span></div></div>'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/141bc601d3b6/circuitbench/tests/workbench-state-app.test.mjs:206:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'vation-detail">Latest completed window; an in-progress update is not displayed.</span></div></div>...',
+    expected: /Advancing one step/,
+    operator: 'doesNotMatch',
+    diff: 'simple'
+  }
+
+test at tests/workbench-state-app.test.mjs:212:1
+✖ a stopped Step finishing after a new session starts cannot repaint or report errors for that new session (9.655623ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/141bc601d3b6/circuitbench/tests/workbench-state-app.test.mjs:219:49)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

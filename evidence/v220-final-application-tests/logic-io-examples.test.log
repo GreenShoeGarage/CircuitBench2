@@ -1,0 +1,14 @@
+✔ all three source and indicator examples are available once, validate and retain their explicit signal domains (20.961353ms)
+✔ binary source and inverter example produces complementary actual indicator states for both settings (3.788086ms)
+✔ live source changes preserve the inverter delay and indicator observations on the same advancing timeline (4.661401ms)
+✔ voltage example separates digital command, stored capacitor voltage and Schmitt indicator timing (16.716556ms)
+✔ four-state pattern example displays exactly one red high in each interval and honors event boundaries (2.892487ms)
+✔ portable backups preserve actual source, voltage and four-state indicator observations (14.233009ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 69.236389

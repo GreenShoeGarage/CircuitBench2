@@ -1,0 +1,19 @@
+✔ installation dialog waits for an explicit check and does not use the working project (9.97361ms)
+✔ only one check can own the dialog and a running diagnostic cannot be downloaded (1.604883ms)
+✔ cancel button aborts the current check and retains its completed cancellation report for download (1.980683ms)
+✔ closing the real dialog binding aborts ownership and ignores late progress/completion (1.744335ms)
+✔ replacing the dialog prevents an old check from overwriting the new dialog (1.791303ms)
+✔ an obsolete completion cannot clear a newer task or attach its report (1.840468ms)
+✔ retry starts a fresh check, clears the old report while running, and downloads only the new result (2.245375ms)
+✔ progress repaint preserves file-detail expansion, scroll and the focused action (1.572657ms)
+✔ unexpected checker rejection releases ownership and uses the actual error dialog without changing the project (9.063568ms)
+✔ late errors after closing are ignored and source-checkout build identity is explicitly omitted (1.903827ms)
+✔ completed diagnostics can be reopened and downloaded without launching a new check (1.701789ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 44.994507

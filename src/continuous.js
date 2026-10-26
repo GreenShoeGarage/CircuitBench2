@@ -1,5 +1,6 @@
 import { CoordinatedEngine } from './coordinated-engine.js';
 import { mergeCoordinatedChunks, validateCoordinatedResult } from './coordinated-results.js';
+import { normalizeCaptureRequest, sliceCaptureResult, captureCoverage } from './capture.js';
 
 export const CONTINUOUS_LIMITS = Object.freeze({ points: 30000, values: 1000000, events: 250000, inputChanges: 2000, commandSteps: 2000, time: 9000 });
 const fail = (message, code = 'CONTINUOUS_INVALID') => Object.assign(new Error(message), { code });
@@ -46,8 +47,8 @@ export function appendContinuousResult(previous, chunk, { maxPoints = CONTINUOUS
 
 /** Pausing preserves the worker and its complete numerical state. Stop disposes it. */
 export class ContinuousSimulation {
-  constructor({ engine = new CoordinatedEngine(), onUpdate = () => {}, onState = () => {}, intervalMs = 80 } = {}) {
-    this.engine = engine; this.onUpdate = onUpdate; this.onState = onState; this.intervalMs = Number.isFinite(intervalMs) ? Math.max(20, intervalMs) : 80; this.state = 'stopped'; this.time = 0; this.result = null; this.generation = 0; this.inputChanges = [];
+  constructor({ engine = new CoordinatedEngine(), onUpdate = () => {}, onState = () => {}, onCapture = () => {}, intervalMs = 80 } = {}) {
+    this.engine = engine; this.onUpdate = onUpdate; this.onState = onState; this.onCapture = onCapture; this.intervalMs = Number.isFinite(intervalMs) ? Math.max(20, intervalMs) : 80; this.state = 'stopped'; this.time = 0; this.result = null; this.generation = 0; this.inputChanges = []; this.capture = null; this.lastEvent = null;
   }
   get running() { return ['starting', 'running', 'pausing', 'paused'].includes(this.state); }
   notify(state, error) { this.state = state; this.onState(state, error); }
@@ -56,7 +57,7 @@ export class ContinuousSimulation {
     if (this.running) throw fail('Stop the current continuous session first.');
     if (!(Number.isFinite(chunkDuration) && chunkDuration >= 1e-12 && Number.isFinite(windowDuration) && windowDuration >= chunkDuration)) throw fail('Choose a positive chunk duration and a history window at least that long.');
     const generation = ++this.generation;
-    this.plan = copy(plan); this.chunkDuration = chunkDuration; this.windowDuration = windowDuration; this.time = 0; this.result = null; this.inputChanges = []; this.inputInFlight = null; this.inFlight = null; this.pauseIntent = 0; this.startPaused = !autoRun; this.notify('starting');
+    this.plan = copy(plan); this.chunkDuration = chunkDuration; this.windowDuration = windowDuration; this.time = 0; this.result = null; this.inputChanges = []; this.capture = null; this.lastEvent = null; this.inputInFlight = null; this.inFlight = null; this.pauseIntent = 0; this.startPaused = !autoRun; this.notify('starting');
     try {
       if (generation !== this.generation || this.state !== 'starting') return;
       await this.engine.start(this.plan, { timeoutMs, onFailure: error => this.handleFailure(generation, error) });
@@ -71,25 +72,48 @@ export class ContinuousSimulation {
     const generation = this.generation;
     this.timer = setTimeout(() => { if (generation === this.generation && this.state === 'running') this.advance().catch(() => {}); }, this.intervalMs);
   }
-  async advance() {
+  async advance({ stopOnEvent = false, searchDuration = this.chunkDuration } = {}) {
     if (!['running', 'paused'].includes(this.state) || this.inFlight || this.inputInFlight) return;
-    const generation = this.generation, next = Math.min(CONTINUOUS_LIMITS.time, Math.round((this.time + this.chunkDuration) / 1e-12) * 1e-12);
+    const generation = this.generation, capture = this.capture, trigger = capture?.status === 'armed' ? capture.request.trigger : null;
+    const captureEnd = capture?.status === 'armed' ? capture.searchEnd : capture?.status === 'post-trigger' ? capture.event.time + capture.request.after : Infinity;
+    const next = Math.min(CONTINUOUS_LIMITS.time, Math.round(Math.min(this.time + searchDuration, captureEnd) / 1e-12) * 1e-12);
     if (next <= this.time) { await this.pause(); return; }
     const task = Promise.resolve().then(async () => {
+      let pauseAfterAdvance = false;
       try {
         if (generation !== this.generation || !['running', 'paused', 'pausing'].includes(this.state)) return;
-        const chunk = await this.engine.advanceTo(next, { maxSteps: CONTINUOUS_LIMITS.commandSteps });
+        const chunk = await this.engine.advanceTo(next, { maxSteps: CONTINUOUS_LIMITS.commandSteps, ...(trigger ? { trigger } : {}), ...(stopOnEvent ? { stopOnEvent: true } : {}) });
         if (generation !== this.generation) return;
         const bounds = validateCoordinatedResult(chunk), end = bounds.end;
         if (bounds.start !== this.time || !(end > this.time) || end > next || chunk.done !== (end === next)) throw fail('The coordinated solver returned an inconsistent or nonadvancing chunk; the session was stopped.', 'CONTINUOUS_STALLED');
+        if (chunk.halt && (!['event', 'trigger'].includes(chunk.halt.kind) || chunk.halt.time !== end || chunk.halt.kind === 'trigger' && !trigger || chunk.halt.kind === 'event' && !stopOnEvent)) throw fail('The solver returned an inconsistent event stop.', 'CONTINUOUS_EVENT');
         this.result = appendContinuousResult(this.result, chunk, { windowDuration: this.windowDuration, inputChanges: this.inputChanges });
-        this.time = end; this.onUpdate(this.result);
-        if (this.state === 'pausing' || this.time >= CONTINUOUS_LIMITS.time) this.notify('paused');
+        this.time = end;
+        let capturePaused = false;
+        if (capture && capture === this.capture) {
+          if (capture.status === 'post-trigger') capture.result = appendContinuousResult(capture.result, chunk, { windowDuration: Infinity, inputChanges: this.inputChanges });
+          if (capture.status === 'armed' && chunk.halt?.kind === 'trigger') {
+            capture.event = copy(chunk.halt); capture.status = 'post-trigger';
+            capture.result = sliceCaptureResult(this.result, capture.event.time - capture.request.before);
+            this.lastEvent = copy(chunk.halt); this.onCapture(copy(capture));
+          }
+          if (capture.status === 'post-trigger' && (this.time >= Math.round((capture.event.time + capture.request.after) / 1e-12) * 1e-12 || this.time >= CONTINUOUS_LIMITS.time)) {
+            capture.status = 'complete'; capture.coverage = captureCoverage(capture.result, capture.request, capture.event); capturePaused = true; this.onCapture(copy(capture));
+          } else if (capture.status === 'armed' && this.time >= capture.searchEnd) {
+            capture.status = 'not-found'; capture.reason = 'No qualifying trigger before the declared search limit.'; capturePaused = true; this.onCapture(copy(capture));
+          }
+        }
+        if (stopOnEvent) this.lastEvent = chunk.halt ? { ...chunk.halt, searchedUntil: end, requestedEnd: next } : {
+          kind: chunk.done ? 'search-limit' : 'work-limit', time: end, searchedUntil: end, requestedEnd: next,
+          reason: chunk.done ? 'No scheduled event within the declared search duration. Numerical state is retained; search again to continue.' : 'The command reached its numerical work limit before the declared search end. No event was reported. Numerical state is retained; continue searching from this boundary.'
+        };
+        this.onUpdate(this.result);
+        pauseAfterAdvance = capturePaused || stopOnEvent || this.state === 'pausing' || this.time >= CONTINUOUS_LIMITS.time;
       } catch (error) {
         this.handleFailure(generation, error);
         throw error;
       } finally {
-        if (generation === this.generation) { this.inFlight = null; if (this.state === 'running') this.schedule(); }
+        if (generation === this.generation) { this.inFlight = null; if (pauseAfterAdvance && !['failed', 'stopped'].includes(this.state)) this.notify('paused'); if (this.state === 'running') this.schedule(); }
       }
     });
     this.inFlight = task;
@@ -105,28 +129,66 @@ export class ContinuousSimulation {
   }
   resume() { if (this.state !== 'paused') return; if (this.inputInFlight) throw fail('Wait for the live input change before resuming.'); if (this.time >= CONTINUOUS_LIMITS.time) throw fail('The safe continuous timeline is complete. Stop and start a new session.'); this.notify('running'); this.schedule(); }
   async step() { if (this.inputInFlight) throw fail('Wait for the live input change before stepping.'); if (this.state === 'running' || this.state === 'pausing') await this.pause(); if (this.state === 'paused') return this.advance(); }
+  armCapture(input) {
+    if (!this.running || this.state === 'starting' || this.inFlight || this.inputInFlight) throw fail('Pause at a completed boundary before arming a trigger.');
+    const request = normalizeCaptureRequest(input), searchEnd = Math.min(CONTINUOUS_LIMITS.time, Math.round((this.time + request.search) / 1e-12) * 1e-12);
+    if (searchEnd <= this.time) throw fail('The safe continuous timeline has ended. Start a new session.');
+    this.capture = { request, armedAt: this.time, searchEnd, status: 'armed', event: null, result: null };
+    this.onCapture(copy(this.capture)); return this.capture;
+  }
+  cancelCapture() { if (this.capture && ['armed', 'post-trigger'].includes(this.capture.status)) { this.capture.status = 'cancelled'; this.onCapture(copy(this.capture)); } }
+  async stepToNextEvent({ searchDuration = this.plan?.duration } = {}) {
+    if (!(Number.isFinite(searchDuration) && searchDuration >= 1e-12 && searchDuration <= CONTINUOUS_LIMITS.time)) throw fail('Choose a positive bounded next-event search duration.');
+    if (this.capture && ['armed', 'post-trigger'].includes(this.capture.status)) throw fail('Cancel the armed capture before stepping to a different event.');
+    if (this.inputInFlight) throw fail('Wait for the live input change before stepping.');
+    if (this.state === 'running' || this.state === 'pausing') await this.pause();
+    if (this.state === 'paused') return this.advance({ stopOnEvent: true, searchDuration });
+  }
   async setInputs(updates) {
     if (!this.running) throw fail('Start a continuous session before adjusting its inputs.');
     if (this.inputInFlight) throw fail('Wait for the current live input change to finish.');
     if (!Array.isArray(updates) || updates.length < 1 || updates.length > 64) throw fail('Choose 1–64 live input updates.');
     if (this.inputChanges.length >= CONTINUOUS_LIMITS.inputChanges) throw fail('This session has reached 2,000 recorded input changes. Stop and start a new session.');
     const resume = this.state === 'running', generation = this.generation, changes = copy(updates), pauseIntent = this.pauseIntent;
-    const operation = { generation }; this.inputInFlight = operation;
+    const operation = { generation }; this.inputInFlight = operation; let triggerPaused = false;
     try {
       await this.pause({ internal: true });
       if (generation !== this.generation || this.state !== 'paused') throw fail('The continuous session ended before inputs could change.', 'CONTINUOUS_CANCELLED');
-      const response = await this.engine.setInputs(changes);
+      const capture = this.capture, trigger = ['armed', 'post-trigger'].includes(capture?.status) ? capture.request.trigger : null;
+      const response = await this.engine.setInputs(changes, trigger ? { trigger } : undefined);
       if (generation !== this.generation || this.state !== 'paused') throw fail('The continuous session ended before inputs could change.', 'CONTINUOUS_CANCELLED');
       this.inputChanges.push({ time: this.time, updates: changes });
       if (this.result) this.result.continuous.inputChanges = copy(this.inputChanges);
+      if (trigger) {
+        const bounds = validateCoordinatedResult(response.snapshot);
+        if (bounds.start !== this.time || bounds.end !== this.time) throw fail('Live-input trigger returned an inconsistent boundary snapshot.');
+        const vector = response.snapshot.vectors.find(v => v.name === trigger.signal), state = vector?.kind === 'bus' ? vector.values[0]?.[vector.width - 1 - trigger.bit] : vector?.values[0];
+        if (state === undefined || response.triggerState !== state) throw fail('Live-input trigger state disagrees with its boundary snapshot.');
+        this.result = appendContinuousResult(this.result, response.snapshot, { windowDuration: this.windowDuration, inputChanges: this.inputChanges });
+        if (capture === this.capture && capture?.status === 'post-trigger') {
+          if (this.time === capture.event.time && state !== capture.event.after) {
+            capture.status = 'cancelled';
+            capture.reason = 'Trigger state was superseded at the same simulation boundary; advance time between press/release and rearm.';
+          } else capture.result = appendContinuousResult(capture.result, response.snapshot, { windowDuration: Infinity, inputChanges: this.inputChanges });
+          this.onCapture(copy(capture));
+        } else if (response.triggerEvent && capture === this.capture && capture?.status === 'armed') {
+          if (response.triggerEvent.time !== this.time || response.triggerEvent.method !== 'live-input-boundary') throw fail('Live-input trigger returned an inconsistent boundary event.');
+          capture.event = copy(response.triggerEvent); capture.result = sliceCaptureResult(this.result, this.time - capture.request.before);
+          capture.status = capture.request.after === 0 ? 'complete' : 'post-trigger'; this.lastEvent = copy(capture.event);
+          if (capture.status === 'complete') { triggerPaused = true; capture.coverage = captureCoverage(capture.result, capture.request, capture.event); }
+          this.onCapture(copy(capture));
+        }
+        this.onUpdate(this.result);
+      }
       return response;
     } catch (error) {
       this.handleFailure(generation, error);
       throw error;
     } finally {
       if (this.inputInFlight === operation) this.inputInFlight = null;
-      if (generation === this.generation && this.state === 'paused' && resume && this.pauseIntent === pauseIntent) this.resume();
+      if (generation === this.generation && this.state === 'paused' && triggerPaused) this.notify('paused');
+      if (generation === this.generation && this.state === 'paused' && resume && !triggerPaused && this.pauseIntent === pauseIntent) this.resume();
     }
   }
-  stop() { clearTimeout(this.timer); ++this.generation; this.engine.stop(); this.inFlight = null; this.inputInFlight = null; if (this.state !== 'stopped') this.notify('stopped'); return this.result; }
+  stop() { clearTimeout(this.timer); ++this.generation; this.engine.stop(); this.inFlight = null; this.inputInFlight = null; this.cancelCapture(); if (this.state !== 'stopped') this.notify('stopped'); return this.result; }
 }

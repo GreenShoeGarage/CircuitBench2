@@ -1,0 +1,26 @@
+✔ actual trigger setup pauses at a boundary and rejects invalid drafts without arming (39.111028ms)
+✔ capture completion saves one immutable window with provenance and reopens through backup validation (13.55182ms)
+✔ run until event uses the exact trigger boundary and no post-trigger delay (6.065765ms)
+✔ Next event pauses the owned session and releases its busy controls after completion (4.669851ms)
+✔ Next event work cap reports a limit instead of claiming a settled event (29.929918ms)
+✔ an obsolete capture form cannot arm a later session (5.430992ms)
+✔ old capture callbacks cannot append evidence after project replacement (7.743084ms)
+✔ View capture keeps the working project and retained session while selecting immutable evidence (8.404166ms)
+✔ capture CSV, JSON and measurements remain available after the full source run is removed (7.247765ms)
+✔ opening evidence respects the run count and protects a live session and pinned baseline (10.216903ms)
+✔ explicit instrument snapshots get separate run identities and never freeze or modify the live window (5.308431ms)
+✔ running batch updates leave Capture, Run until and Next event enabled while numerical work is pending (7.093838ms)
+✔ capture setup waits for a running batch, rejects duplicate navigation and opens at the completed boundary (3.803477ms)
+✔ until setup waits for a running batch, rejects duplicate navigation and opens at the completed boundary (5.530878ms)
+✔ Next event waits for the active running batch before searching once and ignores duplicate activations (3.366113ms)
+✔ paused batch work and live input commands remain blocked from navigation (3.739873ms)
+✔ a pending capture navigation cannot change a replacement session when its old batch finishes (4.334908ms)
+✔ a pending next navigation cannot change a replacement session when its old batch finishes (3.850175ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 175.857125

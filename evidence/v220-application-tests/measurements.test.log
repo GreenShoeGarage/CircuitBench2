@@ -1,0 +1,24 @@
+✔ RC 10–90% rise and declared 2% settling match analytic exponential references (10.157065ms)
+✔ falling exponential and explicit thresholds use declared descending levels (7.438523ms)
+✔ overshoot uses directional declared-step amplitude; settling uses last band entry (1.37194ms)
+✔ crossing windows exclude pre-existing transitions and return crossings interrupt a rise (0.70596ms)
+✔ threshold delay pairs within each input interval and does not reuse output crossings (1.428984ms)
+✔ explicit interpolation limit, absent samples and incomplete complex evidence never fabricate values (0.700311ms)
+✔ mixed event-union measurements select original analog rows and retain differential operands (0.768121ms)
+✔ peak-to-peak and time-weighted total RMS gain use the same clipped window (0.544693ms)
+✔ AC gain interpolates complex operands and cutoff interpolates dB against log frequency (1.485187ms)
+✔ analytic RC low-pass AC gain and cutoff converge to the declared reference relationship (5.973877ms)
+✔ AC phase on the negative real axis survives JSON zero normalization and zero output has no phase (0.756213ms)
+✔ unresolved intervals outside one visible edge pair prevent a complete scalar claim (0.270969ms)
+✔ setup/hold equality passes, shorter observed intervals violate, missing transitions are lower bounds (1.912917ms)
+✔ setup/hold requires selected bus bit; unrelated bit transitions do not become data changes (0.609507ms)
+✔ unknown clock/data, simultaneous updates and clipped boundary intervals stay explicit (0.53666ms)
+✔ default drafts declare levels and retain available signal identities (0.444975ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 49.312823

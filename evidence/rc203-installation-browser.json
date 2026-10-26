@@ -1,0 +1,668 @@
+{
+  "format": "CircuitBench installation check",
+  "formatVersion": 1,
+  "version": "2.0.0-rc.3",
+  "loadedBuild": "8a99d6d843d32aa6",
+  "manifestBuild": "8a99d6d843d32aa6",
+  "scope": "http://terminal.local:4173/",
+  "startedAt": "2026-10-25T02:27:20.046Z",
+  "completedAt": "2026-10-25T02:27:20.745Z",
+  "status": "failed",
+  "currentStep": null,
+  "environment": {
+    "secureContext": false,
+    "fetch": true,
+    "worker": true,
+    "webAssembly": true,
+    "sha256": false,
+    "serviceWorker": false,
+    "indexedDB": true,
+    "online": true,
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36"
+  },
+  "checks": [
+    {
+      "id": "loaded-build",
+      "label": "Loaded application identity",
+      "status": "passed",
+      "message": "Loaded 2.0.0-rc.3, build 8a99d6d843d32aa6."
+    },
+    {
+      "id": "sha256",
+      "label": "SHA-256 verification",
+      "status": "unavailable",
+      "message": "SHA-256 is unavailable here. File types and lengths can be checked, but exact byte identity cannot be confirmed. Use HTTPS or localhost."
+    },
+    {
+      "id": "manifests",
+      "label": "Release and recovery manifests",
+      "status": "passed",
+      "message": "Both identify 2.0.0-rc.3, build 8a99d6d843d32aa6, with 44 bounded runtime files.",
+      "details": {
+        "files": 44,
+        "declaredBytes": 6997593
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/engine/eecircuit-engine.js",
+      "label": "assets/2.0.0-rc.3/engine/eecircuit-engine.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/engine/eecircuit-engine.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 78294,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/continuous-evidence.js",
+      "label": "assets/2.0.0-rc.3/src/continuous-evidence.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/continuous-evidence.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 3402,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/app.js",
+      "label": "assets/2.0.0-rc.3/src/app.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/app.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 101884,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/continuous.js",
+      "label": "assets/2.0.0-rc.3/src/continuous.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/continuous.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 10924,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/coordinated-digital.js",
+      "label": "assets/2.0.0-rc.3/src/coordinated-digital.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/coordinated-digital.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 13584,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/coordinated-engine.js",
+      "label": "assets/2.0.0-rc.3/src/coordinated-engine.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/coordinated-engine.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 7842,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/coordinated-results.js",
+      "label": "assets/2.0.0-rc.3/src/coordinated-results.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/coordinated-results.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 7508,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/engine/spice.wasm",
+      "label": "assets/2.0.0-rc.3/engine/spice.wasm",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/engine/spice.wasm",
+      "httpStatus": 200,
+      "contentType": "application/wasm",
+      "details": {
+        "bytes": 6133055,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/coordinated-worker.js",
+      "label": "assets/2.0.0-rc.3/src/coordinated-worker.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/coordinated-worker.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 1578,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/coordinated.js",
+      "label": "assets/2.0.0-rc.3/src/coordinated.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/coordinated.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 25848,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/digital-engine.js",
+      "label": "assets/2.0.0-rc.3/src/digital-engine.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/digital-engine.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 3607,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/digital-worker.js",
+      "label": "assets/2.0.0-rc.3/src/digital-worker.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/digital-worker.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 1103,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/digital.js",
+      "label": "assets/2.0.0-rc.3/src/digital.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/digital.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 27749,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/displays.js",
+      "label": "assets/2.0.0-rc.3/src/displays.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/displays.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 14175,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/editor.js",
+      "label": "assets/2.0.0-rc.3/src/editor.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/editor.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 65056,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/engine-worker.js",
+      "label": "assets/2.0.0-rc.3/src/engine-worker.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/engine-worker.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 9299,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/engine.js",
+      "label": "assets/2.0.0-rc.3/src/engine.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/engine.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 10198,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/examples-coordinated.js",
+      "label": "assets/2.0.0-rc.3/src/examples-coordinated.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/examples-coordinated.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 10399,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/examples-displays.js",
+      "label": "assets/2.0.0-rc.3/src/examples-displays.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/examples-displays.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 5411,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/examples-logic-io.js",
+      "label": "assets/2.0.0-rc.3/src/examples-logic-io.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/examples-logic-io.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 8381,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/examples.js",
+      "label": "assets/2.0.0-rc.3/src/examples.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/examples.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 38279,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/experiments-ui.js",
+      "label": "assets/2.0.0-rc.3/src/experiments-ui.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/experiments-ui.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 18257,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/experiments.js",
+      "label": "assets/2.0.0-rc.3/src/experiments.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/experiments.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 35815,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/installation-check.js",
+      "label": "assets/2.0.0-rc.3/src/installation-check.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/installation-check.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 28922,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/installation-ui.js",
+      "label": "assets/2.0.0-rc.3/src/installation-ui.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/installation-ui.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 4456,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/library.js",
+      "label": "assets/2.0.0-rc.3/src/library.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/library.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 31855,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/logic-source-ui.js",
+      "label": "assets/2.0.0-rc.3/src/logic-source-ui.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/logic-source-ui.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 1407,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/model.js",
+      "label": "assets/2.0.0-rc.3/src/model.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/model.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 36404,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/netlist.js",
+      "label": "assets/2.0.0-rc.3/src/netlist.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/netlist.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 34417,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/plots.js",
+      "label": "assets/2.0.0-rc.3/src/plots.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/plots.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 33345,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/reports.js",
+      "label": "assets/2.0.0-rc.3/src/reports.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/reports.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 20016,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/simulation.js",
+      "label": "assets/2.0.0-rc.3/src/simulation.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/simulation.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 14240,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/storage.js",
+      "label": "assets/2.0.0-rc.3/src/storage.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/storage.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 13601,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/symbols.js",
+      "label": "assets/2.0.0-rc.3/src/symbols.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/symbols.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 10119,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/timing-evidence.js",
+      "label": "assets/2.0.0-rc.3/src/timing-evidence.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/timing-evidence.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 16302,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/timing-ui.js",
+      "label": "assets/2.0.0-rc.3/src/timing-ui.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/timing-ui.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 16196,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/timing.js",
+      "label": "assets/2.0.0-rc.3/src/timing.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/timing.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 19496,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/truth-table-evidence.js",
+      "label": "assets/2.0.0-rc.3/src/truth-table-evidence.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/truth-table-evidence.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 4227,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/truth-table-ui.js",
+      "label": "assets/2.0.0-rc.3/src/truth-table-ui.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/truth-table-ui.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 4923,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/src/workbench-state.js",
+      "label": "assets/2.0.0-rc.3/src/workbench-state.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/src/workbench-state.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 13485,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:assets/2.0.0-rc.3/style.css",
+      "label": "assets/2.0.0-rc.3/style.css",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/assets/2.0.0-rc.3/style.css",
+      "httpStatus": 200,
+      "contentType": "text/css; charset=utf-8",
+      "details": {
+        "bytes": 35732,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:icon.svg",
+      "label": "icon.svg",
+      "status": "failed",
+      "message": "Response declares 1655 bytes; the permitted maximum is 443. HTTP 200; Content-Type image/svg+xml.",
+      "code": "INSTALLATION_RESPONSE_SIZE",
+      "assetUrl": "http://terminal.local:4173/icon.svg",
+      "httpStatus": 200,
+      "contentType": "image/svg+xml",
+      "expectedBytes": 443,
+      "declaredBytes": "1655",
+      "contentEncoding": null
+    },
+    {
+      "id": "asset:manifest.webmanifest",
+      "label": "manifest.webmanifest",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/manifest.webmanifest",
+      "httpStatus": 200,
+      "contentType": "application/manifest+json; charset=utf-8",
+      "details": {
+        "bytes": 321,
+        "sha256": null
+      }
+    },
+    {
+      "id": "asset:sw-2.0.0-rc.3.js",
+      "label": "sw-2.0.0-rc.3.js",
+      "status": "unavailable",
+      "message": "File type and byte count match; SHA-256 verification is unavailable.",
+      "assetUrl": "http://terminal.local:4173/sw-2.0.0-rc.3.js",
+      "httpStatus": 200,
+      "contentType": "text/javascript; charset=utf-8",
+      "details": {
+        "bytes": 26038,
+        "sha256": null
+      }
+    },
+    {
+      "id": "engine:digital",
+      "label": "Digital logic worker",
+      "status": "passed",
+      "message": "Binary source and inverter completed with the expected result.",
+      "details": {
+        "fixture": "Binary source and inverter",
+        "high": "1",
+        "inverted": "0",
+        "engine": "cb-digital-kernel-2"
+      }
+    },
+    {
+      "id": "engine:coordinated",
+      "label": "Coordinated feedback worker",
+      "status": "passed",
+      "message": "Schmitt RC feedback across two retained updates completed with the expected result.",
+      "details": {
+        "fixture": "Schmitt RC feedback across two retained updates",
+        "completedTime": 0.004,
+        "boundaryVoltage": 1.5969113854651653,
+        "finalVoltage": 2.2153220288065647,
+        "engine": "cb-coordinated-1"
+      }
+    },
+    {
+      "id": "engine:ngspice",
+      "label": "ngspice WebAssembly worker",
+      "status": "passed",
+      "message": "10 V equal-resistor divider completed with the expected result.",
+      "details": {
+        "fixture": "10 V equal-resistor divider",
+        "expectedVoltage": 5,
+        "measuredVoltage": 5,
+        "engine": "ngspice",
+        "engineVersion": "45.2"
+      }
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 1,
+    "unavailable": 44
+  },
+  "limitations": [
+    "Checks the downloaded runtime against this installation’s advertised release, then runs independent smoke circuits. It is not publisher-signature verification or a general numerical validation.",
+    "Offline reload, upgrade, recovery and output downloads require separate browser acceptance. This check does not clear caches, alter service-worker registrations, read projects or write project storage.",
+    "The canonical offline HTML is embedded in the verified service worker. Host-modified navigation HTML is not compared byte-for-byte with the release shell."
+  ],
+  "durationMs": 699
+}

@@ -1,0 +1,14 @@
+✔ incompatible wire attempts preserve the draft and graph while explicit bridge ports connect normally (16.959818ms)
+✔ explicit junction cannot merge analog and digital crossings, but a branch on one chosen wire is valid (4.622627ms)
+✔ clicking an incompatible existing wire rejects before splitting it (1.253152ms)
+✔ equal labels and ground cannot bypass a bridge; renaming an old conflicting label can repair the graph (2.338321ms)
+✔ logic probes remain single-node measurements and differential requests require analog nodes (1.766111ms)
+✔ all native symbols have explicit artwork and exports show true typed bridge pins after rotation and mirroring (4.893989ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 44.357116

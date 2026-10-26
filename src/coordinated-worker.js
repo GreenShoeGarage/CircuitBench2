@@ -13,11 +13,11 @@ self.onmessage = async ({ data }) => {
       result = { time: session.time, stats: session.stats };
     } else if (data.type === 'advance') {
       if (!session) throw new Error('Initialize the coordinated circuit before advancing it.');
-      result = session.advanceTo(data.end, { maxSteps: data.maxSteps });
+      result = session.advanceTo(data.end, { maxSteps: data.maxSteps, trigger: data.trigger, stopOnEvent: data.stopOnEvent });
     } else if (data.type === 'inputs') {
       if (!session) throw new Error('Initialize the coordinated circuit before changing inputs.');
-      result = session.setInputs(data.updates);
-      result = { time: session.time, applied: result ?? data.updates };
+      const applied = session.setInputs(data.updates, { trigger: data.trigger });
+      result = { time: session.time, applied, ...(data.trigger ? { triggerState: applied.triggerState, snapshot: session.advanceTo(session.time) } : {}), ...(applied.triggerEvent ? { triggerEvent: applied.triggerEvent } : {}) };
     } else throw new Error('Unsupported coordinated worker operation.');
     self.postMessage({ type: 'result', id: data.id, result });
   } catch (error) {

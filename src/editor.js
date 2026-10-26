@@ -2,6 +2,7 @@
 import { getPart, getPins, parseLogicWord } from './library.js';
 import { addComponent, removeItems, duplicateItems, endpointPosition, uid, clone, buildNets, getEndpointDomain, canConnect } from './model.js';
 import { symbolMarkup, escapeXML, SYMBOL_CSS } from './symbols.js';
+import { applyConstruction, compatibleDestinations, connectionActions, diagnosticTarget } from './construction.js';
 
 const NS = 'http://www.w3.org/2000/svg';
 const GRID = 20;
@@ -12,7 +13,7 @@ const itemIds = p => [...p.circuit.components, ...p.circuit.connections, ...p.ci
 const safePoint = p => p && Number.isFinite(p.x) && Number.isFinite(p.y);
 const compact = points => points.filter((p, i) => safePoint(p) && (i === 0 || !equal(p, points[i - 1])));
 function networkView(project) {
-  try { const built = buildNets(project), domains = Object.create(null), widths = Object.create(null), conflicts = Object.create(null); for (const net of built.nets) for (const endpoint of net.endpoints) { domains[endpoint] = net.domain; widths[endpoint] = net.width; conflicts[endpoint] = net.widthConflict; } return { nets: built.endpointToNet, domains, widths, conflicts }; }
+  try { const built = buildNets(project), domains = Object.create(null), widths = Object.create(null), conflicts = Object.create(null); for (const net of built.nets) for (const endpoint of net.endpoints) { domains[endpoint] = net.domain; widths[endpoint] = net.width; conflicts[endpoint] = net.widthConflict; } return { built, nets: built.endpointToNet, domains, widths, conflicts }; }
   catch { return { nets: {}, domains: {}, widths: {}, conflicts: {} }; }
 }
 
@@ -20,6 +21,7 @@ function bodyBounds(project, componentId) {
   const component = project.circuit.components.find(c => c.id === componentId), l = project.layout.components[componentId];
   if (!component || !l) return null;
   const boxes = { R: [-29,-13,29,13], C: [-12,-25,12,25], L: [-30,-23,30,5], V: [-26,-26,26,26], I: [-26,-26,26,26], D: [-19,-21,19,21], LED: [-19,-21,19,21], GND: [-23,-4,23,18], NPN: [-18,-26,26,35], PNP: [-18,-26,26,35], NMOS: [-23,-27,25,27], PMOS: [-23,-27,25,27], SW: [-23,-22,23,24], OPAMP: [-27,-34,31,34], DIN: [-29,-25,29,25], CLOCK: [-29,-25,29,25], BUF: [-28,-28,28,28], NOT: [-28,-28,33,28], AND: [-28,-31,27,31], NAND: [-28,-31,36,31], OR: [-31,-31,27,31], NOR: [-31,-31,36,31], XOR: [-36,-31,27,31], XNOR: [-36,-31,36,31], TRI: [-29,-32,29,32], DFF: [-29,-33,29,33], ADC: [-29,-33,31,33], DAC: [-31,-33,31,33], SEG7: [-27,-34,34,34], HEX7: [-29,-33,29,33], ADCBUS: [-29,-33,31,33], DACBUS: [-31,-33,31,33] };
+  boxes.DVS = [-27,-27,27,27]; boxes.DLED = [-30,-30,30,30];
   const [x0,y0,x1,y1] = boxes[component.type] || (['REGISTER','COUNTER','MUX','DECODER','LUT','JOIN'].includes(component.type) ? [-30,-33,30,33] : [-28,-28,28,28]), angle = (l.rotation || 0) * Math.PI / 180;
   const points = [[x0,y0],[x1,y0],[x1,y1],[x0,y1]].map(([px,py]) => { const x = l.mirror ? -px : px; return { x: l.x + Math.round(x*Math.cos(angle)-py*Math.sin(angle)), y: l.y + Math.round(x*Math.sin(angle)+py*Math.cos(angle)) }; });
   return { x0: Math.min(...points.map(p=>p.x)), y0: Math.min(...points.map(p=>p.y)), x1: Math.max(...points.map(p=>p.x)), y1: Math.max(...points.map(p=>p.y)) };
@@ -132,6 +134,16 @@ ${SYMBOL_CSS}
 .draft-wire { fill:none; stroke:var(--accent,#b9ed8e); stroke-width:2.5; stroke-dasharray:7 4; pointer-events:none; }
 .snap-ring { fill:var(--selection,rgba(167,223,128,.08)); stroke:var(--accent,#b9ed8e); stroke-width:2; pointer-events:none; }
 .snap-invalid { stroke:var(--danger,#fb969d); stroke-dasharray:3 3; }
+.compatible-pin-hint { fill:none; stroke:var(--accent,#b9ed8e); stroke-width:1.7; opacity:.8; pointer-events:none; }
+.wire-origin-hint { fill:none; stroke:var(--accent,#b9ed8e); stroke-width:2.5; pointer-events:none; }
+.signal-pin-hint { fill:none; stroke:var(--blue,#89bdf2); stroke-width:2.7; stroke-dasharray:3 2; pointer-events:none; }
+.source-operation { cursor:pointer; outline:none; }
+.source-operation rect { fill:var(--panel,#1c2822); stroke:var(--muted,#aebdb3); stroke-width:1.4; }
+.source-operation text { fill:var(--text,#e7ece8); font:600 10px system-ui,sans-serif; text-anchor:middle; pointer-events:none; }
+.source-operation:focus-visible rect,.source-operation:hover rect { stroke:var(--accent,#b9ed8e); stroke-width:2.5; }
+.source-operation[aria-pressed=true] rect { fill:#6d2027; stroke:#ff858b; }
+.source-operation[aria-disabled=true] { opacity:.5; cursor:default; }
+.source-operation[data-pending=true] rect { stroke-dasharray:3 2; }
 .select-box { fill:var(--selection,rgba(167,223,128,.10)); stroke:var(--accent,#b9ed8e); stroke-dasharray:5 3; pointer-events:none; }
 .placement-ghost { opacity:.5; pointer-events:none; }
 .probe-marker { fill:var(--accent,#b9ed8e); stroke:var(--canvas,#121a18); stroke-width:1; pointer-events:none; }
@@ -148,6 +160,7 @@ export class SchematicEditor {
     this.callbacks = callbacks;
     this.mode = 'select';
     this.selection = new Set();
+    this.signalEndpoints = [];
     this.view = { x: -100, y: -80, width: 1000, height: 600 };
     this.pointer = null;
     this.snapTarget = null;
@@ -157,6 +170,7 @@ export class SchematicEditor {
     this.placeType = null;
     this.clipboard = null;
     this.probeAnchor = null;
+    this.sourcePress = null;
     this.svg = document.createElementNS(NS, 'svg');
     this.svg.classList.add('schematic-svg');
     this.svg.setAttribute('role', 'group');
@@ -170,6 +184,17 @@ export class SchematicEditor {
     this.svg.addEventListener('pointercancel', event => this.pointerCancel(event));
     this.svg.addEventListener('dblclick', event => this.doubleClick(event));
     this.svg.addEventListener('keydown', event => this.keyDown(event));
+    this.svg.addEventListener('keyup', event => this.sourceKeyUp(event));
+    this.svg.addEventListener('focusin', event => { const endpoint = event.target.closest?.('[data-endpoint]')?.dataset.endpoint; if (endpoint) this.callbacks.onEndpointFocus?.(endpoint); });
+    this.svg.addEventListener('lostpointercapture', event => { if (this.sourcePress?.pointerId === event.pointerId) this.finishSourceOperation('cancel'); });
+    // The SVG root survives renders. Global releases retain ownership when a
+    // live acknowledgement replaces the focused button or changes tabs.
+    window.addEventListener('pointerup', event => this.sourcePointerUp(event));
+    window.addEventListener('pointercancel', event => { if (this.sourcePress?.pointerId === event.pointerId) this.finishSourceOperation('cancel'); });
+    window.addEventListener('keyup', event => this.sourceKeyUp(event));
+    window.addEventListener('keydown', event => { if (event.key === 'Escape') this.finishSourceOperation('cancel'); });
+    window.addEventListener('blur', () => this.finishSourceOperation('cancel'));
+    document.addEventListener('visibilitychange', () => { if (document.hidden) this.finishSourceOperation('cancel'); });
     this.svg.addEventListener('wheel', event => this.wheel(event), { passive: false });
     this.svg.addEventListener('contextmenu', event => event.preventDefault());
     this.render();
@@ -185,12 +210,14 @@ export class SchematicEditor {
   select(ids) {
     const valid = new Set(itemIds(this.project));
     this.selection = new Set(ids.filter(id => valid.has(id)));
+    this.signalEndpoints = [];
     this.callbacks.onSelect?.(this.getSelection());
     this.render();
   }
 
   setMode(mode) {
     if (!['select', 'wire', 'pan', 'junction', 'label', 'note', 'probe', 'place'].includes(mode)) return;
+    this.finishSourceOperation('cancel');
     this.mode = mode;
     this.wireDraft = null;
     this.placeType = null;
@@ -201,7 +228,7 @@ export class SchematicEditor {
     this.callbacks.onMode?.(mode);
     const hints = {
       select: 'Select: click a part; Shift-click for a group. Drag empty space for a selection box.',
-      wire: 'Wire: click a pin, click bends if needed, then click another pin. Escape cancels.',
+      wire: 'Wire: click a pin to highlight compatible destinations. Click bends if needed, then another pin. Escape cancels.',
       pan: 'Pan: drag the canvas. Scroll to zoom. F fits the circuit.',
       junction: 'Junction: click a wire or crossing to connect it explicitly. Crossing lines otherwise remain separate.',
       label: 'Label: click a pin, junction, or wire. Equal net labels join electrically.',
@@ -236,11 +263,17 @@ export class SchematicEditor {
     parts.push(`<title>${escapeXML(project.title || 'Circuit schematic')}</title><desc>Electrical connections use explicit wires and junctions; crossings do not connect automatically.</desc><style>${STYLE}</style>`);
     parts.push(`<defs><pattern id="cb-grid" width="20" height="20" patternUnits="userSpaceOnUse"><circle class="schematic-grid-dot" cx="0" cy="0" r="1"/></pattern></defs><rect x="${this.view.x - 3000}" y="${this.view.y - 3000}" width="${this.view.width + 6000}" height="${this.view.height + 6000}" fill="url(#cb-grid)"/>`);
     parts.push(this.renderWires(project, network));
-    parts.push(this.renderComponents(project, nets));
+    const compatible = this.wireDraft && network.built ? compatibleDestinations(project, this.wireDraft.start, network.built) : null;
+    parts.push(this.renderComponents(project, nets, compatible));
     parts.push(this.renderJunctions(project, nets, network));
+    if (compatible) {
+      for (const endpoint of compatible) { const at = endpointPosition(project, endpoint); parts.push(`<circle class="compatible-pin-hint" cx="${at.x}" cy="${at.y}" r="8"/>`); }
+      const at = endpointPosition(project, this.wireDraft.start); parts.push(`<circle class="wire-origin-hint" cx="${at.x}" cy="${at.y}" r="11"/>`);
+    }
     parts.push(this.renderLabels(project));
     parts.push(this.renderNotes(project));
     parts.push(this.renderProbes(project, network.widths));
+    for (const endpoint of this.signalEndpoints ?? []) { const at = endpointPosition(project, endpoint); if (safePoint(at)) parts.push(`<circle class="signal-pin-hint" cx="${at.x}" cy="${at.y}" r="10"/>`); }
     if (this.wireDraft) {
       const start = this.position(this.wireDraft.start);
       if (start && this.pointer) {
@@ -283,7 +316,7 @@ export class SchematicEditor {
     }).join('');
   }
 
-  renderComponents(project, nets) {
+  renderComponents(project, nets, compatible = null, interactive = true) {
     const displays = this.callbacks.getDisplayStates?.(project) ?? {};
     return project.circuit.components.map(component => {
       const part = getPart(component.type), l = project.layout.components[component.id];
@@ -298,6 +331,8 @@ export class SchematicEditor {
       const labelX = sideLabel ? l.x + 57 : l.x;
       const labelY = sideLabel ? l.y - 6 : l.y - (hasLogic ? rotatedVertical ? 72 : 56 : 39);
       let html = `<g class="component${selected ? ' selected' : ''}" data-item="${escapeXML(component.id)}" data-component="${escapeXML(component.id)}" role="button" tabindex="0" data-focus-key="component-${escapeXML(component.id)}" aria-label="${escapeXML(component.ref)} ${escapeXML(part.name)} ${escapeXML(value)}. Arrow keys move; R rotates; M mirrors; Enter selects."><g transform="${componentTransform(l)}"><rect class="component-hit" x="-48" y="-48" width="96" height="96"/><g class="symbol-art">${symbolMarkup(component.type, component.params, display)}</g></g><text class="component-label" x="${labelX}" y="${labelY}">${escapeXML(component.ref)}</text>${value ? `<text class="component-value" x="${labelX}" y="${labelY + 17}">${escapeXML(value)}</text>` : ''}</g>`;
+      const operation = interactive && component.type === 'DVS' ? this.callbacks.getSourceOperation?.(component) : null;
+      if (operation) html += `<g class="source-operation" data-source-operation="${escapeXML(component.id)}" role="button" tabindex="${operation.enabled && this.mode === 'select' ? '0' : '-1'}" data-focus-key="source-operation-${escapeXML(component.id)}" aria-label="${escapeXML(operation.label || `${component.ref}: ${operation.momentary ? 'hold HIGH while pressed' : 'toggle digital source'}`)}" aria-pressed="${operation.value === '1'}" aria-disabled="${!operation.enabled || this.mode !== 'select'}" data-pending="${Boolean(operation.pending)}"><rect x="${l.x - 34}" y="${l.y + 64}" width="68" height="22" rx="5"/><text x="${l.x}" y="${l.y + 79}">${operation.momentary ? 'Hold HIGH' : 'Toggle'}</text></g>`;
       html += pins.map(pin => {
         const ep = `${component.id}:${pin.id}`;
         let point;
@@ -306,7 +341,7 @@ export class SchematicEditor {
         const digital = pin.domain === 'digital', bus = digital && pin.width > 1, radius = bus ? 4.8 : 3.8, tag = digital ? 'rect' : 'circle', geometry = digital ? `x="${point.x - radius}" y="${point.y - radius}" width="${radius*2}" height="${radius*2}"` : `cx="${point.x}" cy="${point.y}" r="3.8"`;
         const pinDescription = `${bus ? pin.width + '-bit ' : ''}${digital ? 'digital' : 'analog'} ${pin.direction || 'passive'}`;
         const leftPin = point.x < l.x-20, horizontalPin = Math.abs(point.x-l.x)>20, range = bus ? `<text class="pin-width" x="${point.x+(leftPin?-9:9)}" y="${point.y+(horizontalPin?-8:4)}" text-anchor="${leftPin?'end':'start'}">[${pin.width-1}:0]</text>` : '';
-        return `<g data-endpoint="${escapeXML(ep)}"><circle class="pin-hit" cx="${point.x}" cy="${point.y}" r="10"/><${tag} class="pin${digital ? ' pin-digital' : ''}${bus ? ' pin-bus' : ''}" ${geometry} role="button" tabindex="0" data-focus-key="pin-${escapeXML(ep)}" aria-label="${escapeXML(component.ref)} ${escapeXML(pin.name || pin.id)} ${pinDescription} pin, net ${escapeXML(nets[ep] ?? 'unconnected')}. Enter connects in Wire mode or measures ${bus ? 'bus word' : digital ? 'logic state' : 'voltage'}."><title>${escapeXML(component.ref)} · ${escapeXML(pin.name || pin.id)} · ${pinDescription} · ${escapeXML(nets[ep] ?? 'unconnected')}</title></${tag}>${range}${bus ? '' : `<text class="pin-name" x="${point.x + 7}" y="${point.y - 7}">${escapeXML(pin.name || pin.id)}</text>`}</g>`;
+        return `<g data-endpoint="${escapeXML(ep)}"><circle class="pin-hit" cx="${point.x}" cy="${point.y}" r="10"/><${tag} class="pin${digital ? ' pin-digital' : ''}${bus ? ' pin-bus' : ''}" ${geometry} role="button" tabindex="0" data-focus-key="pin-${escapeXML(ep)}" aria-label="${escapeXML(component.ref)} ${escapeXML(pin.name || pin.id)} ${pinDescription} pin, net ${escapeXML(nets[ep] ?? 'unconnected')}.${compatible?.has(ep) ? ' Compatible destination.' : ''} Enter connects in Wire mode or measures ${bus ? 'bus word' : digital ? 'logic state' : 'voltage'}."><title>${escapeXML(component.ref)} · ${escapeXML(pin.name || pin.id)} · ${pinDescription} · ${escapeXML(nets[ep] ?? 'unconnected')}${compatible?.has(ep) ? ' · compatible destination' : ''}</title></${tag}>${range}${bus ? '' : `<text class="pin-name" x="${point.x + 7}" y="${point.y - 7}">${escapeXML(pin.name || pin.id)}</text>`}</g>`;
       }).join('');
       return html;
     }).join('');
@@ -315,6 +350,8 @@ export class SchematicEditor {
   componentValue(component, part, displayState = null) {
     const params = component.params || {};
     if (component.type === 'GND') return '';
+    if (component.type === 'DLED') return displayState?.available ? `${displayState.label} (${displayState.word})` : 'No result';
+    if (component.type === 'DVS') return `Initial ${params.state === '1' ? 'HIGH (1)' : 'LOW (0)'}${params.outputMode === 'logic-voltage' ? ` · ${params.low} / ${params.high} V` : ''}`;
     if (component.type === 'SEG7') return displayState?.available ? `${displayState.glyph} · ${displayState.word}` : `8 segments · ${params.active ?? 'high'} active`;
     if (component.type === 'HEX7') return `${String(params.mode ?? 'hex').toUpperCase()} · ${params.active ?? 'high'} active`;
     if (component.type === 'DIN') return `State ${params.state ?? '0'}`;
@@ -415,11 +452,48 @@ export class SchematicEditor {
     return event.target.closest('[data-endpoint]')?.dataset.endpoint || this.findSnap(point)?.endpoint;
   }
 
+  beginSourceOperation(id, event, key = null) {
+    event.preventDefault();
+    if (this.sourcePress || this.mode !== 'select') return;
+    const component = this.project.circuit.components.find(c => c.id === id && c.type === 'DVS');
+    const state = component && this.callbacks.getSourceOperation?.(component);
+    if (!state?.enabled) return;
+    const owner = uid('schematic-press');
+    this.sourcePress = { id, owner, key, momentary: Boolean(state.momentary), pointerId: key ? null : event.pointerId, clientX: event.clientX, clientY: event.clientY, moved: false };
+    if (!key) this.svg.setPointerCapture(event.pointerId);
+    if (state.momentary) this.callbacks.onSourceOperation?.({ id, action: 'press', owner });
+  }
+
+  finishSourceOperation(action = 'release') {
+    const held = this.sourcePress;
+    if (!held) return false;
+    this.sourcePress = null;
+    if (held.pointerId !== null && this.svg.hasPointerCapture(held.pointerId)) this.svg.releasePointerCapture(held.pointerId);
+    if (held.momentary) this.callbacks.onSourceOperation?.({ id: held.id, action, owner: held.owner });
+    else if (action === 'release' && !held.moved) this.callbacks.onSourceOperation?.({ id: held.id, action: 'toggle', owner: held.owner });
+    return true;
+  }
+
+  sourcePointerUp(event) {
+    if (!this.sourcePress || this.sourcePress.pointerId !== event.pointerId) return false;
+    event.preventDefault();
+    return this.finishSourceOperation('release');
+  }
+
+  sourceKeyUp(event) {
+    if (!this.sourcePress?.key || this.sourcePress.key !== event.key) return false;
+    event.preventDefault();
+    return this.finishSourceOperation('release');
+  }
+
   pointerDown(event) {
     if (event.button !== 0 && event.button !== 1) return;
+    const source = event.target.closest('[data-source-operation]')?.dataset.sourceOperation;
+    if (source) { if (event.button === 0) this.beginSourceOperation(source, event); return; }
     const point = this.world(event);
     this.pointer = point;
     const endpoint = this.endpointFrom(event, point);
+    if (endpoint) this.callbacks.onEndpointFocus?.(endpoint);
     const wireId = event.target.closest('[data-wire]')?.dataset.wire;
     const item = event.target.closest('[data-item]')?.dataset.item;
     const handle = event.target.closest('[data-handle]')?.dataset.handle;
@@ -440,7 +514,7 @@ export class SchematicEditor {
       let target = endpoint;
       if (!target && wireId) {
         const wire = this.project.circuit.connections.find(w => w.id === wireId);
-        if (wire && this.wireDraft && wire.a !== this.wireDraft.start) { const check = canConnect(this.project, this.wireDraft.start, wire.a); if (!check.ok) { this.status(check.message); this.focus(); return; } }
+        if (wire && this.wireDraft && wire.a !== this.wireDraft.start) { const check = canConnect(this.project, this.wireDraft.start, wire.a); if (!check.ok) { this.rejectConnection(this.wireDraft.start, wire.a, check.message); this.focus(); return; } }
         target = this.addJunctionAt(point.x, point.y, wireId);
         if (!target) return;
       }
@@ -509,6 +583,10 @@ export class SchematicEditor {
   }
 
   pointerMove(event) {
+    if (this.sourcePress) {
+      if (this.sourcePress.pointerId === event.pointerId && !this.sourcePress.momentary && Math.hypot(event.clientX - this.sourcePress.clientX, event.clientY - this.sourcePress.clientY) > 8) this.sourcePress.moved = true;
+      return;
+    }
     const point = this.world(event);
     this.pointer = point;
     if (!this.drag) {
@@ -550,6 +628,7 @@ export class SchematicEditor {
   }
 
   pointerUp(event) {
+    if (this.sourcePointerUp(event)) return;
     if (this.svg.hasPointerCapture(event.pointerId)) this.svg.releasePointerCapture(event.pointerId);
     const drag = this.drag;
     if (!drag) return;
@@ -572,6 +651,7 @@ export class SchematicEditor {
   }
 
   pointerCancel(event) {
+    if (this.sourcePress?.pointerId === event.pointerId) { this.finishSourceOperation('cancel'); return; }
     if (this.svg.hasPointerCapture(event.pointerId)) this.svg.releasePointerCapture(event.pointerId);
     this.drag = null; this.preview = null;
     this.status('Gesture cancelled; the circuit is unchanged.');
@@ -587,9 +667,10 @@ export class SchematicEditor {
   }
 
   activateWireEndpoint(endpoint) {
+    this.callbacks.onEndpointFocus?.(endpoint);
     if (!this.wireDraft) {
       this.wireDraft = { start: endpoint, points: [] };
-      this.status('Pin snapped. Click the destination pin; optional clicks add wire bends.');
+      this.status('Pin snapped. Highlighted destinations match this domain and width. Click a destination; optional clicks add wire bends.');
     } else if (endpoint === this.wireDraft.start) {
       this.status('Choose a different destination pin. Escape cancels this wire.');
     } else {
@@ -602,7 +683,7 @@ export class SchematicEditor {
   connectEndpoints(a, b, points = []) {
     if (!a || !b || a === b || !this.position(a) || !this.position(b)) { this.status('Choose two distinct, existing pins or junctions.'); return null; }
     const check = canConnect(this.project, a, b);
-    if (!check.ok) { this.status(check.message); return null; }
+    if (!check.ok) { this.rejectConnection(a, b, check.message); return null; }
     const exists = this.project.circuit.connections.find(w => (w.a === a && w.b === b) || (w.a === b && w.b === a));
     if (exists) { this.status('These endpoints already have a wire.'); return exists.id; }
     const id = uid('wire');
@@ -611,6 +692,70 @@ export class SchematicEditor {
       project.layout.wires[id] = { points: points.map(p => ({ x: snap(p.x), y: snap(p.y) })) };
     }, 'Connect pins');
     return id;
+  }
+
+  rejectConnection(start, end, message) {
+    const actions = connectionActions(this.project, start, end);
+    this.status(`${message}${actions.length ? ' Open the explicit connection options to configure a matching part.' : ''}`);
+    this.callbacks.onConnectionRejected?.({ start, end, message, actions });
+  }
+
+  construct(request) {
+    // Stage before onChange: a rejected configuration never adds an undo entry.
+    const next = clone(this.project), result = applyConstruction(next, request);
+    this.change(project => { Object.assign(project, next); }, result.label);
+    this.wireDraft = null; this.snapTarget = null;
+    this.select(result.ids);
+    this.callbacks.onEndpointFocus?.(result.endpoint);
+    this.status(`${result.label}. Undo removes all inserted parts and wires together.`);
+    return result;
+  }
+
+  navigateDiagnostic(diagnostic) {
+    const target = diagnosticTarget(this.project, diagnostic);
+    if (!target) { this.status('This diagnostic describes analysis settings or the whole circuit.'); return false; }
+    const points = target.endpoints.map(endpoint => endpointPosition(this.project, endpoint));
+    for (const id of target.ids) {
+      const component = this.project.layout.components[id], junction = this.project.layout.junctions[id];
+      if (component) points.push({ x: component.x - 70, y: component.y - 70 }, { x: component.x + 70, y: component.y + 95 });
+      else if (junction) points.push(junction);
+      const wire = this.project.circuit.connections.find(w => w.id === id); if (wire) points.push(...wirePolyline(this.project, wire));
+    }
+    this.setMode('select');
+    this.select(target.ids);
+    if (points.length) {
+      const minX = Math.min(...points.map(p => p.x)), maxX = Math.max(...points.map(p => p.x)), minY = Math.min(...points.map(p => p.y)), maxY = Math.max(...points.map(p => p.y));
+      const r = this.svg.getBoundingClientRect(), ratio = Math.max(.3, r.width / (r.height || 500));
+      let width = Math.max(360, maxX - minX + 120), height = Math.max(280, maxY - minY + 120);
+      if (width / height < ratio) width = height * ratio; else height = width / ratio;
+      this.view = { x: (minX + maxX - width) / 2, y: (minY + maxY - height) / 2, width, height }; this.render();
+    }
+    const node = [...(this.svg.querySelectorAll?.('[data-focus-key]') ?? [])].find(el => el.dataset.focusKey === target.focusKey);
+    node?.focus({ preventScroll: true });
+    if (target.endpoints[0]) this.callbacks.onEndpointFocus?.(target.endpoints[0]);
+    this.status(`${target.label}: ${diagnostic.message}`);
+    return true;
+  }
+
+  /** A view selection only. The caller verifies run/project revision identity. */
+  selectSignal(target, { focus = true } = {}) {
+    if (!target?.ids || !target?.endpoints) return false;
+    const endpoints = target.endpoints.filter(endpoint => safePoint(endpointPosition(this.project, endpoint)));
+    if (!endpoints.length && !target.ids.some(id => itemIds(this.project).includes(id))) return false;
+    this.setMode('select'); this.select(target.ids); this.signalEndpoints = endpoints;
+    if (focus && endpoints.length) {
+      const points = endpoints.map(endpoint => endpointPosition(this.project, endpoint));
+      for (const id of target.ids) { const c = this.project.layout.components[id]; if (c) points.push({ x: c.x - 70, y: c.y - 70 }, { x: c.x + 70, y: c.y + 95 }); }
+      const minX = Math.min(...points.map(p => p.x)), maxX = Math.max(...points.map(p => p.x)), minY = Math.min(...points.map(p => p.y)), maxY = Math.max(...points.map(p => p.y));
+      const r = this.svg.getBoundingClientRect(), ratio = Math.max(.3, r.width / (r.height || 500));
+      let width = Math.max(360, maxX - minX + 120), height = Math.max(280, maxY - minY + 120);
+      if (width / height < ratio) width = height * ratio; else height = width / ratio;
+      this.view = { x: (minX + maxX - width) / 2, y: (minY + maxY - height) / 2, width, height };
+    }
+    this.render(); this.status(`Selected signal: ${target.label || 'recorded trace'}.`);
+    // Do not emit onEndpointFocus here: plot → schematic must not bounce back
+    // into schematic → plot and replace a selected derived bit with its bus.
+    return true;
   }
 
   draftPolyline(start, middle, end) {
@@ -861,6 +1006,8 @@ export class SchematicEditor {
 
   keyDown(event) {
     if (event.target.matches('input,textarea,select,[contenteditable=true]')) return;
+    const source = event.target.closest('[data-source-operation]')?.dataset.sourceOperation;
+    if (source && (event.key === 'Enter' || event.key === ' ')) { this.beginSourceOperation(source, event, event.key); return; }
     const command = event.ctrlKey || event.metaKey, key = event.key.toLowerCase();
     const endpoint = event.target.closest('[data-endpoint]')?.dataset.endpoint;
     const item = event.target.closest('[data-item]')?.dataset.item;
@@ -949,7 +1096,7 @@ export class SchematicEditor {
     this.selection = new Set();
     let body;
     const network = networkView(p), { nets } = network;
-    try { body = this.renderWires(p, network) + this.renderComponents(p, nets) + this.renderJunctions(p, nets, network) + this.renderLabels(p) + this.renderNotes(p) + this.renderProbes(p, network.widths); }
+    try { body = this.renderWires(p, network) + this.renderComponents(p, nets, null, false) + this.renderJunctions(p, nets, network) + this.renderLabels(p) + this.renderNotes(p) + this.renderProbes(p, network.widths); }
     finally { this.selection = oldSelection; }
     // SVG consumers include print renderers and vector editors that do not
     // implement CSS custom properties. Export a literal, independent palette.

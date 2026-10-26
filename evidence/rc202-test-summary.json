@@ -1,0 +1,1340 @@
+{
+  "started_at": "2026-10-25T01:31:07.855374+00:00",
+  "scope": "Direct node execution of every tests/*.test.mjs except package.test.mjs, followed by a current WASM/analytic/state-retention coordinated proof. Native-reference rerun was explicitly unavailable. Package verification is a separate final-built-release gate.",
+  "appVersion": "2.0.0-rc.2",
+  "nodeVersion": "v24.22.1",
+  "counts_semantics": "Individual test-case counts from each direct Node test reporter; assertion calls were not instrumented or counted.",
+  "commands": [
+    {
+      "command": [
+        "node",
+        "tests/autosave.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:07.861165+00:00",
+      "completed_at": "2026-10-25T01:31:08.022826+00:00",
+      "duration_seconds": 0.16167175800001132,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/autosave.test.txt",
+      "transcript_sha256": "369ead3658836ae3843d3b75e78092dd0619509895c4750c91e941a292b14b42",
+      "file": "tests/autosave.test.mjs",
+      "test_source_sha256": "7fa6183eb0fa16f6500135092675bfc7a112bd08341ae28716bb8a6142524c5d",
+      "counts": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/bus-model.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:08.026554+00:00",
+      "completed_at": "2026-10-25T01:31:08.266242+00:00",
+      "duration_seconds": 0.23970021199988878,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/bus-model.test.txt",
+      "transcript_sha256": "c844ee8e7b43eff89d7b15f1236fc07dd568fc9e0cb40d21a05bf98796166ed8",
+      "file": "tests/bus-model.test.mjs",
+      "test_source_sha256": "04bc8149d92ecd4335e822b2074fea9d5d39530f1d49d18ca5d76566c29e9e3e",
+      "counts": {
+        "tests": 24,
+        "pass": 24,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/bus-report.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:08.268559+00:00",
+      "completed_at": "2026-10-25T01:31:08.375228+00:00",
+      "duration_seconds": 0.10667216899992127,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/bus-report.test.txt",
+      "transcript_sha256": "99e1e7656edc5a9bbfccf84bc18834f5a2785bdbc84c41cd37914fd48d526b5c",
+      "file": "tests/bus-report.test.mjs",
+      "test_source_sha256": "f65479849fcebaf1bc26d9a8068a5376d006f768225aab72e7101f085c444ce7",
+      "counts": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/bus-ui.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:08.375998+00:00",
+      "completed_at": "2026-10-25T01:31:08.544706+00:00",
+      "duration_seconds": 0.16871679200016843,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/bus-ui.test.txt",
+      "transcript_sha256": "ef1ff29f8771a7040e5bbe1acc7d094f5e80180d09b213241d5ab4338f3feb98",
+      "file": "tests/bus-ui.test.mjs",
+      "test_source_sha256": "ed94dee2abde076d9af81d8b11cf41db2bf24646bb9fa71d194ba3aa8744e42f",
+      "counts": {
+        "tests": 10,
+        "pass": 10,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/continuous-app.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:08.545762+00:00",
+      "completed_at": "2026-10-25T01:31:08.755559+00:00",
+      "duration_seconds": 0.20980424300000777,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/continuous-app.test.txt",
+      "transcript_sha256": "aec34ac01cc32edc772730310b970d7f7edda01cf820978d63e53daa31aed688",
+      "file": "tests/continuous-app.test.mjs",
+      "test_source_sha256": "b5f26577abd753f477a68d6691ef4d3e01e5a5d1d290f60dee33b8037cc3aadf",
+      "counts": {
+        "tests": 17,
+        "pass": 17,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/continuous-storage.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:08.756326+00:00",
+      "completed_at": "2026-10-25T01:31:09.014083+00:00",
+      "duration_seconds": 0.25777096300021185,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/continuous-storage.test.txt",
+      "transcript_sha256": "78a4667740caca2e8af10184f5f5861bdcfb242057d353973b5d08fc291c17c2",
+      "file": "tests/continuous-storage.test.mjs",
+      "test_source_sha256": "75c84c3437f28bf43cb8aa32edc887d818fe6952c4bbfeec499bea8c31e07b53",
+      "counts": {
+        "tests": 9,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/continuous.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:09.015096+00:00",
+      "completed_at": "2026-10-25T01:31:09.112664+00:00",
+      "duration_seconds": 0.09757108400003744,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/continuous.test.txt",
+      "transcript_sha256": "c20894ecf2c5d6561f34fb4a41369d00392128463dfe2e2b5498f72ffb44919e",
+      "file": "tests/continuous.test.mjs",
+      "test_source_sha256": "0ce42c4b7a7e88886b8a3f725b88c23a87c31882aa774c259debaba06a177f5c",
+      "counts": {
+        "tests": 21,
+        "pass": 21,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/converters-integration.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:09.113575+00:00",
+      "completed_at": "2026-10-25T01:31:09.276572+00:00",
+      "duration_seconds": 0.1630127570001605,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/converters-integration.test.txt",
+      "transcript_sha256": "7f0af8b44075464ee8de33ba3913232966416bd64cb337b42a5f080529574d59",
+      "file": "tests/converters-integration.test.mjs",
+      "test_source_sha256": "eae642973e97e8ba19762e9e2bd1b84fc7fc14a9cc0194bc80907cae2534752b",
+      "counts": {
+        "tests": 9,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/coordinated-facade.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:09.277366+00:00",
+      "completed_at": "2026-10-25T01:31:09.763856+00:00",
+      "duration_seconds": 0.4865025799999785,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/coordinated-facade.test.txt",
+      "transcript_sha256": "78f11d8460c1baf9b4a962481e582d0e4fda3b8b9413da8b21a6246a723d6a9c",
+      "file": "tests/coordinated-facade.test.mjs",
+      "test_source_sha256": "15d26c9d2c2fa5dd6aae646ae666ba1b4b45af36e5e2dea958d250f227c1a692",
+      "counts": {
+        "tests": 14,
+        "pass": 14,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/coordinated.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:09.764659+00:00",
+      "completed_at": "2026-10-25T01:31:10.195003+00:00",
+      "duration_seconds": 0.4303516679999575,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/coordinated.test.txt",
+      "transcript_sha256": "05912c9848c02168fa67bb24128ab3d3a8f0c46d4af0772d248527189790990f",
+      "file": "tests/coordinated.test.mjs",
+      "test_source_sha256": "c73e3822eca14b039ffced05f338d7975126637af6c53b30b2526c3360f677e9",
+      "counts": {
+        "tests": 31,
+        "pass": 31,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "file": "tests/core.test.mjs",
+      "command": [
+        "node",
+        "tests/core.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:33:17.183415+00:00",
+      "completed_at": "2026-10-25T01:33:17.408651+00:00",
+      "duration_seconds": 0.22628016499993464,
+      "exit_code": 0,
+      "timed_out": false,
+      "counts": {
+        "tests": 25,
+        "pass": 25,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "rc202-tests/core.test.txt",
+      "transcript_sha256": "fe2beae31fbde513a919498e1064e118b2c487b9e2504de7062c10498409130c",
+      "test_source_sha256": "832a73458ad2d9af1f40e2afcd10e9f04b1b1f253b381616f17d29960ee0eff8",
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/digital-editor.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:10.418169+00:00",
+      "completed_at": "2026-10-25T01:31:10.518311+00:00",
+      "duration_seconds": 0.1001440680001906,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/digital-editor.test.txt",
+      "transcript_sha256": "5f2a231a1ef4bf9a683eb2d6d3ef7f46b166adfaaa5cb7afba70a5dbe71cff94",
+      "file": "tests/digital-editor.test.mjs",
+      "test_source_sha256": "63ea30a9911dd9a6f8c21f1d7c1daa10239c7bbc6c4009f62ee1f39c79c028dd",
+      "counts": {
+        "tests": 6,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/digital-expansion.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:10.519244+00:00",
+      "completed_at": "2026-10-25T01:31:10.610507+00:00",
+      "duration_seconds": 0.0912657979999949,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/digital-expansion.test.txt",
+      "transcript_sha256": "ca2b875840bf8d1eba76707cf8630849b041e831617fed574abc02846423a172",
+      "file": "tests/digital-expansion.test.mjs",
+      "test_source_sha256": "4eeb911d5f876146a24c91dd0e6bcf12b5fdd207a2fd5e995a633b8d844a4668",
+      "counts": {
+        "tests": 14,
+        "pass": 14,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/digital-model.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:10.611366+00:00",
+      "completed_at": "2026-10-25T01:31:10.841949+00:00",
+      "duration_seconds": 0.23059312200007298,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/digital-model.test.txt",
+      "transcript_sha256": "18b92afe971135da6e2ec1037211a93c4f2422235cebe3ada85efa3831259523",
+      "file": "tests/digital-model.test.mjs",
+      "test_source_sha256": "9e29078398dec05e63109a8d9b0dfaa332a76331278572e6853c3d7d5bb7396f",
+      "counts": {
+        "tests": 23,
+        "pass": 23,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/digital-plots.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:10.842856+00:00",
+      "completed_at": "2026-10-25T01:31:10.974693+00:00",
+      "duration_seconds": 0.1318444470000486,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/digital-plots.test.txt",
+      "transcript_sha256": "a195383aa0e6334064888e31420a810d8733e7d4eb4a494c4ff6264cf4edf00d",
+      "file": "tests/digital-plots.test.mjs",
+      "test_source_sha256": "2c5d60e0c42d92e2960bb90904639ca29ed7ff23f4154b1e0eb5e5a1610748f1",
+      "counts": {
+        "tests": 10,
+        "pass": 10,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/digital-source.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:10.975572+00:00",
+      "completed_at": "2026-10-25T01:31:11.537075+00:00",
+      "duration_seconds": 0.5614818249998734,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/digital-source.test.txt",
+      "transcript_sha256": "e5866539c3781ee3be7d0561c1c5c0090632cb6454cd8b97dd867e21b056cf3f",
+      "file": "tests/digital-source.test.mjs",
+      "test_source_sha256": "2c3dc50fecac64a3df9d69c0900a0d528075ed361cb855754001cc5ef0d81556",
+      "counts": {
+        "tests": 15,
+        "pass": 15,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/digital-storage.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:11.538081+00:00",
+      "completed_at": "2026-10-25T01:31:11.633878+00:00",
+      "duration_seconds": 0.09580018499991638,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/digital-storage.test.txt",
+      "transcript_sha256": "8f09ce46a00e2d6745fd8e4f833dc5d74059d64188041b389c17529f6aae9e26",
+      "file": "tests/digital-storage.test.mjs",
+      "test_source_sha256": "0f815dc0a24597042549b06c9dea42e96f1601933bdc18f388e1e06a7d595e4a",
+      "counts": {
+        "tests": 13,
+        "pass": 13,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/digital.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:11.634836+00:00",
+      "completed_at": "2026-10-25T01:31:11.727714+00:00",
+      "duration_seconds": 0.09288354399996024,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/digital.test.txt",
+      "transcript_sha256": "8d41f5d1ecf5667b5e6f1cfc157fb00d552cb13dc6e92f291d99d73d4a25a3cd",
+      "file": "tests/digital.test.mjs",
+      "test_source_sha256": "6d542dc202305401ceff56d661c96421edb7f2017cd97e787ae234e72068df93",
+      "counts": {
+        "tests": 22,
+        "pass": 22,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/displays.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:11.728740+00:00",
+      "completed_at": "2026-10-25T01:31:11.908153+00:00",
+      "duration_seconds": 0.1794192560000738,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/displays.test.txt",
+      "transcript_sha256": "b0b94aaa13e10a431b49b0ed018153d981e06eec29364e8251e0e1a649d27255",
+      "file": "tests/displays.test.mjs",
+      "test_source_sha256": "575f0b745e42fbd33ed3c6879352854e8c3b327a44ddfe89f61426f1f5e490f0",
+      "counts": {
+        "tests": 17,
+        "pass": 17,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/editor.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:11.909075+00:00",
+      "completed_at": "2026-10-25T01:31:12.008683+00:00",
+      "duration_seconds": 0.09961220200011667,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/editor.test.txt",
+      "transcript_sha256": "d322311ac0774d2375ddabb2df037154f8a68a5dc0a5945cc49023f4ed434900",
+      "file": "tests/editor.test.mjs",
+      "test_source_sha256": "932b5b582d2a117d4e20c0d9f356cdc1cc77c4c0c6b9deb4f384ce759ead4ca0",
+      "counts": {
+        "tests": 11,
+        "pass": 11,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/engine-loading.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:12.009571+00:00",
+      "completed_at": "2026-10-25T01:31:12.670269+00:00",
+      "duration_seconds": 0.6607114240000556,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/engine-loading.test.txt",
+      "transcript_sha256": "5c6a7001fb26c23e6303a0c466e13ee6a003d0cde391345621d2926b67477b94",
+      "file": "tests/engine-loading.test.mjs",
+      "test_source_sha256": "8d420d78eeea2613befea4e44bb0c6d45b4474c318b5f7dad55a36fc3d7ef629",
+      "counts": {
+        "tests": 24,
+        "pass": 24,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/engine-raw-parser.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:12.671860+00:00",
+      "completed_at": "2026-10-25T01:31:12.744317+00:00",
+      "duration_seconds": 0.07245980499988036,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/engine-raw-parser.test.txt",
+      "transcript_sha256": "49c8e303ec48d899ba0639f94dd493c1571e81b9b0c1b2d81ee64ff5993939ee",
+      "file": "tests/engine-raw-parser.test.mjs",
+      "test_source_sha256": "64544c5e963ff4c0be68f26cca88b11b4bf39860da8572c37b5392d7778cf0a0",
+      "counts": {
+        "tests": 6,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/experiments-app.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:12.745462+00:00",
+      "completed_at": "2026-10-25T01:31:13.200696+00:00",
+      "duration_seconds": 0.45524433900004624,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/experiments-app.test.txt",
+      "transcript_sha256": "8c885931c04d8974ae9357fe350c31807ca910364bcfcfb1e30c239d3a1a3f64",
+      "file": "tests/experiments-app.test.mjs",
+      "test_source_sha256": "3180a1650d9b06d7895689fec7829418ee90cc833c043c1834ddeb22c00233ce",
+      "counts": {
+        "tests": 18,
+        "pass": 18,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/experiments-engine.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:13.201685+00:00",
+      "completed_at": "2026-10-25T01:31:15.548100+00:00",
+      "duration_seconds": 2.346423963999996,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/experiments-engine.test.txt",
+      "transcript_sha256": "1e0a6aed8275afe79357b07e78f8556dd17f2e792ea178d637374d39d594c5fa",
+      "file": "tests/experiments-engine.test.mjs",
+      "test_source_sha256": "4cbf60dab5dab47b7d1d93ce280557ee85d46053987d48adbbf241e5d72ad330",
+      "counts": {
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/experiments-ui.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:15.549555+00:00",
+      "completed_at": "2026-10-25T01:31:15.747686+00:00",
+      "duration_seconds": 0.19813956600000893,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/experiments-ui.test.txt",
+      "transcript_sha256": "f08d5cc583d1068691b660298d5b8d75167416add73c8d2709f79a5d932a541c",
+      "file": "tests/experiments-ui.test.mjs",
+      "test_source_sha256": "c0ca3993fc28271ab6725d6ee6b6003e6306d8ed5b1e9d163055b90af789e454",
+      "counts": {
+        "tests": 11,
+        "pass": 11,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/experiments.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:15.749706+00:00",
+      "completed_at": "2026-10-25T01:31:16.377817+00:00",
+      "duration_seconds": 0.6281206329999804,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/experiments.test.txt",
+      "transcript_sha256": "d7e7e8a3c4a8f3609af889f2c8c410bce781316d3023bc20bc10cb38ffcdc256",
+      "file": "tests/experiments.test.mjs",
+      "test_source_sha256": "1d691884eea04ac802289290d87328838827c13141e143592b800d625f82405f",
+      "counts": {
+        "tests": 31,
+        "pass": 31,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/logic-indicators.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:16.379107+00:00",
+      "completed_at": "2026-10-25T01:31:16.516963+00:00",
+      "duration_seconds": 0.13786548199982462,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/logic-indicators.test.txt",
+      "transcript_sha256": "ac3b37773c53d51fd91d957ee166649bc1030f5a832a108bc511580382d0e57a",
+      "file": "tests/logic-indicators.test.mjs",
+      "test_source_sha256": "e6a8f603c570405225c6babd05e20f77e8fb9006b974fabdeb8eabb54c8a8aba",
+      "counts": {
+        "tests": 14,
+        "pass": 14,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/logic-io-app.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:16.518482+00:00",
+      "completed_at": "2026-10-25T01:31:16.613883+00:00",
+      "duration_seconds": 0.09540366599981098,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/logic-io-app.test.txt",
+      "transcript_sha256": "40b8fa23309a65620fc89208aee24f88c9eebc0a99a74e959e5b631a3c106176",
+      "file": "tests/logic-io-app.test.mjs",
+      "test_source_sha256": "507d9f6946c6b9c4d6ff5110395dd5ae47f934426855d33d66f5a3bd9acc43df",
+      "counts": {
+        "tests": 10,
+        "pass": 10,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/logic-io-examples.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:16.615264+00:00",
+      "completed_at": "2026-10-25T01:31:16.775863+00:00",
+      "duration_seconds": 0.1606068809999215,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/logic-io-examples.test.txt",
+      "transcript_sha256": "861c0854a6b20fbf0a8abe2ce29ea8b770d009a78fcb3503b748314c19165bb4",
+      "file": "tests/logic-io-examples.test.mjs",
+      "test_source_sha256": "3ec812478f87576b6cae3a6b66c0da28558556f3a2cb0ff9292e4fdc6ee23101",
+      "counts": {
+        "tests": 6,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/offline.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:16.777134+00:00",
+      "completed_at": "2026-10-25T01:31:17.473976+00:00",
+      "duration_seconds": 0.6968524589999561,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/offline.test.txt",
+      "transcript_sha256": "44fe579d1a68e6d61b7d0ee704cad911f86330752e77391e6f75eecab4e1af03",
+      "file": "tests/offline.test.mjs",
+      "test_source_sha256": "50200bdd515505a85ad1a87aabde5caa3e837ad4d306a9376e778e9db94824da",
+      "counts": {
+        "tests": 22,
+        "pass": 22,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/repair.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:17.475656+00:00",
+      "completed_at": "2026-10-25T01:31:17.727018+00:00",
+      "duration_seconds": 0.25134754400005477,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/repair.test.txt",
+      "transcript_sha256": "9e04e713e4e524a09fafaf5f5936f10b54b6b42b05a06491e645bee6637a6954",
+      "file": "tests/repair.test.mjs",
+      "test_source_sha256": "9cb5fbd0feab522c2eaf696d9fabe0b0473646f23260389a4683a15d70d5a62e",
+      "counts": {
+        "tests": 12,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/results.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:17.732682+00:00",
+      "completed_at": "2026-10-25T01:31:17.872927+00:00",
+      "duration_seconds": 0.14025234499990802,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/results.test.txt",
+      "transcript_sha256": "58d9261d0ecf45bb62c7caddfb4e07678dc14889e02e9553046dd0a6333056b4",
+      "file": "tests/results.test.mjs",
+      "test_source_sha256": "82121a0e66a6db66dc3795c0c636a8d168b30f50d40ebeec698cecf4c111efe9",
+      "counts": {
+        "tests": 14,
+        "pass": 14,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/simulation.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:17.874474+00:00",
+      "completed_at": "2026-10-25T01:31:18.289781+00:00",
+      "duration_seconds": 0.41531438500010154,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/simulation.test.txt",
+      "transcript_sha256": "fa8c950156a894ebf55cb457e9ca867aff29fe780867a6bfd3a943666c05ca29",
+      "file": "tests/simulation.test.mjs",
+      "test_source_sha256": "a9b097db4907b1ff113efd21930ee82e2837912dc03d0186d937b95b82df328d",
+      "counts": {
+        "tests": 10,
+        "pass": 10,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/timing-app.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:18.291011+00:00",
+      "completed_at": "2026-10-25T01:31:18.649840+00:00",
+      "duration_seconds": 0.35883796500002063,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/timing-app.test.txt",
+      "transcript_sha256": "ab746b6a4fa8b641dea549470fa6c1c4cd6c5c8fe44daadc5d0639a8faa7f82b",
+      "file": "tests/timing-app.test.mjs",
+      "test_source_sha256": "53dee35d776876382510ba52b79329b43d14e6df22d222b04e27c94fbb670061",
+      "counts": {
+        "tests": 15,
+        "pass": 15,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/timing-evidence.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:18.651537+00:00",
+      "completed_at": "2026-10-25T01:31:19.456496+00:00",
+      "duration_seconds": 0.804967859000044,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/timing-evidence.test.txt",
+      "transcript_sha256": "34faaec124503a17680807e45a67f335036d3dff901b11adfcc2cbfbbb26e6ac",
+      "file": "tests/timing-evidence.test.mjs",
+      "test_source_sha256": "725fccae18e4825dfb6a8ce4a135f2da1a67aaf1b7854a142ff0aa6256c8c8fd",
+      "counts": {
+        "tests": 20,
+        "pass": 20,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/timing-ui.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:19.458122+00:00",
+      "completed_at": "2026-10-25T01:31:19.582041+00:00",
+      "duration_seconds": 0.12392118399998253,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/timing-ui.test.txt",
+      "transcript_sha256": "2a532229917a1e4dde0ad7db314460fdcdcf141a47e1fcb42174458693a97f60",
+      "file": "tests/timing-ui.test.mjs",
+      "test_source_sha256": "195d04458d0243d0db06213563f32cbe5c2c53716858e345ac14f1f6b44c8934",
+      "counts": {
+        "tests": 12,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/timing.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:19.583679+00:00",
+      "completed_at": "2026-10-25T01:31:19.830455+00:00",
+      "duration_seconds": 0.2467834930000663,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/timing.test.txt",
+      "transcript_sha256": "7db9ccb887be8ad6620e3ac8abfe0c6d1e58ec3583cd14bd80f0564a9b3268ae",
+      "file": "tests/timing.test.mjs",
+      "test_source_sha256": "8a09e80021b0d4ba0b6ecc5fdfa40292cf70da3c6652d69d73af20d7bc5daf93",
+      "counts": {
+        "tests": 34,
+        "pass": 34,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/truth-table-app.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:19.832226+00:00",
+      "completed_at": "2026-10-25T01:31:19.994784+00:00",
+      "duration_seconds": 0.16256560000010722,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/truth-table-app.test.txt",
+      "transcript_sha256": "71c86da44daae8974f5af1addd9e798d4d0e287a1ed32b2e712fe35057ad942f",
+      "file": "tests/truth-table-app.test.mjs",
+      "test_source_sha256": "7a9ebe07201311cbc1937372df35b0425913e4b2e0b18986cf83df7d3e3de798",
+      "counts": {
+        "tests": 17,
+        "pass": 17,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/truth-table-evidence-ui.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:19.996578+00:00",
+      "completed_at": "2026-10-25T01:31:20.145378+00:00",
+      "duration_seconds": 0.14877357599993957,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/truth-table-evidence-ui.test.txt",
+      "transcript_sha256": "036baeac9dc9bc58633b16194c4dd30e61784bf75ccdc0c59b894b891acd3a9b",
+      "file": "tests/truth-table-evidence-ui.test.mjs",
+      "test_source_sha256": "803ee6fa2400f63d80d59e0d3408f730442912e2ccc44cc9527d399fb548084a",
+      "counts": {
+        "tests": 10,
+        "pass": 10,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "command": [
+        "node",
+        "tests/truth-table.test.mjs"
+      ],
+      "started_at": "2026-10-25T01:31:20.146978+00:00",
+      "completed_at": "2026-10-25T01:31:20.392439+00:00",
+      "duration_seconds": 0.24546901600001547,
+      "exit_code": 0,
+      "timed_out": false,
+      "transcript": "rc202-tests/truth-table.test.txt",
+      "transcript_sha256": "0ada067c6e33589a419fcf2e6c66275d7aebb7de6ef19e646f88eb0d69688056",
+      "file": "tests/truth-table.test.mjs",
+      "test_source_sha256": "df43d25b1bcdc3f261bd6d3a9fe82031408f88f4ff46d5aeebd8b042ecab6609",
+      "counts": {
+        "tests": 7,
+        "pass": 7,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    }
+  ],
+  "source_sha256": {
+    "index.html": "237dfd74584c852a9cdf6ee4101f6457aace7bc8f21b8e596a877b0cee89ac10",
+    "package.json": "9cbb7c0ea182ecb67fd4554220ce73ea6158099515fa0ee5ee22ca843ec78645",
+    "public/engine/COPYING-ngspice-45.2.txt": "53e838832e7c00598bb86602a99f9644ba2060e19be209b52e60adb2c8eb6f77",
+    "public/engine/LICENSE-EEcircuit.txt": "05b5629164ed0e846fd9f3ee34b64aced9d1ffef01e6fc30c39c8c68b9fea4ed",
+    "public/engine/LICENSE-Emscripten.txt": "620a78084fc7ca97c0b5dea9abf891f3ffcadfdbf305276f099c9c4e12fc1d86",
+    "public/engine/NOTICE.txt": "b6417073ab738ffc727fb8c3a91e9f8991c8a066ab5ac56a859e8ea7753952ab",
+    "public/engine/eecircuit-engine.js": "97f14b3da89a2e3f16a73e9eab9eba2e503b02548cfa788bcf9d330a6a9021c6",
+    "public/engine/manifest.json": "fc025b7b86e6318639ff56a395a33a5a151ea41b339ea93cc85b5657171c0aa9",
+    "public/engine/source/eecircuit-engine-1.8.0/Docker/Dockerfile": "774ccc0e7d9a0229bfefeea450d4051a5b4f410912449c34b325acead24c4a2d",
+    "public/engine/source/eecircuit-engine-1.8.0/Docker/hicum2_patch.sh": "c846cb833eb2bbbbabb99e4ec13f62f593188d703dc165980cb533cd7bb60478",
+    "public/engine/source/eecircuit-engine-1.8.0/Docker/pre.js": "d4f5703e1ead8f7d213fa274a3e2c7c678da0609b22abf2c7d7c763060dbb05e",
+    "public/engine/source/eecircuit-engine-1.8.0/Docker/run.sh": "434d3a0c99a8aaa2a4152d7c5583e96dd899d06dbbf6175cc65975a41d92a85e",
+    "public/engine/source/eecircuit-engine-1.8.0/LICENSE": "05b5629164ed0e846fd9f3ee34b64aced9d1ffef01e6fc30c39c8c68b9fea4ed",
+    "public/engine/source/eecircuit-engine-1.8.0/src/readOutput.ts": "c1c1361355d2b6837ed909d41bd0c84ab8723358532d72ea948caa71d88af7e9",
+    "public/engine/source/eecircuit-engine-1.8.0/src/simulationLink.ts": "270494b5190110265fb14704a0b551d659fae7f863c8202fff1126161e466173",
+    "public/engine/source/eecircuit-engine-1.8.0/src/spice.d.ts": "3e6932ce5c9c815f12f7475f8d85a1837ae1d56c288fe458c63514f5bf162e0e",
+    "public/engine/source/manifest.json": "9b697649151c8f7b47cb45527ba5980ff7bfc1075b1d54df625b6ed8de3b5774",
+    "public/engine/source/ngspice-45.2-source.tar.gz": "3aa30022e975bc04e2d9566e62e76d15e108d7b887f520755383ba37464c2324",
+    "public/engine/spice.wasm": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4",
+    "public/icon.svg": "64019d8a493c11c1bb52aa59bf8215ee3cfb818fb66619ae3537db663c9f116b",
+    "public/manifest.webmanifest": "304d5d95615e0739d7610b95b2d80dcb5d667f420780bdc700f3d616c138744e",
+    "public/repair.html": "7d0fe4cb5e5d3d61e6691d8e1eec0bf8f25cfd2dfb099eceec02ba0b66d8d634",
+    "scripts/build.mjs": "4184c3c7eaf3c2cb3710067b0e08a2138a5486632bbb62260e56ba34f8fb1554",
+    "scripts/engine-node-worker.mjs": "8da739075ad80769a6b7f85c47ee961578bba20ef17ac0773ec926cb37ede41d",
+    "scripts/package.py": "b6dbfa575a032e13b9e967bed7b74a69506ebad2904c2ec467ea22b37d15a4b1",
+    "scripts/prove-coordinated.mjs": "40c8b1c6e068f1891c1dd501c9895b2031ddc570fe0ddc11c20507e7e8a55381",
+    "scripts/prove-digital.mjs": "2341b0173e4532831fdbfe5265912fb694f4ba0b1b5d179ef1556fd92fe481ea",
+    "scripts/prove-engine.mjs": "bdce76001f86d680aab60d3e51857aa10eea5b2ebb22ba181dce9b02eeb68642",
+    "scripts/prove-examples.mjs": "f7357a1f96a9f58fb06e3ad49ad90fded4f4d9b8c494220137af804d5f837a0d",
+    "scripts/prove-timing.mjs": "87e5fcd3e7856ea800992deaaef3eb34d9140ecc6636c83f7d9b96d698b2b911",
+    "scripts/vendor-engine.py": "e90ae8dde12dfb2d7657da24253a41f34f993530fc252f31fc4f58533ebcda19",
+    "scripts/vendor-raw-parser.js": "084ffd566e601de10c8de5c360c9bf89dd260e54138266c9cb7b58806a0a33fa",
+    "scripts/verify-browser-evidence.mjs": "268880d8b398af58f0adb4bd416014fcf0114cdab7c7c67157182c83863cbd99",
+    "src/app.js": "3c2366724962edafa1bb7f0f4c992d738e7e1160218cd795bb8ec0b36165ede4",
+    "src/continuous-evidence.js": "af8cb5b91bb3dc90f03943b9dd97ca8f5bf489a2b755cc729612c48e05aad9c5",
+    "src/continuous.js": "568641071461a8dbc57b1224a5443f86b514d1b4c443243ed24cdafd4061897c",
+    "src/coordinated-digital.js": "6e73b4b7b982b2e3f807e23e96d62f25cee916341762e0da8ae41c32bf2d23d5",
+    "src/coordinated-engine.js": "94348c12e8fd3d4706f3b2e57ef35bb82d2123251d471fb43486af0e25a5d55f",
+    "src/coordinated-results.js": "e89ec29eb0f0517b1fa40be565173323af5e9223a88c667c983e83e93c568655",
+    "src/coordinated-worker.js": "f52d3702cb5cc81d42a639146ab1dac6367030289334c115932f90dddb5312b8",
+    "src/coordinated.js": "12d2ded7ca0d500718c567ea212827918fae423bcc9179c85c5cb28fc3429b6a",
+    "src/digital-engine.js": "86f2b39466f8784ee9311db7633af299f2d99bf6a82a45dabef56ed33e227089",
+    "src/digital-worker.js": "1283b1b8de76c941301562abeac1a5bbc287eb9481d4b569504520325d5a5d10",
+    "src/digital.js": "ab9e81e869af307fab57967fe9aa80e484213c6d96479d9b77e0e63e1271ba36",
+    "src/displays.js": "4f67bb130f6af75844555d2372ce3e888cf16241bf9ac48853dc99ea292f0f9d",
+    "src/editor.js": "16e1343c5f8ca81066205a0f66715fe1b2efe9891a24f37d1839d7c9514ac18e",
+    "src/engine-worker.js": "1ba0fabfc4a35b98891869cc989c38bd800157b28f4321edabbe115073018ea3",
+    "src/engine.js": "a6e50bebb2ed8572633605c6ea286ea3e71390651f21b645f47b5730367624fd",
+    "src/examples-coordinated.js": "e28cf43aca9d85e7380e69c139aa566b5c4eb2570fbd4f953e5697a6c9b09e82",
+    "src/examples-displays.js": "e7c5ebefbfc0ea23e8fa1c730fbb8301c62663e1c3ed7955fd5e94cce4f581d5",
+    "src/examples-logic-io.js": "7e0c3d2e359cdf322a97b138f6726c7098265e9465b36b4e712cca78c09c401e",
+    "src/examples.js": "a05a0049627ee20a21e42b8a0512d925ff470c3f7f25288aab5e7e76384ddc03",
+    "src/experiments-ui.js": "680695e49a319a005bbbfa93bd910b36cd497e823a3d1bb761df3b5b209e795c",
+    "src/experiments.js": "dc2314da3aa6bf0202345f2af4e8bb973ba230ada0e936d445b94ad2cbf043c1",
+    "src/library.js": "ab341ea3d86c9f01c9994af087a109fdcf985591c4e5e1965d33c07fe58a3c65",
+    "src/logic-source-ui.js": "27e18744f83524b8080ef4c481c9822e1f4fca34a6f914e8746f0ddf875f1c39",
+    "src/model.js": "25afcb832414db683f8a7fda630722b3e73ef2f13a3ce92443b748af1353abb0",
+    "src/netlist.js": "88f46730d8c0faa07601feb7edb2876eb3952b4abd4e3f7a57f364f7117345b4",
+    "src/plots.js": "2be5a841910fee0a466eb08ee241bcd7a82926ccdf8cbe626ed4325d7361e911",
+    "src/reports.js": "10a9f8b4364f53cfe975f6442c86cdec3edaf6b6ab859a345643f2d02d8dc1b6",
+    "src/simulation.js": "fdf48771ef20263a9b0086ebb6490fc21b6596bb5ee8aaae67523d022a74e1ff",
+    "src/storage.js": "4987c11bbf7a37ffb24feb77ccab410169cc0f282e3f00de32794301ae27d43e",
+    "src/symbols.js": "e01586b22957df4f21797ba61a5769fc7e5563bf3c0e1e1b50c873a1964bd0ff",
+    "src/timing-evidence.js": "0fb5e73c2e5679fab7bfe969072dbc59df53e54c6eef6f31124e9f002bcfeb5e",
+    "src/timing-ui.js": "fc52cfbbdf76c336e0b133e0321504211b900c37cf66d9a61879d1b6d9a246e3",
+    "src/timing.js": "6b68bb2e175182eae949ed2623368632971d347d52c597bb2c65573f4647fb9c",
+    "src/truth-table-evidence.js": "81d891f186ed388f91692b2297ae7c8c9a18797509ac821edeb1c6d92c083feb",
+    "src/truth-table-ui.js": "5e46bd6c88df976015fe6bcf0f42569dd03d159b6ae280869ed7d56e146281e5",
+    "style.css": "ef11ce237a454f43f9347599e0922397104d294269f2d05ffa3861d0fd160f68",
+    "tests/autosave.test.mjs": "7fa6183eb0fa16f6500135092675bfc7a112bd08341ae28716bb8a6142524c5d",
+    "tests/bus-model.test.mjs": "04bc8149d92ecd4335e822b2074fea9d5d39530f1d49d18ca5d76566c29e9e3e",
+    "tests/bus-report.test.mjs": "f65479849fcebaf1bc26d9a8068a5376d006f768225aab72e7101f085c444ce7",
+    "tests/bus-ui.test.mjs": "ed94dee2abde076d9af81d8b11cf41db2bf24646bb9fa71d194ba3aa8744e42f",
+    "tests/continuous-app.test.mjs": "b5f26577abd753f477a68d6691ef4d3e01e5a5d1d290f60dee33b8037cc3aadf",
+    "tests/continuous-storage.test.mjs": "75c84c3437f28bf43cb8aa32edc887d818fe6952c4bbfeec499bea8c31e07b53",
+    "tests/continuous.test.mjs": "0ce42c4b7a7e88886b8a3f725b88c23a87c31882aa774c259debaba06a177f5c",
+    "tests/converters-integration.test.mjs": "eae642973e97e8ba19762e9e2bd1b84fc7fc14a9cc0194bc80907cae2534752b",
+    "tests/coordinated-facade.test.mjs": "15d26c9d2c2fa5dd6aae646ae666ba1b4b45af36e5e2dea958d250f227c1a692",
+    "tests/coordinated.test.mjs": "c73e3822eca14b039ffced05f338d7975126637af6c53b30b2526c3360f677e9",
+    "tests/core.test.mjs": "832a73458ad2d9af1f40e2afcd10e9f04b1b1f253b381616f17d29960ee0eff8",
+    "tests/digital-editor.test.mjs": "63ea30a9911dd9a6f8c21f1d7c1daa10239c7bbc6c4009f62ee1f39c79c028dd",
+    "tests/digital-expansion.test.mjs": "4eeb911d5f876146a24c91dd0e6bcf12b5fdd207a2fd5e995a633b8d844a4668",
+    "tests/digital-model.test.mjs": "9e29078398dec05e63109a8d9b0dfaa332a76331278572e6853c3d7d5bb7396f",
+    "tests/digital-plots.test.mjs": "2c5d60e0c42d92e2960bb90904639ca29ed7ff23f4154b1e0eb5e5a1610748f1",
+    "tests/digital-source.test.mjs": "2c3dc50fecac64a3df9d69c0900a0d528075ed361cb855754001cc5ef0d81556",
+    "tests/digital-storage.test.mjs": "0f815dc0a24597042549b06c9dea42e96f1601933bdc18f388e1e06a7d595e4a",
+    "tests/digital.test.mjs": "6d542dc202305401ceff56d661c96421edb7f2017cd97e787ae234e72068df93",
+    "tests/displays.test.mjs": "575f0b745e42fbd33ed3c6879352854e8c3b327a44ddfe89f61426f1f5e490f0",
+    "tests/editor.test.mjs": "932b5b582d2a117d4e20c0d9f356cdc1cc77c4c0c6b9deb4f384ce759ead4ca0",
+    "tests/engine-fixtures/ac.cir": "9439fa2fc40aa13c8b966381d4b32e224ea5df128290f0078da8d91c3e5afca2",
+    "tests/engine-fixtures/diode.cir": "f428c03fe4e9dd8bbddb8932e2d57a7354ad5691a11cff49d877b0ddb5afa370",
+    "tests/engine-fixtures/divider.cir": "4f46ae7e3b6120f7fc3fe3d131727cd8ed3aa55e85bb5716aa8ca7f9427671b4",
+    "tests/engine-fixtures/mos.cir": "5736cdcb9a5ab56af7c73abca492dcf4f3c91be3e40b331720151398ef6d9f27",
+    "tests/engine-fixtures/npn.cir": "305f6474c9f15eb52a4ad1cc6a7e4f5cc7a3b5c93b812b8e6a6d02754235efc9",
+    "tests/engine-fixtures/opamp.cir": "562e30a9198c1ca2086d1a9be5956d57c9909a5f041df3d92d5c0c6481ade626",
+    "tests/engine-fixtures/step.cir": "cf41e67665eb259b2ca660c1a653bfcab5edb44ef257cbe7d53fcfe3671dc371",
+    "tests/engine-fixtures/sweep.cir": "71ce2203489f4be0523277b087ecf81e60119e94e80741180b5cd7b4306ab8a3",
+    "tests/engine-fixtures/switch.cir": "1ff996008de700f1959cc5d0a769eac4fed2e9751ffd3d1a952779672779be64",
+    "tests/engine-fixtures/unicode_crossing.cir": "b6becf83955fb4b47c29eb97ed807b8285cbe48f852d6fa3d03488d19856d193",
+    "tests/engine-loading.test.mjs": "8d420d78eeea2613befea4e44bb0c6d45b4474c318b5f7dad55a36fc3d7ef629",
+    "tests/engine-raw-parser.test.mjs": "64544c5e963ff4c0be68f26cca88b11b4bf39860da8572c37b5392d7778cf0a0",
+    "tests/experiments-app.test.mjs": "3180a1650d9b06d7895689fec7829418ee90cc833c043c1834ddeb22c00233ce",
+    "tests/experiments-engine.test.mjs": "4cbf60dab5dab47b7d1d93ce280557ee85d46053987d48adbbf241e5d72ad330",
+    "tests/experiments-ui.test.mjs": "c0ca3993fc28271ab6725d6ee6b6003e6306d8ed5b1e9d163055b90af789e454",
+    "tests/experiments.test.mjs": "1d691884eea04ac802289290d87328838827c13141e143592b800d625f82405f",
+    "tests/logic-indicators.test.mjs": "e6a8f603c570405225c6babd05e20f77e8fb9006b974fabdeb8eabb54c8a8aba",
+    "tests/logic-io-app.test.mjs": "507d9f6946c6b9c4d6ff5110395dd5ae47f934426855d33d66f5a3bd9acc43df",
+    "tests/logic-io-examples.test.mjs": "3ec812478f87576b6cae3a6b66c0da28558556f3a2cb0ff9292e4fdc6ee23101",
+    "tests/offline.test.mjs": "50200bdd515505a85ad1a87aabde5caa3e837ad4d306a9376e778e9db94824da",
+    "tests/package.test.mjs": "0fc881f665547ac0f0f0ffd2e3a59051f2fa63e9d364ea785c9777fdd150dce4",
+    "tests/repair.test.mjs": "9cb5fbd0feab522c2eaf696d9fabe0b0473646f23260389a4683a15d70d5a62e",
+    "tests/results.test.mjs": "82121a0e66a6db66dc3795c0c636a8d168b30f50d40ebeec698cecf4c111efe9",
+    "tests/simulation.test.mjs": "a9b097db4907b1ff113efd21930ee82e2837912dc03d0186d937b95b82df328d",
+    "tests/timing-app.test.mjs": "53dee35d776876382510ba52b79329b43d14e6df22d222b04e27c94fbb670061",
+    "tests/timing-evidence.test.mjs": "725fccae18e4825dfb6a8ce4a135f2da1a67aaf1b7854a142ff0aa6256c8c8fd",
+    "tests/timing-ui.test.mjs": "195d04458d0243d0db06213563f32cbe5c2c53716858e345ac14f1f6b44c8934",
+    "tests/timing.test.mjs": "8a09e80021b0d4ba0b6ecc5fdfa40292cf70da3c6652d69d73af20d7bc5daf93",
+    "tests/truth-table-app.test.mjs": "7a9ebe07201311cbc1937372df35b0425913e4b2e0b18986cf83df7d3e3de798",
+    "tests/truth-table-evidence-ui.test.mjs": "803ee6fa2400f63d80d59e0d3408f730442912e2ccc44cc9527d399fb548084a",
+    "tests/truth-table.test.mjs": "df43d25b1bcdc3f261bd6d3a9fe82031408f88f4ff46d5aeebd8b042ecab6609"
+  },
+  "numerical_proof": {
+    "command": [
+      "node",
+      "scripts/prove-coordinated.mjs",
+      "--wasm-only",
+      "--output",
+      "evidence/rc202-coordinated-validation.json"
+    ],
+    "file": "rc202-coordinated-validation.json",
+    "sha256": "b18bb151491dacd3802adc9d96acbcf8190c882dff5003c175b88eaf124a40c2",
+    "tested_at": "2026-10-25T01:32:39.779Z",
+    "passed": 19,
+    "failed": 0,
+    "status": "passed",
+    "mode": "wasm-only",
+    "nativeReference": {
+      "status": "unavailable",
+      "code": "ENOENT",
+      "path": "/usr/bin/ngspice",
+      "reason": "Native reference explicitly omitted by --wasm-only; the pinned executable is unavailable in this environment."
+    },
+    "exit_code": 0,
+    "transcript": "rc202-tests/coordinated-proof.txt",
+    "transcript_sha256": "1cf3cb0cef6f8968a939822413653e2a4e4b40d6ad55dd3317b18036bbe1e9b7",
+    "source_hashes_current": {
+      "scripts/prove-coordinated.mjs": true,
+      "src/coordinated.js": true,
+      "src/coordinated-digital.js": true,
+      "src/digital.js": true,
+      "src/library.js": true,
+      "src/model.js": true,
+      "src/netlist.js": true
+    },
+    "initial_full_reference_attempt": {
+      "command": [
+        "node",
+        "scripts/prove-coordinated.mjs",
+        "--output",
+        "evidence/rc202-coordinated-validation.json"
+      ],
+      "started_at": "2026-10-25T01:31:20.394148+00:00",
+      "completed_at": "2026-10-25T01:31:20.471122+00:00",
+      "duration_seconds": 0.07701418500005275,
+      "exit_code": 1,
+      "timed_out": false,
+      "transcript": "rc202-tests/coordinated-proof.native-unavailable.txt",
+      "transcript_sha256": "25b288fb9bb8ab8e3d4d29f37c59c9fb7b90a8c897f22137040c35a2a55f1169",
+      "status": "blocked-native",
+      "reason": "Pinned /usr/bin/ngspice is absent in this environment. No numerical checks executed in this attempt.",
+      "error_code": "ENOENT"
+    }
+  },
+  "completed_at": "2026-10-25T01:33:17.447678+00:00",
+  "executed_files": 40,
+  "passed": 595,
+  "failed": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "todo": 0,
+  "timed_out": 0,
+  "failing_files": [],
+  "source_changed_during_verification": [],
+  "source_hashes_after": {
+    "index.html": "237dfd74584c852a9cdf6ee4101f6457aace7bc8f21b8e596a877b0cee89ac10",
+    "package.json": "9cbb7c0ea182ecb67fd4554220ce73ea6158099515fa0ee5ee22ca843ec78645",
+    "public/engine/COPYING-ngspice-45.2.txt": "53e838832e7c00598bb86602a99f9644ba2060e19be209b52e60adb2c8eb6f77",
+    "public/engine/LICENSE-EEcircuit.txt": "05b5629164ed0e846fd9f3ee34b64aced9d1ffef01e6fc30c39c8c68b9fea4ed",
+    "public/engine/LICENSE-Emscripten.txt": "620a78084fc7ca97c0b5dea9abf891f3ffcadfdbf305276f099c9c4e12fc1d86",
+    "public/engine/NOTICE.txt": "b6417073ab738ffc727fb8c3a91e9f8991c8a066ab5ac56a859e8ea7753952ab",
+    "public/engine/eecircuit-engine.js": "97f14b3da89a2e3f16a73e9eab9eba2e503b02548cfa788bcf9d330a6a9021c6",
+    "public/engine/manifest.json": "fc025b7b86e6318639ff56a395a33a5a151ea41b339ea93cc85b5657171c0aa9",
+    "public/engine/source/eecircuit-engine-1.8.0/Docker/Dockerfile": "774ccc0e7d9a0229bfefeea450d4051a5b4f410912449c34b325acead24c4a2d",
+    "public/engine/source/eecircuit-engine-1.8.0/Docker/hicum2_patch.sh": "c846cb833eb2bbbbabb99e4ec13f62f593188d703dc165980cb533cd7bb60478",
+    "public/engine/source/eecircuit-engine-1.8.0/Docker/pre.js": "d4f5703e1ead8f7d213fa274a3e2c7c678da0609b22abf2c7d7c763060dbb05e",
+    "public/engine/source/eecircuit-engine-1.8.0/Docker/run.sh": "434d3a0c99a8aaa2a4152d7c5583e96dd899d06dbbf6175cc65975a41d92a85e",
+    "public/engine/source/eecircuit-engine-1.8.0/LICENSE": "05b5629164ed0e846fd9f3ee34b64aced9d1ffef01e6fc30c39c8c68b9fea4ed",
+    "public/engine/source/eecircuit-engine-1.8.0/src/readOutput.ts": "c1c1361355d2b6837ed909d41bd0c84ab8723358532d72ea948caa71d88af7e9",
+    "public/engine/source/eecircuit-engine-1.8.0/src/simulationLink.ts": "270494b5190110265fb14704a0b551d659fae7f863c8202fff1126161e466173",
+    "public/engine/source/eecircuit-engine-1.8.0/src/spice.d.ts": "3e6932ce5c9c815f12f7475f8d85a1837ae1d56c288fe458c63514f5bf162e0e",
+    "public/engine/source/manifest.json": "9b697649151c8f7b47cb45527ba5980ff7bfc1075b1d54df625b6ed8de3b5774",
+    "public/engine/source/ngspice-45.2-source.tar.gz": "3aa30022e975bc04e2d9566e62e76d15e108d7b887f520755383ba37464c2324",
+    "public/engine/spice.wasm": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4",
+    "public/icon.svg": "64019d8a493c11c1bb52aa59bf8215ee3cfb818fb66619ae3537db663c9f116b",
+    "public/manifest.webmanifest": "304d5d95615e0739d7610b95b2d80dcb5d667f420780bdc700f3d616c138744e",
+    "public/repair.html": "7d0fe4cb5e5d3d61e6691d8e1eec0bf8f25cfd2dfb099eceec02ba0b66d8d634",
+    "scripts/build.mjs": "4184c3c7eaf3c2cb3710067b0e08a2138a5486632bbb62260e56ba34f8fb1554",
+    "scripts/engine-node-worker.mjs": "8da739075ad80769a6b7f85c47ee961578bba20ef17ac0773ec926cb37ede41d",
+    "scripts/package.py": "b6dbfa575a032e13b9e967bed7b74a69506ebad2904c2ec467ea22b37d15a4b1",
+    "scripts/prove-coordinated.mjs": "40c8b1c6e068f1891c1dd501c9895b2031ddc570fe0ddc11c20507e7e8a55381",
+    "scripts/prove-digital.mjs": "2341b0173e4532831fdbfe5265912fb694f4ba0b1b5d179ef1556fd92fe481ea",
+    "scripts/prove-engine.mjs": "bdce76001f86d680aab60d3e51857aa10eea5b2ebb22ba181dce9b02eeb68642",
+    "scripts/prove-examples.mjs": "f7357a1f96a9f58fb06e3ad49ad90fded4f4d9b8c494220137af804d5f837a0d",
+    "scripts/prove-timing.mjs": "87e5fcd3e7856ea800992deaaef3eb34d9140ecc6636c83f7d9b96d698b2b911",
+    "scripts/vendor-engine.py": "e90ae8dde12dfb2d7657da24253a41f34f993530fc252f31fc4f58533ebcda19",
+    "scripts/vendor-raw-parser.js": "084ffd566e601de10c8de5c360c9bf89dd260e54138266c9cb7b58806a0a33fa",
+    "scripts/verify-browser-evidence.mjs": "268880d8b398af58f0adb4bd416014fcf0114cdab7c7c67157182c83863cbd99",
+    "src/app.js": "3c2366724962edafa1bb7f0f4c992d738e7e1160218cd795bb8ec0b36165ede4",
+    "src/continuous-evidence.js": "af8cb5b91bb3dc90f03943b9dd97ca8f5bf489a2b755cc729612c48e05aad9c5",
+    "src/continuous.js": "568641071461a8dbc57b1224a5443f86b514d1b4c443243ed24cdafd4061897c",
+    "src/coordinated-digital.js": "6e73b4b7b982b2e3f807e23e96d62f25cee916341762e0da8ae41c32bf2d23d5",
+    "src/coordinated-engine.js": "94348c12e8fd3d4706f3b2e57ef35bb82d2123251d471fb43486af0e25a5d55f",
+    "src/coordinated-results.js": "e89ec29eb0f0517b1fa40be565173323af5e9223a88c667c983e83e93c568655",
+    "src/coordinated-worker.js": "f52d3702cb5cc81d42a639146ab1dac6367030289334c115932f90dddb5312b8",
+    "src/coordinated.js": "12d2ded7ca0d500718c567ea212827918fae423bcc9179c85c5cb28fc3429b6a",
+    "src/digital-engine.js": "86f2b39466f8784ee9311db7633af299f2d99bf6a82a45dabef56ed33e227089",
+    "src/digital-worker.js": "1283b1b8de76c941301562abeac1a5bbc287eb9481d4b569504520325d5a5d10",
+    "src/digital.js": "ab9e81e869af307fab57967fe9aa80e484213c6d96479d9b77e0e63e1271ba36",
+    "src/displays.js": "4f67bb130f6af75844555d2372ce3e888cf16241bf9ac48853dc99ea292f0f9d",
+    "src/editor.js": "16e1343c5f8ca81066205a0f66715fe1b2efe9891a24f37d1839d7c9514ac18e",
+    "src/engine-worker.js": "1ba0fabfc4a35b98891869cc989c38bd800157b28f4321edabbe115073018ea3",
+    "src/engine.js": "a6e50bebb2ed8572633605c6ea286ea3e71390651f21b645f47b5730367624fd",
+    "src/examples-coordinated.js": "e28cf43aca9d85e7380e69c139aa566b5c4eb2570fbd4f953e5697a6c9b09e82",
+    "src/examples-displays.js": "e7c5ebefbfc0ea23e8fa1c730fbb8301c62663e1c3ed7955fd5e94cce4f581d5",
+    "src/examples-logic-io.js": "7e0c3d2e359cdf322a97b138f6726c7098265e9465b36b4e712cca78c09c401e",
+    "src/examples.js": "a05a0049627ee20a21e42b8a0512d925ff470c3f7f25288aab5e7e76384ddc03",
+    "src/experiments-ui.js": "680695e49a319a005bbbfa93bd910b36cd497e823a3d1bb761df3b5b209e795c",
+    "src/experiments.js": "dc2314da3aa6bf0202345f2af4e8bb973ba230ada0e936d445b94ad2cbf043c1",
+    "src/library.js": "ab341ea3d86c9f01c9994af087a109fdcf985591c4e5e1965d33c07fe58a3c65",
+    "src/logic-source-ui.js": "27e18744f83524b8080ef4c481c9822e1f4fca34a6f914e8746f0ddf875f1c39",
+    "src/model.js": "25afcb832414db683f8a7fda630722b3e73ef2f13a3ce92443b748af1353abb0",
+    "src/netlist.js": "88f46730d8c0faa07601feb7edb2876eb3952b4abd4e3f7a57f364f7117345b4",
+    "src/plots.js": "2be5a841910fee0a466eb08ee241bcd7a82926ccdf8cbe626ed4325d7361e911",
+    "src/reports.js": "10a9f8b4364f53cfe975f6442c86cdec3edaf6b6ab859a345643f2d02d8dc1b6",
+    "src/simulation.js": "fdf48771ef20263a9b0086ebb6490fc21b6596bb5ee8aaae67523d022a74e1ff",
+    "src/storage.js": "4987c11bbf7a37ffb24feb77ccab410169cc0f282e3f00de32794301ae27d43e",
+    "src/symbols.js": "e01586b22957df4f21797ba61a5769fc7e5563bf3c0e1e1b50c873a1964bd0ff",
+    "src/timing-evidence.js": "0fb5e73c2e5679fab7bfe969072dbc59df53e54c6eef6f31124e9f002bcfeb5e",
+    "src/timing-ui.js": "fc52cfbbdf76c336e0b133e0321504211b900c37cf66d9a61879d1b6d9a246e3",
+    "src/timing.js": "6b68bb2e175182eae949ed2623368632971d347d52c597bb2c65573f4647fb9c",
+    "src/truth-table-evidence.js": "81d891f186ed388f91692b2297ae7c8c9a18797509ac821edeb1c6d92c083feb",
+    "src/truth-table-ui.js": "5e46bd6c88df976015fe6bcf0f42569dd03d159b6ae280869ed7d56e146281e5",
+    "style.css": "ef11ce237a454f43f9347599e0922397104d294269f2d05ffa3861d0fd160f68",
+    "tests/autosave.test.mjs": "7fa6183eb0fa16f6500135092675bfc7a112bd08341ae28716bb8a6142524c5d",
+    "tests/bus-model.test.mjs": "04bc8149d92ecd4335e822b2074fea9d5d39530f1d49d18ca5d76566c29e9e3e",
+    "tests/bus-report.test.mjs": "f65479849fcebaf1bc26d9a8068a5376d006f768225aab72e7101f085c444ce7",
+    "tests/bus-ui.test.mjs": "ed94dee2abde076d9af81d8b11cf41db2bf24646bb9fa71d194ba3aa8744e42f",
+    "tests/continuous-app.test.mjs": "b5f26577abd753f477a68d6691ef4d3e01e5a5d1d290f60dee33b8037cc3aadf",
+    "tests/continuous-storage.test.mjs": "75c84c3437f28bf43cb8aa32edc887d818fe6952c4bbfeec499bea8c31e07b53",
+    "tests/continuous.test.mjs": "0ce42c4b7a7e88886b8a3f725b88c23a87c31882aa774c259debaba06a177f5c",
+    "tests/converters-integration.test.mjs": "eae642973e97e8ba19762e9e2bd1b84fc7fc14a9cc0194bc80907cae2534752b",
+    "tests/coordinated-facade.test.mjs": "15d26c9d2c2fa5dd6aae646ae666ba1b4b45af36e5e2dea958d250f227c1a692",
+    "tests/coordinated.test.mjs": "c73e3822eca14b039ffced05f338d7975126637af6c53b30b2526c3360f677e9",
+    "tests/core.test.mjs": "832a73458ad2d9af1f40e2afcd10e9f04b1b1f253b381616f17d29960ee0eff8",
+    "tests/digital-editor.test.mjs": "63ea30a9911dd9a6f8c21f1d7c1daa10239c7bbc6c4009f62ee1f39c79c028dd",
+    "tests/digital-expansion.test.mjs": "4eeb911d5f876146a24c91dd0e6bcf12b5fdd207a2fd5e995a633b8d844a4668",
+    "tests/digital-model.test.mjs": "9e29078398dec05e63109a8d9b0dfaa332a76331278572e6853c3d7d5bb7396f",
+    "tests/digital-plots.test.mjs": "2c5d60e0c42d92e2960bb90904639ca29ed7ff23f4154b1e0eb5e5a1610748f1",
+    "tests/digital-source.test.mjs": "2c3dc50fecac64a3df9d69c0900a0d528075ed361cb855754001cc5ef0d81556",
+    "tests/digital-storage.test.mjs": "0f815dc0a24597042549b06c9dea42e96f1601933bdc18f388e1e06a7d595e4a",
+    "tests/digital.test.mjs": "6d542dc202305401ceff56d661c96421edb7f2017cd97e787ae234e72068df93",
+    "tests/displays.test.mjs": "575f0b745e42fbd33ed3c6879352854e8c3b327a44ddfe89f61426f1f5e490f0",
+    "tests/editor.test.mjs": "932b5b582d2a117d4e20c0d9f356cdc1cc77c4c0c6b9deb4f384ce759ead4ca0",
+    "tests/engine-fixtures/ac.cir": "9439fa2fc40aa13c8b966381d4b32e224ea5df128290f0078da8d91c3e5afca2",
+    "tests/engine-fixtures/diode.cir": "f428c03fe4e9dd8bbddb8932e2d57a7354ad5691a11cff49d877b0ddb5afa370",
+    "tests/engine-fixtures/divider.cir": "4f46ae7e3b6120f7fc3fe3d131727cd8ed3aa55e85bb5716aa8ca7f9427671b4",
+    "tests/engine-fixtures/mos.cir": "5736cdcb9a5ab56af7c73abca492dcf4f3c91be3e40b331720151398ef6d9f27",
+    "tests/engine-fixtures/npn.cir": "305f6474c9f15eb52a4ad1cc6a7e4f5cc7a3b5c93b812b8e6a6d02754235efc9",
+    "tests/engine-fixtures/opamp.cir": "562e30a9198c1ca2086d1a9be5956d57c9909a5f041df3d92d5c0c6481ade626",
+    "tests/engine-fixtures/step.cir": "cf41e67665eb259b2ca660c1a653bfcab5edb44ef257cbe7d53fcfe3671dc371",
+    "tests/engine-fixtures/sweep.cir": "71ce2203489f4be0523277b087ecf81e60119e94e80741180b5cd7b4306ab8a3",
+    "tests/engine-fixtures/switch.cir": "1ff996008de700f1959cc5d0a769eac4fed2e9751ffd3d1a952779672779be64",
+    "tests/engine-fixtures/unicode_crossing.cir": "b6becf83955fb4b47c29eb97ed807b8285cbe48f852d6fa3d03488d19856d193",
+    "tests/engine-loading.test.mjs": "8d420d78eeea2613befea4e44bb0c6d45b4474c318b5f7dad55a36fc3d7ef629",
+    "tests/engine-raw-parser.test.mjs": "64544c5e963ff4c0be68f26cca88b11b4bf39860da8572c37b5392d7778cf0a0",
+    "tests/experiments-app.test.mjs": "3180a1650d9b06d7895689fec7829418ee90cc833c043c1834ddeb22c00233ce",
+    "tests/experiments-engine.test.mjs": "4cbf60dab5dab47b7d1d93ce280557ee85d46053987d48adbbf241e5d72ad330",
+    "tests/experiments-ui.test.mjs": "c0ca3993fc28271ab6725d6ee6b6003e6306d8ed5b1e9d163055b90af789e454",
+    "tests/experiments.test.mjs": "1d691884eea04ac802289290d87328838827c13141e143592b800d625f82405f",
+    "tests/logic-indicators.test.mjs": "e6a8f603c570405225c6babd05e20f77e8fb9006b974fabdeb8eabb54c8a8aba",
+    "tests/logic-io-app.test.mjs": "507d9f6946c6b9c4d6ff5110395dd5ae47f934426855d33d66f5a3bd9acc43df",
+    "tests/logic-io-examples.test.mjs": "3ec812478f87576b6cae3a6b66c0da28558556f3a2cb0ff9292e4fdc6ee23101",
+    "tests/offline.test.mjs": "50200bdd515505a85ad1a87aabde5caa3e837ad4d306a9376e778e9db94824da",
+    "tests/package.test.mjs": "0fc881f665547ac0f0f0ffd2e3a59051f2fa63e9d364ea785c9777fdd150dce4",
+    "tests/repair.test.mjs": "9cb5fbd0feab522c2eaf696d9fabe0b0473646f23260389a4683a15d70d5a62e",
+    "tests/results.test.mjs": "82121a0e66a6db66dc3795c0c636a8d168b30f50d40ebeec698cecf4c111efe9",
+    "tests/simulation.test.mjs": "a9b097db4907b1ff113efd21930ee82e2837912dc03d0186d937b95b82df328d",
+    "tests/timing-app.test.mjs": "53dee35d776876382510ba52b79329b43d14e6df22d222b04e27c94fbb670061",
+    "tests/timing-evidence.test.mjs": "725fccae18e4825dfb6a8ce4a135f2da1a67aaf1b7854a142ff0aa6256c8c8fd",
+    "tests/timing-ui.test.mjs": "195d04458d0243d0db06213563f32cbe5c2c53716858e345ac14f1f6b44c8934",
+    "tests/timing.test.mjs": "8a09e80021b0d4ba0b6ecc5fdfa40292cf70da3c6652d69d73af20d7bc5daf93",
+    "tests/truth-table-app.test.mjs": "7a9ebe07201311cbc1937372df35b0425913e4b2e0b18986cf83df7d3e3de798",
+    "tests/truth-table-evidence-ui.test.mjs": "803ee6fa2400f63d80d59e0d3408f730442912e2ccc44cc9527d399fb548084a",
+    "tests/truth-table.test.mjs": "df43d25b1bcdc3f261bd6d3a9fe82031408f88f4ff46d5aeebd8b042ecab6609"
+  },
+  "transcript_review": {
+    "reviewed_at": "2026-10-25T01:33:17.447718+00:00",
+    "all_exit_codes_zero": true,
+    "all_test_source_hashes_current": true,
+    "all_transcript_hashes_current": true,
+    "runtime_inputs_unchanged_since_full_sweep": true,
+    "numerical_proof_source_hashes_current": {
+      "scripts/prove-coordinated.mjs": true,
+      "src/coordinated.js": true,
+      "src/coordinated-digital.js": true,
+      "src/digital.js": true,
+      "src/library.js": true,
+      "src/model.js": true,
+      "src/netlist.js": true
+    }
+  },
+  "status": "passed",
+  "follow_up_runs": [
+    {
+      "reason": "Updated stale catalog-only expected example counts from16analog/14digital/8mixed to16analog/16digital/9mixed after adding3examples. No application/runtime source changed. Re-executed only affected core.test.mjs. Added explicit proof --wasm-only path because native ngspice42 is unavailable; defaultfullproof remainsstrict.",
+      "started_at": "2026-10-25T01:33:17.183415+00:00",
+      "completed_at": "2026-10-25T01:33:17.408651+00:00",
+      "files": [
+        "tests/core.test.mjs"
+      ],
+      "initial_failed_test": {
+        "command": [
+          "node",
+          "tests/core.test.mjs"
+        ],
+        "started_at": "2026-10-25T01:31:10.196406+00:00",
+        "completed_at": "2026-10-25T01:31:10.416972+00:00",
+        "duration_seconds": 0.22057114500012176,
+        "exit_code": 1,
+        "timed_out": false,
+        "transcript": "rc202-tests/core.test.initial.txt",
+        "transcript_sha256": "ecb0bb19291d9f55ddb24a6a1d12560d0e153f0d121738aad65d74248e82e3b6",
+        "file": "tests/core.test.mjs",
+        "test_source_sha256": "bb64e674c5fff078fbe56a7803cf57497bf568646b402dd75a12b00eb784964c",
+        "counts": {
+          "tests": 25,
+          "pass": 24,
+          "fail": 1,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "status": "failed"
+      }
+    }
+  ],
+  "input_changes_after_initial_sweep": [
+    {
+      "file": "scripts/prove-coordinated.mjs",
+      "before_sha256": "1cc27f27ed38aca67e42eca9e30ee267dfb9b142ea4af206d4b7a9939ef4d6f5",
+      "after_sha256": "40c8b1c6e068f1891c1dd501c9895b2031ddc570fe0ddc11c20507e7e8a55381"
+    },
+    {
+      "file": "tests/core.test.mjs",
+      "before_sha256": "bb64e674c5fff078fbe56a7803cf57497bf568646b402dd75a12b00eb784964c",
+      "after_sha256": "832a73458ad2d9af1f40e2afcd10e9f04b1b1f253b381616f17d29960ee0eff8"
+    }
+  ],
+  "runtimeBuild": "672a6435dfd88d38",
+  "runtime_build_source_hashes_current": true
+}

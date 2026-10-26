@@ -1,9 +1,10 @@
 # Digital and mixed-signal experiments
 
-**Candidate: 2.0.0-rc.1.** The workbench includes four-state event simulation,
+**Candidate: 2.0.0-rc.2.** The workbench includes four-state event simulation,
 ngspice feed-forward mixed replay, coordinated analog/digital feedback,
 stateful continuous sessions, 1–8-bit buses, sampled 2–8-bit converters and a
-working seven-segment display. Timed patterns, registers, counters,
+working seven-segment display. A switchable digital voltage source and red
+HIGH logic indicators connect to those same simulation results. Timed patterns, registers, counters,
 multiplexers, decoders and editable logic tables retain their existing
 contracts. A separate truth-table experiment enumerates settled combinational
 behavior, while analog parameter/tolerance studies run independent trials.
@@ -25,7 +26,8 @@ reference and valid electrical return paths.
 
 ## Logic components and states
 
-The scalar library includes logic inputs, clocks, buffers, inverters, two-input
+The scalar library includes logic inputs, digital voltage sources, red HIGH
+logic indicators, clocks, buffers, inverters, two-input
 AND, OR, XOR, NAND, NOR and XNOR gates, tri-state buffers and D flip-flops.
 Bus components build on the same four-state rules.
 
@@ -46,6 +48,31 @@ The models are behavioral logic primitives. They do not represent a particular
 74-series or CMOS IC, supply-current model, output-current rating, transistor
 implementation, input capacitance or temperature response. Analog thresholds
 and drive levels belong to explicit bridge parameters.
+
+## Digital voltage source and red HIGH indicators
+
+Place **Digital voltage source** from **Digital** and **Logic state indicator**
+from **Displays**. Connect the source's scalar `out` pin to the indicator's
+`in` pin or a gate. Choose LOW (0) or HIGH (1) in the source inspector and run.
+A known HIGH glows red, LOW stays dark, X is marked UNKNOWN in amber, and Z
+is marked HIGH IMPEDANCE with an outline. Before a suitable current-revision
+run, the neutral indicator means NO RESULT rather than LOW.
+
+The source defaults to digital-only mode, requiring no analog ground. Enable
+**Digital + voltage outputs** to add separate analog `p`/`n` terminals with
+configurable LOW/HIGH voltages and finite rise/fall times. Defaults are 0 V,
+5 V and 1 µs edges. The initial voltage matches the selected starting state.
+The voltage output follows the resolved digital net; X/Z stops voltage
+simulation rather than assigning a guessed level. Its ideal voltage source
+has no output resistance or current limit.
+
+Both parts use the original `cb-logic-io-1.0.0` model set. Indicators read
+actual events at Cursor A, or at the latest retained time when no cursor is
+set, and add no driver or load. Continuous allows live 0/1 source changes
+without resetting capacitor state or digital memory. Existing DIN and BUSIN
+inputs still support X/Z. See [logic-io.md](logic-io.md) and try **Digital voltage
+source and red logic indicators**, **Digital voltage source, RC response and
+logic indicators**, or **Logic indicators: high, low, unknown and released**.
 
 ## Bus words and connections
 
@@ -176,7 +203,7 @@ The experiment-level **Truth table** action measures a combinational circuit;
 the LUT component is one possible part within that circuit.
 
 1. Open **Editable truth-table half adder**, or draw combinational logic driven
-   by DIN/Bus input constants.
+   by DIN, digital-only DVS, or Bus input constants.
 2. Choose **Truth table** and select the constant input components to vary.
    The selected groups may contain at most **8 input bits** in total.
 3. Select up to **32 output columns**. A bus remains one literal-word column.
@@ -306,8 +333,9 @@ Choose **Continuous…**, set **Time per screen update** and **Recent history
 window**, then **Start continuous simulation**. **Pause** retains analog state,
 clock phase, digital memory and pending events; **Step** advances a bounded
 update while paused; **Resume** continues the same timeline. **Live inputs…**
-changes DIN/BUSIN or independent DC V/I values at a completed boundary, with an
-exact input history. Circuit edits stop the session.
+changes DIN/DVS/BUSIN or independent DC V/I values at a completed boundary,
+with an exact input history. DVS is binary 0/1; DIN/BUSIN retain X/Z. Circuit
+edits stop the session.
 
 The recent window is bounded to 30,000 points, one million dense values and
 250,000 sparse events. Times remain absolute when older intervals are removed.
@@ -375,8 +403,9 @@ including the DFF divider, tri-state contention, ADC ramp and complete
 Schmitt ADC → logic → DAC chain.
 
 The 2.0 example set adds the following focused workflows. Together with the
-retained analog, digital, mixed and timing examples, there are 38 examples:
-16 analog, 14 digital and 8 mixed.
+retained analog, digital, mixed and timing examples, there are 41 examples:
+16 analog, 16 digital and 9 mixed. The catalog contains 43 parts and 37 model
+records.
 
 | Example | What to inspect |
 |---|---|
@@ -387,6 +416,9 @@ retained analog, digital, mixed and timing examples, there are 38 examples:
 | Multibit ADC, DAC and seven-segment readout | Sampled ramp, whole-word reconstruction and captured digit |
 | Eight-bit counter through a voltage DAC | Full eight-bit path with live enable/reset in continuous mode |
 | Continuous RC with live input changes | Capacitor state through Pause/Resume and DC source changes |
+| Digital voltage source and red logic indicators | Binary source control, complementary HIGH/LOW indicators and gate delay |
+| Digital voltage source, RC response and logic indicators | Explicit 0/5 V output, stored charge and a delayed Schmitt threshold indication |
+| Logic indicators: high, low, unknown and released | Red only for HIGH; distinct LOW, X, Z and event-time observations |
 
 ## Resource and scope limits
 

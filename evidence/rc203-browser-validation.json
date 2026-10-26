@@ -1,0 +1,176 @@
+{
+  "version": "2.0.0-rc.3",
+  "recordedAt": "2026-10-25T02:33:14.001218+00:00",
+  "scope": "Operator-observed UI workflows in the managed Chrome preview, plus explicitly identified actual downloads. This record is not HTTPS/offline/update, public deployment, full cross-browser, or native print/PDF acceptance.",
+  "environment": {
+    "browser": "Managed Chrome cloud browser",
+    "url": "http://terminal.local:4173/",
+    "secureContext": false,
+    "serviceWorkerAvailable": false
+  },
+  "runtimeBuilds": {
+    "initialWorkflow": "a193c1048772c4f0",
+    "final": "8a99d6d843d32aa6",
+    "earlierDiagnosticOnly": "412889af5c3ca522"
+  },
+  "workflows": [
+    {
+      "name": "Restored prior result on rc.3 load",
+      "status": "passed",
+      "build": "a193c1048772c4f0",
+      "observed": "The rc.2 continuous snapshot opened as Showing saved result, Latest 17.5 ms, with explicit non-resumable completed-window text."
+    },
+    {
+      "name": "Continuous run and pause",
+      "status": "passed",
+      "build": "a193c1048772c4f0",
+      "observed": "Started a new digital source/inverter/indicator session. Running at 100 us; paused at 4.9 ms with 21 retained points and a retained-state explanation."
+    },
+    {
+      "name": "Initial input and acknowledged live drive remain distinct",
+      "status": "passed",
+      "build": "a193c1048772c4f0",
+      "observed": "While paused at 4.9 ms, setting DV1 LOW left Initial HIGH visible and changed Live drive to LOW, applied at 4.9 ms. Indicators remained HIGH/LOW until Step."
+    },
+    {
+      "name": "Step computes the source response",
+      "status": "passed",
+      "build": "a193c1048772c4f0",
+      "observed": "One step completed at 5 ms with 22 retained points. IND1 became LOW and IND2 HIGH."
+    },
+    {
+      "name": "Historical display and return to latest",
+      "status": "passed",
+      "build": "a193c1048772c4f0",
+      "observed": "Cursor A at 3.918582375478927 ms showed the earlier HIGH/LOW lamps while the live drive stayed LOW. Return displays to the latest retained time restored LOW/HIGH at 5 ms without changing the paused simulated time or 22-point count."
+    },
+    {
+      "name": "Resume and stop",
+      "status": "passed",
+      "build": "a193c1048772c4f0",
+      "observed": "Resume returned to Running at 5.4 ms. Stop kept the result at 10.1 ms, marked Showing saved result and Recorded drive LOW applied at 4.9 ms, and explained that a new session is required."
+    },
+    {
+      "name": "Bounded result and edited circuit",
+      "status": "passed",
+      "build": "a193c1048772c4f0",
+      "observed": "A bounded 2 ms run showed Results ready. Editing the source to LOW marked the older result as another revision and rendered both current indicators NO RESULT."
+    },
+    {
+      "name": "Completed Step state refresh",
+      "status": "passed-after-fix",
+      "build": "8a99d6d843d32aa6",
+      "beforeFix": "The initial build left Advancing one step visible after a completed paused step until another view render. This was a presentation lifecycle defect, not a numerical failure.",
+      "fix": "The app now refreshes state after the owned Step promise settles and ignores late completion from a replaced session.",
+      "observed": "After reload into the final build, Pause at 1.1 ms followed by Step at 1.2 ms immediately returned to Paused with Circuit state is retained and an enabled Step button.",
+      "regressions": "Two application regressions reproduce the pre-fix presentation and late old-session error cases and pass after the fix."
+    },
+    {
+      "name": "Final bounded source/indicator example",
+      "status": "passed",
+      "build": "8a99d6d843d32aa6",
+      "observed": "Revision 4, Initial HIGH, completed 2 ms result: IND1 HIGH/red and IND2 LOW/dark; no simulation running."
+    },
+    {
+      "name": "Actual project download and normal UI import",
+      "status": "passed",
+      "build": "8a99d6d843d32aa6",
+      "file": "evidence/rc203-browser-project.json",
+      "observed": "Downloaded the real backup, reopened that same file through Open project and the file chooser, and confirmed Replace working project. The state strip then said Showing saved result / Recorded evidence; run the experiment to compute a fresh result. Latest 2 ms and HIGH/LOW indicators were retained.",
+      "historyCaution": "The backup includes three previously imported runs and four newly observed runs. Project snapshot appVersion is not an execution-build identifier; the initial reused project still carried rc.2 metadata."
+    },
+    {
+      "name": "Actual result CSV download",
+      "status": "passed",
+      "build": "8a99d6d843d32aa6",
+      "file": "evidence/rc203-browser-results.csv",
+      "observed": "Five columns and two data rows at 0 and 0.002 s; both source columns are 1 and both inverter columns are 0."
+    },
+    {
+      "name": "Actual installation JSON download",
+      "status": "passed",
+      "build": "8a99d6d843d32aa6",
+      "file": "evidence/rc203-installation-browser.json",
+      "observed": "The final downloaded JSON was recovered and parsed. An earlier attempt returned a path whose bytes were unavailable; the final retry succeeded."
+    },
+    {
+      "name": "SVG download delivery",
+      "status": "unavailable",
+      "observed": "Export schematic SVG displayed Schematic SVG downloaded, but the documented download event timed out after 15 seconds. No actual SVG file was recovered; file delivery is not claimed."
+    },
+    {
+      "name": "HTML report preview and delivery",
+      "status": "partial",
+      "observed": "The printable report iframe rendered the circuit title, evidence, assumptions, interpretation, provenance, diagnostics and exact simulation input sections. The visible HTML download link timed out using both the normal download event and documented link download API. Actual report file delivery is not claimed."
+    }
+  ],
+  "installationDiagnostic": {
+    "file": "evidence/rc203-installation-browser.json",
+    "status": "failed",
+    "summary": {
+      "passed": 5,
+      "failed": 1,
+      "unavailable": 44
+    },
+    "loadedBuild": "8a99d6d843d32aa6",
+    "manifestBuild": "8a99d6d843d32aa6",
+    "passed": [
+      "Loaded application identity",
+      "Release and recovery manifests",
+      "Digital source/inverter worker",
+      "Schmitt RC feedback across two retained coordinated updates",
+      "ngspice 10 V equal-resistor divider"
+    ],
+    "failedAsset": {
+      "path": "icon.svg",
+      "status": 200,
+      "contentType": "image/svg+xml",
+      "declaredResponseBytes": 1655,
+      "expectedBytes": 443,
+      "observedCause": "The preview-served SVG visibly contains a live-server injected live-reload script after the canonical SVG. Source and deploy icon files remain 443 bytes. The application correctly rejects this modified response; its integrity checks were not relaxed."
+    },
+    "unavailable": "SHA-256 is unavailable on this HTTP preview. The global SHA check and 43 metadata-valid runtime assets are unavailable for exact byte verification. Offline service-worker acceptance is unavailable here.",
+    "resultInterpretation": "All three real worker computations passed. The overall diagnostic correctly reports failed because this preview changes the icon response. It is not an all-green installation acceptance claim."
+  },
+  "console": {
+    "applicationOriginErrorsObserved": 0,
+    "method": "Read captured error/warn messages filtered to terminal.local after the final workflows. Extension-origin browser metadata errors were observed separately and were not classified as application errors."
+  },
+  "publicHost": {
+    "url": "https://greenshoegarage.com/projects/circuitbench2/release-manifest.json",
+    "result": "A read-only HTTP request returned 403 Forbidden; no cause was supplied. The installed public version was not verified and no host files were changed.",
+    "deploymentPerformed": false
+  },
+  "remainingAcceptance": [
+    "Exact public HTTPS worker/WASM/asset behavior",
+    "Fresh secure offline installation and offline reload",
+    "Project-preserving secure update and recovery",
+    "Incomplete-upload staging acceptance",
+    "Actual SVG and HTML report delivery",
+    "Native print/PDF",
+    "Declared browser/platform/viewport and prolonged background/foreground lifecycle matrix"
+  ],
+  "artifacts": {
+    "evidence/rc203-installation-browser.json": {
+      "bytes": 24644,
+      "sha256": "6aceedc22f52d405021e90ec3d572d60c465cc4db332aede90d783db1a5ebdd4"
+    },
+    "evidence/rc203-browser-project.json": {
+      "bytes": 223370,
+      "sha256": "072c5fa3a130223bd66615c03689e7f944cbcf3c27e57755623ddea57aecca3f"
+    },
+    "evidence/rc203-browser-results.csv": {
+      "bytes": 141,
+      "sha256": "b6224e0515e90a19e24ce39b86b813111e88ce04187305a17ae12a3b6f22c760"
+    }
+  },
+  "runtimeSources": {
+    "src/app.js": "b1531fb1f854e20cbe46f2ab4df6c4262fe201b44aaa18fea2ff66ed6405782d",
+    "src/installation-check.js": "699f53bed1523de87510336145b0f25a38b8df9603898cac9101cd6348f6947f",
+    "src/installation-ui.js": "ee8787f8408e6a894ce23b8cbe2b9e8c2d3a1477820d4dc1069a7b0aeae6dc4d",
+    "src/workbench-state.js": "198742e69aefaaa60b47dfeb534ed8c60bf1aa54ebde0258d55c338efa8df931",
+    "src/continuous.js": "568641071461a8dbc57b1224a5443f86b514d1b4c443243ed24cdafd4061897c",
+    "style.css": "408e82a9f6d496bc36ab498dcf1c5f7599c5c03944647773aca8d71a163acbc9",
+    "index.html": "7b3d47f69ebf5d6019450894003eabdefbe3069ba7e92d52c014020b2b1b0ae2"
+  }
+}

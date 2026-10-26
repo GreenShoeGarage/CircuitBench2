@@ -1,0 +1,99 @@
+{
+  "format": "CircuitBenchPromotionTests",
+  "formatVersion": 1,
+  "version": "2.0.0",
+  "testedAt": "2026-10-25T12:00:15.670925+00:00",
+  "runtimeBuild": "6cf7ae00d61a0f43",
+  "status": "passed",
+  "scope": "Fresh version-sensitive release-documentation and installation checker/dialog cases for stable promotion. These three files were rerun after the packaging correction so the recorded input hashes match the final source. Final built-package tests are recorded separately in the release receipt. Prior full application/numerical/browser evidence remains attributed to rc.3.",
+  "records": [
+    {
+      "file": "tests/release-docs.test.mjs",
+      "command": [
+        "node",
+        "tests/release-docs.test.mjs"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 0.05219697952270508,
+      "counts": {
+        "tests": 9,
+        "suites": 0,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/v200-promotion-tests/release-docs.test.txt",
+      "transcriptSha256": "70cb87a133ee3f6392a3cd7d240f9dabbdb751563857390b1b01229e0f7490ad",
+      "testSourceSha256": "7fe12e06ef3abd98d34530abee224d21ac3a2dfd584c06c4b21c3b087ea3a9a6",
+      "status": "passed"
+    },
+    {
+      "file": "tests/installation-check.test.mjs",
+      "command": [
+        "node",
+        "tests/installation-check.test.mjs"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 0.5016465187072754,
+      "counts": {
+        "tests": 20,
+        "suites": 0,
+        "pass": 20,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/v200-promotion-tests/installation-check.test.txt",
+      "transcriptSha256": "9f9960f09276a0e0e2cc26fa98444c2c6efd710abfd93e4e8a014431bd5638dc",
+      "testSourceSha256": "2bfe87cbacbfcfe430a832730a8bc2e0e6d54da8035f9f899caa9e21741b78a6",
+      "status": "passed"
+    },
+    {
+      "file": "tests/installation-app.test.mjs",
+      "command": [
+        "node",
+        "tests/installation-app.test.mjs"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 0.08715438842773438,
+      "counts": {
+        "tests": 11,
+        "suites": 0,
+        "pass": 11,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/v200-promotion-tests/installation-app.test.txt",
+      "transcriptSha256": "170698d292d034360b85cd8492441ad8a577e05ed7a0936cdabb6af2af77ac41",
+      "testSourceSha256": "bac73704bec123d7d4d077fad6cbd3cc08b84c083c5a32771d59bebccaca8965",
+      "status": "passed"
+    }
+  ],
+  "totals": {
+    "tests": 40,
+    "pass": 40,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "currentInputs": {
+    "package.json": "90b629b384e4763d7d50a1c4b0acb18edfed2525d834a5c3cfa31ea62660752f",
+    "src/model.js": "f4d4b46ac47e55439b311e776e77db1fb913fa4598f07c7f93ac7c7334393b87",
+    "index.html": "5ff8d749ff778e204928bfc1cc3a6486dd2b5be2d1260d454cd4cb549ef2ebfc",
+    "src/app.js": "b1531fb1f854e20cbe46f2ab4df6c4262fe201b44aaa18fea2ff66ed6405782d",
+    "src/installation-check.js": "699f53bed1523de87510336145b0f25a38b8df9603898cac9101cd6348f6947f",
+    "src/installation-ui.js": "ee8787f8408e6a894ce23b8cbe2b9e8c2d3a1477820d4dc1069a7b0aeae6dc4d",
+    "scripts/build.mjs": "c2957345829f36521f6799a083078c2e89e0ad7963995ff80c8e1443c5cbe6aa",
+    "scripts/package.py": "41480b881b26febf04adf1653f10316e7cd53ae7217a0f75115ed8f4ea343f4e",
+    "scripts/release-docs.mjs": "c20ac14224d9d67b39c4e59aa9137fc7bea4b18bf6cd794abafaf8a9d64388da",
+    "docs/user-guide.md": "a83c4c943ea3008ec1dc3cd020a35d21f1c1a27ae1f724c47764f8e58a925ca7",
+    "docs/installation.md": "d2ea418babe3626a52afee8453194a4365a0704a5830aa47a8f666a87c045ddb",
+    "public/repair.html": "bd02965e9c53d2fd577b5cb41de46da578a9d5ee8cbd7eceb8eb8a1fd36a9973"
+  }
+}

@@ -1,5 +1,7 @@
 # CircuitBench operating guide
 
+<!-- Current operational release placeholders are rendered from the build's release version. Historical evidence retains its original release. -->
+
 CircuitBench 2.0 combines analog, four-state digital, feed-forward and
 coordinated mixed-signal experiments in one workbench. Digital parts include
 1–8-bit buses, timed patterns, registers, counters, logic tables and a working
@@ -144,8 +146,9 @@ initial words may contain X but cannot contain Z.
 
 **Slice** selects a field from a bus. Set its input width, first bit (`lsb`) and
 count. Output bit 0 is the input's first selected bit. For input `1101`, first
-bit 1 and count 2 produce `10`. Set count to 1 and add a scalar probe to inspect
-one bit as a stepped timing lane.
+bit 1 and count 2 produce `10`. Set count to 1 and add a scalar probe when a bit
+needs a separate circuit connection. For a view-only waveform, use Expand bits
+on the existing bus lane; it preserves the original circuit and raw results.
 
 **Join** combines two fields: **A supplies the low bits and B the high bits**.
 For A = `01` and B = `10`, the output is `1001`. Set each input width; their sum
@@ -382,6 +385,21 @@ separate export, not a transient run or a waveform baseline.
 
 ### Recover an engine loading failure
 
+Open **Help → Check installation** and choose **Run installation check** to
+inspect this installation independently of the working circuit. It checks
+the loaded release identity, advertised manifests and runtime files, then
+exercises digital, coordinated-feedback and ngspice workers separately.
+Expand **Runtime file checks** to inspect individual assets, or choose
+**Download diagnostic JSON** to retain the result. The check leaves projects,
+caches and registrations unchanged; **Open cache repair** opens a separate
+page where you choose whether to refresh cached files.
+
+Each check says **Passed**, **Failed** or **Unavailable**. **Completed with
+limits** identifies unavailable verification, such as SHA-256 on an insecure
+connection. A passed asset check cannot establish offline reload or upgrade
+behavior. See the [installation guide](installation.md#check-this-installation)
+for the exact scope.
+
 **Netlist & diagnostics** retains the loading stage and requested
 file. When the browser permits response inspection, it also shows the HTTP
 status and content type. A missing file, HTML page returned instead of WASM,
@@ -389,16 +407,16 @@ and incorrect JavaScript MIME are different problems; use the recorded detail
 to check the deployment.
 
 1. Upload all extracted files from the **deploy ZIP**, preserving its folders.
-   Confirm both ngspice engine files are under `assets/2.0.0-rc.1/engine/`
+   Confirm both ngspice engine files are under `assets/{{RELEASE_VERSION}}/engine/`
    and all versioned JavaScript modules, including the coordinated worker,
    are present.
    For a source checkout, build it and serve `dist/`; the source root is not a
    deployable installation.
 2. If an older cached version remains, use **refresh cached application files**
-   in the loading diagnostic or Help, or open `repair/?release=2.0.0-rc.1`
+   in the loading diagnostic or Help, or open `repair/?release={{RELEASE_QUERY_VERSION}}`
    below the app directory. Close other tabs for that installation.
 3. Choose **Refresh cached application files**, read its completed or partial
-   result, then choose **Return to CircuitBench**. Confirm v2.0.0-rc.1 and run
+   result, then choose **Return to CircuitBench**. Confirm v{{RELEASE_VERSION}} and run
    the experiment again. If a step failed, the recovery page keeps the error
    visible and offers a retry.
 
@@ -407,9 +425,33 @@ CircuitBench application caches, then refreshes its files through the browser
 HTTP cache. Saved projects, preferences and other installations are preserved.
 On ordinary HTTP, file refresh is still available; the page reports that
 service-worker cleanup is unavailable. The recovery directory supports hosts
-that redirect `.html` URLs. The open browser
-offline/print/output verification gates are listed in
+that redirect `.html` URLs. Browser, offline, print and output acceptance is recorded in
 [release validation](VALIDATION.md).
+
+## Know which circuit state you are viewing
+
+The state strip above the schematic identifies the operation and the displayed
+observation separately. **Editing** means there is no suitable completed
+observation of the current circuit. **Starting**, **Running**, **Pausing** and
+**Paused** describe the active computation. **Results ready** identifies a
+completed current experiment; **Showing saved result** identifies restored,
+older-revision or stopped continuous evidence. Selecting an older run keeps
+that historical observation visible even while another continuous run advances.
+
+The time row says **Latest** with the last retained time, or **Cursor A** with
+the selected time. Indicators and seven-segment displays follow that observed
+time. If the cursor is outside the retained window, the strip explains that no
+indicator observation is available. **Return to latest** clears Cursor A and
+returns the displays to the last retained state; it does not start or resume a
+simulation.
+
+When a digital voltage source is selected, the strip distinguishes **Initial**
+HIGH/LOW from the last confirmed **Live drive**, or the **Recorded drive** at
+the viewed time. A drive command is the source's requested state; a logic
+indicator still observes the resolved net, including contention and X/Z. A
+paused live change requires **Step** or **Resume** to compute the response.
+Reopening a saved continuous window restores its evidence; start a new
+continuous session to run the circuit again.
 
 ## Probe and read results
 
@@ -538,8 +580,10 @@ physical timing accuracy. Ngspice feed-forward ADC edges depend on analog
 samples and crossing interpolation. Coordinated scalar crossings depend on
 trial solves and the maximum step; sampled converters depend on their sample
 phase and conversion delay. Bridge thresholds remain part of either model.
-Their source-run assumptions stay with the measurement. Setup/hold constraints,
-metastability and manufacturer timing characterization are outside this release.
+Their source-run assumptions stay with the measurement. The separate Measure
+workspace evaluates explicitly declared setup/hold constraints after a run. It
+reports ambiguous X/Z intervals and incomplete windows without implying a
+physical metastability or manufacturer characterization model.
 
 Two other examples make these distinctions visible:
 
@@ -597,11 +641,69 @@ records are retained, with a pinned baseline protected from ordinary oldest-run
 trimming. Download important evidence before removing it. Large numerical
 exports are subject to the documented project/import size bounds.
 
+## Everyday controls and guided construction
+
+Select a supported source and choose **Pin beside schematic**. Constant
+logic/bus sources and independent DC voltage/current sources can be operated
+from the pinned panel. Digital voltage sources also have a dedicated operation
+target on their symbol. Initial electrical parameters, applied live commands
+and recorded results remain separately labeled.
+
+For scalar digital sources, enable momentary operation. Press applies HIGH;
+release applies LOW to the owned continuous session. Pointer cancellation,
+keyboard release, focus loss, Stop and session replacement release or discard
+owned commands safely. A paused press/release does not create an implicit
+simulation-time pulse: use Step or Resume between transitions when width
+matters. See [live controls](live-controls.md).
+
+Wire mode highlights compatible destinations. **Build** actions offer explicit
+indicator, bit-probe, ADC/DAC, Slice/Join and decoder/display constructions with
+declared settings. A correction is one undoable change. Circuit diagnostics
+navigate to affected components, pins and nets, and alternate analysis routes
+are checked against the complete circuit. See [guided construction](guided-construction.md).
+
+## Capture and inspect an event
+
+Start Continuous simulation, let one update finish, then choose **Capture…**
+or **Run until…**. The setup pauses at a completed boundary. Select a digital
+edge or analog threshold, pre/post history and a finite search duration. An
+armed capture resumes the same solver and pauses after its requested
+post-trigger interval. Run until uses zero post-trigger delay.
+
+**Next event** passes ordinary analog steps and searches pending digital,
+source and converter events. If a work bound is reached, its status describes
+how far the search actually advanced. **Captures** keeps independent snapshots
+with original samples, source revision, input history and explicit unavailable
+history. See [triggered capture](triggered-capture.md).
+
+In Waveforms, choose **Expand bits** to inspect a bus's individual scalar
+lanes. Bit 0 is the LSB; X/Z and original event times are retained. Signal links
+work only when the working circuit matches the captured project and revision.
+See [linked signals](linked-signals.md).
+
+## Measure and compare numerical sensitivity
+
+Choose **Measurements…** on a completed run or capture. Select rise/fall time,
+overshoot, settling, threshold delay, gain, cutoff or setup/hold, then declare
+its levels, references and window. Save a reusable setup for later runs.
+Records preserve selected raw source evidence independently of ordinary run
+history. See [instrument measurements](measurements.md).
+
+Choose **Step study…** for a supported coordinated transient schematic.
+Use a scalar measurement setup and 2–4 trials with exactly halved maximum steps.
+Declare absolute and relative tolerances; each trial starts independently with
+the same electrical initial conditions. Results show measured differences,
+failed or unavailable cases and tolerance decisions. This examines sensitivity
+to step size; it does not prove a universal error bound. See
+[time-step studies](step-study.md).
+
 ## Projects, recovery and reports
 
 Autosave displays Unsaved → Saving → Saved locally. It stores the working
 project, retained run history, latest four truth-table records, timing
-measurements and analog studies in IndexedDB. Refresh reopens that state.
+measurements, analog studies, capture records, instrument measurements and
+time-step comparisons in IndexedDB. Pinned controls and reusable measurement
+setups are part of the saved project. Refresh reopens that state.
 A bounded run interrupted by closing the page is marked incomplete rather than
 completed. A continuous session instead saves its last completed retained
 window as a non-resumable snapshot; its worker does not survive refresh.
@@ -611,14 +713,14 @@ snapshot; it is not an unlimited history of every past session.
 **Save backup** downloads a portable `.circuitbench.json` file. Autosave never
 writes over an imported disk file. **New empty project** starts without sample
 content. **Duplicate project** creates a new project identity and starts a new
-run, truth-table, timing and analog-study history. Loading an example or another project asks before replacing
+run, truth-table, timing, analog-study, capture, instrument and step-study history. Loading an example or another project asks before replacing
 nonempty working content.
 
 Available outputs:
 
 | Output | Contents |
 |---|---|
-| Project JSON | Electrical model, layout, analysis settings, probes, retained runs/continuous windows, truth tables, timing measurements and analog studies |
+| Project JSON | Electrical model, layout, analysis settings, probes, source preferences, reusable setups, retained runs/continuous windows, truth tables, timing/analog studies, captures, instrument measurements and step comparisons |
 | SPICE `.cir` | Analog-only generated deck with explicit models, options and selected analysis |
 | Simulation plan JSON | Digital or mixed-signal execution plan, including its component and bridge assumptions |
 | Schematic SVG | Independent vector drawing with values and local styles |
@@ -630,6 +732,9 @@ Available outputs:
 | Timing evidence JSON | Immutable timing record, circuit snapshot, selected original event streams, settings, results and source provenance |
 | Analog-study CSV | Exact trial parameters, metrics, statuses and summary |
 | Analog-study evidence JSON | Base project, deterministic trial sequence, executed inputs, engines, selected samples, metrics and failures |
+| Capture evidence JSON | Trigger, event witness, requested/retained windows, input history and immutable source run |
+| Instrument CSV / evidence JSON | Declared levels/windows, statuses, measurements and independently retained raw source evidence |
+| Step-comparison CSV / evidence JSON | Exact smaller-step trials, scalar differences, chosen tolerances, inputs and failures |
 | Analysis HTML / PDF | Designed report containing circuit, question, measurements, assumptions, interpretation, settings, provenance, warnings and exact deck or simulation plan |
 
 Choose **Report / PDF** to preview the designed report. Download its
@@ -641,8 +746,8 @@ you write a conclusion after measuring the result. The numerical evidence,
 circuit, analysis settings and assumptions remain those of the immutable run
 snapshot. Rerun if the changed circuit or settings should supply new evidence.
 Version-specific report preview, download and print evidence is listed in
-[release validation](VALIDATION.md); instructions here do not imply those
-browser checks have been completed for this candidate.
+[release validation](VALIDATION.md), including the owner-confirmed
+acceptance for the stable release.
 
 ## SPICE input workspace
 

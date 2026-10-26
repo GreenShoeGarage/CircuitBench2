@@ -15,13 +15,14 @@ export function validateContinuousProvenance(value,snapshot,{timeBounds,points,s
   prior=change.time;const seen=new Set();
   const updates=change.updates.map(update=>{
    const component=snapshot.circuit.components.find(item=>item.id===update?.id);
-   if(!component||seen.has(component.id)||!['DIN','BUSIN','V','I'].includes(component.type))fail('A saved live-input change does not identify an eligible source.');
+   if(!component||seen.has(component.id)||!['DIN','DVS','BUSIN','V','I'].includes(component.type))fail('A saved live-input change does not identify an eligible source.');
    seen.add(component.id);
    if(['V','I'].includes(component.type)){
     if(component.params.waveform!=='dc'||!finite(update.value))fail('A saved analog live input must be a finite DC source value.');
    }else{
-    const width=component.type==='DIN'?1:Number(component.params.width);
+    const width=['DIN','DVS'].includes(component.type)?1:Number(component.params.width);
     if(typeof update.value!=='string'||update.value.length!==width||!/^[01XZ]+$/.test(update.value))fail('Saved live logic input must be a literal word of the source width.');
+    if(component.type==='DVS'&&!/^[01]$/.test(update.value))fail('Saved digital voltage source input must be logic 0 or 1.');
    }
    return {id:component.id,value:update.value};
   });

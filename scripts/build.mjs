@@ -3,19 +3,26 @@ import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {VERSION} from '../src/model.js';
+import {RELEASE_DOCUMENTS,RELEASE_DOCUMENT_RENDERER,renderReleaseDocument} from './release-docs.mjs';
 function stampVersion(html,version){
   const tag=/(<span\b[^>]*\bid=["']version["'][^>]*>)[^<]*(<\/span>)/i;
   if(!tag.test(html))throw new Error('The application shell is missing its version label.');
   return html.replace(tag,(_,open,close)=>open+'v'+version+close);
 }
-function renderIndex(html,version){
+function stampBuild(html,build='development'){
+  if(build!=='development'&&!/^[a-f0-9]{16}$/.test(build))throw new Error('Invalid shell build identity.');
+  const tag=/(<meta\b[^>]*\bname=["']circuitbench-build["'][^>]*\bcontent=["'])[^"']*(["'][^>]*>)/i;
+  if(!tag.test(html))throw new Error('The application shell is missing its build identity.');
+  return html.replace(tag,(_,open,close)=>open+build+close);
+}
+function renderIndex(html,version,build='development'){
   if(!html.includes('href="./style.css"')||!html.includes('src="./src/app.js"'))throw new Error('The source shell must reference the source stylesheet and application entry.');
   const base='./assets/'+version+'/';
-  return stampVersion(html,version).replace('href="./style.css"','href="'+base+'style.css"').replace('src="./src/app.js"','src="'+base+'src/app.js"');
+  return stampBuild(stampVersion(html,version).replace('href="./style.css"','href="'+base+'style.css"').replace('src="./src/app.js"','src="'+base+'src/app.js"'),build);
 }
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'),dist=path.join(root,'dist');
 if(!/^\d+\.\d+\.\d+(?:-[A-Za-z0-9.-]+)?(?:\+[A-Za-z0-9.-]+)?$/.test(VERSION))throw new Error('Version must be a safe semantic version.');
-const runtimeBase='assets/'+VERSION,serviceWorker='sw-'+VERSION+'.js',fileSources={};
+const runtimeBase='assets/'+VERSION,serviceWorker='sw-'+VERSION+'.js',fileSources={},generatedDocuments={};
 const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
 async function paths(dir,prefix=''){let all=[];for(const ent of await fs.readdir(dir,{withFileTypes:true})){const rel=prefix+ent.name;if(ent.isDirectory())all.push(...await paths(path.join(dir,ent.name),rel+'/'));else all.push(rel);}return all.sort();}
 async function copyInput(sourceName,destinationName){
@@ -35,16 +42,27 @@ for(const name of ['eecircuit-engine.js','spice.wasm']){
 }
 await copyInput('style.css',runtimeBase+'/style.css');await copyInput('index.html','index.html');
 await copyInput('public/repair.html','repair/index.html');
-const indexSource=await fs.readFile(path.join(dist,'index.html'),'utf8'),index=renderIndex(indexSource,VERSION);
+const indexSource=await fs.readFile(path.join(dist,'index.html'),'utf8');let index=renderIndex(indexSource,VERSION);
 await fs.writeFile(path.join(dist,'index.html'),index);delete fileSources['index.html'];
 for(const name of ['README.md','LICENSE','THIRD_PARTY_NOTICES.md','CHANGELOG.md','ROADMAP.md','docs','evidence']){try{await copyInput(name,name);}catch(e){if(e.code!=='ENOENT')throw e;}}
+for(const [output,source] of Object.entries(RELEASE_DOCUMENTS)){
+  const rendered=renderReleaseDocument(await fs.readFile(path.join(root,source),'utf8'),VERSION,output);
+  await fs.mkdir(path.dirname(path.join(dist,output)),{recursive:true});await fs.writeFile(path.join(dist,output),rendered);
+  delete fileSources[output];generatedDocuments[output]={source,renderer:RELEASE_DOCUMENT_RENDERER,version:VERSION};
+}
 const files=await paths(dist),runtime=files.filter(p=>p==='index.html'||p==='icon.svg'||p==='manifest.webmanifest'||p.startsWith(runtimeBase+'/'));
 for(const required of ['engine/eecircuit-engine.js','engine/spice.wasm','src/engine-worker.js'])if(!runtime.includes(runtimeBase+'/'+required))throw new Error('Missing deployable engine asset: '+required);
 const hashes={},sizes={};for(const file of files){const bytes=await fs.readFile(path.join(dist,file));hashes[file]=hash(bytes);sizes[file]=bytes.length;}
 const buildHash=hash(runtime.map(p=>p+':'+hashes[p]).join('\n')).slice(0,16);
+// The identity includes the complete runtime with this one shell field set to
+// its source value. Hashing the final self-referential field is impossible;
+// the manifest still authenticates the final shell and all served bytes.
+const buildHashMethod='runtime-shell-development-v1';
+index=stampBuild(index,buildHash);await fs.writeFile(path.join(dist,'index.html'),index);
+hashes['index.html']=hash(index);sizes['index.html']=Buffer.byteLength(index);
 const runtimeSource=Object.fromEntries(runtime.filter(file=>file!=='index.html').map(file=>[file,fileSources[file]]));
 const buildInputs={'index.html':hash(indexSource)};
-for(const name of ['scripts/build.mjs','scripts/package.py','package.json'])buildInputs[name]=hash(await fs.readFile(path.join(root,name)));
+for(const name of new Set(['scripts/build.mjs','scripts/package.py','scripts/release-docs.mjs','package.json',...Object.values(RELEASE_DOCUMENTS)]))buildInputs[name]=hash(await fs.readFile(path.join(root,name)));
 const integrity=Object.fromEntries(['./',...runtime.map(p=>'./'+p)].map(file=>{const name=file==='./'?'index.html':file.slice(2);return[file,{sha256:hashes[name],bytes:sizes[name]}];}));
 const sw=String.raw`/* CircuitBench ${VERSION}; content-verified cache for this exact runtime build. */
 const VERSION=${JSON.stringify(VERSION)}, BUILD=${JSON.stringify(buildHash)};
@@ -110,5 +128,5 @@ self.addEventListener('message',event=>{if(event.data?.type==='SKIP_WAITING')sel
 for(const name of [serviceWorker,'sw.js']){await fs.writeFile(path.join(dist,name),sw);hashes[name]=hash(sw);sizes[name]=Buffer.byteLength(sw);}
 const recovery={format:'CircuitBenchRecovery',formatVersion:1,version:VERSION,buildHash,files:[...runtime.filter(file=>file!=='index.html'),serviceWorker].map(file=>({path:file,bytes:sizes[file],sha256:hashes[file]})),shell:{root:'./',embeddedIn:serviceWorker}};
 const recoveryText=JSON.stringify(recovery,null,2)+'\n';await fs.writeFile(path.join(dist,'recovery-manifest.json'),recoveryText);hashes['recovery-manifest.json']=hash(recoveryText);
-await fs.writeFile(path.join(dist,'release-manifest.json'),JSON.stringify({name:'CircuitBench',version:VERSION,buildHash,runtimeBase,serviceWorker,runtimeFiles:runtime,runtimeSource,fileSources,buildInputs,files:hashes},null,2)+'\n');
+await fs.writeFile(path.join(dist,'release-manifest.json'),JSON.stringify({name:'CircuitBench',version:VERSION,buildHash,buildHashMethod,runtimeBase,serviceWorker,runtimeFiles:runtime,runtimeSource,fileSources,generatedDocuments,buildInputs,files:hashes},null,2)+'\n');
 console.log(`Built CircuitBench ${VERSION} / ${buildHash}: ${files.length+4} files, ${runtime.length} local runtime assets.`);

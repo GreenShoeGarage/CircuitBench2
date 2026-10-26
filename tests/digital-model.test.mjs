@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {LIBRARY,MODELS,DIGITAL_TYPES,DIGITAL_MODEL_VERSION,BUS_MODEL_VERSION,DISPLAY_MODEL_VERSION,CONVERTER_MODEL_VERSION,getPart,parseValue} from '../src/library.js';
+import {LIBRARY,MODELS,DIGITAL_TYPES,DIGITAL_MODEL_VERSION,BUS_MODEL_VERSION,DISPLAY_MODEL_VERSION,CONVERTER_MODEL_VERSION,LOGIC_IO_MODEL_VERSION,getPart,parseValue} from '../src/library.js';
 import {newProject,addComponent,uid,clone,buildNets,checkCircuit,canConnect,getEndpointDomain,validateProject,serializeProject,parseProject,duplicateItems,removeItems} from '../src/model.js';
 import {generateNetlist,compileSimulation,validateImportedNetlist} from '../src/netlist.js';
 import {EXAMPLES} from '../src/examples.js';
@@ -15,9 +15,9 @@ function logic(){const p=newProject();p.analysis.type='tran';p.analysis.duration
 function bridgeFixture(){const p=newProject();Object.assign(p.analysis,{type:'tran',duration:'1m',step:'1u'});const voltage=part(p,'V'),ground=part(p,'GND'),adc=part(p,'ADC');wire(p,endpoint(voltage,'p'),endpoint(adc,'in'));wire(p,endpoint(voltage,'n'),endpoint(ground,'0'));wire(p,endpoint(adc,'ref'),endpoint(ground,'0'));label(p,'analog_in',endpoint(voltage,'p'));label(p,'bit',endpoint(adc,'out'));return{p,voltage,ground,adc};}
 
 test('library exposes separate trusted domains and complete native model provenance',()=>{
- assert.equal(LIBRARY.length,41);assert.equal(DIGITAL_TYPES.length,27);
- assert.equal(Object.keys(MODELS).length,35);
- for(const d of LIBRARY){for(const pin of d.pins){assert.ok(['analog','digital'].includes(pin.domain));assert.ok(['input','output','passive'].includes(pin.direction));}if(DIGITAL_TYPES.includes(d.type)){const m=MODELS[d.model];assert.ok([DIGITAL_MODEL_VERSION,BUS_MODEL_VERSION,DISPLAY_MODEL_VERSION,CONVERTER_MODEL_VERSION].includes(m.version));assert.equal(m.license,'MIT');assert.ok(['digital','bridge'].includes(m.kind));const definition=JSON.parse(m.definition);assert.equal(definition.type,d.type);assert.deepEqual(definition.ports,d.pins.map(({id,domain,direction})=>({id,domain,direction})));}}
+ assert.equal(LIBRARY.length,43);assert.equal(DIGITAL_TYPES.length,29);
+ assert.equal(Object.keys(MODELS).length,37);
+ for(const d of LIBRARY){for(const pin of d.pins){assert.ok(['analog','digital'].includes(pin.domain));assert.ok(['input','output','passive'].includes(pin.direction));}if(DIGITAL_TYPES.includes(d.type)){const m=MODELS[d.model];assert.ok([DIGITAL_MODEL_VERSION,BUS_MODEL_VERSION,DISPLAY_MODEL_VERSION,CONVERTER_MODEL_VERSION,LOGIC_IO_MODEL_VERSION].includes(m.version));assert.equal(m.license,'MIT');assert.ok(['digital','bridge'].includes(m.kind));const definition=JSON.parse(m.definition);assert.equal(definition.type,d.type);assert.deepEqual(definition.ports,d.pins.map(({id,domain,direction})=>({id,domain,direction})));}}
  assert.deepEqual(getPart('R').pins.map(p=>p.id),['1','2']);
  assert.deepEqual(getPart('DFF').pins.map(p=>p.id),['d','clk','q']);
  assert.deepEqual(getPart('ADC').pins.map(p=>p.domain),['analog','analog','digital']);
@@ -31,8 +31,8 @@ test('schema1 analog projects retain their original version, graph, layout and n
 });
 
 test('native examples round trip all typed probes, state and bridge parameters',()=>{
- let count=0;for(const e of EXAMPLES){const p=e.create(),generated=generateNetlist(p);if(!generated.simulation)continue;count++;assert.deepEqual(parseProject(serializeProject(p)),p,e.id);assert.deepEqual(errors(generated.diagnostics),[],e.id);assert.ok(generated.modelManifest.some(m=>[DIGITAL_MODEL_VERSION,BUS_MODEL_VERSION,DISPLAY_MODEL_VERSION,CONVERTER_MODEL_VERSION].includes(m.version)),e.id);for(const q of p.probes.filter(q=>q.kind==='logic')){const m=generated.measurements.find(m=>m.id===q.id);assert.equal(m.unit,'logic');assert.match(m.vector,/^[db]\(.+\)$/);if(m.kind==='bus'){assert.ok(m.width>=2&&m.width<=8);assert.equal(m.bitOrder,'msb-first');}}}
- assert.equal(count,22);
+ let count=0;for(const e of EXAMPLES){const p=e.create(),generated=generateNetlist(p);if(!generated.simulation)continue;count++;assert.deepEqual(parseProject(serializeProject(p)),p,e.id);assert.deepEqual(errors(generated.diagnostics),[],e.id);assert.ok(generated.modelManifest.some(m=>[DIGITAL_MODEL_VERSION,BUS_MODEL_VERSION,DISPLAY_MODEL_VERSION,CONVERTER_MODEL_VERSION,LOGIC_IO_MODEL_VERSION].includes(m.version)),e.id);for(const q of p.probes.filter(q=>q.kind==='logic')){const m=generated.measurements.find(m=>m.id===q.id);assert.equal(m.unit,'logic');assert.match(m.vector,/^[db]\(.+\)$/);if(m.kind==='bus'){assert.ok(m.width>=2&&m.width<=8);assert.equal(m.bitOrder,'msb-first');}}}
+ assert.equal(count,25);
 });
 
 test('pure logic needs no ground and exposed unused outputs are valid measurements',()=>{

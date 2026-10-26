@@ -1,0 +1,58 @@
+✔ actual result and selection renderers keep the persistent strip and DVS initial state current (54.23306ms)
+✔ the actual Return to latest action clears only Cursor A and never changes or resumes simulation (9.090055ms)
+✔ unchanged renders retain keyboard focus and changed state cleans up old view-action listeners (8.370028ms)
+✔ actual history selection can show an older run while the retained continuous session remains paused (28.236242ms)
+✔ async bounded-run completion after an edit shows its captured revision without lighting current indicators (8.616562ms)
+✔ replacement tracks restored run identities without adding persistence-schema fields (9.929178ms)
+✔ actual paused source controls show last confirmed drive until acknowledgement and retain initial state (12.074922ms)
+✔ a late input response from an ended session cannot replace the new session state strip (11.498785ms)
+✔ stopping through the actual lifecycle converts the strip to a non-resumable saved window (8.278263ms)
+✖ the Step button finishes with an idle paused strip after publishing a completed update (8.025456ms)
+✖ a stopped Step finishing after a new session starts cannot repaint or report errors for that new session (8.152361ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 9
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 186.939037
+
+✖ failing tests:
+
+test at tests/workbench-state-app.test.mjs:200:1
+✖ the Step button finishes with an idle paused strip after publishing a completed update (8.025456ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 0.00009999999999999999
+  - 0.0001
+         ^
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/141bc601d3b6/circuitbench/tests/workbench-state-app.test.mjs:205:87)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0.00009999999999999999,
+    expected: 0.0001,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/workbench-state-app.test.mjs:212:1
+✖ a stopped Step finishing after a new session starts cannot repaint or report errors for that new session (8.152361ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/141bc601d3b6/circuitbench/tests/workbench-state-app.test.mjs:219:49)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,39 @@
+✔ choices expose numeric analog parameters and probes without a previous run (13.560231ms)
+✔ netlist workspaces and digital studies are explicitly rejected (6.633049ms)
+✔ linear sweep includes exact endpoints and never changes the base project (2.849372ms)
+✔ descending and logarithmic sweeps preserve requested order (3.798257ms)
+✔ spec validation rejects invalid counts, keys, signals, and incompatible metrics (5.549678ms)
+✔ Monte Carlo draws are reproducible, independent, bounded and seed sensitive (1.786952ms)
+✔ relative tolerances reject zero nominal, duplicates and unsupported distributions (4.310482ms)
+✔ transient RMS uses elapsed time and exact piecewise-linear squared integration (0.915745ms)
+✔ transient windows interpolate endpoints and exclude samples outside the window (0.768752ms)
+✔ unobserved transient ranges are rejected rather than extrapolated (0.449041ms)
+✔ AC interpolation uses complex real/imaginary values on log frequency (0.527897ms)
+✔ AC zero magnitude keeps magnitude zero but rejects undefined phase (0.222113ms)
+✔ negative-zero AC phase uses a JSON-stable negative-real-axis convention (0.722464ms)
+✔ DC final follows acquisition order, including descending sweeps (0.963459ms)
+✔ malformed, duplicate, nonfinite and mismatched sample arrays are rejected (0.536128ms)
+✔ sample capture supports differential voltage and current without mutating raw results (1.624684ms)
+✔ missing AC imaginary samples are rejected rather than replaced with zero phase (2.263592ms)
+✔ trial runner is sequential, preserves snapshot and captures exact applied values (47.107316ms)
+✔ failed trials have no numeric value and are excluded from summary (11.289121ms)
+✔ cancellation preserves completed trials, marks the in-flight trial and stops scheduling (21.202405ms)
+✔ pre-cancelled studies never call the runner and retain an honest empty record (6.058841ms)
+✔ a returned run from another circuit is rejected as a failed trial (10.674412ms)
+✔ malformed returned provenance fails its trial without losing earlier measured evidence (24.614356ms)
+✔ backup validation recomputes arithmetic and the deterministic parameter sequence (46.125183ms)
+✔ restored evidence can be saved and imported again without resimulation (11.438896ms)
+✔ retention removes oldest studies and preserves a bounded newest result (32.17661ms)
+✔ record import rejects duplicate IDs, oversized history and malformed timestamps (274.391249ms)
+✔ near-limit sample evidence reserves later failure diagnostics without losing completed trials (405.644617ms)
+✔ CSV retains exact parameters, status, empty failed values and quoted identifiers (11.114482ms)
+✔ summary accumulation handles large finite values without squaring overflow (0.136097ms)
+✔ AC and transient measurement controls validate their requested domain (3.727888ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 966.686428

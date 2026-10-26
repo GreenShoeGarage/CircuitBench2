@@ -1,6 +1,6 @@
 # Components, models, and provenance
 
-All CircuitBench symbols, component definitions, example circuits, and `CB_*` models are original educational material distributed under the application's MIT license. CircuitBench 2.0 has **41 parts and 35 model records**: 14 analog parts use ideal built-in elements or **8 unchanged analog model cards at `cb-models-1.0.0`**; the 12 scalar digital parts and 2 explicit bridges retain **14 definitions at `cb-digital-models-1.0.0`**; 9 bus/pattern/state/table parts retain **9 definitions at `cb-bus-models-1.0.0`**; and 2 display parts plus 2 multibit converters add **2 definitions at `cb-display-models-1.0.0`** and **2 at `cb-converters-1.0.0`**. No bundled component is advertised as a characterized manufacturer part.
+All CircuitBench symbols, component definitions, example circuits, and `CB_*` models are original educational material distributed under the application's MIT license. CircuitBench 2.0.0-rc.2 has **43 parts and 37 model records**: 14 analog parts use ideal built-in elements or **8 unchanged analog model cards at `cb-models-1.0.0`**; the 12 scalar digital parts and 2 explicit bridges retain **14 definitions at `cb-digital-models-1.0.0`**; 9 bus/pattern/state/table parts retain **9 definitions at `cb-bus-models-1.0.0`**; 2 segment-display parts and 2 multibit converters use **2 definitions at `cb-display-models-1.0.0`** and **2 at `cb-converters-1.0.0`**; and the digital voltage source and scalar logic indicator add **2 definitions at `cb-logic-io-1.0.0`**. No bundled component is advertised as a characterized manufacturer part.
 
 The full analog library uses ngspice WebAssembly. The separately selected coordinated transient engine supports ideal R/C/L and independent V/I sources with original backward-Euler modified nodal analysis, incremental digital events and explicit converter timing. Native logic uses literal `0`, `1`, `X`, and `Z` states. The bundled ngspice build has XSPICE disabled. Native digital definitions describe the application's own kernels and bridges; they are not ngspice code models or SPICE `.model` cards. Unsupported coordinated analog parts are rejected rather than replaced.
 
@@ -46,11 +46,13 @@ Parameters omitted from these cards use the selected ngspice build's device defa
 
 ## Native digital parts and bridges
 
-Pins carry trusted `domain` and `direction` metadata in `src/library.js`. Existing analog pin addresses are unchanged. A digital input is distinct from an analog voltage input even when both are drawn at the same position or have similarly named labels. Wires, junctions, and equal labels may only join compatible domains; conversion requires an ADC or DAC.
+Pins carry trusted `domain` and `direction` metadata in `src/library.js`. Existing analog pin addresses are unchanged. A digital input is distinct from an analog voltage input even when both are drawn at the same position or have similarly named labels. Wires, junctions, and equal labels may only join compatible domains; conversion requires an ADC, DAC, or the digital voltage source's explicitly enabled voltage terminals.
 
 | Type / model | Pin order and domains | Parameters and defaults | Exercised example |
 | --- | --- | --- | --- |
 | `DIN` / `CB_DIN` | Digital output `out` | `state`: `0`, `1`, `X`, or `Z`; default `0` | `logic-gates` |
+| `DVS` / `CB_DVS` | Digital `out`; optional analog `p` (+), `n` (−) when voltage mode is enabled | `state` 0/1, default 0; `outputMode` `logic` (default) or `logic-voltage`; `low` 0 V, `high` 5 V, `rise`/`fall` 1 µs | `digital-voltage-source`, `digital-voltage-rc` |
+| `DLED` / `CB_DLED` | Passive scalar digital input `in` | No parameters; red only at HIGH (1); LOW, X, Z and unavailable results are distinct | `logic-indicator-states` |
 | `CLOCK` / `CB_CLOCK` | Digital output `out` | `period` 1 ms; `duty` 50%; `delay` 0 s | `digital-half-adder` |
 | `BUF`, `NOT` / corresponding `CB_*` | Digital input `in`, output `out` | `delay` 10 ns | `logic-gates` |
 | `AND`, `OR`, `XOR`, `NAND`, `NOR`, `XNOR` / corresponding `CB_*` | Digital inputs `a`, `b`; output `out` | `delay` 10 ns | `logic-gates`, `digital-half-adder` |
@@ -115,7 +117,25 @@ The multiplexer selects A for `sel=0` and B for `sel=1`. With an unknown selecto
 
 The LUT requires every binary input address exactly once, with a fixed-width output word for each row. Its default two-input/two-output table is a half adder with output `Carry:Sum`. For an `X` or `Z` input bit, the kernel evaluates all compatible binary rows and retains a unanimous output value (`0`, `1`, `X`, or `Z`); otherwise it outputs `X`. LUT text is bounded row data, not executable JavaScript or a general behavioral language.
 
-The separate truth-table experiment enumerates selected constant DIN/BUSIN inputs through the timed event kernel and records the settled results. It supports up to 8 selected input bits and 32 selected outputs. Clocks, timed patterns, state elements, analog parts, and bridges require a transient run instead. A settled truth table does not describe hazards during transitions or physical setup/hold behavior.
+The separate truth-table experiment enumerates selected constant DIN, digital-only DVS, or BUSIN inputs through the timed event kernel and records the settled results. It supports up to 8 selected input bits and 32 selected outputs. Clocks, timed patterns, state elements, analog parts, and bridges require a transient run instead. A settled truth table does not describe hazards during transitions or physical setup/hold behavior.
+
+## Digital voltage source and scalar indicator
+
+DVS has a binary starting state and supports binary live changes in Continuous.
+Its default `logic` output mode exposes only the digital `out` pin and needs no
+analog reference. Selecting `logic-voltage` adds explicit analog `p` and `n`
+terminals. Its voltage starts at the selected low/high value, then follows
+the resolved digital output with finite linear edges. Contention that makes
+the resolved output X stops voltage simulation. There is no guessed X/Z
+voltage, drive resistance, current limit or supply model. Attached wires,
+labels and probe endpoints must be removed before disabling voltage terminals.
+
+DLED observes actual sparse events at Cursor A or the retained end time. A
+known 1 glows red; 0 stays dark; X is amber and marked UNKNOWN; Z is outlined
+and marked HIGH IMPEDANCE. Missing or stale results remain neutral. It adds
+no digital driver or analog load. Its red glow is a display treatment, not
+electrical LED brightness. Both parts use `cb-logic-io-1.0.0`; existing DIN and
+BUSIN retain their four-state input contract. See [logic-io.md](logic-io.md).
 
 ## Display and multibit converter parts introduced in 2.0
 

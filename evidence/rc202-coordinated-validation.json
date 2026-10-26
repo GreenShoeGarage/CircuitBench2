@@ -1,0 +1,544 @@
+{
+  "testedAt": "2026-10-25T01:32:39.779Z",
+  "scope": "Stateful CircuitBench MNA/event engine compared with analytic and independently solved ngspice circuits. Actual pinned ngspice45.2 WASM executes the reference decks; the native-reference comparisons are explicitly omitted. This record does not claim browser/worker/offline verification.",
+  "mode": "wasm-only",
+  "engine": {
+    "name": "CircuitBench coordinated transient",
+    "version": "1",
+    "package": "CircuitBench stateful MNA and event kernel",
+    "packageVersion": "1",
+    "build": "cb-coordinated-1",
+    "execution": "Stateful modified nodal analysis and incremental digital events in an isolated worker",
+    "mode": "coordinated",
+    "timeResolution": 1e-12,
+    "integration": "backward Euler",
+    "coupling": "Causal shared timeline; analog trial-step threshold localization; digital events and converter samples create analog breakpoints",
+    "limitations": "R/C/L and independent V/I sources only in the analog partition. Fixed maximum step with backward-Euler numerical damping; no transistor, diode, opamp, switch, noise or thermal model."
+  },
+  "nativeReference": {
+    "status": "unavailable",
+    "code": "ENOENT",
+    "path": "/usr/bin/ngspice",
+    "reason": "Native reference explicitly omitted by --wasm-only; the pinned executable is unavailable in this environment."
+  },
+  "wasmReference": {
+    "version": "ngspice45.2 / EEcircuit-engine1.8.0",
+    "sha256": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4"
+  },
+  "sources": {
+    "scripts/prove-coordinated.mjs": "40c8b1c6e068f1891c1dd501c9895b2031ddc570fe0ddc11c20507e7e8a55381",
+    "src/coordinated.js": "12d2ded7ca0d500718c567ea212827918fae423bcc9179c85c5cb28fc3429b6a",
+    "src/coordinated-digital.js": "6e73b4b7b982b2e3f807e23e96d62f25cee916341762e0da8ae41c32bf2d23d5",
+    "src/digital.js": "ab9e81e869af307fab57967fe9aa80e484213c6d96479d9b77e0e63e1271ba36",
+    "src/library.js": "ab341ea3d86c9f01c9994af087a109fdcf985591c4e5e1965d33c07fe58a3c65",
+    "src/model.js": "25afcb832414db683f8a7fda630722b3e73ef2f13a3ce92443b748af1353abb0",
+    "src/netlist.js": "88f46730d8c0faa07601feb7edb2876eb3952b4abd4e3f7a57f364f7117345b4"
+  },
+  "fixtures": [
+    {
+      "id": "rc",
+      "deck": "rc independent reference\nV1 in 0 1\nR1 in out 1k\nC1 out 0 1u IC=0\n.options reltol=1e-8 abstol=1e-13 vntol=1e-10\n.tran 100n 1m 0 100n uic\n.end\n",
+      "plan": {
+        "kind": "coordinated-transient",
+        "version": 1,
+        "duration": 0.01,
+        "maxStep": 1e-7,
+        "analog": {
+          "nodes": [
+            "in",
+            "out"
+          ],
+          "uic": true,
+          "elements": [
+            {
+              "id": "v",
+              "ref": "V1",
+              "type": "V",
+              "p": "in",
+              "n": "0",
+              "wave": {
+                "kind": "dc",
+                "dc": 1
+              }
+            },
+            {
+              "id": "r",
+              "ref": "R1",
+              "type": "R",
+              "p": "in",
+              "n": "out",
+              "value": 1000
+            },
+            {
+              "id": "state",
+              "ref": "C1",
+              "type": "C",
+              "p": "out",
+              "n": "0",
+              "value": 0.000001,
+              "ic": 0
+            }
+          ]
+        },
+        "digital": {
+          "sources": [],
+          "gates": [],
+          "sequential": [],
+          "buses": [],
+          "probes": [],
+          "inputGroups": [],
+          "hiddenNodes": []
+        },
+        "adcs": [],
+        "dacs": [],
+        "controls": []
+      },
+      "points": 10001,
+      "stats": {
+        "acceptedSteps": 10000,
+        "trialSolves": 10000,
+        "thresholdLocalizations": 0,
+        "digitalEvents": 0,
+        "converterSamples": 0,
+        "chunks": 1
+      },
+      "referencePoints": {
+        "wasm": 10016
+      }
+    },
+    {
+      "id": "rl",
+      "deck": "rl independent reference\nV1 in 0 1\nR1 in out 100\nL1 out 0 100m IC=0\n.options reltol=1e-8 abstol=1e-13 vntol=1e-10\n.tran 100n 1m 0 100n uic\n.end\n",
+      "plan": {
+        "kind": "coordinated-transient",
+        "version": 1,
+        "duration": 0.01,
+        "maxStep": 1e-7,
+        "analog": {
+          "nodes": [
+            "in",
+            "out"
+          ],
+          "uic": true,
+          "elements": [
+            {
+              "id": "v",
+              "ref": "V1",
+              "type": "V",
+              "p": "in",
+              "n": "0",
+              "wave": {
+                "kind": "dc",
+                "dc": 1
+              }
+            },
+            {
+              "id": "r",
+              "ref": "R1",
+              "type": "R",
+              "p": "in",
+              "n": "out",
+              "value": 100
+            },
+            {
+              "id": "state",
+              "ref": "L1",
+              "type": "L",
+              "p": "out",
+              "n": "0",
+              "value": 0.1,
+              "ic": 0
+            }
+          ]
+        },
+        "digital": {
+          "sources": [],
+          "gates": [],
+          "sequential": [],
+          "buses": [],
+          "probes": [],
+          "inputGroups": [],
+          "hiddenNodes": []
+        },
+        "adcs": [],
+        "dacs": [],
+        "controls": []
+      },
+      "points": 10001,
+      "stats": {
+        "acceptedSteps": 10000,
+        "trialSolves": 10000,
+        "thresholdLocalizations": 0,
+        "digitalEvents": 0,
+        "converterSamples": 0,
+        "chunks": 1
+      },
+      "referencePoints": {
+        "wasm": 10016
+      }
+    },
+    {
+      "id": "rlc",
+      "deck": "RLC independent reference\nV1 in 0 1\nR1 in mid 10\nL1 mid out 1m IC=0\nC1 out 0 1u IC=0\n.options reltol=1e-8 abstol=1e-13 vntol=1e-10\n.tran 50n 100u 0 50n uic\n.end\n",
+      "plan": {
+        "kind": "coordinated-transient",
+        "version": 1,
+        "duration": 0.01,
+        "maxStep": 5e-8,
+        "analog": {
+          "nodes": [
+            "in",
+            "mid",
+            "out"
+          ],
+          "uic": true,
+          "elements": [
+            {
+              "id": "v",
+              "ref": "V1",
+              "type": "V",
+              "p": "in",
+              "n": "0",
+              "wave": {
+                "kind": "dc",
+                "dc": 1
+              }
+            },
+            {
+              "id": "r",
+              "ref": "R1",
+              "type": "R",
+              "p": "in",
+              "n": "mid",
+              "value": 10
+            },
+            {
+              "id": "l",
+              "ref": "L1",
+              "type": "L",
+              "p": "mid",
+              "n": "out",
+              "value": 0.001,
+              "ic": 0
+            },
+            {
+              "id": "c",
+              "ref": "C1",
+              "type": "C",
+              "p": "out",
+              "n": "0",
+              "value": 0.000001,
+              "ic": 0
+            }
+          ]
+        },
+        "digital": {
+          "sources": [],
+          "gates": [],
+          "sequential": [],
+          "buses": [],
+          "probes": [],
+          "inputGroups": [],
+          "hiddenNodes": []
+        },
+        "adcs": [],
+        "dacs": [],
+        "controls": []
+      },
+      "points": 2001,
+      "stats": {
+        "acceptedSteps": 2000,
+        "trialSolves": 2000,
+        "thresholdLocalizations": 0,
+        "digitalEvents": 0,
+        "converterSamples": 0,
+        "chunks": 1
+      }
+    },
+    {
+      "id": "closed-loop-schmitt-rc",
+      "plan": {
+        "kind": "coordinated-transient",
+        "version": 1,
+        "duration": 0.01,
+        "maxStep": 0.000001,
+        "analog": {
+          "nodes": [
+            "in",
+            "out"
+          ],
+          "uic": true,
+          "elements": [
+            {
+              "id": "dac",
+              "ref": "VDAC",
+              "type": "V",
+              "p": "in",
+              "n": "0",
+              "wave": {
+                "kind": "dac",
+                "id": "dac"
+              }
+            },
+            {
+              "id": "r",
+              "ref": "R1",
+              "type": "R",
+              "p": "in",
+              "n": "out",
+              "value": 1000
+            },
+            {
+              "id": "state",
+              "ref": "C1",
+              "type": "C",
+              "p": "out",
+              "n": "0",
+              "value": 0.000001,
+              "ic": 0
+            }
+          ]
+        },
+        "digital": {
+          "sources": [],
+          "gates": [
+            {
+              "id": "not",
+              "type": "NOT",
+              "inputs": [
+                "sense"
+              ],
+              "output": "drive",
+              "delay": 2e-9
+            }
+          ],
+          "sequential": [],
+          "buses": [],
+          "probes": [],
+          "inputGroups": [],
+          "hiddenNodes": []
+        },
+        "adcs": [
+          {
+            "id": "adc",
+            "type": "ADC",
+            "input": "out",
+            "reference": "0",
+            "outputs": [
+              "sense"
+            ],
+            "low": 1.5,
+            "high": 3.5,
+            "mode": "schmitt"
+          }
+        ],
+        "dacs": [
+          {
+            "id": "dac",
+            "type": "DAC",
+            "width": 1,
+            "inputs": [
+              "drive"
+            ],
+            "p": "in",
+            "n": "0",
+            "low": 0,
+            "high": 5,
+            "rise": 1e-8,
+            "fall": 1e-8,
+            "initial": 0
+          }
+        ],
+        "controls": []
+      },
+      "referenceDeck": "Hysteretic analog reference for mixed feedback\nVsupply supply 0 5\nRpull supply drive 1\nS1 drive 0 out 0 SWREF\n.model SWREF SW(RON=1e-6 ROFF=1e12 VT=2.5 VH=1)\nR1 drive out 1k\nC1 out 0 1u IC=0\n.options reltol=1e-7 abstol=1e-12 vntol=1e-9\n.tran 1u 10m 0 1u uic\n.end\n",
+      "referenceDifference": "Reference uses a native hysteretic switch with 1Ω pull-up,1μΩ on resistance,and1TΩ off resistance;coordinated loop uses finite10nsDAC edges and2nsgate delay. Period tolerance0.3%allows these declared topology differences and numerical maximum-step error.",
+      "points": 10028,
+      "stats": {
+        "acceptedSteps": 10027,
+        "trialSolves": 10248,
+        "thresholdLocalizations": 11,
+        "digitalEvents": 22,
+        "converterSamples": 0,
+        "chunks": 1
+      },
+      "edgeTimes": [
+        0.001204574563,
+        0.002900022943,
+        0.004595471323,
+        0.006290919703,
+        0.007986368083,
+        0.009681816463
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "name": "rc: pinned WASM reference finishes without solver errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "rc: wasm trace comparison",
+      "pass": true,
+      "detail": {
+        "maximumAbsoluteError": 0.000018393509171987787,
+        "absoluteTolerance": 0.000025,
+        "samples": 10000
+      }
+    },
+    {
+      "name": "rc: analytic endpoint",
+      "pass": true,
+      "detail": {
+        "actual": 0.6321021656231299,
+        "reference": 0.6321205588285577,
+        "absoluteTolerance": 0.000025
+      }
+    },
+    {
+      "name": "rc: retained state across a pause",
+      "pass": true,
+      "detail": {
+        "actual": 0.6321021656231299,
+        "reference": 0.6321021656231299,
+        "absoluteTolerance": 1e-12
+      }
+    },
+    {
+      "name": "rl: pinned WASM reference finishes without solver errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "rl: wasm trace comparison",
+      "pass": true,
+      "detail": {
+        "maximumAbsoluteError": 1.8393510471583635e-7,
+        "absoluteTolerance": 2.5e-7,
+        "samples": 10000
+      }
+    },
+    {
+      "name": "rl: analytic endpoint",
+      "pass": true,
+      "detail": {
+        "actual": 0.006321021656228793,
+        "reference": 0.006321205588285576,
+        "absoluteTolerance": 2.5e-7
+      }
+    },
+    {
+      "name": "rl: retained state across a pause",
+      "pass": true,
+      "detail": {
+        "actual": 0.006321021656228793,
+        "reference": 0.006321021656228793,
+        "absoluteTolerance": 1e-12
+      }
+    },
+    {
+      "name": "rlc: pinned WASM reference finishes without solver errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "rlc: wasm underdamped trace comparison",
+      "pass": true,
+      "detail": {
+        "maximumAbsoluteError": 0.0015186078512370305,
+        "absoluteTolerance": 0.002
+      }
+    },
+    {
+      "name": "closed loop: at least five physically coupled cycles",
+      "pass": true,
+      "detail": {
+        "rising": [
+          0.001204574563,
+          0.002900022943,
+          0.004595471323,
+          0.006290919703,
+          0.007986368083,
+          0.009681816463
+        ]
+      }
+    },
+    {
+      "name": "closed loop: analytic period 1",
+      "pass": true,
+      "detail": {
+        "actual": 0.00169544838,
+        "reference": 0.0016945957207744073,
+        "absoluteTolerance": 0.000002
+      }
+    },
+    {
+      "name": "closed loop: analytic period 2",
+      "pass": true,
+      "detail": {
+        "actual": 0.0016954483800000002,
+        "reference": 0.0016945957207744073,
+        "absoluteTolerance": 0.000002
+      }
+    },
+    {
+      "name": "closed loop: analytic period 3",
+      "pass": true,
+      "detail": {
+        "actual": 0.0016954483799999998,
+        "reference": 0.0016945957207744073,
+        "absoluteTolerance": 0.000002
+      }
+    },
+    {
+      "name": "closed loop: analytic period 4",
+      "pass": true,
+      "detail": {
+        "actual": 0.0016954483799999998,
+        "reference": 0.0016945957207744073,
+        "absoluteTolerance": 0.000002
+      }
+    },
+    {
+      "name": "closed loop: analytic period 5",
+      "pass": true,
+      "detail": {
+        "actual": 0.0016954483800000007,
+        "reference": 0.0016945957207744073,
+        "absoluteTolerance": 0.000002
+      }
+    },
+    {
+      "name": "feedback: pinned WASM reference finishes without solver errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "closed loop: wasm independent hysteretic circuit oscillates",
+      "pass": true,
+      "detail": {
+        "crossings": [
+          0.0012051713074870797,
+          0.002900526515102628,
+          0.004595924229537493,
+          0.006291279371739364,
+          0.007986677076595053,
+          0.009682032216580302
+        ]
+      }
+    },
+    {
+      "name": "closed loop: wasm mean period",
+      "pass": true,
+      "detail": {
+        "actual": 0.0016954483800000002,
+        "reference": 0.0016953721818186445,
+        "absoluteTolerance": 0.000005083787162323222
+      }
+    }
+  ],
+  "status": "passed",
+  "passed": 19,
+  "failed": 0
+}

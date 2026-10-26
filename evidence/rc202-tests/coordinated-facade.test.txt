@@ -1,0 +1,22 @@
+✔ a bounded run joins partial commands exactly and respects the worker step limit (5.90927ms)
+✔ a failed BUSY run cannot close an existing paused stateful session (1.016659ms)
+✔ cancelled old-run cleanup cannot terminate a replacement session (0.641019ms)
+✔ a Stop after a result is delivered still prevents publication and preserves the replacement (0.871743ms)
+✔ ready handshake is mandatory and malformed idle messages cannot dereference a pending command (0.62544ms)
+✔ protocol mismatch, worker startup error and transfer error terminate exactly once (0.581235ms)
+✔ synchronous request-transfer failures reject and dispose the owned worker (0.345919ms)
+✔ Stop or a thrown log callback during startup cannot post initialization afterward (0.775195ms)
+✔ idle worker failures notify the owner so a paused controller cannot remain falsely usable (0.395606ms)
+✔ a single total timeout bounds all partial commands, not each command independently (34.686732ms)
+✔ nonadvancing, gapped, overshot or false-done chunks never count as a completed run (1.010446ms)
+✔ a worker-reported numerical failure keeps its diagnostic and terminates before a later step (0.348241ms)
+✔ actual coordinated Worker preserves counter/display phase over paused advances and then terminates (89.065289ms)
+✔ actual bounded Worker run spans more than 20,000 accepted steps without restarting state (273.74037ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 415.943253

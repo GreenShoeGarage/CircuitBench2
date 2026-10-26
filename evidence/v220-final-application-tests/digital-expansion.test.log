@@ -1,0 +1,22 @@
+✔ MUX uses known selected data and consensus under unknown select (0.966613ms)
+✔ LUT indexes LSB-first inputs and resolves ambiguous binary addresses by consensus (0.462541ms)
+✔ decoder LUT keeps impossible lines low with a partially unknown address (0.187346ms)
+✔ bus aggregation preserves partial X/Z words and hides only private bits (1.963601ms)
+✔ exposed scalar taps remain visible alongside the aggregate word (0.295034ms)
+✔ register captures simultaneous data and clock atomically as one word (0.768381ms)
+✔ synchronous reset waits for a rising edge and wins over disabled capture (0.433157ms)
+✔ uncertain enable preserves only bits common to hold and capture (0.3732ms)
+✔ register state and ambiguous clock policy do not turn a known hold into fabricated data (0.343285ms)
+✔ counter private state is unaffected by contention on its output bus (0.465195ms)
+✔ counter captures fast clock edges into private state before delayed outputs arrive (0.38683ms)
+✔ counter increment preserves known bits that do not depend on an unknown carry (0.208236ms)
+✔ pattern repeats exact four-state stimulus with an explicit period boundary (0.218391ms)
+✔ pattern rejects absent initial value, overlapping repeats and same-tick entries (0.33913ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17.008804

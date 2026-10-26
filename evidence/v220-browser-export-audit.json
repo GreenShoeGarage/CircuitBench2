@@ -1,0 +1,779 @@
+{
+  "format": "CircuitBench browser download audit",
+  "formatVersion": 1,
+  "applicationVersion": "2.2.0",
+  "auditedAt": "2026-10-25T12:52:05.369Z",
+  "scope": "Read-only audit of six actual HTTP-preview browser downloads. Current import validators recompute measurement and time-step arithmetic, validate captured identities/provenance, and regenerate study input structures. No circuit simulations or browser actions are performed by this audit.",
+  "artifacts": [
+    {
+      "name": "captureProjectBackup",
+      "path": "/workspace/scratch/ebae48f4-69f5-461a-827e-48e7eddd619d/7500be46-a16d-487c-b37f-31e4ddf1dac1",
+      "mediaType": "application/json",
+      "bytes": 768443,
+      "sha256": "c00d8d06fdbc36f853a3020a4611b5005a431723125d669102d61ee8ec1b7db8",
+      "format": "CircuitBench",
+      "formatVersion": 1
+    },
+    {
+      "name": "captureMeasurementEvidence",
+      "path": "/workspace/scratch/ebae48f4-69f5-461a-827e-48e7eddd619d/d2458f61-478c-4619-a841-1e48f3d44ed7",
+      "mediaType": "application/json",
+      "bytes": 29358,
+      "sha256": "fa66ab56be4b22f4b077fe988a8e7d10f756eba71339b59225136f1f4e993dcf",
+      "format": "CircuitBench instrument measurement evidence",
+      "formatVersion": 1
+    },
+    {
+      "name": "captureMeasurementCSV",
+      "path": "/workspace/scratch/ebae48f4-69f5-461a-827e-48e7eddd619d/ed35b7f4-6605-4528-8ef7-477c7195bdbd",
+      "mediaType": "text/csv",
+      "bytes": 1279,
+      "sha256": "a2b321efb47194ef61fd228a9298bccd122706f5f0ed9f2d3cf3144bc3643e24"
+    },
+    {
+      "name": "stepStudyEvidence",
+      "path": "/workspace/scratch/ebae48f4-69f5-461a-827e-48e7eddd619d/9c2b558b-1710-4803-858d-1c8c10f397ed",
+      "mediaType": "application/json",
+      "bytes": 696082,
+      "sha256": "410ce82428eca07d02b4aeccc3c323b2c2e1b08c5548ca55e5b2b07a4a9a2325",
+      "format": "CircuitBench time-step sensitivity evidence",
+      "formatVersion": 1
+    },
+    {
+      "name": "stepStudyProjectBackup",
+      "path": "/workspace/scratch/ebae48f4-69f5-461a-827e-48e7eddd619d/89ba0355-926c-4fba-bae0-3bd38b610625",
+      "mediaType": "application/json",
+      "bytes": 1135797,
+      "sha256": "7444ba07f1f73da65eaacd8059fae253ea261ba29cff37381a1599c0ebc13019",
+      "format": "CircuitBench",
+      "formatVersion": 1
+    },
+    {
+      "name": "standaloneCoordinatedExecutionPlan",
+      "path": "/workspace/scratch/ebae48f4-69f5-461a-827e-48e7eddd619d/1f440744-49d2-4c19-a84c-b5c61d2a51db",
+      "mediaType": "application/json",
+      "bytes": 7314,
+      "sha256": "52a11da19ee3c83094ab58b7e2239ecade583256aa51ef338ee106721edf0118",
+      "format": "CircuitBenchSimulationPlan",
+      "formatVersion": 1
+    }
+  ],
+  "validatorModules": [
+    {
+      "path": "src/storage.js",
+      "bytes": 14382,
+      "sha256": "9066721956a464bc5f64fa04687a55f3b2a1a17e2aa8a16a76fa81684aece90f"
+    },
+    {
+      "path": "src/model.js",
+      "bytes": 37706,
+      "sha256": "c54485a1926ff4f8271cc458697e0475d27ebad4134a8a04a063ed1633493abc"
+    },
+    {
+      "path": "src/capture.js",
+      "bytes": 10993,
+      "sha256": "7957387eed1db09041d00d977af4f69eaf3776b839f10fc1ad17b9541180c7d8"
+    },
+    {
+      "path": "src/continuous-evidence.js",
+      "bytes": 3402,
+      "sha256": "af8cb5b91bb3dc90f03943b9dd97ca8f5bf489a2b755cc729612c48e05aad9c5"
+    },
+    {
+      "path": "src/measurements.js",
+      "bytes": 45662,
+      "sha256": "4efef1d81611dc0562f046614641c1d499e731ed9c2965037e3a1592a5343244"
+    },
+    {
+      "path": "src/measurement-evidence.js",
+      "bytes": 21248,
+      "sha256": "2ef2f9e43554e2edbf692545d4acf1d4f0a29efa5307eef40855ba372a0da3aa"
+    },
+    {
+      "path": "src/step-study.js",
+      "bytes": 30362,
+      "sha256": "a3c0218be4e162157ab9fa0bed4b22b7f4285365e7b4e565c0c72e5966546069"
+    },
+    {
+      "path": "src/netlist.js",
+      "bytes": 34417,
+      "sha256": "88f46730d8c0faa07601feb7edb2876eb3952b4abd4e3f7a57f364f7117345b4"
+    },
+    {
+      "path": "src/coordinated.js",
+      "bytes": 29102,
+      "sha256": "732e577297198e7c9e50467555a030d4e9eaae86910a82bc3a4d9e68d07c853e"
+    }
+  ],
+  "checks": [
+    {
+      "name": "Capture project backup passes the current complete envelope validator",
+      "status": "passed",
+      "details": {
+        "runs": 2,
+        "captures": 1,
+        "measurements": 1,
+        "presets": 1
+      }
+    },
+    {
+      "name": "Capture project contains the expected independent evidence counts",
+      "status": "passed"
+    },
+    {
+      "name": "Standalone capture measurement passes validation against retained source runs and capture",
+      "status": "passed",
+      "details": {
+        "measurementId": "measurement_mvntfmbk_3y59qabfwxs",
+        "sourceRunId": "run_capture_mvntf3s0_mncabwoz65"
+      }
+    },
+    {
+      "name": "Standalone measurement JSON matches the measurement nested in the project backup",
+      "status": "passed"
+    },
+    {
+      "name": "Capture and measurement identities form an explicit source-run chain",
+      "status": "passed",
+      "details": {
+        "projectId": "project_mvnt6c8s_urmh7a4cjjd",
+        "revision": 0,
+        "sessionRunId": "run_mvntesrs_muu6ljn7pq",
+        "captureId": "capture_mvntf3s0_mncabwoz65",
+        "captureRunId": "run_capture_mvntf3s0_mncabwoz65",
+        "measurementId": "measurement_mvntfmbk_3y59qabfwxs"
+      }
+    },
+    {
+      "name": "Capture coverage is complete and includes its preserved trigger witnesses",
+      "status": "passed",
+      "details": {
+        "triggerTime": 0.006311996923,
+        "threshold": 3.5,
+        "method": "accepted-step-threshold-localization",
+        "requested": [
+          0.005311996923,
+          0.006361996923
+        ],
+        "actual": [
+          0.00531,
+          0.006361996923
+        ]
+      }
+    },
+    {
+      "name": "Saved Schmitt measurement preset retains the exact measured signal, levels and window",
+      "status": "passed",
+      "details": {
+        "name": "Schmitt capacitor 1.6–3.4 V",
+        "spec": {
+          "kind": "rise-time",
+          "window": {
+            "start": 0.00531,
+            "end": 0.006361996923
+          },
+          "signal": "node:sense",
+          "maxGap": null,
+          "levels": {
+            "mode": "absolute",
+            "start": 1.6,
+            "end": 3.4
+          }
+        }
+      }
+    },
+    {
+      "name": "Browser capture rise value agrees with independent interpolation of the retained raw brackets",
+      "status": "passed",
+      "details": {
+        "reportedValueSeconds": 0.0007556522321903519,
+        "independentValueSeconds": 0.000755652232190351,
+        "absoluteDifferenceSeconds": 8.673617379884035e-19,
+        "startSeconds": 0.005491651046016808,
+        "endSeconds": 0.006247303278207159,
+        "numericalComparisonToleranceSeconds": 1e-15
+      }
+    },
+    {
+      "name": "Downloaded measurement CSV matches the current exact exporter for the validated JSON evidence",
+      "status": "passed",
+      "details": {
+        "encoding": "UTF-8",
+        "comparison": "Exact text equality including CRLF row separators, quoted field escaping, raw scalar, provenance and configuration."
+      }
+    },
+    {
+      "name": "CSV scalar, selected raw-bracket details and source references agree independently",
+      "status": "passed",
+      "details": {
+        "rows": 1,
+        "columns": 24,
+        "value": 0.0007556522321903519,
+        "unit": "s"
+      }
+    },
+    {
+      "name": "Standalone step-study evidence passes current arithmetic, input-structure and provenance validation",
+      "status": "passed",
+      "details": {
+        "studyId": "step_study_mvntlal6_ys7iwkar24",
+        "status": "completed",
+        "trials": 3
+      }
+    },
+    {
+      "name": "Step-study project backup passes the current complete envelope validator",
+      "status": "passed",
+      "details": {
+        "runs": 2,
+        "captures": 0,
+        "measurements": 1,
+        "stepStudies": 1,
+        "presets": 1
+      }
+    },
+    {
+      "name": "Standalone study and embedded backup study are identical after validation",
+      "status": "passed"
+    },
+    {
+      "name": "Study configuration matches its saved preset and independently saved initial measurement",
+      "status": "passed",
+      "details": {
+        "projectId": "project_mvntjlcj_ilrwy05k4v",
+        "revision": 1,
+        "presetId": "measurement_preset_mvntl5hs_v4tzwoxhxmi",
+        "initialSavedMeasurementId": "measurement_mvntl5qi_vd42mly4bfh",
+        "initialSavedRunId": "run_mvntk7kp_fh8h6vaf74",
+        "independentFirstTrialRunId": "step_trial_mvntlanc_xl1b8jiht5"
+      }
+    },
+    {
+      "name": "Study trials retain exact positive 1 ps-grid halvings and separate fresh-run identities",
+      "status": "passed",
+      "details": [
+        {
+          "index": 0,
+          "stepSeconds": 0.0000049999999999999996,
+          "stepTicks": 5000000,
+          "runId": "step_trial_mvntlanc_xl1b8jiht5",
+          "measurementId": "step_study_mvntlal6_ys7iwkar24_trial_0",
+          "points": 1002
+        },
+        {
+          "index": 1,
+          "stepSeconds": 0.0000024999999999999998,
+          "stepTicks": 2500000,
+          "runId": "step_trial_mvntlap2_8sgtkuhewf",
+          "measurementId": "step_study_mvntlal6_ys7iwkar24_trial_1",
+          "points": 2002
+        },
+        {
+          "index": 2,
+          "stepSeconds": 0.0000012499999999999999,
+          "stepTicks": 1250000,
+          "runId": "step_trial_mvntlare_r9gj8kgszp",
+          "measurementId": "step_study_mvntlal6_ys7iwkar24_trial_2",
+          "points": 4002
+        }
+      ]
+    },
+    {
+      "name": "All three browser study scalar values match the requested acceptance observations",
+      "status": "passed",
+      "details": {
+        "valuesSeconds": [
+          0.00220271448037857,
+          0.002199969941883485,
+          0.0021985975147544457
+        ]
+      }
+    },
+    {
+      "name": "Independent adjacent difference arithmetic gives outside then within the declared 0.1 percent criterion",
+      "status": "passed",
+      "details": [
+        {
+          "previousTrial": 0,
+          "currentTrial": 1,
+          "differenceSeconds": -0.000002744538495085165,
+          "absoluteDifferenceSeconds": 0.000002744538495085165,
+          "relativeDifferenceFraction": 0.0012475345425562736,
+          "relativeDifferencePercent": 0.12475345425562735,
+          "allowedDifferenceSeconds": 0.000002199969941883485,
+          "status": "outside-tolerance"
+        },
+        {
+          "previousTrial": 1,
+          "currentTrial": 2,
+          "differenceSeconds": -0.0000013724271290390874,
+          "absoluteDifferenceSeconds": 0.0000013724271290390874,
+          "relativeDifferenceFraction": 0.000624228454652997,
+          "relativeDifferencePercent": 0.0624228454652997,
+          "allowedDifferenceSeconds": 0.0000021985975147544456,
+          "status": "within-tolerance"
+        }
+      ]
+    },
+    {
+      "name": "Study summary preserves the failed first tolerance check instead of hiding it behind the final check",
+      "status": "passed",
+      "details": {
+        "requestedCount": 3,
+        "attemptedCount": 3,
+        "completedCount": 3,
+        "measuredCount": 3,
+        "failedCount": 0,
+        "cancelledCount": 0,
+        "unstartedCount": 0,
+        "withinToleranceCount": 1,
+        "outsideToleranceCount": 1,
+        "unavailableComparisonCount": 0,
+        "finalComparison": "within-tolerance"
+      }
+    },
+    {
+      "name": "HTTP-preview captured input hashes remain explicitly unavailable, without fabricated digest validation",
+      "status": "passed",
+      "details": {
+        "fieldCount": 28,
+        "sentinel": "unavailable-in-insecure-context",
+        "cryptographicInputValidation": "not available and not claimed",
+        "artifactDigestScope": "SHA-256 of downloaded file bytes computed by this audit only"
+      }
+    },
+    {
+      "name": "The validator modules used for the first five downloads remain unchanged during the standalone-plan audit",
+      "status": "passed",
+      "details": {
+        "modules": 7
+      }
+    },
+    {
+      "name": "Standalone coordinated export identifies and validates its captured revision-2 project",
+      "status": "passed",
+      "details": {
+        "projectId": "project_mvntsujq_a05mzb94lmv",
+        "title": "RC step response",
+        "revision": 2,
+        "solver": "coordinated",
+        "analysis": {
+          "type": "tran",
+          "solver": "coordinated",
+          "start": "1",
+          "stop": "100k",
+          "points": 100,
+          "step": "100u",
+          "duration": "5m",
+          "source": "V1",
+          "sweepStart": "0",
+          "sweepStop": "10",
+          "sweepStep": "0.1",
+          "temperature": 27,
+          "reltol": "1e-4",
+          "uic": true
+        }
+      }
+    },
+    {
+      "name": "Standalone documentation netlist exactly regenerates from its captured project",
+      "status": "passed",
+      "details": {
+        "comparison": "Exact string equality with generateNetlist(validated captured project).",
+        "netlistBytes": 559
+      }
+    },
+    {
+      "name": "Standalone coordinated execution plan exactly recompiles from its captured project and partition",
+      "status": "passed",
+      "details": {
+        "kind": "coordinated-transient",
+        "version": 1,
+        "actualExecutionPlan": "coordinatedPlan",
+        "partition": "null for this pure analog coordinated circuit",
+        "simulationHashRole": "coordinated execution plan"
+      }
+    },
+    {
+      "name": "Standalone plan carries the delivered 100 microsecond step and five-millisecond full run",
+      "status": "passed",
+      "details": {
+        "maximumStepSeconds": 0.00009999999999999999,
+        "maximumStepGridTicks": 100000000,
+        "durationSeconds": 0.005,
+        "explicitInitialConditions": true,
+        "recordedAnalogReplayStages": 0
+      }
+    },
+    {
+      "name": "Standalone export preserves HTTP input-hash unavailability and does not present the partition as the execution hash",
+      "status": "passed",
+      "details": {
+        "netlistHash": "unavailable-in-insecure-context",
+        "simulationHash": "unavailable-in-insecure-context",
+        "structuralInputRegeneration": "verified",
+        "cryptographicInputValidation": "unavailable; not claimed"
+      }
+    }
+  ],
+  "findings": {
+    "capture": {
+      "projectId": "project_mvnt6c8s_urmh7a4cjjd",
+      "revision": 0,
+      "captureId": "capture_mvntf3s0_mncabwoz65",
+      "sourceRunId": "run_mvntesrs_muu6ljn7pq",
+      "captureRunId": "run_capture_mvntf3s0_mncabwoz65",
+      "coverage": {
+        "requestedStart": 0.005311996923,
+        "requestedEnd": 0.006361996923,
+        "actualStart": 0.00531,
+        "actualEnd": 0.006361996923,
+        "missingBefore": 0,
+        "missingAfter": 0,
+        "status": "complete",
+        "description": "Accepted samples cover the requested pre-trigger window; a preceding original sample may extend the visible bounds."
+      },
+      "trigger": {
+        "kind": "trigger",
+        "time": 0.006311996923,
+        "previousTime": 0.00631,
+        "before": 3.4970046169385727,
+        "after": 3.5000000014357058,
+        "trigger": {
+          "kind": "analog",
+          "signal": "v(sense)",
+          "edge": "rising",
+          "threshold": 3.5
+        },
+        "method": "accepted-step-threshold-localization"
+      },
+      "measurementId": "measurement_mvntfmbk_3y59qabfwxs",
+      "riseSeconds": 0.0007556522321903519,
+      "levelsVolts": [
+        1.6,
+        3.4
+      ],
+      "measurementWindowSeconds": [
+        0.00531,
+        0.006361996923
+      ],
+      "selectedOriginalPoints": 217,
+      "engine": {
+        "name": "CircuitBench coordinated transient",
+        "version": "1",
+        "package": "CircuitBench stateful MNA and event kernel",
+        "packageVersion": "1",
+        "build": "cb-coordinated-1",
+        "execution": "Stateful modified nodal analysis and incremental digital events in an isolated worker",
+        "mode": "mixed",
+        "timeResolution": 1e-12,
+        "integration": "backward Euler",
+        "coupling": "Causal shared timeline; analog trial-step threshold localization; digital events and converter samples create analog breakpoints",
+        "limitations": "R/C/L and independent V/I sources only in the analog partition. Fixed maximum step with backward-Euler numerical damping; no transistor, diode, opamp, switch, noise or thermal model."
+      }
+    },
+    "stepStudy": {
+      "projectId": "project_mvntjlcj_ilrwy05k4v",
+      "revision": 1,
+      "studyId": "step_study_mvntlal6_ys7iwkar24",
+      "status": "completed",
+      "stepsSeconds": [
+        0.0000049999999999999996,
+        0.0000024999999999999998,
+        0.0000012499999999999999
+      ],
+      "stepsGridTicks": [
+        5000000,
+        2500000,
+        1250000
+      ],
+      "riseSeconds": [
+        0.00220271448037857,
+        0.002199969941883485,
+        0.0021985975147544457
+      ],
+      "comparisons": [
+        {
+          "index": 1,
+          "previousTrial": 0,
+          "currentTrial": 1,
+          "status": "outside-tolerance",
+          "difference": -0.000002744538495085165,
+          "absoluteDifference": 0.000002744538495085165,
+          "relativeDifference": 0.0012475345425562736,
+          "allowedDifference": 0.000002199969941883485,
+          "unit": "s",
+          "reason": ""
+        },
+        {
+          "index": 2,
+          "previousTrial": 1,
+          "currentTrial": 2,
+          "status": "within-tolerance",
+          "difference": -0.0000013724271290390874,
+          "absoluteDifference": 0.0000013724271290390874,
+          "relativeDifference": 0.000624228454652997,
+          "allowedDifference": 0.0000021985975147544456,
+          "unit": "s",
+          "reason": ""
+        }
+      ],
+      "summary": {
+        "requestedCount": 3,
+        "attemptedCount": 3,
+        "completedCount": 3,
+        "measuredCount": 3,
+        "failedCount": 0,
+        "cancelledCount": 0,
+        "unstartedCount": 0,
+        "withinToleranceCount": 1,
+        "outsideToleranceCount": 1,
+        "unavailableComparisonCount": 0,
+        "finalComparison": "within-tolerance"
+      },
+      "engine": {
+        "name": "CircuitBench coordinated transient",
+        "version": "1",
+        "package": "CircuitBench stateful MNA and event kernel",
+        "packageVersion": "1",
+        "build": "cb-coordinated-1",
+        "execution": "Stateful modified nodal analysis and incremental digital events in an isolated worker",
+        "mode": "analog",
+        "timeResolution": 1e-12,
+        "integration": "backward Euler",
+        "coupling": "Causal shared timeline; analog trial-step threshold localization; digital events and converter samples create analog breakpoints",
+        "limitations": "R/C/L and independent V/I sources only in the analog partition. Fixed maximum step with backward-Euler numerical damping; no transistor, diode, opamp, switch, noise or thermal model."
+      },
+      "accuracyClaim": "Successive differences only; no certified error bound, physical accuracy or convergence guarantee."
+    },
+    "capturedInputHashFields": [
+      {
+        "owner": "captureProjectBackup/runs/run_mvnt6sjy_2l5mhfy16l6",
+        "field": "netlistHash",
+        "value": "unavailable-in-insecure-context"
+      },
+      {
+        "owner": "captureProjectBackup/runs/run_mvnt6sjy_2l5mhfy16l6",
+        "field": "simulationHash",
+        "value": "unavailable-in-insecure-context"
+      },
+      {
+        "owner": "captureProjectBackup/runs/run_mvntesrs_muu6ljn7pq",
+        "field": "netlistHash",
+        "value": "unavailable-in-insecure-context"
+      },
+      {
+        "owner": "captureProjectBackup/runs/run_mvntesrs_muu6ljn7pq",
+        "field": "simulationHash",
+        "value": "unavailable-in-insecure-context"
+      },
+      {
+        "owner": "captureProjectBackup/captures/capture_mvntf3s0_mncabwoz65/run",
+        "field": "netlistHash",
+        "value": "unavailable-in-insecure-context"
+      },
+      {
+        "owner": "captureProjectBackup/captures/capture_mvntf3s0_mncabwoz65/run",
+        "field": "simulationHash",
+        "value": "unavailable-in-insecure-context"
+      },
+      {
+        "owner": "captureProjectBackup/measurements/measurement_mvntfmbk_3y59qabfwxs/sourceRun",
+        "field": "netlistHash",
+        "value": "unavailable-in-insecure-context"
+      },
+      {
+        "owner": "captureProjectBackup/measurements/measurement_mvntfmbk_3y59qabfwxs/sourceRun",
+        "field": "simulationHash",
+        "value": "unavailable-in-insecure-context"
+      },
+      {
+        "owner": "stepStudyProjectBackup/runs/run_mvntjo2j_m0y2ad66r5q",
+        "field": "netlistHash",
+        "value": "unavailable-in-insecure-context"
+      },
+      {
+        "owner": "stepStudyProjectBackup/runs/run_mvntjo2j_m0y2ad66r5q",
+        "field": "simulationHash",
+        "value": "unavailable-in-insecure-context"
+      },
+      {
+        "owner": "stepStudyProjectBackup/runs/run_mvntk7kp_fh8h6vaf74",
+        "field": "netlistHash",
+        "value": "unavailable-in-insecure-context"
+      },
+      {
+        "owner": "stepStudyProjectBackup/runs/run_mvntk7kp_fh8h6vaf74",
+        "field": "simulationHash",
+        "value": "unavailable-in-insecure-context"
+      },
+      {
+        "owner": "stepStudyProjectBackup/measurements/measurement_mvntl5qi_vd42mly4bfh/sourceRun",
+        "field": "netlistHash",
+        "value": "unavailable-in-insecure-context"
+      },
+      {
+        "owner": "stepStudyProjectBackup/measurements/measurement_mvntl5qi_vd42mly4bfh/sourceRun",
+        "field": "simulationHash",
+        "value": "unavailable-in-insecure-context"
+      },
+      {
+        "owner": "stepStudy/trial/0",
+        "field": "netlistHash",
+        "value": "unavailable-in-insecure-context"
+      },
+      {
+        "owner": "stepStudy/trial/0",
+        "field": "simulationHash",
+        "value": "unavailable-in-insecure-context"
+      },
+      {
+        "owner": "stepStudy/trial/0/measurement/sourceRun",
+        "field": "netlistHash",
+        "value": "unavailable-in-insecure-context"
+      },
+      {
+        "owner": "stepStudy/trial/0/measurement/sourceRun",
+        "field": "simulationHash",
+        "value": "unavailable-in-insecure-context"
+      },
+      {
+        "owner": "stepStudy/trial/1",
+        "field": "netlistHash",
+        "value": "unavailable-in-insecure-context"
+      },
+      {
+        "owner": "stepStudy/trial/1",
+        "field": "simulationHash",
+        "value": "unavailable-in-insecure-context"
+      },
+      {
+        "owner": "stepStudy/trial/1/measurement/sourceRun",
+        "field": "netlistHash",
+        "value": "unavailable-in-insecure-context"
+      },
+      {
+        "owner": "stepStudy/trial/1/measurement/sourceRun",
+        "field": "simulationHash",
+        "value": "unavailable-in-insecure-context"
+      },
+      {
+        "owner": "stepStudy/trial/2",
+        "field": "netlistHash",
+        "value": "unavailable-in-insecure-context"
+      },
+      {
+        "owner": "stepStudy/trial/2",
+        "field": "simulationHash",
+        "value": "unavailable-in-insecure-context"
+      },
+      {
+        "owner": "stepStudy/trial/2/measurement/sourceRun",
+        "field": "netlistHash",
+        "value": "unavailable-in-insecure-context"
+      },
+      {
+        "owner": "stepStudy/trial/2/measurement/sourceRun",
+        "field": "simulationHash",
+        "value": "unavailable-in-insecure-context"
+      },
+      {
+        "owner": "standaloneCoordinatedExecutionPlan",
+        "field": "netlistHash",
+        "value": "unavailable-in-insecure-context"
+      },
+      {
+        "owner": "standaloneCoordinatedExecutionPlan",
+        "field": "simulationHash",
+        "value": "unavailable-in-insecure-context"
+      }
+    ],
+    "normalRunExecutionPlanAvailability": {
+      "captureBackup": [
+        {
+          "runId": "run_mvnt6sjy_2l5mhfy16l6",
+          "hasCoordinatedPlan": true
+        },
+        {
+          "runId": "run_mvntesrs_muu6ljn7pq",
+          "hasCoordinatedPlan": true
+        }
+      ],
+      "studyBackup": [
+        {
+          "runId": "run_mvntjo2j_m0y2ad66r5q",
+          "hasCoordinatedPlan": true
+        },
+        {
+          "runId": "run_mvntk7kp_fh8h6vaf74",
+          "hasCoordinatedPlan": true
+        }
+      ],
+      "studyTrials": [
+        {
+          "index": 0,
+          "hasCoordinatedPlan": true
+        },
+        {
+          "index": 1,
+          "hasCoordinatedPlan": true
+        },
+        {
+          "index": 2,
+          "hasCoordinatedPlan": true
+        }
+      ]
+    },
+    "standaloneExecutionPlan": {
+      "projectId": "project_mvntsujq_a05mzb94lmv",
+      "title": "RC step response",
+      "revision": 2,
+      "analysis": {
+        "type": "tran",
+        "solver": "coordinated",
+        "start": "1",
+        "stop": "100k",
+        "points": 100,
+        "step": "100u",
+        "duration": "5m",
+        "source": "V1",
+        "sweepStart": "0",
+        "sweepStop": "10",
+        "sweepStep": "0.1",
+        "temperature": 27,
+        "reltol": "1e-4",
+        "uic": true
+      },
+      "planKind": "coordinated-transient",
+      "planVersion": 1,
+      "maximumStepSeconds": 0.00009999999999999999,
+      "maximumStepGridTicks": 100000000,
+      "durationSeconds": 0.005,
+      "simulationHashRole": "coordinated execution plan",
+      "partition": null,
+      "exactProjectSchema": true,
+      "exactRegeneratedNetlist": true,
+      "exactRecompiledCoordinatedPlan": true,
+      "browserObservation": {
+        "reportedPoints": 52,
+        "source": "Root agent actual browser QA observation supplied with this artifact",
+        "independentlyValidatedFromThisArtifact": false,
+        "reason": "The standalone execution-plan export contains inputs, not numerical result arrays. This audit did not run the solver."
+      }
+    }
+  },
+  "limitations": [
+    "The preview uses HTTP and the captured netlistHash/simulationHash fields explicitly say unavailable-in-insecure-context. This audit does not claim that the browser cryptographically verified engine inputs.",
+    "SHA-256 digests in artifacts identify the exact downloaded file bytes audited locally; they do not authenticate the reported simulation results or replace unavailable captured input hashes.",
+    "Import validation checks internal consistency and recomputes arithmetic from saved evidence. It does not re-run the circuit, certify physical accuracy, or authenticate an externally edited backup."
+  ],
+  "defects": [],
+  "summary": {
+    "status": "passed",
+    "artifactsAudited": 6,
+    "checks": 25,
+    "passed": 25,
+    "failed": 0,
+    "runtimeFilesModified": 0
+  }
+}

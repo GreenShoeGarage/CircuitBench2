@@ -1,5 +1,125 @@
 # Changelog
 
+## 2.2.0 — 2026-10-25
+
+- Completed the authorized 2.1 and 2.2 batches as one cumulative release.
+- Added worker-backed digital-edge and analog-threshold triggers, explicit
+  pre/post windows, Run until event and bounded Next event navigation. Captures
+  retain original samples, live input history, immutable circuit provenance and
+  explicit unavailable-history durations.
+- Added view-only bus-bit expansion and guarded schematic/plot selection links.
+- Added rise/fall, overshoot, finite-window settling, threshold-delay, transfer
+  gain, AC-cutoff and digital setup/hold measurements. Reusable configurations
+  and independent source evidence survive run removal and backup restore;
+  imported arithmetic is recomputed from retained inputs.
+- Added bounded coordinated transient time-step studies with exact halvings,
+  independent initializations, per-trial evidence, explicit scalar comparisons
+  and user-declared absolute/relative tolerances.
+- Preserved the existing component catalog, broader ngspice analog library,
+  coordinated R/C/L/V/I scope, complete engine package and earlier release
+  evidence. Current validation and delivery details are in docs/VALIDATION.md.
+
+## 2.1 batch — completed within 2.2.0
+
+- Added pinned live controls and direct digital source operation with separate
+  initial/live/recorded state. Momentary controls release on pointer or keyboard
+  cancellation, loss of focus, Stop and session replacement without late writes
+  into a new session.
+- Added compatible wire destinations, explicit configured ADC/DAC and Slice/Join
+  corrective actions, attach-indicator, probe-bit and decoder/display shortcuts,
+  all with atomic undo behavior.
+- Added navigable component/pin/net diagnostics, whole-circuit compatibility
+  alternatives and examples organized by operating goal. A nonlinear mixed
+  feedback circuit is never silently rerouted into feed-forward execution.
+- Recorded the batch checkpoint in evidence/v2.1-batch-checkpoint.json. A
+  separate public 2.1 deployment is not implied.
+
+## 2.0.0 — 2026-10-25
+
+- Promoted the accepted 2.0.0-rc.3 workbench to stable 2.0.0 after the project
+  owner confirmed: “hosting and browser acceptance checks passed.” This closes
+  the remaining hosting and browser release gates on the basis of that owner
+  confirmation. Earlier automated and managed-browser observations retain
+  their original release/build identities.
+- Updated application and package version labels, versioned runtime and
+  recovery paths, current release documentation and complete source/deploy
+  packages to 2.0.0. The stable promotion preserves the accepted application
+  behavior, simulation kernels, models, project format and feature catalog.
+- Corrected archive selection for checksum and integrity records: stable
+  `2.0.0` packages now list exactly the current deploy and source ZIPs, without
+  including older `2.0.0-rc.*` archives sharing their filename prefix. Added a
+  black-box regression using the real packager and preserved the initial audit
+  failure as release evidence.
+- Recorded acceptance provenance and stable-package verification in
+  [VALIDATION.md](docs/VALIDATION.md) and the release integrity receipt.
+  Preparing these packages does not claim a new external-server deployment.
+- Marked the 2.0 milestone complete and 2.1 everyday workbench improvements as
+  the next roadmap milestone. The coordinated analog subset and later
+  nonlinear-engine architecture work retain their existing scope.
+
+## 2.0.0-rc.3 — 2026-10-24
+
+- Added **Help → Check installation** and a loading-failure entry point.
+  The check compares loaded release identity, advertised release/recovery
+  manifests and runtime files, with bounded requests, explicit cancellation
+  and per-stage results. SHA-256 verification is reported as unavailable when
+  the browser cannot provide it; connected checks do not imply offline or
+  upgrade acceptance.
+- Added three independent smoke computations through real disposable workers:
+  digital HIGH through NOT, coordinated Schmitt RC feedback across retained
+  updates, and a 10 V equal-resistor divider through the pinned ngspice WASM.
+  Check workers are disposed after success, failure or cancellation. The
+  working circuit and saved project data are not used or mutated.
+- Added downloadable installation diagnostic JSON, individual asset details
+  and an explicit link to scoped cache repair. The diagnostic checker does
+  not clear caches, unregister service workers or refresh the page.
+- Added a persistent workbench state/time strip that distinguishes active
+  computation, current completed results and saved/historical evidence.
+  Latest/Cursor A and **Return to latest** clarify which retained time drives
+  indicator observations without starting or resuming computation. Selected
+  DVS context distinguishes initial, live and recorded drive commands.
+- Fixed paused Step lifecycle feedback: pending commands disable Step, and
+  completion restores the paused retained-state explanation. Late completions
+  or errors from a replaced session cannot overwrite the new session's UI.
+- Generated current operational release labels and paths in the installation
+  guide, user guide and both recovery-page aliases. The renderer rejects stale
+  current-release references while preserving explicitly historical examples.
+  Corrected old rc.1 guide references and the recovery page's 1.0.0-rc.3 labels.
+  Release manifests distinguish generated documents from byte-identical source
+  copies and record the template/renderer inputs.
+- Added loaded build identity to the application shell, with a documented
+  canonical-shell hashing method and corresponding package checks. Preserved
+  verification of the final served shell bytes and versioned runtime assets.
+- Added a reproducible setup recipe for the exact previously pinned native
+  ngspice42 binary, using verified Ubuntu package archives in a private
+  directory. Records identify the initialization transformation and host
+  runtime libraries; no native/WASM source-rebuild or hermetic-toolchain claim
+  is implied. The coordinated proof accepts an explicit native executable,
+  retains the existing hash pin and excludes user/local initialization with
+  `-n`.
+- Completed a fresh 24-check numerical proof using pinned native42, deployed
+  ngspice45.2 WASM, analytic expectations and retained-state checks. Application
+  test totals, browser observations and remaining acceptance gates are recorded
+  in [VALIDATION.md](docs/VALIDATION.md). The reference recipe and its limits are
+  documented in [reference-environment.md](docs/reference-environment.md).
+- Reassessed the roadmap around release acceptance, everyday bench operation,
+  instruments and a separate nonlinear-engine architecture milestone. The
+  catalog remains 43 parts, 37 models and 41 examples. DVS/DLED and the six
+  earlier 2.0 feature batches retain their existing model/solver scope.
+- Retained release-candidate status. Exact external-host HTTPS/offline/update
+  acceptance and a complete declared browser/output matrix remain distinct
+  from implementation, local browser checks and package preparation.
+
+## 2.0.0-rc.2 — 2026-10-24
+
+- Added `DVS`, a digital voltage source with explicit LOW/HIGH inspector buttons and a scalar digital output. Optional voltage mode exposes separate analog positive/negative terminals, configurable 0/5 V defaults and finite rise/fall times. Its initial voltage matches its chosen state.
+- Added `DLED`, a passive logic indicator with a red glow only for resolved HIGH. LOW is dark, X is amber and Z uses a dashed blue outline. Run/revision checks and exact sparse events control schematic and inspector readouts; Cursor A selects the recorded time. SVG export preserves the glow.
+- Added live binary source controls in both the inspector and Live inputs dialog. Continuous changes retain numerical state, record simulation timestamps and preserve the original project snapshot. Unknown source settings are rejected before applying a live update.
+- Added domain-safe selectable voltage terminals, protection for attached wiring/labels/probes when removing pins, and explicit X/Z rejection for unresolved voltage output. Existing DIN and BUSIN retain their four-state behavior.
+- Added three examples: complementary digital indicators, actual voltage/RC/Schmitt response, and simultaneous HIGH/LOW/X/Z observation. The catalog now contains 43 parts, 37 models and 41 examples (16 analog, 16 digital, 9 mixed).
+- Tightened indicator readback checks for malformed or contradictory scalar metadata and time axes. Preserved the existing seven-segment model identity and all earlier workflows.
+- Verified 595 application tests, fresh pinned-WASM numerical comparisons, source voltage levels through actual WASM workers, and browser live switching. Exact results and remaining external-host gates are in [VALIDATION.md](docs/VALIDATION.md).
+
 ## 2.0.0-rc.1 — 2026-10-24
 
 - Implemented all six requested batches: working seven-segment display,

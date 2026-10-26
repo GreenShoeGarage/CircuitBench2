@@ -60,7 +60,7 @@ function harness({hashDeferred=false,workerDeferred=false,invalidTable}={}){
  const hash=deferred(),worker=deferred();
  const engine={running:false,stop(){state.stops++;return this.running;},runTruthTable(generated,options){state.workerRuns++;this.running=true;state.result=generateTruthTable(generated.simulation.digital,options);return (workerDeferred?worker.promise:Promise.resolve(state.result)).finally(()=>{this.running=false;});}};
  let serial=0;
- const context=vm.createContext({
+ const context=vm.createContext({ captureRecords:[],measurementRecords:[],stepStudies:[],
   project,continuousPreparation:null,continuousSession:null,continuousRun:null,studyAbort:null,analogExperiments:[],truthTables:[],timingMeasurements:[],runs:[],runTask:null,preparing:false,truthTableTask:null,selection:[],selectedEndpoint:null,undoStack:[],redoStack:[],VERSION,
   $,showDialog,engine,clone:structuredClone,Date,Map,JSON,getPart,getPins,parseTruthTable,buildTruthTable,setComponentParams,validateProject,validateTruthTables,generateNetlist,normalizeLUTRows,lutRowsHTML,esc,
   uid:()=>`table_test_${++serial}`,hashText:()=>hashDeferred?hash.promise:Promise.resolve('a'.repeat(64)),
@@ -158,7 +158,7 @@ test('deleting the circuit does not bypass backup confirmation for retained trut
  const h=harness();await h.start();const recorded=structuredClone(h.context.truthTables[0]);
  const p=h.context.project;removeItems(p,[...p.circuit.components,...p.layout.annotations].map(item=>item.id));p.notes='';p.question='';p.assumptions=[];
  validateProject(p);let replacements=0;h.context.confirmReplace('Replace?',()=>replacements++);
- assert.equal(replacements,0);assert.match(h.state.html,/saved runs, truth tables, timing measurements and analog experiments/);h.$('confirm-backup').onclick();assert.equal(h.state.backups,1);
+ assert.equal(replacements,0);assert.match(h.state.html,/saved runs, truth tables, timing measurements, analog experiments/);h.$('confirm-backup').onclick();assert.equal(h.state.backups,1);
  h.$('confirm-cancel').onclick();assert.equal(replacements,0);assert.deepEqual(h.context.truthTables[0],recorded);
  h.context.confirmReplace('Replace?',()=>replacements++);h.$('confirm-go').onclick();assert.equal(replacements,1);
 });

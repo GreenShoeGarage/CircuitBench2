@@ -1,0 +1,15 @@
+✔ dedicated source toggle uses initial edits while idle and owned live commands during a session (10.855528ms)
+✔ the dedicated momentary target is disabled before a retained session exists (1.02614ms)
+✔ pinning and momentary preferences autosave without stopping or revising an active circuit (0.99855ms)
+✔ changing momentary preference safely releases an owned live hold first (2.385641ms)
+✔ an old preference change waiting on release cannot attach itself to a replacement project (3.076008ms)
+✔ queued direct toggles use the desired value so two rapid activations return to LOW (1.088032ms)
+✔ a stale dedicated release cannot enter the next session (1.080441ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 25.741378

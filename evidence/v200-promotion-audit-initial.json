@@ -1,0 +1,138 @@
+{
+  "format": "CircuitBenchStablePromotionArchiveAudit",
+  "formatVersion": 1,
+  "version": "2.0.0",
+  "priorVersion": "2.0.0-rc.3",
+  "startedAt": "2026-10-25T11:55:44.214274+00:00",
+  "status": "failed",
+  "scope": "Independent stable-promotion byte-delta, archive, source-provenance and isolated rebuild verification. Hosting/browser acceptance is supplied by the user and is not re-executed by this audit.",
+  "checks": [
+    {
+      "name": "CircuitBench-2.0.0-deploy.zip: safe unique unencrypted paths and no symlinks",
+      "passed": true,
+      "details": {
+        "entries": 446,
+        "unsafe": [],
+        "duplicates": 0
+      }
+    },
+    {
+      "name": "CircuitBench-2.0.0-deploy.zip: all ZIP CRCs",
+      "passed": true
+    },
+    {
+      "name": "CircuitBench-2.0.0-source.zip: safe unique unencrypted paths and no symlinks",
+      "passed": true,
+      "details": {
+        "entries": 515,
+        "unsafe": [],
+        "duplicates": 0
+      }
+    },
+    {
+      "name": "CircuitBench-2.0.0-source.zip: all ZIP CRCs",
+      "passed": true
+    },
+    {
+      "name": "source ZIP has the single CircuitBench root",
+      "passed": true
+    },
+    {
+      "name": "frozen source ZIP matches every current source file",
+      "passed": true,
+      "details": {
+        "files": 515
+      }
+    },
+    {
+      "name": "checksum entry uses SHA-256",
+      "passed": true
+    },
+    {
+      "name": "checksum entry uses SHA-256",
+      "passed": true
+    },
+    {
+      "name": "checksum entry uses SHA-256",
+      "passed": true
+    },
+    {
+      "name": "checksum entry uses SHA-256",
+      "passed": true
+    },
+    {
+      "name": "checksum entry uses SHA-256",
+      "passed": true
+    },
+    {
+      "name": "checksum entry uses SHA-256",
+      "passed": true
+    },
+    {
+      "name": "checksum entry uses SHA-256",
+      "passed": true
+    },
+    {
+      "name": "checksum entry uses SHA-256",
+      "passed": true
+    },
+    {
+      "name": "checksums name exactly the two stable ZIPs",
+      "passed": false
+    }
+  ],
+  "commands": [],
+  "limitations": [
+    "This audit does not execute a browser, deploy the public host or rerun the numerical reference comparison.",
+    "The rc.3 numerical, application and captured-output records retain their original identities and source hashes.",
+    "Rebuild equality concerns every deploy file, not ZIP timestamps or compression-container identity."
+  ],
+  "originalReleaseFiles": {
+    "CircuitBench-2.0.0-deploy.zip": {
+      "bytes": 13782682,
+      "sha256": "0096143cb238e078139e4f79373d89ad7d1c4b5952ea4e6bfa0a6f7c5a1c791f"
+    },
+    "CircuitBench-2.0.0-source.zip": {
+      "bytes": 13994312,
+      "sha256": "a056fc615825c7c5a5e3751b712958fbb52d342b7e10b2f0ac4f3d85ca51fb90"
+    },
+    "CircuitBench-2.0.0-SHA256SUMS.txt": {
+      "bytes": 798,
+      "sha256": "d4da9ffa4e025f962d1a4e1fa0b8c0601bc139c2aa4ca51e39e9933f16c3f26d"
+    },
+    "CircuitBench-2.0.0-release-integrity.json": {
+      "bytes": 2593,
+      "sha256": "89f83dd8a46b1528811d9bde47b773fdfcd53e98eac1e3a20f4b9b02ac85a51b"
+    }
+  },
+  "archives": {
+    "CircuitBench-2.0.0-deploy.zip": {
+      "bytes": 13782682,
+      "sha256": "0096143cb238e078139e4f79373d89ad7d1c4b5952ea4e6bfa0a6f7c5a1c791f",
+      "entries": 446,
+      "files": 446,
+      "uncompressedBytes": 23194600
+    },
+    "CircuitBench-2.0.0-source.zip": {
+      "bytes": 13994312,
+      "sha256": "a056fc615825c7c5a5e3751b712958fbb52d342b7e10b2f0ac4f3d85ca51fb90",
+      "entries": 515,
+      "files": 515,
+      "uncompressedBytes": 23785114
+    }
+  },
+  "priorSourceArchive": {
+    "path": "/workspace/scratch/141bc601d3b6/release/CircuitBench-2.0.0-rc.3-source.zip",
+    "bytes": 13968520,
+    "sha256": "bfabce647adcff7927e7b3f44ac6ceb334e90c38ad8a22810cf7d20c91d40fe8"
+  },
+  "error": {
+    "type": "AssertionError",
+    "message": "checksums name exactly the two stable ZIPs"
+  },
+  "completedAt": "2026-10-25T11:55:44.697920+00:00",
+  "checkTotals": {
+    "passed": 14,
+    "failed": 1
+  }
+}

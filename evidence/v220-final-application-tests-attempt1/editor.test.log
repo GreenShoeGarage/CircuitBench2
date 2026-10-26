@@ -1,0 +1,19 @@
+✔ visual crossings stay separate until an explicit junction splits both edges (9.533468ms)
+✔ wire-mode junction insertion touches only the chosen wire at a crossing (1.75364ms)
+✔ movement, rotation, and mirroring preserve semantic electrical connections (1.664338ms)
+✔ RC move-rotate-mirror reroutes the pin approach around C1 while keeping deliberate bends and nets (2.960566ms)
+✔ drag previews are isolated and one release creates one undoable edit (1.051508ms)
+✔ cancelled pointer gestures discard their preview without a mutation (0.36018ms)
+✔ clipboard retains a snapshot and pastes safely into a different project (2.957912ms)
+✔ focused component arrows select and move; form input shortcuts are untouched (0.348953ms)
+✔ wire bend keyboard deletion removes only a bend, not the wire (0.747951ms)
+✔ keyboard wire activation joins two real pin identifiers and cancellation discards drafts (0.909158ms)
+✔ SVG export can render an immutable historical snapshot with escaped text (1.7671ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 30.515901

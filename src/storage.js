@@ -2,6 +2,9 @@ import {validateTruthTables} from './truth-table-evidence.js';
 import {validateTimingRecords} from './timing-evidence.js';
 import {validateExperimentRecords} from './experiments.js';
 import {validateContinuousProvenance} from './continuous-evidence.js';
+import {validateCaptureRecords} from './capture.js';
+import {validateMeasurementRecords} from './measurement-evidence.js';
+import {validateStepStudyRecords} from './step-study.js';
 /** Browser-local persistence. Disk imports are never written back implicitly. */
 const DATABASE='circuitbench-v1';
 let database;
@@ -27,6 +30,7 @@ export function safeEnvelope(input,validateProject){
  const stateFor=(value,vector)=>typeof value==='string'&&value.length===(vector.kind==='bus'?vector.width:1)&&/^[01XZ]+$/.test(value);
  const runs=incoming.map(r=>{
    if(!r||typeof r!=='object'||!validId(r.id)||ids.has(r.id)||!['running','completed','completed-with-warnings','cancelled','timed-out','failed'].includes(r.status))throw new Error('A saved simulation record is malformed or has a duplicate identifier.');ids.add(r.id);
+   if(r.sourceRunId!==undefined&&(!validId(r.sourceRunId)||r.sourceRunId===r.id))throw new Error('A saved snapshot requires a distinct valid source run identifier.');
    if(typeof r.netlist!=='string'||r.netlist.length>256000)throw new Error('A saved run has no valid netlist.');
    if(r.coordinatedPlan!=null&&(!r.coordinatedPlan||r.coordinatedPlan.kind!=='coordinated-transient'||r.coordinatedPlan.version!==1||!text(JSON.stringify(r.coordinatedPlan),256000)))throw new Error('A saved coordinated execution plan is invalid or too large.');
    if(r.simulation!=null&&(!r.simulation||typeof r.simulation!=='object'||Array.isArray(r.simulation)||!['digital','mixed'].includes(r.simulation.mode)||!text(JSON.stringify(r.simulation),256000)))throw new Error('A saved digital simulation plan is invalid or too large.');
@@ -96,5 +100,8 @@ export function safeEnvelope(input,validateProject){
  const truthTables=validateTruthTables(input.truthTables,validateProject);
  const timingMeasurements=validateTimingRecords(input.timingMeasurements,validateProject,{runs});
  const analogExperiments=validateExperimentRecords(input.analogExperiments,validateProject);
- return {format:'CircuitBench',formatVersion:1,project:p,runs,truthTables,timingMeasurements,analogExperiments,activeRunId:typeof input.activeRunId==='string'?input.activeRunId:null,baselineId:typeof input.baselineId==='string'?input.baselineId:null};
+ const captureRecords=validateCaptureRecords(input.captureRecords,run=>safeEnvelope({project:run.projectSnapshot,runs:[run]},validateProject).runs[0]);
+ const measurementRecords=validateMeasurementRecords(input.measurementRecords,validateProject,{runs:[...runs,...captureRecords.map(record=>record.run)]});
+ const stepStudies=validateStepStudyRecords(input.stepStudies,validateProject);
+ return {format:'CircuitBench',formatVersion:1,project:p,runs,truthTables,timingMeasurements,analogExperiments,captureRecords,measurementRecords,stepStudies,activeRunId:typeof input.activeRunId==='string'?input.activeRunId:null,baselineId:typeof input.baselineId==='string'?input.baselineId:null};
 }

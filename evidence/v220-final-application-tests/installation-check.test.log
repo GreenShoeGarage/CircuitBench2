@@ -1,0 +1,28 @@
+✔ full advertised inventory, build identity and all three smoke paths pass independently (63.715201ms)
+✔ the authored smoke fixtures exercise real logic and actual retained feedback (8.644888ms)
+✔ manifest validation rejects path escapes, duplicates, unrelated roots and excessive allocations before requesting files (4.42815ms)
+✔ version/build mismatches fail manifests without following their inventory while smoke results remain independent (19.720035ms)
+✔ a tampered recovery document does not authorize any runtime fetch (5.313233ms)
+✔ same-length changed JavaScript is rejected by its SHA-256 (9.914578ms)
+✔ HTML fallbacks, wrong JavaScript MIME and invalid WebAssembly signatures produce distinct diagnostics (30.777646ms)
+✔ generic binary MIME is accepted for correct WASM bytes while missing SHA remains explicitly unavailable (8.827777ms)
+✔ a missing loaded-shell build cannot be reported as a complete release match (8.988594ms)
+✔ oversized declared responses are rejected before reading and redirected responses are rejected (25.454128ms)
+✔ decoded streaming growth is bounded even with a missing or compressed Content-Length (19.785801ms)
+✔ opaque worker failure is retained without guessing a CSP or cache cause and later paths still run (15.366112ms)
+✔ an incorrect worker result is detected rather than equating worker startup with a passed smoke test (11.18361ms)
+✔ cancelling an active engine check stops it and prevents later engines from starting (7.168742ms)
+✔ request timeout aborts a stalled fetch and retains a bounded failure report (9.642202ms)
+✔ the total deadline aborts work even if a fetch ignores its cancellation signal (6.407922ms)
+✔ already-cancelled runs and unsupported file scopes perform no network or engine work (0.43511ms)
+✔ missing browser capabilities are unavailable and progress callback errors cannot leak workers (5.696935ms)
+✔ UI escapes observed failures and provides explicit cancellation/download/recovery controls (17.361044ms)
+✔ all three installation fixtures complete through the production worker facades and all workers terminate (240.621472ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 526.837573

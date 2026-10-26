@@ -1,0 +1,15 @@
+node:internal/fs/promises:1345
+  return new FileHandle(await PromisePrototypeThen(
+                        ^
+
+Error: ENOENT: no such file or directory, open '/usr/bin/ngspice'
+    at async open (node:internal/fs/promises:1345:25)
+    at async Object.readFile (node:internal/fs/promises:2003:14)
+    at async file:///workspace/scratch/141bc601d3b6/circuitbench/scripts/prove-coordinated.mjs:16:23 {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/usr/bin/ngspice'
+}
+
+Node.js v24.22.1

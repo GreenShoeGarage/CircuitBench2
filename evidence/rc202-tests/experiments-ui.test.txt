@@ -1,0 +1,19 @@
+✔ setup presents usable controls and analog choices without a run (29.774632ms)
+✔ engineering sweep values round-trip without changing circuit state (4.498102ms)
+✔ binding switches modes and keeps listeners removable (7.747703ms)
+✔ changing the parameter updates the units and sensible sweep defaults (2.424376ms)
+✔ AC controls offer complex measurements and validate frequency (3.661416ms)
+✔ transient windows require both endpoints and offer RMS (4.129836ms)
+✔ ineligible projects show an actionable notice without study controls (5.249484ms)
+✔ results show statistics, exact values, an accessible chart and all trials (28.914539ms)
+✔ failed trial rows retain diagnostics and have no plotted number (13.459451ms)
+✔ results distinguish stale and restored evidence and escape authored text (10.927538ms)
+✔ history preserves newest-first navigation and cancellation status (9.615924ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 127.648576

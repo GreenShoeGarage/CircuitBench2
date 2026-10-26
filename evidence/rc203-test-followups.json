@@ -1,0 +1,169 @@
+{
+  "version": "2.0.0-rc.3",
+  "reason": "A browser-observed Step state message remained in-flight after the command settled. The application completion handler was corrected; these eight suites consume actual app.js handlers or code and were rerun. Two new Step regressions are included.",
+  "command": "Each listed test file executed directly with node, two independent files at a time. This is a targeted follow-up, not a second full application sweep.",
+  "applicationSourceSha256": "b1531fb1f854e20cbe46f2ab4df6c4262fe201b44aaa18fea2ff66ed6405782d",
+  "results": [
+    {
+      "file": "tests/autosave.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.082,
+      "counts": {
+        "tests": 4,
+        "suites": 0,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/autosave.test-after-step-fix.txt",
+      "transcriptSha256": "e340edbdd8be9c9e8d5a093d5694a11829d0f68b93ef096760c41c963dd6cd4a",
+      "sourceSha256": "7fa6183eb0fa16f6500135092675bfc7a112bd08341ae28716bb8a6142524c5d",
+      "testedAt": "2026-10-25T02:27:29.204611+00:00",
+      "execution": "targeted-rerun-after-step-lifecycle-fix",
+      "applicationSourceSha256": "b1531fb1f854e20cbe46f2ab4df6c4262fe201b44aaa18fea2ff66ed6405782d"
+    },
+    {
+      "file": "tests/continuous-app.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.242,
+      "counts": {
+        "tests": 17,
+        "suites": 0,
+        "pass": 17,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/continuous-app.test-after-step-fix.txt",
+      "transcriptSha256": "fbefe43a5a16b014366f4c42114355780a0938bb44963edd2ffd9d2b3dd44213",
+      "sourceSha256": "33ac6df03b9713ab1e5370ecec2390c7f5d3323e60f84b70242fde2b96821f3a",
+      "testedAt": "2026-10-25T02:27:29.205212+00:00",
+      "execution": "targeted-rerun-after-step-lifecycle-fix",
+      "applicationSourceSha256": "b1531fb1f854e20cbe46f2ab4df6c4262fe201b44aaa18fea2ff66ed6405782d"
+    },
+    {
+      "file": "tests/experiments-app.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.473,
+      "counts": {
+        "tests": 18,
+        "suites": 0,
+        "pass": 18,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/experiments-app.test-after-step-fix.txt",
+      "transcriptSha256": "0ced6e601401af10bf75a4f79581e4ad1aa4b4c292afe83820fbce6de0e9bfd2",
+      "sourceSha256": "3180a1650d9b06d7895689fec7829418ee90cc833c043c1834ddeb22c00233ce",
+      "testedAt": "2026-10-25T02:27:29.286714+00:00",
+      "execution": "targeted-rerun-after-step-lifecycle-fix",
+      "applicationSourceSha256": "b1531fb1f854e20cbe46f2ab4df6c4262fe201b44aaa18fea2ff66ed6405782d"
+    },
+    {
+      "file": "tests/installation-app.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.123,
+      "counts": {
+        "tests": 11,
+        "suites": 0,
+        "pass": 11,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/installation-app.test-after-step-fix.txt",
+      "transcriptSha256": "bec45c7630f2856de80d733d0a8a0fffc9fc3d215acd4ca7e8e6d36ad936f0a5",
+      "sourceSha256": "bac73704bec123d7d4d077fad6cbd3cc08b84c083c5a32771d59bebccaca8965",
+      "testedAt": "2026-10-25T02:27:29.448113+00:00",
+      "execution": "targeted-rerun-after-step-lifecycle-fix",
+      "applicationSourceSha256": "b1531fb1f854e20cbe46f2ab4df6c4262fe201b44aaa18fea2ff66ed6405782d"
+    },
+    {
+      "file": "tests/logic-io-app.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.109,
+      "counts": {
+        "tests": 10,
+        "suites": 0,
+        "pass": 10,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/logic-io-app.test-after-step-fix.txt",
+      "transcriptSha256": "1dd59d04f0d3918b91685d2ad20e51e7af11b534fc5f56dc1689f220c7f2e781",
+      "sourceSha256": "507d9f6946c6b9c4d6ff5110395dd5ae47f934426855d33d66f5a3bd9acc43df",
+      "testedAt": "2026-10-25T02:27:29.570864+00:00",
+      "execution": "targeted-rerun-after-step-lifecycle-fix",
+      "applicationSourceSha256": "b1531fb1f854e20cbe46f2ab4df6c4262fe201b44aaa18fea2ff66ed6405782d"
+    },
+    {
+      "file": "tests/timing-app.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.393,
+      "counts": {
+        "tests": 15,
+        "suites": 0,
+        "pass": 15,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/timing-app.test-after-step-fix.txt",
+      "transcriptSha256": "47dcfab8d5392a403b8334d40fb4a6a4e58e0c3674279e7028e1a3e6c5f60c88",
+      "sourceSha256": "0ad44916bc7c35d3f4902ff29455128659c5c6feeffe608529b214764aa80656",
+      "testedAt": "2026-10-25T02:27:29.679811+00:00",
+      "execution": "targeted-rerun-after-step-lifecycle-fix",
+      "applicationSourceSha256": "b1531fb1f854e20cbe46f2ab4df6c4262fe201b44aaa18fea2ff66ed6405782d"
+    },
+    {
+      "file": "tests/truth-table-app.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.173,
+      "counts": {
+        "tests": 17,
+        "suites": 0,
+        "pass": 17,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/truth-table-app.test-after-step-fix.txt",
+      "transcriptSha256": "e0c5fcb938167949e76e26104f99b1b7455cab20bbdadb229fff2f5bef3780b3",
+      "sourceSha256": "7a9ebe07201311cbc1937372df35b0425913e4b2e0b18986cf83df7d3e3de798",
+      "testedAt": "2026-10-25T02:27:29.760287+00:00",
+      "execution": "targeted-rerun-after-step-lifecycle-fix",
+      "applicationSourceSha256": "b1531fb1f854e20cbe46f2ab4df6c4262fe201b44aaa18fea2ff66ed6405782d"
+    },
+    {
+      "file": "tests/workbench-state-app.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.256,
+      "counts": {
+        "tests": 11,
+        "suites": 0,
+        "pass": 11,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/workbench-state-app.test-after-step-fix.txt",
+      "transcriptSha256": "54bcd38e3771aeb846b4a6a4f0ba2405a9acac184aa750321fc72734c39a3255",
+      "sourceSha256": "868a51add099425b1a5abb5eccd85f79789af0964dba3f19b8b7e8d8275d9661",
+      "testedAt": "2026-10-25T02:27:29.933421+00:00",
+      "execution": "targeted-rerun-after-step-lifecycle-fix",
+      "applicationSourceSha256": "b1531fb1f854e20cbe46f2ab4df6c4262fe201b44aaa18fea2ff66ed6405782d"
+    }
+  ],
+  "status": "passed"
+}

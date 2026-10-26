@@ -1,0 +1,17 @@
+✔ converter ports retain scalar analog terminals and exact 2–8 bit digital widths (11.151549ms)
+✔ converter wiring rejects domain crossing and leaves incompatible width edits unchanged (6.57483ms)
+✔ authored converter circuit preserves differential polarity, word order and DAC reference offset (7.681771ms)
+✔ generated DAC voltage-source names cannot collide with authored source references (3.474034ms)
+✔ converter execution preflight rejects unsupported modes, invalid units and unknown startup codes (10.393552ms)
+✔ ADC conversion delay remains shorter than its sample period after 1 ps rounding (2.926018ms)
+✔ compiler boundaries never turn a partially unknown DAC startup word into a numeric code (1.647856ms)
+✔ converter backup round trips preserve initial X, complete bus events and executable input identity (7.57991ms)
+✔ legacy analog project backups retain their original default solver (0.736885ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 58.133413

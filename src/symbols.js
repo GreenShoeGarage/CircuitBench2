@@ -1,5 +1,5 @@
 /* CircuitBench schematic symbols. Original artwork, MIT licensed. */
-import { sevenSegmentMarkup } from './displays.js';
+import { sevenSegmentMarkup, logicIndicatorMarkup } from './displays.js';
 export const escapeXML = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
 
 const line = d => `<path d="${d}"/>`;
@@ -22,6 +22,8 @@ export function symbolMarkup(type, params = {}, displayState = null) {
     case 'SW': return `${line('M-40 0H-20M-20 0L15 -19M20 0H40M-20 40V25M20 40V25')}<circle cx="-20" cy="0" r="3"/><circle cx="20" cy="0" r="3"/><path class="control-link" d="M0 19V5" stroke-dasharray="3 3"/><text class="pin-sign" x="-20" y="21">+</text><text class="pin-sign" x="20" y="21">−</text>`;
     case 'OPAMP': return `${line('M-25 -32L29 0L-25 32ZM-40 -20H-25M-40 20H-25M29 0H40M0 -40V-17M0 40V17M-20 -20H-10M-15 -25V-15M-20 20H-10')}`;
     case 'DIN': return `<rect x="-26" y="-22" width="52" height="44" rx="4"/>${line('M26 0H40')}<text class="symbol-type" x="0" y="5">0 / 1</text>`;
+    case 'DVS': return `<circle cx="0" cy="0" r="24"/>${line('M24 0H40')}${params.outputMode==='logic-voltage'?`${line('M0 -40V-24M0 24V40M-4 -15H4M0 -19V-11M-4 17H4')}`:''}<text class="symbol-type" x="0" y="5" style="font-size:12px">0 / 1</text><text class="pin-sign" x="30" y="-7" style="font-size:8px">Q</text>`;
+    case 'DLED': return `${line('M-40 0H-21')}${logicIndicatorMarkup(displayState)}`;
     case 'CLOCK': return `<rect x="-26" y="-22" width="52" height="44" rx="4"/>${line('M26 0H40M-18 8H-10V-8H7V8H18')}`;
     case 'BUF': return `${line('M-25 -25L25 0L-25 25ZM-40 0H-25M25 0H40')}`;
     case 'NOT': return `${line('M-25 -25L21 0L-25 25ZM-40 0H-25M31 0H40')}<circle cx="26" cy="0" r="5"/>`;

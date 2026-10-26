@@ -1,0 +1,1103 @@
+{
+  "format": "CircuitBench",
+  "formatVersion": 1,
+  "appVersion": "2.0.0-rc.2",
+  "savedAt": "2026-10-25T01:37:06.590Z",
+  "project": {
+    "schemaVersion": 1,
+    "appVersion": "2.0.0-rc.2",
+    "id": "project_mvn5q9lh_im5ih24h518",
+    "title": "Logic indicators: high, low, unknown and released",
+    "revision": 0,
+    "createdAt": "2026-10-25T01:36:48.149Z",
+    "updatedAt": "2026-10-25T01:36:48.149Z",
+    "question": "How can a visible indicator preserve unknown and released logic instead of guessing a binary value?",
+    "notes": "Four scalar patterns cycle through 1, 0, X and Z at one-millisecond boundaries. Every interval contains one example of each state.\n\nExpected: Only the HIGH indicator glows red. LOW stays dark, X is explicitly unknown, and Z is explicitly high impedance. Cursor A selects the preserved event states at that exact time.\n\nTry: Run, then move Cursor A before and after 1 ms. At an event time, the newly recorded state is already in effect. Clear the cursor to return to the last retained states.",
+    "assumptions": [
+      "Logic indicators observe resolved 0/1/X/Z events. They add no load or drive strength, and the red glow does not represent LED current or physical brightness.",
+      "The displayed state belongs to the selected time and the current project revision. Missing or stale results remain unobserved.",
+      "The digital-only source output is a binary logic signal. Its optional voltage terminals must be enabled and wired explicitly for analog experiments."
+    ],
+    "circuit": {
+      "components": [
+        {
+          "id": "c_mvn5q9lh_zybuznjr76",
+          "ref": "PAT1",
+          "type": "PATTERN",
+          "params": {
+            "width": "1",
+            "pattern": "0,1; 1m,0; 2m,X; 3m,Z; 4m,1",
+            "repeat": "0"
+          },
+          "model": "CB_PATTERN"
+        },
+        {
+          "id": "c_mvn5q9lh_0unktugif9be",
+          "ref": "IND1",
+          "type": "DLED",
+          "params": {},
+          "model": "CB_DLED"
+        },
+        {
+          "id": "c_mvn5q9lh_3z8s129fdo",
+          "ref": "PAT2",
+          "type": "PATTERN",
+          "params": {
+            "width": "1",
+            "pattern": "0,0; 1m,X; 2m,Z; 3m,1; 4m,0",
+            "repeat": "0"
+          },
+          "model": "CB_PATTERN"
+        },
+        {
+          "id": "c_mvn5q9lh_nqn5gnkxa8",
+          "ref": "IND2",
+          "type": "DLED",
+          "params": {},
+          "model": "CB_DLED"
+        },
+        {
+          "id": "c_mvn5q9lh_1mdmk49i1lb",
+          "ref": "PAT3",
+          "type": "PATTERN",
+          "params": {
+            "width": "1",
+            "pattern": "0,X; 1m,Z; 2m,1; 3m,0; 4m,X",
+            "repeat": "0"
+          },
+          "model": "CB_PATTERN"
+        },
+        {
+          "id": "c_mvn5q9lh_g7gw9yrl19f",
+          "ref": "IND3",
+          "type": "DLED",
+          "params": {},
+          "model": "CB_DLED"
+        },
+        {
+          "id": "c_mvn5q9lh_5ndk30rkr7t",
+          "ref": "PAT4",
+          "type": "PATTERN",
+          "params": {
+            "width": "1",
+            "pattern": "0,Z; 1m,1; 2m,0; 3m,X; 4m,Z",
+            "repeat": "0"
+          },
+          "model": "CB_PATTERN"
+        },
+        {
+          "id": "c_mvn5q9lh_zkdnc1j60ib",
+          "ref": "IND4",
+          "type": "DLED",
+          "params": {},
+          "model": "CB_DLED"
+        }
+      ],
+      "connections": [
+        {
+          "id": "w_mvn5q9lh_xwxzh9y0don",
+          "a": "c_mvn5q9lh_zybuznjr76:out",
+          "b": "c_mvn5q9lh_0unktugif9be:in"
+        },
+        {
+          "id": "w_mvn5q9lh_u9ngbfeqxgc",
+          "a": "c_mvn5q9lh_3z8s129fdo:out",
+          "b": "c_mvn5q9lh_nqn5gnkxa8:in"
+        },
+        {
+          "id": "w_mvn5q9lh_a64d3ovmj84",
+          "a": "c_mvn5q9lh_1mdmk49i1lb:out",
+          "b": "c_mvn5q9lh_g7gw9yrl19f:in"
+        },
+        {
+          "id": "w_mvn5q9lh_ub0p2w9dbfd",
+          "a": "c_mvn5q9lh_5ndk30rkr7t:out",
+          "b": "c_mvn5q9lh_zkdnc1j60ib:in"
+        }
+      ],
+      "junctions": [],
+      "labels": [
+        {
+          "id": "label_mvn5q9lh_xynkpqhvhsg",
+          "name": "state_1",
+          "target": "c_mvn5q9lh_zybuznjr76:out"
+        },
+        {
+          "id": "label_mvn5q9lh_7qpc0u87szc",
+          "name": "state_2",
+          "target": "c_mvn5q9lh_3z8s129fdo:out"
+        },
+        {
+          "id": "label_mvn5q9lh_vniax6z77xt",
+          "name": "state_3",
+          "target": "c_mvn5q9lh_1mdmk49i1lb:out"
+        },
+        {
+          "id": "label_mvn5q9li_ri4jsx7itef",
+          "name": "state_4",
+          "target": "c_mvn5q9lh_5ndk30rkr7t:out"
+        }
+      ]
+    },
+    "layout": {
+      "components": {
+        "c_mvn5q9lh_zybuznjr76": {
+          "x": 120,
+          "y": 160,
+          "rotation": 0,
+          "mirror": false
+        },
+        "c_mvn5q9lh_0unktugif9be": {
+          "x": 360,
+          "y": 160,
+          "rotation": 0,
+          "mirror": false
+        },
+        "c_mvn5q9lh_3z8s129fdo": {
+          "x": 640,
+          "y": 160,
+          "rotation": 0,
+          "mirror": false
+        },
+        "c_mvn5q9lh_nqn5gnkxa8": {
+          "x": 880,
+          "y": 160,
+          "rotation": 0,
+          "mirror": false
+        },
+        "c_mvn5q9lh_1mdmk49i1lb": {
+          "x": 120,
+          "y": 400,
+          "rotation": 0,
+          "mirror": false
+        },
+        "c_mvn5q9lh_g7gw9yrl19f": {
+          "x": 360,
+          "y": 400,
+          "rotation": 0,
+          "mirror": false
+        },
+        "c_mvn5q9lh_5ndk30rkr7t": {
+          "x": 640,
+          "y": 400,
+          "rotation": 0,
+          "mirror": false
+        },
+        "c_mvn5q9lh_zkdnc1j60ib": {
+          "x": 880,
+          "y": 400,
+          "rotation": 0,
+          "mirror": false
+        }
+      },
+      "wires": {
+        "w_mvn5q9lh_xwxzh9y0don": {
+          "points": []
+        },
+        "w_mvn5q9lh_u9ngbfeqxgc": {
+          "points": []
+        },
+        "w_mvn5q9lh_a64d3ovmj84": {
+          "points": []
+        },
+        "w_mvn5q9lh_ub0p2w9dbfd": {
+          "points": []
+        }
+      },
+      "junctions": {},
+      "annotations": [
+        {
+          "id": "note_mvn5q9li_v3ef3v7jhqq",
+          "x": 90,
+          "y": 50,
+          "text": "HIGH = red glow · LOW = dark · X = unknown · Z = released"
+        },
+        {
+          "id": "note_mvn5q9li_fc4rh4uexm",
+          "x": 90,
+          "y": 540,
+          "text": "Move Cursor A through the four one-millisecond windows to inspect actual resolved states."
+        }
+      ]
+    },
+    "analysis": {
+      "type": "tran",
+      "solver": "ngspice",
+      "start": "1",
+      "stop": "100k",
+      "points": 60,
+      "step": "10u",
+      "duration": "4.5m",
+      "source": "V1",
+      "sweepStart": "0",
+      "sweepStop": "10",
+      "sweepStep": "0.1",
+      "temperature": 27,
+      "reltol": "1e-4",
+      "uic": false
+    },
+    "probes": [
+      {
+        "id": "probe_mvn5q9lh_xe8uusubpy9",
+        "kind": "logic",
+        "label": "Pattern 1",
+        "a": "c_mvn5q9lh_zybuznjr76:out",
+        "b": null
+      },
+      {
+        "id": "probe_mvn5q9lh_5gle90veuf",
+        "kind": "logic",
+        "label": "Pattern 2",
+        "a": "c_mvn5q9lh_3z8s129fdo:out",
+        "b": null
+      },
+      {
+        "id": "probe_mvn5q9lh_ol9q4d6u6va",
+        "kind": "logic",
+        "label": "Pattern 3",
+        "a": "c_mvn5q9lh_1mdmk49i1lb:out",
+        "b": null
+      },
+      {
+        "id": "probe_mvn5q9li_p56nrvz4vcc",
+        "kind": "logic",
+        "label": "Pattern 4",
+        "a": "c_mvn5q9lh_5ndk30rkr7t:out",
+        "b": null
+      }
+    ],
+    "workspace": "schematic",
+    "netlistText": ""
+  },
+  "runs": [
+    {
+      "id": "run_mvn5qaf7_nr6ttnb11fd",
+      "revision": 0,
+      "projectId": "project_mvn5q9lh_im5ih24h518",
+      "projectSnapshot": {
+        "schemaVersion": 1,
+        "appVersion": "2.0.0-rc.2",
+        "id": "project_mvn5q9lh_im5ih24h518",
+        "title": "Logic indicators: high, low, unknown and released",
+        "revision": 0,
+        "createdAt": "2026-10-25T01:36:48.149Z",
+        "updatedAt": "2026-10-25T01:36:48.149Z",
+        "question": "How can a visible indicator preserve unknown and released logic instead of guessing a binary value?",
+        "notes": "Four scalar patterns cycle through 1, 0, X and Z at one-millisecond boundaries. Every interval contains one example of each state.\n\nExpected: Only the HIGH indicator glows red. LOW stays dark, X is explicitly unknown, and Z is explicitly high impedance. Cursor A selects the preserved event states at that exact time.\n\nTry: Run, then move Cursor A before and after 1 ms. At an event time, the newly recorded state is already in effect. Clear the cursor to return to the last retained states.",
+        "assumptions": [
+          "Logic indicators observe resolved 0/1/X/Z events. They add no load or drive strength, and the red glow does not represent LED current or physical brightness.",
+          "The displayed state belongs to the selected time and the current project revision. Missing or stale results remain unobserved.",
+          "The digital-only source output is a binary logic signal. Its optional voltage terminals must be enabled and wired explicitly for analog experiments."
+        ],
+        "circuit": {
+          "components": [
+            {
+              "id": "c_mvn5q9lh_zybuznjr76",
+              "ref": "PAT1",
+              "type": "PATTERN",
+              "params": {
+                "width": "1",
+                "pattern": "0,1; 1m,0; 2m,X; 3m,Z; 4m,1",
+                "repeat": "0"
+              },
+              "model": "CB_PATTERN"
+            },
+            {
+              "id": "c_mvn5q9lh_0unktugif9be",
+              "ref": "IND1",
+              "type": "DLED",
+              "params": {},
+              "model": "CB_DLED"
+            },
+            {
+              "id": "c_mvn5q9lh_3z8s129fdo",
+              "ref": "PAT2",
+              "type": "PATTERN",
+              "params": {
+                "width": "1",
+                "pattern": "0,0; 1m,X; 2m,Z; 3m,1; 4m,0",
+                "repeat": "0"
+              },
+              "model": "CB_PATTERN"
+            },
+            {
+              "id": "c_mvn5q9lh_nqn5gnkxa8",
+              "ref": "IND2",
+              "type": "DLED",
+              "params": {},
+              "model": "CB_DLED"
+            },
+            {
+              "id": "c_mvn5q9lh_1mdmk49i1lb",
+              "ref": "PAT3",
+              "type": "PATTERN",
+              "params": {
+                "width": "1",
+                "pattern": "0,X; 1m,Z; 2m,1; 3m,0; 4m,X",
+                "repeat": "0"
+              },
+              "model": "CB_PATTERN"
+            },
+            {
+              "id": "c_mvn5q9lh_g7gw9yrl19f",
+              "ref": "IND3",
+              "type": "DLED",
+              "params": {},
+              "model": "CB_DLED"
+            },
+            {
+              "id": "c_mvn5q9lh_5ndk30rkr7t",
+              "ref": "PAT4",
+              "type": "PATTERN",
+              "params": {
+                "width": "1",
+                "pattern": "0,Z; 1m,1; 2m,0; 3m,X; 4m,Z",
+                "repeat": "0"
+              },
+              "model": "CB_PATTERN"
+            },
+            {
+              "id": "c_mvn5q9lh_zkdnc1j60ib",
+              "ref": "IND4",
+              "type": "DLED",
+              "params": {},
+              "model": "CB_DLED"
+            }
+          ],
+          "connections": [
+            {
+              "id": "w_mvn5q9lh_xwxzh9y0don",
+              "a": "c_mvn5q9lh_zybuznjr76:out",
+              "b": "c_mvn5q9lh_0unktugif9be:in"
+            },
+            {
+              "id": "w_mvn5q9lh_u9ngbfeqxgc",
+              "a": "c_mvn5q9lh_3z8s129fdo:out",
+              "b": "c_mvn5q9lh_nqn5gnkxa8:in"
+            },
+            {
+              "id": "w_mvn5q9lh_a64d3ovmj84",
+              "a": "c_mvn5q9lh_1mdmk49i1lb:out",
+              "b": "c_mvn5q9lh_g7gw9yrl19f:in"
+            },
+            {
+              "id": "w_mvn5q9lh_ub0p2w9dbfd",
+              "a": "c_mvn5q9lh_5ndk30rkr7t:out",
+              "b": "c_mvn5q9lh_zkdnc1j60ib:in"
+            }
+          ],
+          "junctions": [],
+          "labels": [
+            {
+              "id": "label_mvn5q9lh_xynkpqhvhsg",
+              "name": "state_1",
+              "target": "c_mvn5q9lh_zybuznjr76:out"
+            },
+            {
+              "id": "label_mvn5q9lh_7qpc0u87szc",
+              "name": "state_2",
+              "target": "c_mvn5q9lh_3z8s129fdo:out"
+            },
+            {
+              "id": "label_mvn5q9lh_vniax6z77xt",
+              "name": "state_3",
+              "target": "c_mvn5q9lh_1mdmk49i1lb:out"
+            },
+            {
+              "id": "label_mvn5q9li_ri4jsx7itef",
+              "name": "state_4",
+              "target": "c_mvn5q9lh_5ndk30rkr7t:out"
+            }
+          ]
+        },
+        "layout": {
+          "components": {
+            "c_mvn5q9lh_zybuznjr76": {
+              "x": 120,
+              "y": 160,
+              "rotation": 0,
+              "mirror": false
+            },
+            "c_mvn5q9lh_0unktugif9be": {
+              "x": 360,
+              "y": 160,
+              "rotation": 0,
+              "mirror": false
+            },
+            "c_mvn5q9lh_3z8s129fdo": {
+              "x": 640,
+              "y": 160,
+              "rotation": 0,
+              "mirror": false
+            },
+            "c_mvn5q9lh_nqn5gnkxa8": {
+              "x": 880,
+              "y": 160,
+              "rotation": 0,
+              "mirror": false
+            },
+            "c_mvn5q9lh_1mdmk49i1lb": {
+              "x": 120,
+              "y": 400,
+              "rotation": 0,
+              "mirror": false
+            },
+            "c_mvn5q9lh_g7gw9yrl19f": {
+              "x": 360,
+              "y": 400,
+              "rotation": 0,
+              "mirror": false
+            },
+            "c_mvn5q9lh_5ndk30rkr7t": {
+              "x": 640,
+              "y": 400,
+              "rotation": 0,
+              "mirror": false
+            },
+            "c_mvn5q9lh_zkdnc1j60ib": {
+              "x": 880,
+              "y": 400,
+              "rotation": 0,
+              "mirror": false
+            }
+          },
+          "wires": {
+            "w_mvn5q9lh_xwxzh9y0don": {
+              "points": []
+            },
+            "w_mvn5q9lh_u9ngbfeqxgc": {
+              "points": []
+            },
+            "w_mvn5q9lh_a64d3ovmj84": {
+              "points": []
+            },
+            "w_mvn5q9lh_ub0p2w9dbfd": {
+              "points": []
+            }
+          },
+          "junctions": {},
+          "annotations": [
+            {
+              "id": "note_mvn5q9li_v3ef3v7jhqq",
+              "x": 90,
+              "y": 50,
+              "text": "HIGH = red glow · LOW = dark · X = unknown · Z = released"
+            },
+            {
+              "id": "note_mvn5q9li_fc4rh4uexm",
+              "x": 90,
+              "y": 540,
+              "text": "Move Cursor A through the four one-millisecond windows to inspect actual resolved states."
+            }
+          ]
+        },
+        "analysis": {
+          "type": "tran",
+          "solver": "ngspice",
+          "start": "1",
+          "stop": "100k",
+          "points": 60,
+          "step": "10u",
+          "duration": "4.5m",
+          "source": "V1",
+          "sweepStart": "0",
+          "sweepStop": "10",
+          "sweepStep": "0.1",
+          "temperature": 27,
+          "reltol": "1e-4",
+          "uic": false
+        },
+        "probes": [
+          {
+            "id": "probe_mvn5q9lh_xe8uusubpy9",
+            "kind": "logic",
+            "label": "Pattern 1",
+            "a": "c_mvn5q9lh_zybuznjr76:out",
+            "b": null
+          },
+          {
+            "id": "probe_mvn5q9lh_5gle90veuf",
+            "kind": "logic",
+            "label": "Pattern 2",
+            "a": "c_mvn5q9lh_3z8s129fdo:out",
+            "b": null
+          },
+          {
+            "id": "probe_mvn5q9lh_ol9q4d6u6va",
+            "kind": "logic",
+            "label": "Pattern 3",
+            "a": "c_mvn5q9lh_1mdmk49i1lb:out",
+            "b": null
+          },
+          {
+            "id": "probe_mvn5q9li_p56nrvz4vcc",
+            "kind": "logic",
+            "label": "Pattern 4",
+            "a": "c_mvn5q9lh_5ndk30rkr7t:out",
+            "b": null
+          }
+        ],
+        "workspace": "schematic",
+        "netlistText": ""
+      },
+      "startedAt": "2026-10-25T01:36:49.219Z",
+      "completedAt": "2026-10-25T01:36:49.298Z",
+      "analysis": {
+        "type": "tran",
+        "solver": "ngspice",
+        "start": "1",
+        "stop": "100k",
+        "points": 60,
+        "step": "10u",
+        "duration": "4.5m",
+        "source": "V1",
+        "sweepStart": "0",
+        "sweepStop": "10",
+        "sweepStep": "0.1",
+        "temperature": 27,
+        "reltol": "1e-4",
+        "uic": false
+      },
+      "models": [
+        {
+          "name": "CB_PATTERN",
+          "version": "cb-bus-models-1.0.0",
+          "source": "CircuitBench original four-state event and bridge definitions",
+          "license": "MIT",
+          "kind": "digital",
+          "definition": "{\"implementation\":\"CircuitBench four-state event kernel\",\"type\":\"PATTERN\",\"timeResolution\":\"1 ps\",\"timing\":\"transport\",\"ports\":[{\"id\":\"out\",\"domain\":\"digital\",\"direction\":\"output\"}],\"defaults\":{\"width\":\"4\",\"pattern\":\"0,0000; 1m,0001; 2m,0010; 3m,0011\",\"repeat\":\"0\"},\"semantics\":\"Timed 1–8 bit words beginning at t=0; optional repeat period must be later than the last event. Bit states may include X and Z.\",\"widthPolicy\":{\"out\":\"width\"}}",
+          "contentId": "fnv1a32-8b81e1e0",
+          "sha256": "unavailable-in-insecure-context"
+        },
+        {
+          "name": "CB_DLED",
+          "version": "cb-logic-io-1.0.0",
+          "source": "CircuitBench original four-state event and bridge definitions",
+          "license": "MIT",
+          "kind": "digital",
+          "definition": "{\"implementation\":\"CircuitBench four-state event kernel\",\"type\":\"DLED\",\"timeResolution\":\"1 ps\",\"timing\":\"passive observation\",\"ports\":[{\"id\":\"in\",\"domain\":\"digital\",\"direction\":\"input\"}],\"defaults\":{},\"semantics\":\"Passive scalar digital indicator. The actual resolved state from the current run or selected time glows red only for high (1). Low (0), unknown (X), high impedance (Z), and unavailable results remain distinguishable.\"}",
+          "contentId": "fnv1a32-6026e623",
+          "sha256": "unavailable-in-insecure-context"
+        }
+      ],
+      "simulation": {
+        "mode": "digital",
+        "solver": "ngspice",
+        "duration": 0.0045000000000000005,
+        "maxStep": 0.000009999999999999999,
+        "digital": {
+          "sources": [
+            {
+              "id": "c_mvn5q9lh_zybuznjr76_bit_0",
+              "output": "state_1",
+              "kind": "pattern",
+              "events": [
+                {
+                  "time": 0,
+                  "value": "1"
+                },
+                {
+                  "time": 0.001,
+                  "value": "0"
+                },
+                {
+                  "time": 0.002,
+                  "value": "X"
+                },
+                {
+                  "time": 0.003,
+                  "value": "Z"
+                },
+                {
+                  "time": 0.004,
+                  "value": "1"
+                }
+              ],
+              "repeatPeriod": 0
+            },
+            {
+              "id": "c_mvn5q9lh_3z8s129fdo_bit_0",
+              "output": "state_2",
+              "kind": "pattern",
+              "events": [
+                {
+                  "time": 0,
+                  "value": "0"
+                },
+                {
+                  "time": 0.001,
+                  "value": "X"
+                },
+                {
+                  "time": 0.002,
+                  "value": "Z"
+                },
+                {
+                  "time": 0.003,
+                  "value": "1"
+                },
+                {
+                  "time": 0.004,
+                  "value": "0"
+                }
+              ],
+              "repeatPeriod": 0
+            },
+            {
+              "id": "c_mvn5q9lh_1mdmk49i1lb_bit_0",
+              "output": "state_3",
+              "kind": "pattern",
+              "events": [
+                {
+                  "time": 0,
+                  "value": "X"
+                },
+                {
+                  "time": 0.001,
+                  "value": "Z"
+                },
+                {
+                  "time": 0.002,
+                  "value": "1"
+                },
+                {
+                  "time": 0.003,
+                  "value": "0"
+                },
+                {
+                  "time": 0.004,
+                  "value": "X"
+                }
+              ],
+              "repeatPeriod": 0
+            },
+            {
+              "id": "c_mvn5q9lh_5ndk30rkr7t_bit_0",
+              "output": "state_4",
+              "kind": "pattern",
+              "events": [
+                {
+                  "time": 0,
+                  "value": "Z"
+                },
+                {
+                  "time": 0.001,
+                  "value": "1"
+                },
+                {
+                  "time": 0.002,
+                  "value": "0"
+                },
+                {
+                  "time": 0.003,
+                  "value": "X"
+                },
+                {
+                  "time": 0.004,
+                  "value": "Z"
+                }
+              ],
+              "repeatPeriod": 0
+            }
+          ],
+          "gates": [],
+          "sequential": [],
+          "probes": [
+            {
+              "name": "d(state_1)",
+              "width": 1,
+              "bits": [
+                "state_1"
+              ],
+              "node": "state_1"
+            },
+            {
+              "name": "d(state_2)",
+              "width": 1,
+              "bits": [
+                "state_2"
+              ],
+              "node": "state_2"
+            },
+            {
+              "name": "d(state_3)",
+              "width": 1,
+              "bits": [
+                "state_3"
+              ],
+              "node": "state_3"
+            },
+            {
+              "name": "d(state_4)",
+              "width": 1,
+              "bits": [
+                "state_4"
+              ],
+              "node": "state_4"
+            }
+          ],
+          "buses": [],
+          "hiddenNodes": [],
+          "inputGroups": []
+        },
+        "adcs": [],
+        "dacs": []
+      },
+      "measurements": [
+        {
+          "id": "node:state_1",
+          "label": "D(state_1)",
+          "vector": "d(state_1)",
+          "unit": "logic",
+          "kind": "logic"
+        },
+        {
+          "id": "node:state_2",
+          "label": "D(state_2)",
+          "vector": "d(state_2)",
+          "unit": "logic",
+          "kind": "logic"
+        },
+        {
+          "id": "node:state_3",
+          "label": "D(state_3)",
+          "vector": "d(state_3)",
+          "unit": "logic",
+          "kind": "logic"
+        },
+        {
+          "id": "node:state_4",
+          "label": "D(state_4)",
+          "vector": "d(state_4)",
+          "unit": "logic",
+          "kind": "logic"
+        },
+        {
+          "id": "probe_mvn5q9lh_xe8uusubpy9",
+          "label": "Pattern 1",
+          "vector": "d(state_1)",
+          "unit": "logic",
+          "kind": "logic",
+          "selected": true
+        },
+        {
+          "id": "probe_mvn5q9lh_5gle90veuf",
+          "label": "Pattern 2",
+          "vector": "d(state_2)",
+          "unit": "logic",
+          "kind": "logic",
+          "selected": true
+        },
+        {
+          "id": "probe_mvn5q9lh_ol9q4d6u6va",
+          "label": "Pattern 3",
+          "vector": "d(state_3)",
+          "unit": "logic",
+          "kind": "logic",
+          "selected": true
+        },
+        {
+          "id": "probe_mvn5q9li_p56nrvz4vcc",
+          "label": "Pattern 4",
+          "vector": "d(state_4)",
+          "unit": "logic",
+          "kind": "logic",
+          "selected": true
+        }
+      ],
+      "engine": {
+        "name": "CircuitBench event logic",
+        "version": "2",
+        "package": "CircuitBench event kernel",
+        "packageVersion": "2",
+        "build": "cb-digital-kernel-2",
+        "execution": "JavaScript · isolated Web Worker · fresh instance per run",
+        "states": [
+          "0",
+          "1",
+          "X",
+          "Z"
+        ],
+        "timeResolution": 1e-12,
+        "delayModel": "transport",
+        "initialization": "Combinational logic settles at time zero; flip-flops, registers and counters use their explicit initial state.",
+        "simultaneousInputs": "All driver changes at one timestamp resolve together. Rising-edge state elements sample the resulting inputs; register and counter words update atomically.",
+        "sequentialControls": "Register/counter reset and enable are synchronous and active high; reset wins. Ambiguous edges or controls retain only bit values common to every possible outcome.",
+        "limitations": "No setup/hold, metastability, drive strengths, HDL, or analog feedback coupling.",
+        "mode": "digital",
+        "digital": {
+          "name": "CircuitBench event logic",
+          "version": "2",
+          "package": "CircuitBench event kernel",
+          "packageVersion": "2",
+          "build": "cb-digital-kernel-2",
+          "execution": "JavaScript · isolated Web Worker · fresh instance per run",
+          "states": [
+            "0",
+            "1",
+            "X",
+            "Z"
+          ],
+          "timeResolution": 1e-12,
+          "delayModel": "transport",
+          "initialization": "Combinational logic settles at time zero; flip-flops, registers and counters use their explicit initial state.",
+          "simultaneousInputs": "All driver changes at one timestamp resolve together. Rising-edge state elements sample the resulting inputs; register and counter words update atomically.",
+          "sequentialControls": "Register/counter reset and enable are synchronous and active high; reset wins. Ambiguous edges or controls retain only bit values common to every possible outcome.",
+          "limitations": "No setup/hold, metastability, drive strengths, HDL, or analog feedback coupling."
+        }
+      },
+      "netlist": "CircuitBench native digital plan — not a SPICE deck\nImport the CircuitBench JSON project to preserve this experiment.\n\n{\n  \"mode\": \"digital\",\n  \"solver\": \"ngspice\",\n  \"duration\": 0.0045000000000000005,\n  \"maxStep\": 0.000009999999999999999,\n  \"digital\": {\n    \"sources\": [\n      {\n        \"id\": \"c_mvn5q9lh_zybuznjr76_bit_0\",\n        \"output\": \"state_1\",\n        \"kind\": \"pattern\",\n        \"events\": [\n          {\n            \"time\": 0,\n            \"value\": \"1\"\n          },\n          {\n            \"time\": 0.001,\n            \"value\": \"0\"\n          },\n          {\n            \"time\": 0.002,\n            \"value\": \"X\"\n          },\n          {\n            \"time\": 0.003,\n            \"value\": \"Z\"\n          },\n          {\n            \"time\": 0.004,\n            \"value\": \"1\"\n          }\n        ],\n        \"repeatPeriod\": 0\n      },\n      {\n        \"id\": \"c_mvn5q9lh_3z8s129fdo_bit_0\",\n        \"output\": \"state_2\",\n        \"kind\": \"pattern\",\n        \"events\": [\n          {\n            \"time\": 0,\n            \"value\": \"0\"\n          },\n          {\n            \"time\": 0.001,\n            \"value\": \"X\"\n          },\n          {\n            \"time\": 0.002,\n            \"value\": \"Z\"\n          },\n          {\n            \"time\": 0.003,\n            \"value\": \"1\"\n          },\n          {\n            \"time\": 0.004,\n            \"value\": \"0\"\n          }\n        ],\n        \"repeatPeriod\": 0\n      },\n      {\n        \"id\": \"c_mvn5q9lh_1mdmk49i1lb_bit_0\",\n        \"output\": \"state_3\",\n        \"kind\": \"pattern\",\n        \"events\": [\n          {\n            \"time\": 0,\n            \"value\": \"X\"\n          },\n          {\n            \"time\": 0.001,\n            \"value\": \"Z\"\n          },\n          {\n            \"time\": 0.002,\n            \"value\": \"1\"\n          },\n          {\n            \"time\": 0.003,\n            \"value\": \"0\"\n          },\n          {\n            \"time\": 0.004,\n            \"value\": \"X\"\n          }\n        ],\n        \"repeatPeriod\": 0\n      },\n      {\n        \"id\": \"c_mvn5q9lh_5ndk30rkr7t_bit_0\",\n        \"output\": \"state_4\",\n        \"kind\": \"pattern\",\n        \"events\": [\n          {\n            \"time\": 0,\n            \"value\": \"Z\"\n          },\n          {\n            \"time\": 0.001,\n            \"value\": \"1\"\n          },\n          {\n            \"time\": 0.002,\n            \"value\": \"0\"\n          },\n          {\n            \"time\": 0.003,\n            \"value\": \"X\"\n          },\n          {\n            \"time\": 0.004,\n            \"value\": \"Z\"\n          }\n        ],\n        \"repeatPeriod\": 0\n      }\n    ],\n    \"gates\": [],\n    \"sequential\": [],\n    \"probes\": [\n      {\n        \"name\": \"d(state_1)\",\n        \"width\": 1,\n        \"bits\": [\n          \"state_1\"\n        ],\n        \"node\": \"state_1\"\n      },\n      {\n        \"name\": \"d(state_2)\",\n        \"width\": 1,\n        \"bits\": [\n          \"state_2\"\n        ],\n        \"node\": \"state_2\"\n      },\n      {\n        \"name\": \"d(state_3)\",\n        \"width\": 1,\n        \"bits\": [\n          \"state_3\"\n        ],\n        \"node\": \"state_3\"\n      },\n      {\n        \"name\": \"d(state_4)\",\n        \"width\": 1,\n        \"bits\": [\n          \"state_4\"\n        ],\n        \"node\": \"state_4\"\n      }\n    ],\n    \"buses\": [],\n    \"hiddenNodes\": [],\n    \"inputGroups\": []\n  },\n  \"adcs\": [],\n  \"dacs\": []\n}\n",
+      "netlistHash": "unavailable-in-insecure-context",
+      "status": "completed",
+      "diagnostics": [
+        {
+          "severity": "info",
+          "message": "Native digital simulation uses 0/1/X/Z states, transport delays and 1 ps resolution. Bus bit 0 is least significant; displayed words are MSB first. Initial settling is not a clock edge; setup/hold and analog metastability are not modeled."
+        }
+      ],
+      "logs": [
+        "Digital event pass",
+        "Digital worker ready: circuitbench-digital-worker-2; http://terminal.local:4173/assets/2.0.0-rc.2/src/digital-worker.js",
+        "Running four-state event logic in a separate worker…",
+        "Digital event engine completed 16 events across 4 nets; 1 ps resolution, transport delays."
+      ],
+      "result": {
+        "points": 6,
+        "vectors": [
+          {
+            "name": "time",
+            "unit": "s",
+            "values": [
+              0,
+              0.001,
+              0.002,
+              0.003,
+              0.004,
+              0.0045
+            ]
+          },
+          {
+            "name": "d(state_1)",
+            "unit": "logic",
+            "kind": "logic",
+            "values": [
+              "1",
+              "0",
+              "X",
+              "Z",
+              "1",
+              "1"
+            ]
+          },
+          {
+            "name": "d(state_2)",
+            "unit": "logic",
+            "kind": "logic",
+            "values": [
+              "0",
+              "X",
+              "Z",
+              "1",
+              "0",
+              "0"
+            ]
+          },
+          {
+            "name": "d(state_3)",
+            "unit": "logic",
+            "kind": "logic",
+            "values": [
+              "X",
+              "Z",
+              "1",
+              "0",
+              "X",
+              "X"
+            ]
+          },
+          {
+            "name": "d(state_4)",
+            "unit": "logic",
+            "kind": "logic",
+            "values": [
+              "Z",
+              "1",
+              "0",
+              "X",
+              "Z",
+              "Z"
+            ]
+          }
+        ],
+        "digitalEvents": [
+          {
+            "name": "d(state_1)",
+            "events": [
+              {
+                "time": 0,
+                "value": "1"
+              },
+              {
+                "time": 0.001,
+                "value": "0"
+              },
+              {
+                "time": 0.002,
+                "value": "X"
+              },
+              {
+                "time": 0.003,
+                "value": "Z"
+              },
+              {
+                "time": 0.004,
+                "value": "1"
+              }
+            ]
+          },
+          {
+            "name": "d(state_2)",
+            "events": [
+              {
+                "time": 0,
+                "value": "0"
+              },
+              {
+                "time": 0.001,
+                "value": "X"
+              },
+              {
+                "time": 0.002,
+                "value": "Z"
+              },
+              {
+                "time": 0.003,
+                "value": "1"
+              },
+              {
+                "time": 0.004,
+                "value": "0"
+              }
+            ]
+          },
+          {
+            "name": "d(state_3)",
+            "events": [
+              {
+                "time": 0,
+                "value": "X"
+              },
+              {
+                "time": 0.001,
+                "value": "Z"
+              },
+              {
+                "time": 0.002,
+                "value": "1"
+              },
+              {
+                "time": 0.003,
+                "value": "0"
+              },
+              {
+                "time": 0.004,
+                "value": "X"
+              }
+            ]
+          },
+          {
+            "name": "d(state_4)",
+            "events": [
+              {
+                "time": 0,
+                "value": "Z"
+              },
+              {
+                "time": 0.001,
+                "value": "1"
+              },
+              {
+                "time": 0.002,
+                "value": "0"
+              },
+              {
+                "time": 0.003,
+                "value": "X"
+              },
+              {
+                "time": 0.004,
+                "value": "Z"
+              }
+            ]
+          }
+        ],
+        "sampling": {
+          "mode": "digital-events",
+          "analogSampleIndices": [],
+          "analogInterpolation": "none",
+          "logicContinuity": "right",
+          "timeResolution": 1e-12,
+          "description": "Change-only digital events plus time zero and run end; logic states are right-continuous after simultaneous events settle. Gate delays use 1 ps transport timing."
+        },
+        "logs": [
+          "Digital event pass",
+          "Digital worker ready: circuitbench-digital-worker-2; http://terminal.local:4173/assets/2.0.0-rc.2/src/digital-worker.js",
+          "Running four-state event logic in a separate worker…",
+          "Digital event engine completed 16 events across 4 nets; 1 ps resolution, transport delays."
+        ],
+        "warnings": [],
+        "engine": {
+          "name": "CircuitBench event logic",
+          "version": "2",
+          "package": "CircuitBench event kernel",
+          "packageVersion": "2",
+          "build": "cb-digital-kernel-2",
+          "execution": "JavaScript · isolated Web Worker · fresh instance per run",
+          "states": [
+            "0",
+            "1",
+            "X",
+            "Z"
+          ],
+          "timeResolution": 1e-12,
+          "delayModel": "transport",
+          "initialization": "Combinational logic settles at time zero; flip-flops, registers and counters use their explicit initial state.",
+          "simultaneousInputs": "All driver changes at one timestamp resolve together. Rising-edge state elements sample the resulting inputs; register and counter words update atomically.",
+          "sequentialControls": "Register/counter reset and enable are synchronous and active high; reset wins. Ambiguous edges or controls retain only bit values common to every possible outcome.",
+          "limitations": "No setup/hold, metastability, drive strengths, HDL, or analog feedback coupling.",
+          "mode": "digital",
+          "digital": {
+            "name": "CircuitBench event logic",
+            "version": "2",
+            "package": "CircuitBench event kernel",
+            "packageVersion": "2",
+            "build": "cb-digital-kernel-2",
+            "execution": "JavaScript · isolated Web Worker · fresh instance per run",
+            "states": [
+              "0",
+              "1",
+              "X",
+              "Z"
+            ],
+            "timeResolution": 1e-12,
+            "delayModel": "transport",
+            "initialization": "Combinational logic settles at time zero; flip-flops, registers and counters use their explicit initial state.",
+            "simultaneousInputs": "All driver changes at one timestamp resolve together. Rising-edge state elements sample the resulting inputs; register and counter words update atomically.",
+            "sequentialControls": "Register/counter reset and enable are synchronous and active high; reset wins. Ambiguous edges or controls retain only bit values common to every possible outcome.",
+            "limitations": "No setup/hold, metastability, drive strengths, HDL, or analog feedback coupling."
+          }
+        },
+        "durationMs": 71.39999999990687,
+        "analogNetlists": [],
+        "bridgeAssumptions": []
+      },
+      "simulationHash": "unavailable-in-insecure-context",
+      "durationMs": 71.70000000018626
+    }
+  ],
+  "analogExperiments": [],
+  "truthTables": [],
+  "timingMeasurements": [],
+  "activeRunId": "run_mvn5qaf7_nr6ttnb11fd",
+  "baselineId": null
+}

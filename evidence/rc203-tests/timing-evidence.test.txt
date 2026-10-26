@@ -1,0 +1,28 @@
+✔ actual 1.3 browser backup restores timing records with default solver settings across repeated saves (48.993071ms)
+✔ a timing record retains sparse source evidence and its immutable run revision without copying sampled vectors (1.210446ms)
+✔ project backups round-trip timing even after their full source run leaves the history (1.725549ms)
+✔ restoring, flagging and re-exporting a run preserves historical measurement provenance (4.306309ms)
+✔ saved values, summaries, selected edges and statuses must recompute from preserved events (6.400033ms)
+✔ reordered JSON object properties remain portable while changed event inputs require corresponding measured output (2.410412ms)
+✔ a retained original run must agree with the timing snapshot, event series and input hashes (4.775476ms)
+✔ retained evidence accepts historical labels from the same run without rewriting them (3.940236ms)
+✔ declared digital and sampling resolution must agree even after the source run is pruned (2.65645ms)
+✔ bus timing preserves exact original words and identifies its selected least-significant bit (1.212687ms)
+✔ a two-bit delay records one whole bus series and two explicit edge selections (2.352289ms)
+✔ invalid or oversized sparse evidence is rejected before becoming saved measurements (7.318064ms)
+✔ unselected event traces cannot be smuggled into a timing record (0.795047ms)
+✔ timing provenance validates chronology, identity, metadata and record count (5.285305ms)
+✔ retention keeps newest records and explicitly reports the number removed (10.452253ms)
+✔ byte-bound retention never silently drops the newest complete measurement (635.627852ms)
+✔ CSV keeps raw values, event polarity and missing or indeterminate numbers blank (1.147016ms)
+✔ standalone timing evidence JSON retains the complete selected events and circuit snapshot (0.857875ms)
+✔ analysis reports include exact run context, complete diagnostic rows and restored-evidence limits (2.86541ms)
+✔ timing reports escape captured labels, titles, engine strings and diagnostics (0.90894ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 764.45911

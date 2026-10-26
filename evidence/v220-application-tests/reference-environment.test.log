@@ -1,0 +1,15 @@
+✔ setup requires an explicit action and private destination, with no implicit package download (1.399851ms)
+✔ pin set identifies immutable Ubuntu package inputs and the existing reference executable (0.343266ms)
+✔ wrong or truncated packages fail verification before extraction (8.701001ms)
+✔ setup refuses occupied and symlink destinations without changing their contents (3.833934ms)
+✔ paths remain in the explicit prefix and runtime overrides do not alter the caller environment (0.250749ms)
+✔ unreviewed initialization text is rejected instead of silently relocating a changed configuration (0.165293ms)
+✔ checking a missing reference produces an unavailable record without installing or creating files (3.880944ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 22.766461

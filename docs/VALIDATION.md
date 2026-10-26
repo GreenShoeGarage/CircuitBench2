@@ -1,207 +1,218 @@
-# Release validation and handoff
+# Release validation and acceptance
 
-**Candidate: 2.0.0-rc.1 · Runtime build: `7f06ecaf7e7b40be` · October 24, 2026**
+**Release: 2.2.0 · Cumulative v2.1 and v2.2 · Runtime build: `53c8eee8280bd405` · October 25, 2026**
 
-All requested batches are implemented: a working seven-segment display,
-coordinated analog/digital feedback, closed-loop execution, multibit converters,
-advanced analog studies and continuous simulation in state-preserving batches.
-The package includes 41 parts, 35 model records and 38 worked examples
-(16 analog, 14 digital and eight mixed).
+The authorized **2.1 everyday workbench** and **2.2 instruments and numerical
+comparisons** batches are implemented in this cumulative release. They add
+application behavior to the accepted 2.0 foundation; this release is not a
+metadata-only promotion. The maintained catalog remains **43 parts, 37 model
+definitions and 41 examples**: 16 analog, 16 digital and 9 mixed.
 
-This is a release candidate prepared for self-hosting. No external website was
-modified. Actual target-host installation, secure offline updates and the full
-browser matrix remain separate acceptance gates.
+**Final release gate status: Completed. Application and numerical gates passed; the accompanying release-integrity receipt records final package tests and exact archive/rebuild verification. Browser-output limits are explicit below.**
 
-## Delivered execution contract
+The final evidence fields below identify the exact tested and packaged release.
+Automated tests, numerical comparisons, browser observations and archive
+verification are separate evidence categories. The earlier 842-case gate and
+first final-gate attempt remain preserved under their original evidence names;
+the fresh passing gate above is the current application result.
 
-| Capability | Contract |
+## Current release evidence
+
+| Verification | Final result and evidence |
 |---|---|
-| SEG7 / HEX7 | Eight actual digital segment bits, bit 0=a through bit 6=g and bit 7=decimal point; active-high/low; hex and BCD decoder; preserved X/Z; cursor or latest result state |
-| Coordinated transient | Original stateful modified nodal analysis with backward Euler for R/C/L and independent V/I sources, coupled to incremental digital events |
-| Feedback | ADC crossings or sample completions alter digital state; delayed logic alters a DAC; the resulting analog response feeds the same circuit |
-| ADCBUS | Differential 2–8 bit unsigned quantizer; endpoint clipping and nearest-code rounding; samples at k×period, publishes after positive delay; rounded delay strictly below rounded period |
-| DACBUS | 2–8 bit unsigned ideal voltage source, explicit initial code and finite linear rise/fall; initial code held until first known word; subsequent X/Z is an error |
-| Continuous | One worker retains C/L history, clock phase, queued events and private word state; Pause/Resume/Step; boundary-timestamped live DC and DIN/BUSIN inputs |
-| Studies | Up to 64 independent trials, linear/log sweep or seeded uniform-relative Monte Carlo over up to eight parameters; selected raw evidence, arithmetic validation and statistics excluding failed trials |
-| Persistence | Existing schema-1 projects; independent timing/study evidence; complete stopped windows or non-resumable continuous snapshots; original circuit revision and input history |
+| Application test gate | **868 passed / 0 failed cases across 61 files**. The [final application record](../evidence/v220-final-application-tests.json) retains source identities and per-file transcripts; built-package acceptance is separate. |
+| Numerical comparison | **24 passed against analytic, pinned native-ngspice and bundled-WASM references**. The [coordinated comparison record](../evidence/coordinated-validation-2.2.0.json) identifies analytic expectations, actual native/WASM executions and source hashes. Final source-identity check: **all seven recorded source hashes match this release**. |
+| Browser workflows and downloaded outputs | **10 focused workflow checks passed; CSV/JSON/backup transfers and restore verified. HTML report download completion was not observed in the managed HTTP preview**. Evidence: [browser workflow record](../evidence/v220-browser-workflows.json), [download audit](../evidence/v220-browser-export-audit.json), and the actual exported fixtures in `evidence/v220-browser/`. Observed environment, operations and any limits belong to this record. |
+| Final built-package checks | **11 built-package cases plus exact manifest/source/runtime checks; final outcome is recorded in the accompanying release-integrity receipt**. Exact manifest, worker, WASM, version and recovery checks belong to the release-integrity receipt. |
+| Independent archive and source rebuild audit | **Both frozen archives receive independent CRC/hash checks and an isolated source rebuild compared byte-for-byte with the deploy ZIP; exact outcome and archive identities are in the accompanying release-integrity receipt**. The audit must identify both frozen ZIPs and compare an isolated source rebuild with the delivered deploy files. |
 
-The coordinated subset explicitly rejects diodes, transistors, opamps,
-controlled switches and imported SPICE decks. Those existing analog models and
-OP/DC/AC experiments remain available through the pinned ngspice engine.
-The ngspice mixed path retains scalar feed-forward replay semantics. The new
-engine is identified as `cb-coordinated-1`; it is not an XSPICE-enabled build.
+The release outputs are `CircuitBench-2.2.0-deploy.zip`,
+`CircuitBench-2.2.0-source.zip`, `CircuitBench-2.2.0-release-integrity.json` and
+`CircuitBench-2.2.0-SHA256SUMS.txt`. The external receipt and checksum list name
+the exact archives. The source package omits a duplicate `dist/` tree; its build
+recreates the deployable directory. Package preparation and local browser
+observations do not establish that the release has been uploaded to the owner's
+external host.
 
-The 1 ps digital grid is a representation and scheduling grid. Threshold
-localization occurs on the backward-Euler trial-step solution and does not
-imply 1 ps physical accuracy. Reducing the maximum time step and comparing
-results is the appropriate numerical convergence check. The display/converters
-are behavioral parts without characterized IC timing, LED loading, noise,
-aperture jitter, glitches or physical metastability.
+## Observed browser boundary
 
-## Integrated tests
+The current preview checks used managed Chrome at `http://terminal.local:4173/`.
+The final observed runtime identity is `53c8eee8280bd405`; earlier intermediate
+builds and the specific workflow observations are recorded in the browser evidence.
+The checks included actual WebAssembly AC execution, coordinated threshold
+capture, live source controls, independent step trials, bus expansion, guided
+indicator construction with atomic Undo, revision-guarded navigation, measurement
+export and backup restore.
 
-Every application test file was executed directly with Node. Direct execution
-preserves the individual test-case counts in this environment. The final
-summary is [rc200-test-summary.json](../evidence/rc200-test-summary.json), with
-one transcript per suite in `evidence/rc200-tests/`.
+HTML report generation and its rendered iframe were verified, including the
+new capture, measurement and exact-plan sections. The managed browser's HTML
+download waits did not complete, although CSV, JSON evidence, execution-plan
+JSON and backup downloads did. HTML download completion is therefore not
+claimed for this environment. No application-origin error was observed in the
+inspected console errors; extension metadata errors were separate.
 
-| Layer | Passing tests | What is exercised |
-|---|---:|---|
-| Core, digital model and bus compiler | 72 | All examples, domain/width checks, model/source parsing and compilation |
-| Digital kernel, expansion and truth tables | 43 | Four-state resolution, private state, transport events and enumeration |
-| Coordinated numerical engine and facade | 45 | Analog equations, crossings, converters, exact boundaries, real worker protocol and bounded continuation |
-| Converter integration | 9 | Differential references, output polarity, code order, zero loading, generated names, malformed values, rounded timing and backups |
-| Continuous controller, app and storage/timing | 47 | Pause/Resume/Step, asynchronous cancellation, live inputs, rolling windows, worker failures and independent provenance |
-| Displays | 17 | Segment mapping, decoder/BCD/active levels, X/Z, run identity, cursor reads, continuous states and rendering |
-| Analog studies | 65 | Trial generation, seed reproducibility, numeric measurements, budgets, cancellation, actual WASM workers, UI and app persistence |
-| Editor and symbols | 27 | Electrical wiring, transforms, aliases, accessible bus widths and new display/converter ports |
-| Results, plots and reports | 26 | Raw values/events, cursor/CSV, exact words, comparisons and escaped output |
-| Storage, truth-table evidence/UI/app and autosave | 44 | Snapshot integrity, corruption rejection, immutable histories and app workflows |
-| Simulation coordination | 10 | Worker exclusivity, cancellation, timeout and existing mixed stages |
-| Engine loading and raw parser | 30 | Missing/invalid assets, protocol failures and raw result parsing |
-| Offline and repair logic | 34 | Content-verified assets and installation-scoped recovery in controlled tests |
-| Timing core, evidence, presentation and app | 81 | All five metrics, preserved edges, X/Z, boundaries, legacy 1.3 migration, reports and original-run navigation |
-| **Application subtotal** | **550** | **36 files** |
-| Final built package | 9 | Exact asset/source identity, imports, precache, recovery manifests, WASM and versioned paths |
-| **Total** | **559** | **37 files** |
+This HTTP preview does not provide the secure context needed for browser
+SHA-256 input hashing or service-worker installation. Its saved evidence
+explicitly records `unavailable-in-insecure-context` for those input hashes.
+The file audit hashes the downloaded bytes, checks exact compiled inputs and
+recomputes measurement arithmetic; it does not turn unavailable browser input
+hashes into verified hashes. HTTPS/offline and additional device/browser
+acceptance are not inferred from these observations.
 
-All application processes exited zero, with no failures, cancellations, skipped
-cases, TODOs or timeouts. Counts refer to Node test cases; individual assertion
-calls were not counted. The [package gate](../evidence/rc200-package-tests.json) is captured separately
-because its generated manifest also authenticates these documentation/evidence
-bytes. The external integrity receipt records the repeated final package pass.
+## Delivered workflows and what is checked
 
-The app suites execute actual extracted application functions with controlled
-DOM, hashing and asynchronous boundaries. They verify logic and ownership,
-while browser observations below verify rendering and user actions. Controlled
-service-worker tests do not substitute for an actual HTTPS installation.
+### Everyday controls and construction
 
-### Concrete integration regressions closed
+Pinned controls expose supported constant logic/bus inputs and independent DC
+voltage/current sources beside the schematic. A digital voltage source has a
+dedicated operation target; selection, dragging and wiring remain ordinary
+editing operations. Momentary scalar controls preserve one press owner across
+rerenders, acknowledgements, cancellation and focus loss. Starting values, live
+input changes and recorded historical values stay distinct. A real-time button
+hold does not prescribe a simulation-time pulse duration.
 
-- Stop, editing or project replacement during either startup hash cannot launch
-  a stale worker or append an old run to a replacement project. An older
-  cancelled preparation cannot clear a newer preparation's state. Hash errors
-  release controls without a half-started run.
-- Full-window and independent timing imports require matching continuous
-  bounds and complete live-input history. Removing provenance or pretending a
-  clipped window is an ordinary zero-origin run is rejected.
-- The actual 1.3 browser timing backup now normalizes the newly introduced
-  solver default and survives repeated saves; genuine analysis mismatches are
-  still rejected.
-- ADC delay and period are checked after rounding to the actual 1 ps clock.
-  Compiler entry points reject DAC startup words containing X/Z before integer
-  parsing can truncate them.
-- Study evidence budgets reserve space for all remaining worst-case failure
-  rows. Invalid runner metadata fails its trial, and signed-zero AC phase is
-  stable across JSON export/import.
+Guided wiring exposes compatible domains and widths. Corrective actions create
+explicit ADC/DAC references and configuration, Slice/Join bit mappings or
+matching decoder/display paths. New parts, wires and probes form one undoable
+edit. Invalid configuration leaves the circuit and undo history intact. Bit zero
+remains the LSB; helpers do not silently truncate, extend or replace X/Z states.
 
-## Fresh numerical comparison
+Navigable diagnostics resolve the affected component, pin or net. An alternative
+analysis is offered only when the complete circuit compiles for that route.
+Unsupported nonlinear feedback therefore does not receive a misleading
+feed-forward engine suggestion. See [live controls](live-controls.md),
+[guided construction](guided-construction.md) and their focused tests in
+`tests/live-controls.test.mjs` and `tests/construction.test.mjs`.
 
-[coordinated-validation.json](../evidence/coordinated-validation.json) records
-**24/24 checks over four numerical fixtures**. It executes actual pinned
-ngspice 45.2 WASM and native ngspice 42 references and records six source hashes
-matching the shipped implementation.
+### Captures, event stepping and linked views
 
-| Fixture | Maximum step | Observed comparison | Acceptance |
-|---|---:|---:|---:|
-| RC step, 1 ms time constant | 100 ns | 18.394 µV maximum voltage difference | ≤25 µV |
-| RL step, 1 ms time constant | 100 ns | 183.935 nA maximum current difference | ≤250 nA |
-| Underdamped RLC | 50 ns | 1.519 mV maximum voltage difference | ≤2 mV |
-| Schmitt-controlled RC feedback | See recorded fixture | Coordinated 1.69544838 ms; ngspice reference 1.69537218 ms mean period | Analytic within 2 µs; reference within 0.3% |
+Triggers run in the existing continuous coordinated worker. They observe a
+declared analog voltage/current threshold, a scalar digital edge or one explicit
+bus bit. Digital edges require direct settled binary transitions; the initial
+held value and transitions through X/Z do not invent an edge. Analog trigger
+localization uses trial states on the numerical time grid.
 
-The feedback reference uses an independently implemented hysteretic ngspice
-switch and explicit pull-up. Its topology differs from the coordinated
-ADC/inverter/DAC implementation; the comparison allowance includes these
-stated differences and maximum-step error. It is not a claim that unlike
-circuits are byte-identical. See [closed-loop-engine.md](closed-loop-engine.md).
+A capture retains its actual pre/post window and marks unavailable history
+explicitly. A same-boundary input update that supersedes the trigger state
+before post-trigger collection advances cancels that capture with a visible
+reason. Completed zero-post captures remain immutable. Saving a capture retains
+evidence, not resumable private worker state.
 
-The study engine tests additionally run 13 real production workers and verify
-that all 13 terminate. They compare divider sweeps/tolerance draws with the
-resistor formula and RC AC/transient measurements with independent
-expectations. The facade tests also exercise actual retained workers across
-chunk limits, pause/resume and shutdown.
+**Next event** searches scheduled digital operations, source corners, converter
+samples, DAC ramp ends and localized scalar ADC changes. It passes ordinary
+analog integration steps. A scheduled operation can leave its resolved output
+unchanged. The 2,000-step command work limit is distinguished from reaching the
+declared search horizon; both record the actual searched end and requested end.
+Automatic capture completion clears pending work before notifying the paused UI.
 
-## Browser workflows and exported evidence
+Bus expansion derives view-only scalar lanes from retained word events or
+samples. X/Z and bit ordering remain literal; the raw run, backup and raw CSV
+stay intact. Linked schematic/plot selection checks the captured project and
+revision before navigating. It does not silently replace the working schematic
+with a historical circuit. See [captures](triggered-capture.md),
+[linked signals](linked-signals.md), `tests/capture.test.mjs`,
+`tests/capture-review.test.mjs` and `tests/plot-signals.test.mjs`.
 
-The managed Chrome preview is `http://terminal.local:4173/`. It is not a secure
-localhost/HTTPS origin, so it cannot establish offline-install acceptance.
-The browser record is [rc200-browser-validation.json](../evidence/rc200-browser-validation.json).
+### Measurements and numerical sensitivity
 
-Early display and Schmitt observations used runtime `7de58c9b9e7b297b`; the final
-converter-hardening build `7f06ecaf7e7b40be` was then used for sampled feedback,
-analog studies, restoration and live analog operation. The early records are
-not relabeled as later-build observations. All exported data are validated
-again by the final production import code.
+Instrument measurements use completed transient or AC evidence. Supported
+quantities include rise/fall time, directional overshoot, finite-window settling,
+threshold delay, transient/AC transfer gain, AC cutoff and declared digital
+setup/hold constraints. Levels, windows, references and interpolation limits are
+explicit. Missing crossings, X/Z, insufficient observation and ambiguous event
+ordering retain their status instead of receiving guessed values.
 
-| Browser workflow | Observed result |
+Analog measurement inputs preserve original samples. Feed-forward mixed results
+exclude added event-union interpolation positions from those original inputs.
+Setup/hold checks use preserved resolved events and stated timing requirements;
+they do not add a physical metastability or transistor timing model. Reusable
+setups retain their exact configuration and window. Independent records retain
+selected raw evidence even after the ordinary source run leaves history.
+
+Time-step sensitivity studies run **2–4 fresh independent coordinated transient
+trials**, changing only the maximum analog step by exact successive halvings on
+the 1 ps grid. The same declared analog measurement is applied to every trial.
+A scalar is available only for exactly one complete numeric occurrence. Trials
+with failed, cancelled, missing or ambiguous results remain visible; comparisons
+do not skip a failed intermediate trial.
+
+For each adjacent pair, the declared criterion is
+`abs(new - previous) <= absolute tolerance + relative tolerance * abs(new)`.
+This reports numerical sensitivity, not a certified error estimate, proof of
+convergence or physical-accuracy rating. Digital-only runs, AC, imported SPICE,
+unsupported coordinated devices and continuous live-input histories are not
+step-study inputs. See [measurements](measurements.md),
+[time-step studies](step-study.md), `tests/measurements.test.mjs`,
+`tests/measurement-evidence.test.mjs` and `tests/step-study.test.mjs`.
+
+### Saved evidence and reports
+
+Portable backups include independent captures, instrument measurements and
+step studies alongside existing runs and experiments. Records keep their
+captured circuit revision, engine identity, exact available execution inputs,
+recorded hashes and original selected numerical data. Reports distinguish
+ngspice feed-forward sampling from coordinated accepted states and describe
+the settings of the engine actually used.
+
+Import checks structure, signal definitions, retained witnesses, applicable
+sampling provenance and recomputed measurement/study arithmetic. These checks
+establish internal consistency. They do not resimulate a saved experiment,
+authenticate an externally edited file or resume a stopped continuous solver.
+See [project format](project-format.md) and the evidence guides above.
+
+## Model and resource boundaries
+
+The coordinated analog partition remains **R/C/L and independent voltage/current
+sources**, coupled with supported digital logic and explicit scalar or 2–8-bit
+converters. Diodes, transistors, op amps, switches and imported SPICE decks are
+outside that coordinated subset. The existing nonlinear analog library remains
+available through ngspice's supported analog and feed-forward mixed analyses.
+
+Coordinated analog integration uses backward Euler with a declared maximum
+step and causal breakpoints. It has step-dependent error and damping and no
+adaptive local-error controller. Ngspice temperature and relative-tolerance
+settings do not configure that method. The **1 ps event grid is scheduling
+resolution**, not a claim of 1 ps analog accuracy. Pure-digital execution is
+event driven and does not use the analog maximum step.
+
+| Resource | Retained boundary |
 |---|---|
-| Existing 1.3 project | Recovered its saved hazard run and timing record without resetting browser storage |
-| Seven-segment counter | 66 event times; final digit 0 from `00111111`; selecting a waveform time changed the display to 8 from `01111111` |
-| Continuous counter | Pause, Step and Resume retained state; changing enable to 0 held count `1011` and display b |
-| Rolling window and timing | Stopped window 214.1–229.6 ms retained 48 points, with 664 earlier points dropped; its 10.4 ms live change remained recorded; 14 full clock periods measured 1 ms plus one unfinished cycle |
-| Schmitt feedback example | 2,427 mixed points over 12 ms; five full periods measured 1.701678496 ms with the example's 5 µs maximum step |
-| Sampled feedback example | 2,699 points over 10 ms; final ADC `0111`, command `1000`, sense 2.5038312595 V and display 7; backup reopened with the same data |
-| Divider parameter sweep | Nine R1 values from 5 kΩ to 15 kΩ produced midpoint values from 6.6666666667 V to 4 V, including 5 V at 10 kΩ |
-| Seeded tolerance study | Eight two-resistor ±5% trials, seed 20261024; mean 5.0152317969 V; exact inputs/results retained |
-| Study persistence | Two studies restored from the downloaded project; restored-evidence notice correctly says import checks arithmetic without rerunning circuits; CSV and standalone JSON exported |
-| AC capacitance sweep | 10 nF, 100 nF and 1 µF at 1 kHz produced 0.846733016, 0.1571767255 and 0.015913479 V |
-| Continuous RC | Live DC input changed 0→5 V at 8 ms; successive completed batches gave 3.15144394 V at 9 ms and 4.3165681 V at 10 ms, preserving stored charge |
-| Report preview | Included both saved analog studies with their captured circuit and statistics even without a selected full run |
+| Coordinated analog problem | 48 non-reference nodes, 80 matrix unknowns and 160 analog elements. |
+| Continuous command and history | 2,000 accepted steps per command; up to 30,000 positions, one million dense values and 250,000 sparse events in the rolling window. |
+| Continuous lifetime evidence | Up to 2,000 groups of live input changes; safe absolute timeline ends at 9,000 seconds. |
+| Independent captures | Up to six records, 16 MiB per record and 32 MiB across capture history. |
+| Instrument configurations and evidence | Up to 16 saved configurations and 12 independent records, with the raw-data and byte bounds in the measurement guide. |
+| Time-step studies | 2–4 trials per study and four saved studies, with the selected-data and byte bounds in the study guide. |
 
-The browser-generated JSON/CSV artifacts are included as `evidence/rc200-*`.
-[scripts/verify-browser-evidence.mjs](../scripts/verify-browser-evidence.mjs)
-uses production validators, checks repeated JSON round trips, independently
-recomputes divider/AC/discrete RC expectations, and records file/source hashes
-in [rc200-export-validation.json](../evidence/rc200-export-validation.json).
-Its check count is reported in that generated record, not mixed into the Node
-suite total.
+These limits can shorten a retained window or reject an oversized record.
+Requested duration and actual coverage remain distinct. Detailed contracts are
+in [the engine guide](closed-loop-engine.md),
+[continuous simulation](continuous-simulation.md), [captures](triggered-capture.md),
+[measurements](measurements.md) and [step studies](step-study.md).
 
-One attempt to download a second continuous backup immediately before a page
-reload yielded a browser path whose file was unavailable; it is not included
-or counted as a successful artifact. The earlier complete continuous backup
-and separately downloaded timing evidence were available and verified.
+The deployed analog engine remains **ngspice45.2 WASM**. The separately pinned
+**native ngspice42** reference executes comparison decks with recorded binary
+and runtime-library identities. This is an auditable distribution-binary
+reference environment, not a hermetic C/C++ source rebuild. Numerical reference
+checks do not by themselves verify browser loading, offline updates or output
+downloads. See [the reference environment](reference-environment.md).
 
-HTML report download did not produce a file in this cloud browser. Both its
-existing link and a temporary use of the working generic download helper were
-tried; no successful HTML download or cause is claimed. The unproven change was
-reverted. The report preview worked. Native print/PDF remains unverified.
+## Historical 2.0 acceptance
 
-## Engine and historical evidence
+On October 25, 2026, the user confirmed **“hosting and browser acceptance checks
+passed.”** That confirmation closed the outstanding acceptance of
+**2.0.0-rc.3 / `8a99d6d843d32aa6`**, subsequently promoted to stable **2.0.0 /
+`6cf7ae00d61a0f43`**. It remains recorded in
+[v200-owner-acceptance.json](../evidence/v200-owner-acceptance.json).
 
-The analog engine remains EEcircuit-engine **1.8.0**, ngspice **45.2**, adapter
-**4**. The pinned WASM is **6,133,055 bytes**, SHA-256:
+The confirmation is historical owner acceptance of the 2.0 implementation. It
+does not supply individual browser/device logs, establish v2.2 acceptance or
+claim an assistant-performed external upload. Historical test totals and source
+hashes retain their original identities; they are not added to the current
+release's fresh counts.
 
-`ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4`
-
-The original digital kernel remains `cb-digital-kernel-2`. Coordinated mode
-adds its own incremental scheduler and explicitly identified solver; existing
-batch/feed-forward paths remain available. Current tests exercise their
-integration with the new compiler and schema defaults.
-
-Previous analog, digital/mixed and timing proof files retain their original
-versions and timestamps. They are historical evidence, not newly rerun 2.0
-claims. The 1.3 source-era observations and test logs are preserved under
-`evidence/history/1.3.0-rc.1/` and
-[history/VALIDATION-1.3.0-rc.1.md](history/VALIDATION-1.3.0-rc.1.md).
-
-## Packaging and remaining acceptance
-
-The final deploy includes every module, both worker families, the pinned WASM,
-versioned runtime assets, service-worker/recovery files and documentation.
-Source packaging omits a duplicated dist tree; `node scripts/build.mjs`
-reconstructs it without installing npm dependencies. The package gate checks
-local imports at a nested URL, manifest hashes, original source mappings and
-exact runtime/recovery lists. ZIP CRCs and complete archive SHA-256 values are
-recorded in the accompanying release-integrity receipt and checksum file.
-
-Unclosed acceptance gates are:
-
-- Uploading the exact candidate to the intended HTTPS host, then checking fresh
-  and upgraded startup, actual worker/CSP behavior, offline reload and scoped
-  cache repair while preserving projects.
-- HTML report download and native print/PDF in supported browsers.
-- The complete browser/viewport/accessibility matrix, including touch devices.
-
-These gates do not change the documented solver subset or silently defer a
-requested feature batch. The work is delivered as a complete, tested candidate;
-no public deployment or stable-release certification is implied.
+The complete stable-2.0 narrative is preserved in
+[VALIDATION-2.0.0.md](history/VALIDATION-2.0.0.md), with earlier candidate history
+under [rc.3 validation](history/VALIDATION-2.0.0-rc.3.md). The next development
+investigation is the nonlinear-engine architecture proof described in
+[ROADMAP.md](../ROADMAP.md).

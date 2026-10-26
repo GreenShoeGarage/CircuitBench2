@@ -198,11 +198,11 @@ export function visibleDigitalTraces(result) {
  */
 export function generateTruthTable(plan, { inputIds, outputNames, maxEvents = DIGITAL_LIMITS.events } = {}) {
   const invalid = message => logicError(message, 'TRUTH_TABLE_UNSUPPORTED');
-  if (!plan || typeof plan !== 'object' || (plan.sources || []).some(source => source.kind !== 'constant') || (plan.sequential || []).length || (plan.gates || []).some(gate => String(gate.type).toUpperCase() === 'DFF')) throw invalid('A full truth table requires a pure combinational circuit with only constant DIN/BUSIN inputs. Clocks, patterns and state elements are unsupported.');
+  if (!plan || typeof plan !== 'object' || (plan.sources || []).some(source => source.kind !== 'constant') || (plan.sequential || []).length || (plan.gates || []).some(gate => String(gate.type).toUpperCase() === 'DFF')) throw invalid('A full truth table requires a pure combinational circuit with only constant DIN/DVS/BUSIN inputs. Clocks, patterns and state elements are unsupported.');
   const groups = plan.inputGroups || [], byId = new Map(groups.map(group => [group.id, group]));
   const selectedIds = inputIds ?? groups.map(group => group.id);
   if (!Array.isArray(selectedIds) || !selectedIds.length || new Set(selectedIds).size !== selectedIds.length) throw invalid('Select one or more distinct constant input components for the truth table.');
-  const selected = selectedIds.map(id => { const group = byId.get(id); if (!group) throw invalid(`Truth-table input ${id} is not a constant DIN/BUSIN component.`); return group; });
+  const selected = selectedIds.map(id => { const group = byId.get(id); if (!group) throw invalid(`Truth-table input ${id} is not a constant DIN/DVS/BUSIN component.`); return group; });
   const sources = plan.sources || [], bySource = new Map(sources.map(source => [source.id, source])), usedSources = new Set();
   for (const group of selected) {
     if (!Number.isInteger(group.width) || group.width < 1 || group.width > 8 || !Array.isArray(group.sources) || group.sources.length !== group.width) throw invalid(`Input ${group.id} has an invalid bit mapping.`);

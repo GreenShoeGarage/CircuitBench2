@@ -1,0 +1,30 @@
+✔ four-state truth tables preserve controlling values and unknown inputs (1.301255ms)
+✔ net resolution distinguishes floating, contention and unknown drivers (0.480497ms)
+✔ initial combinational state settles without an artificial delayed X pulse (1.524654ms)
+✔ transport delay preserves pulses shorter than propagation delay (0.469681ms)
+✔ simultaneous input changes are atomic and do not invent an XOR glitch (0.560805ms)
+✔ simultaneous drivers resolve into explicit X and Z trace intervals (0.29249ms)
+✔ active-high tri-state buffer has genuine high-impedance and uncertain enable states (0.194987ms)
+✔ DFF samples post-batch D when D and rising clock change simultaneously (0.268886ms)
+✔ ambiguous possible clock edge propagates X and later known edge recovers (0.274875ms)
+✔ explicit flip-flop state permits a feedback toggle circuit (0.321924ms)
+✔ combinational feedback is rejected independently of the schematic checker (0.225321ms)
+✔ clock produces explicit duty and phase timing (0.14246ms)
+✔ timing resolution and explicit budgets reject unsupported requests (0.281404ms)
+✔ threshold ADC emits an explicit X band at interpolated crossings (0.321663ms)
+✔ Schmitt ADC holds known state in the band and never invents a known initial state (0.200815ms)
+✔ ADC refuses malformed traces and thresholds (0.221826ms)
+✔ DAC rejects unknown and high-impedance states explicitly (0.318879ms)
+✔ finite DAC edges preserve transition starts and interrupt an unfinished ramp (0.181848ms)
+✔ mixed union preserves every native time and value and identifies interpolated rows (0.601425ms)
+✔ pure digital result has an explicit event axis, literal states and endpoint (0.175909ms)
+✔ mixed merging rejects missing initial sample instead of extrapolating a waveform (0.165283ms)
+✔ fractional-picosecond analog duration clips a rounded-up digital event from sparse evidence (0.178953ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15.854168

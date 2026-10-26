@@ -5,6 +5,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import vm from 'node:vm';
+import {diagnosticHTML} from '../src/construction-ui.js';
 import {EXAMPLES} from '../src/examples.js';
 import {VERSION,newProject,validateProject,setComponentParams} from '../src/model.js';
 import {getPins} from '../src/library.js';
@@ -72,8 +73,8 @@ function harness({run=runFixture(),project=clone(run.projectSnapshot),runs=[run]
  const plot={selected:new Set(),unit:'logic',cursors:[null,null],range:null,baseline:null,
   setRun(selected,baseline){this.run=selected;this.baseline=baseline;state.plotCalls.push(['setRun',selected?.id]);},render(){state.plotCalls.push(['render']);},draw(){state.plotCalls.push(['draw']);},setRange(a,b){this.range=[a,b];state.plotCalls.push(['range',a,b]);},getSVG(){return '<svg xmlns="http://www.w3.org/2000/svg"></svg>';}};
  let serial=0,context;const instance=++harnessSerial;
- context=vm.createContext({
-  project,runs,continuousPreparation:null,continuousSession:null,continuousRun:null,studyAbort:null,analogExperiments:[],truthTables:[],timingMeasurements:records,activeRunId:runs.at(-1)?.id??null,baselineId:null,selection:[],undoStack:[],redoStack:[],selectedEndpoint:null,exampleId:null,runTask:null,preparing:false,truthTableTask:null,reportHTML:'',reportURL:null,VERSION,
+ context=vm.createContext({ diagnosticHTML,bindDiagnosticNavigation(){},renderInstrumentState(){},renderCaptureState(){}, captureRecords:[],measurementRecords:[],stepStudies:[],
+  project,runs,installationTask:null,restoredRunIds:new Set(),continuousPreparation:null,continuousSession:null,continuousRun:null,studyAbort:null,analogExperiments:[],truthTables:[],timingMeasurements:records,activeRunId:runs.at(-1)?.id??null,baselineId:null,selection:[],undoStack:[],redoStack:[],selectedEndpoint:null,exampleId:null,runTask:null,preparing:false,truthTableTask:null,reportHTML:'',reportURL:null,VERSION,
   document,$,plot,Date,Map,Set,Number,JSON,Blob,URL:{createObjectURL:()=>`blob:timing-test-${++serial}`,revokeObjectURL(){}},clone,uid:prefix=>`${prefix}_app_${instance}_${++serial}`,
   newProject,validateProject,getPins,setComponentParams,generateNetlist,ENGINE_INFO,getRunTraces,getAxis,formatNumber,formatTraceValue,displayTraceValue:formatTraceValue,
   safeEnvelope,filename,esc,getTimingSignals,createTimingRecord,retainTimingRecords,timingCSV,timingEvidenceJSON,timingSetupHTML,readTimingSetup,updateTimingSetup,timingResultHTML,

@@ -1,0 +1,25 @@
+✔ display and decoder have fixed explicit digital ports and original model provenance (1.853408ms)
+✔ a display is a passive observer and cannot silently accept a scalar or four-bit digit (8.107538ms)
+✔ all hexadecimal digits use the documented independent a-to-g segment masks (36.303714ms)
+✔ active-low decoding complements every driven segment including decimal point (1.851566ms)
+✔ BCD blanks invalid digits while preserving an independent decimal point (11.905209ms)
+✔ uncertain decoder inputs preserve unanimous segments without guessing a digit (2.381476ms)
+✔ HEX7 compiles through existing LUT/BUF/NOT gates with actual propagation delay (3.331304ms)
+✔ the counter example displays captured count transitions and wraps through zero (4.845635ms)
+✔ direct pattern example visibly preserves X, Z, decimal point and custom segments (1.424057ms)
+✔ display readback selects right-continuous event values without dense-sample interpolation (1.518886ms)
+✔ no run or unrelated run stays neutral and cannot light the current circuit (1.362977ms)
+✔ a running or paused continuous chunk can render only its retained time range (1.082704ms)
+✔ malformed or mismatched preserved display evidence is unavailable (1.57561ms)
+✔ rendered segment artwork labels each bit and distinguishes unknown from released (0.623387ms)
+✔ schematic symbols and editor receive observed state with accessible literal text (2.146721ms)
+✔ saved display circuits and their working results survive portable backups unchanged (7.545991ms)
+✔ display polarity and decoder options reject unsupported serialized settings (1.157194ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 95.771625

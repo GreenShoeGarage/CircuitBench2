@@ -42,3 +42,102 @@ button.primary:hover:not(:disabled){background:var(--accent);border-color:var(--
 .experiment-result .data-table small{display:block;font-size:10px;color:var(--muted);overflow-wrap:anywhere}
 .experiment-plot{width:100%;height:auto;margin:18px 0;border:1px solid var(--line);border-radius:8px;background:var(--canvas)}
 @media(max-width:700px){.run-controls{flex-wrap:wrap}.continuous-panel .object-actions button{flex:1}.experiment-setup .field-row{grid-template-columns:1fr}.display-readout{min-width:90px}}
+
+/* Scalar indicators keep literal state text alongside their red high-state glow. */
+.logic-readout{min-width:105px;max-width:240px;padding:8px 10px 12px}
+.logic-readout svg{width:80px;height:80px;overflow:visible}
+.logic-readout .logic-state-label{display:block;margin:5px 0;font:600 11px/1.5 ui-monospace,monospace;overflow-wrap:anywhere}
+.logic-readout[data-state="high"]{border-color:#a44e49;background:linear-gradient(180deg,rgba(240,60,60,.08),var(--canvas))}
+.logic-readout[data-state="high"] .logic-state-label{color:#ff8a80}
+.logic-readout[data-state="unknown"] .logic-state-label{color:#f4bb5e}
+.logic-readout[data-state="released"] .logic-state-label{color:#8ed0ef}
+.logic-readout small{line-height:1.6}
+/* Explicit binary source controls; indicator glow is defined separately. */
+.logic-source-switch{margin:14px 0;padding:12px;border:1px solid var(--line);border-radius:6px;min-width:0}
+.logic-source-switch legend{padding:0 5px;font-size:12px;font-weight:700}
+.logic-source-buttons{display:flex;gap:8px}
+.logic-source-buttons button{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;min-height:44px}
+.logic-source-buttons button small{color:inherit;font-size:11px}
+.logic-source-buttons [aria-pressed="true"]{border-color:var(--accent);background:var(--raised);box-shadow:inset 0 0 0 1px var(--accent)}
+.logic-source-buttons [data-source-state="1"][aria-pressed="true"]{border-color:#ef625b;box-shadow:inset 0 0 0 1px #ef625b}
+.logic-source-switch .helper{margin:10px 0 0}
+
+/* Release checks and the current operation / evidence context. */
+.workbench-state-host{padding:10px 20px;border-bottom:1px solid var(--line);background:var(--surface)}
+.workbench-state{display:grid;grid-template-columns:minmax(220px,1fr) minmax(250px,1fr);gap:5px 22px;font-size:11px}
+.workbench-state-summary,.workbench-observation{display:flex;align-items:center;gap:9px;flex-wrap:wrap;min-width:0}
+.workbench-state-label{color:var(--accent);font-size:12px;white-space:nowrap}
+.workbench-state[data-tone=warning] .workbench-state-label{color:var(--warn)}
+.workbench-state[data-tone=paused] .workbench-state-label{color:var(--blue)}
+.workbench-state-detail,.workbench-observation-detail{color:var(--muted)}
+.workbench-time{color:var(--text);font:11px/1.5 ui-monospace,monospace;white-space:nowrap}
+.workbench-observation button{padding:4px 8px;font-size:10px}
+.workbench-source{grid-column:1/-1;display:flex;align-items:center;gap:7px 14px;flex-wrap:wrap;padding-top:4px;border-top:1px solid var(--line)}
+.workbench-source>span{font:10px/1.6 ui-monospace,monospace;color:var(--text)}
+.workbench-source small{color:var(--muted);font-size:10px}
+.installation-check .object-actions{display:flex;flex-wrap:wrap;gap:8px;margin:15px 0}
+.installation-check .button{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:6px;padding:7px 11px;text-decoration:none;color:var(--text);font-weight:550;background:var(--surface)}
+.installation-check-results{list-style:none;padding:0;margin:12px 0;display:grid;gap:9px}
+.installation-check-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5px 14px;padding:12px;border:1px solid var(--line);border-radius:7px;background:var(--panel);overflow-wrap:anywhere}
+.installation-check-row>strong{font-size:12px}.installation-check-row>p{grid-column:1/-1;margin:0;font-size:11px}
+.installation-check-state{font-size:10px;font-weight:650;color:var(--accent)}
+.installation-check-row[data-check-status=failed]{border-color:var(--danger)}
+.installation-check-row[data-check-status=failed] .installation-check-state{color:var(--danger)}
+.installation-check-row[data-check-status=unavailable] .installation-check-state{color:var(--warn)}
+.installation-assets{margin-top:14px}.installation-assets>summary{font-size:12px;padding:8px}
+@media(max-width:800px){.workbench-state-host{padding:9px 12px}.workbench-state{grid-template-columns:1fr;gap:7px}.workbench-source{gap:5px 10px}.workbench-state-detail,.workbench-observation-detail{font-size:10px}}
+
+/* Pinned source controls and guided construction. */
+.schematic-control-row{display:flex;flex:1;min-height:0;flex-direction:column}
+.schematic-control-row #canvas{min-height:220px}
+.schematic-control-row #canvas>svg{min-height:0}
+.pinned-controls{background:var(--surface);border-top:1px solid var(--line);padding:10px 12px;flex:0 0 auto;max-height:180px;overflow:auto;scrollbar-width:thin}
+.pinned-controls-heading{display:flex;gap:12px;align-items:baseline;margin-bottom:8px;font-size:11px}
+.pinned-controls-heading>span{font-size:10px;color:var(--muted)}
+.pinned-source-list{display:flex;gap:9px;align-items:flex-start}
+.pinned-source{border:1px solid var(--line);border-radius:7px;background:var(--panel);padding:9px;min-width:225px;max-width:300px;flex:1}
+.pinned-source-heading{display:flex;align-items:center;gap:8px;margin-bottom:7px;font-size:12px}
+.pinned-source-heading>span{font-size:9px;color:var(--muted);flex:1}
+.pinned-source-heading>button{padding:0 5px;font-size:14px}
+.pinned-source-controls{display:flex;gap:6px;align-items:center;margin-bottom:7px}
+.pinned-source-controls button{font-size:11px;flex:1}
+.pinned-source-controls input{font-size:11px;width:125px;flex:1;min-width:50px}
+.pinned-source-controls button[aria-pressed=true]{background:#6d2027;border-color:#ff858b;color:#fff}
+.pinned-source-controls .source-hold{touch-action:none;user-select:none}
+.pinned-source-readouts{display:grid;gap:2px;font-size:10px;line-height:1.4;color:var(--muted)}
+.pinned-source-readouts [data-source-live]{color:var(--text)}
+.pinned-source-readouts [data-source-pending]{color:var(--warn);font-size:10px;font-weight:500}
+.source-preferences{margin:9px 0 14px}
+.source-preferences>button{font-size:11px;width:100%;white-space:normal}
+.source-preferences>label{display:block;font-size:11px;margin-top:8px;color:var(--muted)}
+.source-preferences .helper{margin-top:5px}
+.construction-action-list{display:flex;flex-wrap:wrap;gap:6px;margin:9px 0}
+.construction-action-list>button{font-size:11px;white-space:normal;text-align:left}
+#construction-actions .construction-action-list{display:grid}
+.analysis-alternatives{display:grid;gap:5px}
+.analysis-alternatives>button{white-space:normal;font-size:11px;text-align:left}
+[data-construction-form] .property-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:14px}
+[data-construction-form] .property-grid>label{font-size:12px;color:var(--muted)}
+[data-construction-form] input,[data-construction-form] select{margin-top:5px}
+.example-goal-filters{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 18px}
+.example-goal-filters>button{font-size:11px;white-space:normal}
+.example-goal-filters>button[aria-pressed=true]{border-color:var(--accent);color:var(--accent);background:var(--raised)}
+@media(min-width:1280px){.schematic-control-row{flex-direction:row}.pinned-controls{width:245px;max-height:none;border-top:0;border-left:1px solid var(--line);padding:12px;flex:0 0 245px}.pinned-controls-heading{display:block}.pinned-controls-heading>span{display:block;margin-top:3px}.pinned-source-list{display:grid}.pinned-source{min-width:0;max-width:none;width:100%}}
+@media(max-width:700px){.circuit-pane:has(.pinned-controls:not([hidden])){height:570px}.pinned-controls{max-height:180px}.pinned-controls-heading{display:block}.pinned-controls-heading>span{display:block}.pinned-source{min-width:225px}.pin-item{flex-wrap:wrap}.pin-item>span{flex:1}}
+
+.results-actions{flex-wrap:wrap;justify-content:flex-end}.capture-status{margin:7px 0}.capture-record{overflow-wrap:anywhere}.capture-record table{width:100%}#continuous-panel .object-actions{flex-wrap:wrap}
+
+/* Linked signal selection and expanded bus bits. */
+.trace-group { border-bottom:1px solid var(--line); padding:3px 0 6px; }
+.trace-group.trace-active { border-left:3px solid var(--accent); padding-left:7px; }
+.trace-actions { display:flex; flex-wrap:wrap; gap:5px; padding-left:24px; }
+.trace-actions button { font-size:10px; padding:3px 6px; }
+.trace-bit-row { padding-left:12px; }
+.plot-svg [data-select-trace] { cursor:pointer; }
+.plot-svg text[data-select-trace]:focus { outline:2px solid var(--accent); }
+
+.measurement-fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}.measurement-fields[hidden]{display:none}.measurement-presets{display:flex;gap:8px;align-items:end;flex-wrap:wrap;margin:12px 0}.measurement-presets>.field{flex:1;min-width:200px}.measurement-record{overflow-wrap:anywhere}.measurement-setup .timing-window{margin:14px 0}
+
+.measurement-result pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:280px;overflow:auto}.measurement-result td small{display:block;margin-top:4px;color:var(--muted)}.measurement-result dd{overflow-wrap:anywhere}
+
+.step-study-result .data-table{min-width:700px}.step-study-result .data-table th,.step-study-result .data-table td{vertical-align:top}.step-study-result td>small{display:block;font-size:9px;line-height:1.6;margin-top:4px;color:var(--muted);letter-spacing:0}.step-study-result td.mono{white-space:nowrap;letter-spacing:0}.step-study-result td:last-child{min-width:165px}.step-study-result td button{display:block;margin:5px 0}.step-study-result details{overflow-wrap:anywhere}

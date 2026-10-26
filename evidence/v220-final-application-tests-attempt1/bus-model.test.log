@@ -1,0 +1,32 @@
+✔ nine bounded parts have trusted fixed ports and separate original model provenance (8.543451ms)
+✔ all six bus examples compile and roundtrip without changing schema1 or probe addresses (22.19676ms)
+✔ old scalar and analog projects retain pin identities, widths and scalar vectors (2.435944ms)
+✔ fixed pin addresses survive width edits, movement, rotation and duplication (1.434431ms)
+✔ width-conflicting edits fail before mutation with a component-scoped error (1.859085ms)
+✔ wire, junction and equal-label widths never broadcast or truncate silently (0.963387ms)
+✔ label-linked width changes are rejected without destroying labels or wires (0.429392ms)
+✔ slice/join expansion preserves LSB ordering as zero-delay electrical aliases (0.912352ms)
+✔ slice/join aliases are bidirectional and do not create artificial drivers (0.627573ms)
+✔ contention and missing input drivers are checked per expanded bit (1.312341ms)
+✔ feedback checking uses real per-bit dependencies after aliases collapse (0.877461ms)
+✔ sequential bus feedback is explicit state and never a combinational cycle (0.396384ms)
+✔ word parser preserves literal X/Z and rejects overflow rather than inventing bits (0.288975ms)
+✔ pattern parser requires explicit t0 and distinct safe picosecond events (1.444946ms)
+✔ LUT rows are complete bounded data with stable binary address order (0.406147ms)
+✔ compiler lowers constant and pattern words LSB first and keeps truth inputs explicit (0.972491ms)
+✔ register/counter plans retain private synchronous state and ordered control nets (0.983467ms)
+✔ MUX, decoder and LUT lowering preserves actual per-bit truth semantics (1.059469ms)
+✔ logic project probes derive bus width/kind from trusted electrical nets (0.868018ms)
+✔ width1 bus parts remain scalar and bridges require explicit one-bit slices (1.84194ms)
+✔ expanded scalar bit budget cannot be bypassed with wide public buses (3.011801ms)
+✔ oversized pattern plans fail compilation while retaining a portable failed-run input (17.654055ms)
+✔ copy/delete keeps alias topology and grouped labels separate from the original (2.171565ms)
+✔ public labels cannot collide with lowered bit names or object prototypes (0.559994ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 80.741051

@@ -1,0 +1,51 @@
+{
+  "format": "CircuitBenchPackagingRegression",
+  "formatVersion": 1,
+  "version": "2.0.0",
+  "scope": "Real builder/packager regression for checksum membership with older prerelease and unrelated neighboring archives. The case fails before the fix and passes afterward. Private fixtures only; no application runtime changes.",
+  "proof": {
+    "status": "passed",
+    "exitCode": 0,
+    "counts": {
+      "tests": 1,
+      "suites": 0,
+      "pass": 1,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "transcript": "/tmp/cb-stable-package-neighbors-after.txt",
+    "transcriptSha256": "7bf0176ba807021ab9c2a3581ccd66c03ab583e66a6b79cc60a765f1840ccf89",
+    "testFileSha256": "fdb6944945e7c3dbcea0fd8cfd85cb4c26522faded76a398ad744d9b505cf92a",
+    "packagerSha256": "41480b881b26febf04adf1653f10316e7cd53ae7217a0f75115ed8f4ea343f4e",
+    "beforeFix": {
+      "transcript": "/tmp/cb-stable-package-neighbors-before.txt",
+      "sha256": "e339d8a62596b85f7ae5550357c43141d97e91bfab91c8927795555e8d341f8f",
+      "counts": {
+        "tests": 1,
+        "suites": 0,
+        "pass": 0,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "reason": "The real packager included six prerelease archives and one unrelated matching-prefix archive in the current stable checksum inventory."
+    },
+    "scope": "One added black-box regression; source inputs copied and rebuilt only in a private temporary fixture, which is removed after the test. No runtime, docs, evidence or real release archives modified by this subtask.",
+    "runtimeBuild": "6cf7ae00d61a0f43"
+  },
+  "transcripts": {
+    "before": {
+      "text": "\u2716 packager selects only its exact archives beside prerelease and unrelated ZIPs (2696.197599ms)\n\u2139 tests 1\n\u2139 suites 0\n\u2139 pass 0\n\u2139 fail 1\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 2700.967795\n\n\u2716 failing tests:\n\ntest at tests/package.test.mjs:164:1\n\u2716 packager selects only its exact archives beside prerelease and unrelated ZIPs (2696.197599ms)\n  AssertionError [ERR_ASSERTION]: Checksums include exactly this release\u2019s two archives\n  + actual - expected\n  \n    [\n      'CircuitBench-2.0.0-deploy.zip',\n  +   'CircuitBench-2.0.0-notes.zip',\n  +   'CircuitBench-2.0.0-rc.1-deploy.zip',\n  +   'CircuitBench-2.0.0-rc.1-source.zip',\n  +   'CircuitBench-2.0.0-rc.2-deploy.zip',\n  +   'CircuitBench-2.0.0-rc.2-source.zip',\n  +   'CircuitBench-2.0.0-rc.3-deploy.zip',\n  +   'CircuitBench-2.0.0-rc.3-source.zip',\n      'CircuitBench-2.0.0-source.zip'\n    ]\n  \n      at TestContext.<anonymous> (file:///workspace/scratch/141bc601d3b6/circuitbench/tests/package.test.mjs:192:9)\n      at async Test.run (node:internal/test_runner/test:1409:7)\n      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {\n    generatedMessage: false,\n    code: 'ERR_ASSERTION',\n    actual: [Array],\n    expected: [Array],\n    operator: 'deepStrictEqual',\n    diff: 'simple'\n  }\n",
+      "bytes": 1301,
+      "sha256": "e339d8a62596b85f7ae5550357c43141d97e91bfab91c8927795555e8d341f8f"
+    },
+    "after": {
+      "text": "\u2714 packager selects only its exact archives beside prerelease and unrelated ZIPs (2826.452949ms)\n\u2139 tests 1\n\u2139 suites 0\n\u2139 pass 1\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 2830.962668\n",
+      "bytes": 214,
+      "sha256": "7bf0176ba807021ab9c2a3581ccd66c03ab583e66a6b79cc60a765f1840ccf89"
+    }
+  }
+}

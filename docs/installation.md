@@ -1,21 +1,23 @@
 # Installation and self-hosting
 
+<!-- Current operational release placeholders are rendered from the build's release version. Historical evidence retains its original release. -->
+
 ## Updating an earlier release
 
-Upload all extracted contents of **CircuitBench-2.0.0-rc.1-deploy.zip** to the
+Upload all extracted contents of **CircuitBench-{{RELEASE_VERSION}}-deploy.zip** to the
 same application directory. Keep `assets/` and `repair/` intact. Executable
-files now live under `assets/2.0.0-rc.1/`, including the `src/` modules,
+files now live under `assets/{{RELEASE_VERSION}}/`, including the `src/` modules,
 stylesheet, and `engine/eecircuit-engine.js` plus `engine/spice.wasm`.
 The versioned `src/` directory also includes the coordinated worker and its
 digital/analog dependencies, continuous controller, display and study modules.
 Upload the entire package even if a first experiment uses only digital parts.
 Each release uses a new directory so a browser or CDN cannot reuse an older
 worker through its previous URL. The service worker also has a release-specific
-filename, `sw-2.0.0-rc.1.js`.
+filename, `sw-{{RELEASE_VERSION}}.js`.
 
-Close the application's other tabs, then open `repair/?release=2.0.0-rc.1`
+Close the application's other tabs, then open `repair/?release={{RELEASE_QUERY_VERSION}}`
 under the application directory. Choose **Refresh cached application files**,
-review the result, and return to CircuitBench. Confirm **v2.0.0-rc.1** before
+review the result, and return to CircuitBench. Confirm **v{{RELEASE_VERSION}}** before
 running the experiment. The recovery page unregisters only this installation's
 service worker, removes its application caches, and reloads the new executable
 files through the browser HTTP cache. It does not clear project databases,
@@ -51,7 +53,7 @@ tablet, phone or browser version.
 
 1. Unzip the deployable ZIP.
 2. Confirm `index.html`, `assets/`, `repair/`, `recovery-manifest.json`,
-   `icon.svg`, the web manifest and the versioned `sw-2.0.0-rc.1.js` are present
+   `icon.svg`, the web manifest and the versioned `sw-{{RELEASE_VERSION}}.js` are present
    together. The root `engine/` directory contains licenses and upstream source;
    the executing engine is inside the versioned assets directory.
 3. Run a static server from that folder:
@@ -183,19 +185,49 @@ each release still needs a new version. Retain the previous release ZIP for
 rollback. The recovery page explicitly refreshes the root document separately
 because an ordinary HTTP cache is distinct from the service-worker cache.
 
+## Check this installation
+
+Open **Help → Check installation**, then choose **Run installation check**.
+The check inspects the current advertised release and recovery manifests,
+compares the loaded application's identity, checks every listed runtime file,
+and runs separate small digital, coordinated-feedback and ngspice examples.
+It does not use your circuit or change saved projects, caches or registrations.
+
+The result lists **Passed**, **Failed** or **Unavailable** for each check. Open
+**Runtime file checks** for individual asset results. A failed row retains the
+stage and available HTTP, type, byte-count or integrity detail; a browser
+rejection without an exposed reason remains identified as unexplained.
+
+**Completed with limits** means some verification was unavailable. In
+particular, an insecure connection may permit connected simulation while
+withholding SHA-256 or service-worker APIs. Byte lengths and usable response
+types can still be checked, but they are not described as a cryptographic
+match. API availability does not establish an installed offline cache.
+
+Use **Download diagnostic JSON** to retain the result, including the application
+version/build, checked URLs, environment capabilities, observations and time.
+It contains no circuit or project data. **Cancel check** stops the check;
+**Check again** starts a fresh observation. **Open cache repair** opens the
+existing recovery page, where you explicitly choose whether to refresh files.
+
+A passed installation check establishes connected asset delivery and the three
+small engine workflows at the recorded time. Offline reload, upgrades, cache
+recovery, larger circuit behavior and actual output downloads have separate
+acceptance checks in [VALIDATION.md](VALIDATION.md).
+
 ## Troubleshooting
 
 | Symptom | What to check |
 |---|---|
 | Blank page or modules refused | Use HTTP(S); upload all files; verify JavaScript MIME types and browser console network errors. |
-| ngspice cannot start | Inspect the exact path in diagnostics; both engine files must be under the matching `assets/<version>/engine/` directory. Open `repair/` after uploading the whole package. |
+| ngspice cannot start | Inspect the exact path in diagnostics; both engine files must be under `assets/{{RELEASE_VERSION}}/engine/`. Open `repair/` after uploading the whole package. |
 | Coordinated worker cannot start | Upload every module under the matching versioned `src/` directory; inspect JavaScript MIME, network response and worker/CSP diagnostics. A successful digital-only run does not establish that the ngspice WASM files are present. |
 | Offline cache unavailable | Use HTTPS/localhost, allow service workers, check storage space and browser restrictions. The downloaded folder can still be served locally. |
 | Session only / save failed | Browser storage was denied or exhausted. Download a JSON backup before leaving. |
-| Old version after upload | Close other app tabs, open `repair/?release=2.0.0-rc.1`, refresh cached files, return and confirm the version. |
+| Old version after upload | Close other app tabs, open `repair/?release={{RELEASE_QUERY_VERSION}}`, refresh cached files, return and confirm the version. |
 | Results differ after a change | Inspect the run revision, generated netlist, selected model, analysis settings and diagnostic log. Earlier results remain attached to their captured revision. |
 | Timeout | Reduce the analysis size or inspect circuit convergence. Stop/timeout disposes of the worker; a subsequent run starts fresh. |
-| Continuous session stops on an edit | This preserves the captured circuit's meaning. Use Live inputs for DIN/BUSIN or DC V/I changes that should retain state; topology and part edits need a new session. |
+| Continuous session stops on an edit | This preserves the captured circuit's meaning. Use Live inputs for DVS/DIN/BUSIN or DC V/I changes that should retain state; topology and part edits need a new session. |
 | Continuous waveform begins after zero | Older intervals were removed by the time/sample/event history bounds. Retained times are absolute; the saved window is not the full elapsed simulation. |
 | Backup does not resume a paused circuit | Backups store completed windows and provenance, without a serialized worker checkpoint. Start a new continuous session from the schematic's initial configuration. |
 

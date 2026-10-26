@@ -1,0 +1,23 @@
+✔ DVS and DLED have versioned original models and explicit selectable port domains (7.713985ms)
+✔ default DVS directly drives native logic and passive indicators without ground or WASM (10.432075ms)
+✔ DVS constant sources participate in the existing exhaustive truth-table engine (3.124201ms)
+✔ DVS rejects invalid states, port modes and active voltage parameters (13.386627ms)
+✔ changing DVS port mode preserves wired, labelled and probed voltage terminals atomically (2.410456ms)
+✔ voltage terminals require an explicit analog reference and never alias the logic output (2.236226ms)
+✔ DVS initial voltage honors low/high and a separate nonzero reference immediately (6.785428ms)
+✔ live DVS changes retain time and follow the configured rise and fall slopes (4.578964ms)
+✔ live DVS changes retain capacitor state across command boundaries (14.371585ms)
+✔ DVS rejects unknown live values before any controls or timeline mutate (1.623259ms)
+✔ resolved contention remains X in logic mode and explicitly stops voltage projection (2.117222ms)
+✔ generated DVS voltage-source names cannot collide with authored source references (1.813712ms)
+✔ voltage projection and ADC readback use coordinated analog/digital coupling (3.938604ms)
+✔ continuous DVS backup preserves actual live changes and rejects corrupted unknown values (9.101646ms)
+✔ production ngspice WASM executes both DVS voltage levels through the complete mixed runner (395.40274ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 485.02934

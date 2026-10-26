@@ -1,0 +1,13 @@
+✔ coordinated report identifies actual integration/plan without claiming ngspice replay settings (17.386979ms)
+✔ ngspice analog report continues to include its actual tolerance and temperature configuration (0.379238ms)
+✔ coordinated digital-only report does not describe analog integration settings (3.171247ms)
+✔ restored coordinated report uses result engine identity when run-level metadata is absent (4.396701ms)
+✔ failed coordinated report does not invent an ngspice execution identity (0.473617ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 36.67869

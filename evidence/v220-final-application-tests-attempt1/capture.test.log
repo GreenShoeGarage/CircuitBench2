@@ -1,0 +1,25 @@
+✔ digital trigger ignores X/Z transitions and stops on the first actual binary edge (4.405923ms)
+✔ analog threshold stop is a retained solver state localized within its numerical step (13.112583ms)
+✔ next-event stepping passes analog integration samples and reaches a real scheduled boundary (0.646761ms)
+✔ a digital bus trigger requires and respects the explicit least-significant-bit index (1.525765ms)
+✔ capture collects exact post-trigger end and reports requested versus retained history (2.94254ms)
+✔ missing pre-trigger history is an explicit partial capture, including before time zero (0.697736ms)
+✔ run-until-event pauses at the event and ignores the requested post-trigger value (0.688273ms)
+✔ search exhaustion and next-event work caps never claim an observed event (14.41458ms)
+✔ armed live input changes trigger at their applied boundary without a fabricated pulse width (2.071708ms)
+✔ Stop cancels an armed capture and a new session starts with no inherited trigger (0.97212ms)
+✔ saved capture survives run removal and a project backup round trip; coverage and witness are verified (9.500419ms)
+✔ live-boundary evidence retains the exact applied input change and validates after reopening (2.909391ms)
+✔ bounded retention drops whole old captures and UI names missing history and raw provenance (1.576239ms)
+✔ invalid time/threshold/edge configurations are rejected without silently normalizing ambiguity (0.347982ms)
+✔ actual worker protocol carries event stopping and retained post-trigger state (48.405754ms)
+✔ actual worker live input response includes the triggered boundary snapshot (39.634177ms)
+✔ actual worker returns a non-crossing boundary state so same-time release cancels post-trigger capture (37.296759ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 187.592331

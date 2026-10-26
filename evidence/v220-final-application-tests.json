@@ -1,0 +1,1301 @@
+{
+  "format": "CircuitBench application test gate",
+  "formatVersion": 1,
+  "release": "2.2.0",
+  "startedAt": "2026-10-25T12:48:49.706416+00:00",
+  "completedAt": "2026-10-25T12:48:56.139242+00:00",
+  "scope": "Every tests/*.test.mjs except package.test.mjs; package acceptance is separate.",
+  "concurrency": 2,
+  "perFileTimeoutSeconds": 180,
+  "sourceHashesBefore": {
+    "index.html": "2f5f1299039129bb29ebe1b9c95a3bf65c1ec387d3adf5e32feda87cd087937d",
+    "package.json": "24f8345352942c515ffcb753e35deeb8abc368dfd40cbc3dc9a4b8044a03c7a1",
+    "src/app.js": "a2ccf50ad7b6a0590a0271cfb1d1497fa2950680f75cae5a0c8cc8f81cd9b8a8",
+    "src/capture-ui.js": "0dc17e4ed2fbc7d98c6b77487a1d3c9e8f00c9fdea6cae94b605301f4fa93029",
+    "src/capture.js": "7957387eed1db09041d00d977af4f69eaf3776b839f10fc1ad17b9541180c7d8",
+    "src/construction-ui.js": "23c2f699ac46d1d139915934ae4174a947ca9670484eefceaad05bfbdf140830",
+    "src/construction.js": "edcf7772f2c06ffd3f242a9f8236c4bbe5dc6d6458721b20bae552c015f3ca11",
+    "src/continuous-evidence.js": "af8cb5b91bb3dc90f03943b9dd97ca8f5bf489a2b755cc729612c48e05aad9c5",
+    "src/continuous.js": "54dbd6a94512ded444d70d9e025b046dc33e766587abae607107b0b69141a8ce",
+    "src/coordinated-digital.js": "6e73b4b7b982b2e3f807e23e96d62f25cee916341762e0da8ae41c32bf2d23d5",
+    "src/coordinated-engine.js": "c0ae41a8dad4cd4e2f8b038890b81bffa35242501039c6c571afd2378d703ba6",
+    "src/coordinated-results.js": "e89ec29eb0f0517b1fa40be565173323af5e9223a88c667c983e83e93c568655",
+    "src/coordinated-worker.js": "1ab81f19255169d2892c5142c0d4339a7d38f32dbb097a2ef0f7d9e187748dea",
+    "src/coordinated.js": "732e577297198e7c9e50467555a030d4e9eaae86910a82bc3a4d9e68d07c853e",
+    "src/digital-engine.js": "86f2b39466f8784ee9311db7633af299f2d99bf6a82a45dabef56ed33e227089",
+    "src/digital-worker.js": "1283b1b8de76c941301562abeac1a5bbc287eb9481d4b569504520325d5a5d10",
+    "src/digital.js": "ab9e81e869af307fab57967fe9aa80e484213c6d96479d9b77e0e63e1271ba36",
+    "src/displays.js": "4f67bb130f6af75844555d2372ce3e888cf16241bf9ac48853dc99ea292f0f9d",
+    "src/editor.js": "351d0d04c337af0e69635698353b36f696f18a60f0395b0ae4b080a7245440d8",
+    "src/engine-worker.js": "1ba0fabfc4a35b98891869cc989c38bd800157b28f4321edabbe115073018ea3",
+    "src/engine.js": "a6e50bebb2ed8572633605c6ea286ea3e71390651f21b645f47b5730367624fd",
+    "src/examples-coordinated.js": "e28cf43aca9d85e7380e69c139aa566b5c4eb2570fbd4f953e5697a6c9b09e82",
+    "src/examples-displays.js": "e7c5ebefbfc0ea23e8fa1c730fbb8301c62663e1c3ed7955fd5e94cce4f581d5",
+    "src/examples-logic-io.js": "7e0c3d2e359cdf322a97b138f6726c7098265e9465b36b4e712cca78c09c401e",
+    "src/examples.js": "a05a0049627ee20a21e42b8a0512d925ff470c3f7f25288aab5e7e76384ddc03",
+    "src/experiments-ui.js": "680695e49a319a005bbbfa93bd910b36cd497e823a3d1bb761df3b5b209e795c",
+    "src/experiments.js": "dc2314da3aa6bf0202345f2af4e8bb973ba230ada0e936d445b94ad2cbf043c1",
+    "src/installation-check.js": "699f53bed1523de87510336145b0f25a38b8df9603898cac9101cd6348f6947f",
+    "src/installation-ui.js": "ee8787f8408e6a894ce23b8cbe2b9e8c2d3a1477820d4dc1069a7b0aeae6dc4d",
+    "src/library.js": "ab341ea3d86c9f01c9994af087a109fdcf985591c4e5e1965d33c07fe58a3c65",
+    "src/live-controls.js": "3d63caacb5a746c8e670126eec04b1c901718991dd5a098b83f30e56a945b2fb",
+    "src/logic-source-ui.js": "27e18744f83524b8080ef4c481c9822e1f4fca34a6f914e8746f0ddf875f1c39",
+    "src/measurement-evidence.js": "2ef2f9e43554e2edbf692545d4acf1d4f0a29efa5307eef40855ba372a0da3aa",
+    "src/measurements-ui.js": "2c4c3217e0d4ed80b2b284b83f69a6647af0e9a4084908603c1e2b1341bc40b0",
+    "src/measurements.js": "4efef1d81611dc0562f046614641c1d499e731ed9c2965037e3a1592a5343244",
+    "src/model.js": "c54485a1926ff4f8271cc458697e0475d27ebad4134a8a04a063ed1633493abc",
+    "src/netlist.js": "88f46730d8c0faa07601feb7edb2876eb3952b4abd4e3f7a57f364f7117345b4",
+    "src/plot-signals.js": "6794c3867ffd2109039e210efb998d966e1ea29ed7e7f4a4d2535711bb2cc8be",
+    "src/plots.js": "1924665be424fc5c27682fdc882594872214c2d0a73e467174a037e9cc35497a",
+    "src/reports.js": "54299667e5b9b5bf3a6d3966b0aa443ea266c4d3511872d69fd2013fd3475a93",
+    "src/simulation.js": "fdf48771ef20263a9b0086ebb6490fc21b6596bb5ee8aaae67523d022a74e1ff",
+    "src/step-study-ui.js": "e4f15a75699971d8932f5a856b3a1d35ddb23fd8f6b270b435126bbad70306be",
+    "src/step-study.js": "a3c0218be4e162157ab9fa0bed4b22b7f4285365e7b4e565c0c72e5966546069",
+    "src/storage.js": "9066721956a464bc5f64fa04687a55f3b2a1a17e2aa8a16a76fa81684aece90f",
+    "src/symbols.js": "e01586b22957df4f21797ba61a5769fc7e5563bf3c0e1e1b50c873a1964bd0ff",
+    "src/timing-evidence.js": "0fb5e73c2e5679fab7bfe969072dbc59df53e54c6eef6f31124e9f002bcfeb5e",
+    "src/timing-ui.js": "fc52cfbbdf76c336e0b133e0321504211b900c37cf66d9a61879d1b6d9a246e3",
+    "src/timing.js": "6b68bb2e175182eae949ed2623368632971d347d52c597bb2c65573f4647fb9c",
+    "src/truth-table-evidence.js": "81d891f186ed388f91692b2297ae7c8c9a18797509ac821edeb1c6d92c083feb",
+    "src/truth-table-ui.js": "5e46bd6c88df976015fe6bcf0f42569dd03d159b6ae280869ed7d56e146281e5",
+    "src/workbench-state.js": "198742e69aefaaa60b47dfeb534ed8c60bf1aa54ebde0258d55c338efa8df931",
+    "style.css": "41d34e970542648ebc80f09e082bb2b769fb8392b961bc032a616e40c714576e"
+  },
+  "sourceHashesAfter": {
+    "index.html": "2f5f1299039129bb29ebe1b9c95a3bf65c1ec387d3adf5e32feda87cd087937d",
+    "package.json": "24f8345352942c515ffcb753e35deeb8abc368dfd40cbc3dc9a4b8044a03c7a1",
+    "src/app.js": "a2ccf50ad7b6a0590a0271cfb1d1497fa2950680f75cae5a0c8cc8f81cd9b8a8",
+    "src/capture-ui.js": "0dc17e4ed2fbc7d98c6b77487a1d3c9e8f00c9fdea6cae94b605301f4fa93029",
+    "src/capture.js": "7957387eed1db09041d00d977af4f69eaf3776b839f10fc1ad17b9541180c7d8",
+    "src/construction-ui.js": "23c2f699ac46d1d139915934ae4174a947ca9670484eefceaad05bfbdf140830",
+    "src/construction.js": "edcf7772f2c06ffd3f242a9f8236c4bbe5dc6d6458721b20bae552c015f3ca11",
+    "src/continuous-evidence.js": "af8cb5b91bb3dc90f03943b9dd97ca8f5bf489a2b755cc729612c48e05aad9c5",
+    "src/continuous.js": "54dbd6a94512ded444d70d9e025b046dc33e766587abae607107b0b69141a8ce",
+    "src/coordinated-digital.js": "6e73b4b7b982b2e3f807e23e96d62f25cee916341762e0da8ae41c32bf2d23d5",
+    "src/coordinated-engine.js": "c0ae41a8dad4cd4e2f8b038890b81bffa35242501039c6c571afd2378d703ba6",
+    "src/coordinated-results.js": "e89ec29eb0f0517b1fa40be565173323af5e9223a88c667c983e83e93c568655",
+    "src/coordinated-worker.js": "1ab81f19255169d2892c5142c0d4339a7d38f32dbb097a2ef0f7d9e187748dea",
+    "src/coordinated.js": "732e577297198e7c9e50467555a030d4e9eaae86910a82bc3a4d9e68d07c853e",
+    "src/digital-engine.js": "86f2b39466f8784ee9311db7633af299f2d99bf6a82a45dabef56ed33e227089",
+    "src/digital-worker.js": "1283b1b8de76c941301562abeac1a5bbc287eb9481d4b569504520325d5a5d10",
+    "src/digital.js": "ab9e81e869af307fab57967fe9aa80e484213c6d96479d9b77e0e63e1271ba36",
+    "src/displays.js": "4f67bb130f6af75844555d2372ce3e888cf16241bf9ac48853dc99ea292f0f9d",
+    "src/editor.js": "351d0d04c337af0e69635698353b36f696f18a60f0395b0ae4b080a7245440d8",
+    "src/engine-worker.js": "1ba0fabfc4a35b98891869cc989c38bd800157b28f4321edabbe115073018ea3",
+    "src/engine.js": "a6e50bebb2ed8572633605c6ea286ea3e71390651f21b645f47b5730367624fd",
+    "src/examples-coordinated.js": "e28cf43aca9d85e7380e69c139aa566b5c4eb2570fbd4f953e5697a6c9b09e82",
+    "src/examples-displays.js": "e7c5ebefbfc0ea23e8fa1c730fbb8301c62663e1c3ed7955fd5e94cce4f581d5",
+    "src/examples-logic-io.js": "7e0c3d2e359cdf322a97b138f6726c7098265e9465b36b4e712cca78c09c401e",
+    "src/examples.js": "a05a0049627ee20a21e42b8a0512d925ff470c3f7f25288aab5e7e76384ddc03",
+    "src/experiments-ui.js": "680695e49a319a005bbbfa93bd910b36cd497e823a3d1bb761df3b5b209e795c",
+    "src/experiments.js": "dc2314da3aa6bf0202345f2af4e8bb973ba230ada0e936d445b94ad2cbf043c1",
+    "src/installation-check.js": "699f53bed1523de87510336145b0f25a38b8df9603898cac9101cd6348f6947f",
+    "src/installation-ui.js": "ee8787f8408e6a894ce23b8cbe2b9e8c2d3a1477820d4dc1069a7b0aeae6dc4d",
+    "src/library.js": "ab341ea3d86c9f01c9994af087a109fdcf985591c4e5e1965d33c07fe58a3c65",
+    "src/live-controls.js": "3d63caacb5a746c8e670126eec04b1c901718991dd5a098b83f30e56a945b2fb",
+    "src/logic-source-ui.js": "27e18744f83524b8080ef4c481c9822e1f4fca34a6f914e8746f0ddf875f1c39",
+    "src/measurement-evidence.js": "2ef2f9e43554e2edbf692545d4acf1d4f0a29efa5307eef40855ba372a0da3aa",
+    "src/measurements-ui.js": "2c4c3217e0d4ed80b2b284b83f69a6647af0e9a4084908603c1e2b1341bc40b0",
+    "src/measurements.js": "4efef1d81611dc0562f046614641c1d499e731ed9c2965037e3a1592a5343244",
+    "src/model.js": "c54485a1926ff4f8271cc458697e0475d27ebad4134a8a04a063ed1633493abc",
+    "src/netlist.js": "88f46730d8c0faa07601feb7edb2876eb3952b4abd4e3f7a57f364f7117345b4",
+    "src/plot-signals.js": "6794c3867ffd2109039e210efb998d966e1ea29ed7e7f4a4d2535711bb2cc8be",
+    "src/plots.js": "1924665be424fc5c27682fdc882594872214c2d0a73e467174a037e9cc35497a",
+    "src/reports.js": "54299667e5b9b5bf3a6d3966b0aa443ea266c4d3511872d69fd2013fd3475a93",
+    "src/simulation.js": "fdf48771ef20263a9b0086ebb6490fc21b6596bb5ee8aaae67523d022a74e1ff",
+    "src/step-study-ui.js": "e4f15a75699971d8932f5a856b3a1d35ddb23fd8f6b270b435126bbad70306be",
+    "src/step-study.js": "a3c0218be4e162157ab9fa0bed4b22b7f4285365e7b4e565c0c72e5966546069",
+    "src/storage.js": "9066721956a464bc5f64fa04687a55f3b2a1a17e2aa8a16a76fa81684aece90f",
+    "src/symbols.js": "e01586b22957df4f21797ba61a5769fc7e5563bf3c0e1e1b50c873a1964bd0ff",
+    "src/timing-evidence.js": "0fb5e73c2e5679fab7bfe969072dbc59df53e54c6eef6f31124e9f002bcfeb5e",
+    "src/timing-ui.js": "fc52cfbbdf76c336e0b133e0321504211b900c37cf66d9a61879d1b6d9a246e3",
+    "src/timing.js": "6b68bb2e175182eae949ed2623368632971d347d52c597bb2c65573f4647fb9c",
+    "src/truth-table-evidence.js": "81d891f186ed388f91692b2297ae7c8c9a18797509ac821edeb1c6d92c083feb",
+    "src/truth-table-ui.js": "5e46bd6c88df976015fe6bcf0f42569dd03d159b6ae280869ed7d56e146281e5",
+    "src/workbench-state.js": "198742e69aefaaa60b47dfeb534ed8c60bf1aa54ebde0258d55c338efa8df931",
+    "style.css": "41d34e970542648ebc80f09e082bb2b769fb8392b961bc032a616e40c714576e"
+  },
+  "changedSources": [],
+  "summary": {
+    "files": 61,
+    "passedFiles": 61,
+    "failedFiles": 0,
+    "environmentBlockedFiles": 0,
+    "cases": 868,
+    "passedCases": 868,
+    "failedCases": 0,
+    "cancelledCases": 0,
+    "skippedCases": 0
+  },
+  "tests": [
+    {
+      "file": "tests/analysis-app.test.mjs",
+      "command": [
+        "node",
+        "tests/analysis-app.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 1,
+      "passed": 1,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.085,
+      "transcript": "evidence/v220-final-application-tests/analysis-app.test.log",
+      "transcriptSha256": "c01bfa25644265beff18d23584fd94510e3e03a071494d57e4a928c829eb89de",
+      "testSha256": "1fb6e2e12bf38b036b26918c90deea3bb394820019940516abbf59ba450ca130"
+    },
+    {
+      "file": "tests/autosave.test.mjs",
+      "command": [
+        "node",
+        "tests/autosave.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 4,
+      "passed": 4,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.048,
+      "transcript": "evidence/v220-final-application-tests/autosave.test.log",
+      "transcriptSha256": "8d2712c7dc8ed5c1db8314236bea4d87969c33f64ad3b8e8ff09fab3efdf5a13",
+      "testSha256": "7fa6183eb0fa16f6500135092675bfc7a112bd08341ae28716bb8a6142524c5d"
+    },
+    {
+      "file": "tests/bounded-run-provenance-app.test.mjs",
+      "command": [
+        "node",
+        "tests/bounded-run-provenance-app.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 12,
+      "passed": 12,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.163,
+      "transcript": "evidence/v220-final-application-tests/bounded-run-provenance-app.test.log",
+      "transcriptSha256": "ff43f6fcf7e32533c722cb17f67d30ba89eccf5dc5c9b6aad48a59cd6cefe628",
+      "testSha256": "8226d3472140eef71030e96df013d54234ddc80767e4e4010d0e2c5c2a7b94c7"
+    },
+    {
+      "file": "tests/bus-model.test.mjs",
+      "command": [
+        "node",
+        "tests/bus-model.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 24,
+      "passed": 24,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.142,
+      "transcript": "evidence/v220-final-application-tests/bus-model.test.log",
+      "transcriptSha256": "eb2afa3cd727a9f1abd10da40daf1fc446292fa8873fa4cdb928831efe60b6b8",
+      "testSha256": "04bc8149d92ecd4335e822b2074fea9d5d39530f1d49d18ca5d76566c29e9e3e"
+    },
+    {
+      "file": "tests/bus-report.test.mjs",
+      "command": [
+        "node",
+        "tests/bus-report.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 2,
+      "passed": 2,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.083,
+      "transcript": "evidence/v220-final-application-tests/bus-report.test.log",
+      "transcriptSha256": "27d7b4b12675f0642d845e84fee58186511e46db85439e777eab8d7191a39888",
+      "testSha256": "f65479849fcebaf1bc26d9a8068a5376d006f768225aab72e7101f085c444ce7"
+    },
+    {
+      "file": "tests/bus-ui.test.mjs",
+      "command": [
+        "node",
+        "tests/bus-ui.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 10,
+      "passed": 10,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.113,
+      "transcript": "evidence/v220-final-application-tests/bus-ui.test.log",
+      "transcriptSha256": "1a47ab3e8c6035a0898d79924f24e1380011290d4a9525369a86a36c9307c529",
+      "testSha256": "ed94dee2abde076d9af81d8b11cf41db2bf24646bb9fa71d194ba3aa8744e42f"
+    },
+    {
+      "file": "tests/capture-app.test.mjs",
+      "command": [
+        "node",
+        "tests/capture-app.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 18,
+      "passed": 18,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.233,
+      "transcript": "evidence/v220-final-application-tests/capture-app.test.log",
+      "transcriptSha256": "79b307be15257dff23032b175c37ff48584c17580ad5bbcfc2d1aa390b8ba267",
+      "testSha256": "e5384cae37c24e80b0c96778721694d65b8f8647827394216fee78d491e0c195"
+    },
+    {
+      "file": "tests/capture-review.test.mjs",
+      "command": [
+        "node",
+        "tests/capture-review.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 12,
+      "passed": 12,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.158,
+      "transcript": "evidence/v220-final-application-tests/capture-review.test.log",
+      "transcriptSha256": "c8d4080397443871ee6482df955e569f7f3e348f67effeb3b13adadd5e33f4ce",
+      "testSha256": "43c83b0ba07a2fc5417efda2aef4fb230603e3950682f840e3570f2e2fd5d335"
+    },
+    {
+      "file": "tests/capture.test.mjs",
+      "command": [
+        "node",
+        "tests/capture.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 17,
+      "passed": 17,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.243,
+      "transcript": "evidence/v220-final-application-tests/capture.test.log",
+      "transcriptSha256": "e6dac5beb334e3e7b1e0449f6d68bc4cf5ce313a8e817d36d341984db9bd0461",
+      "testSha256": "6fe2a5cd816ad9c52aebf6c6cea4326d4411b01b49120d0556dd3028fcdbd646"
+    },
+    {
+      "file": "tests/construction.test.mjs",
+      "command": [
+        "node",
+        "tests/construction.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 28,
+      "passed": 28,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.13,
+      "transcript": "evidence/v220-final-application-tests/construction.test.log",
+      "transcriptSha256": "109b14495f2770425d694405c63c3c9e04f322a8662bc029d4b3673acdee5ed7",
+      "testSha256": "4b4545f98c9df3ba70b74b99f3b49e4fa083b1471605c7b23c3b6c8202b1883d"
+    },
+    {
+      "file": "tests/continuous-app.test.mjs",
+      "command": [
+        "node",
+        "tests/continuous-app.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 17,
+      "passed": 17,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.155,
+      "transcript": "evidence/v220-final-application-tests/continuous-app.test.log",
+      "transcriptSha256": "d24b8eac84e82ffd084c4f519cb489b8ca81a2a2743286ac78fb0209e856677c",
+      "testSha256": "6cc2ee97dd1a41ef0c789587aa91b65334f3c0f77bb1f52ae5bd7bcd38809389"
+    },
+    {
+      "file": "tests/continuous-storage.test.mjs",
+      "command": [
+        "node",
+        "tests/continuous-storage.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 9,
+      "passed": 9,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.198,
+      "transcript": "evidence/v220-final-application-tests/continuous-storage.test.log",
+      "transcriptSha256": "c899e9c4fa9f3466b018df3de783fbe8c2ddcb77ba360e78b73c3244dc8a0711",
+      "testSha256": "75c84c3437f28bf43cb8aa32edc887d818fe6952c4bbfeec499bea8c31e07b53"
+    },
+    {
+      "file": "tests/continuous.test.mjs",
+      "command": [
+        "node",
+        "tests/continuous.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 21,
+      "passed": 21,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.073,
+      "transcript": "evidence/v220-final-application-tests/continuous.test.log",
+      "transcriptSha256": "32c0cc1d243e588d921cec976b4cf77ca19bdfe484a949aa37a664e041b2763d",
+      "testSha256": "0ce42c4b7a7e88886b8a3f725b88c23a87c31882aa774c259debaba06a177f5c"
+    },
+    {
+      "file": "tests/converters-integration.test.mjs",
+      "command": [
+        "node",
+        "tests/converters-integration.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 9,
+      "passed": 9,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.113,
+      "transcript": "evidence/v220-final-application-tests/converters-integration.test.log",
+      "transcriptSha256": "cac909f8abb016c15a37149f3a6d824bf128bf0daffb3fcca94ac3f2ca842e31",
+      "testSha256": "eae642973e97e8ba19762e9e2bd1b84fc7fc14a9cc0194bc80907cae2534752b"
+    },
+    {
+      "file": "tests/coordinated-facade.test.mjs",
+      "command": [
+        "node",
+        "tests/coordinated-facade.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 14,
+      "passed": 14,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.348,
+      "transcript": "evidence/v220-final-application-tests/coordinated-facade.test.log",
+      "transcriptSha256": "867cc39caee7f2530a12bb3d0635303774f71174a8c13955240c7799e9db2e12",
+      "testSha256": "15d26c9d2c2fa5dd6aae646ae666ba1b4b45af36e5e2dea958d250f227c1a692"
+    },
+    {
+      "file": "tests/coordinated.test.mjs",
+      "command": [
+        "node",
+        "tests/coordinated.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 31,
+      "passed": 31,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.4,
+      "transcript": "evidence/v220-final-application-tests/coordinated.test.log",
+      "transcriptSha256": "f91e452f9e5102f1ede0af392219076e251a0f02e9c6aca428d642b188d7f348",
+      "testSha256": "c73e3822eca14b039ffced05f338d7975126637af6c53b30b2526c3360f677e9"
+    },
+    {
+      "file": "tests/core.test.mjs",
+      "command": [
+        "node",
+        "tests/core.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 25,
+      "passed": 25,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.147,
+      "transcript": "evidence/v220-final-application-tests/core.test.log",
+      "transcriptSha256": "d9586c257fdec675912b0a95ab0eaf88db044895295f748c48737b73e69496b0",
+      "testSha256": "832a73458ad2d9af1f40e2afcd10e9f04b1b1f253b381616f17d29960ee0eff8"
+    },
+    {
+      "file": "tests/digital-editor.test.mjs",
+      "command": [
+        "node",
+        "tests/digital-editor.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 6,
+      "passed": 6,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.083,
+      "transcript": "evidence/v220-final-application-tests/digital-editor.test.log",
+      "transcriptSha256": "0c0d1803c48990cdce03a1d58fa965e7a17ebaf058965efdcef027deece7fb98",
+      "testSha256": "63ea30a9911dd9a6f8c21f1d7c1daa10239c7bbc6c4009f62ee1f39c79c028dd"
+    },
+    {
+      "file": "tests/digital-expansion.test.mjs",
+      "command": [
+        "node",
+        "tests/digital-expansion.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 14,
+      "passed": 14,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.063,
+      "transcript": "evidence/v220-final-application-tests/digital-expansion.test.log",
+      "transcriptSha256": "ae77bc5790b0f7f416ee1398d6fa882706ea7ad3392d8a53135947738172f444",
+      "testSha256": "4eeb911d5f876146a24c91dd0e6bcf12b5fdd207a2fd5e995a633b8d844a4668"
+    },
+    {
+      "file": "tests/digital-model.test.mjs",
+      "command": [
+        "node",
+        "tests/digital-model.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 23,
+      "passed": 23,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.158,
+      "transcript": "evidence/v220-final-application-tests/digital-model.test.log",
+      "transcriptSha256": "248d1cf07c260c3feaed49a39a77614659fed0cbb5435091fba06a32e17844e4",
+      "testSha256": "9e29078398dec05e63109a8d9b0dfaa332a76331278572e6853c3d7d5bb7396f"
+    },
+    {
+      "file": "tests/digital-plots.test.mjs",
+      "command": [
+        "node",
+        "tests/digital-plots.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 10,
+      "passed": 10,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.094,
+      "transcript": "evidence/v220-final-application-tests/digital-plots.test.log",
+      "transcriptSha256": "c3ae7f5a200c839b1d3193a99592e3357fe8346418a791cc645e7c06e1548554",
+      "testSha256": "07114b59f804daac7cf368cdb8b18fbed3b6eb2cb908388aa2b12bfb0901aea2"
+    },
+    {
+      "file": "tests/digital-source.test.mjs",
+      "command": [
+        "node",
+        "tests/digital-source.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 15,
+      "passed": 15,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.378,
+      "transcript": "evidence/v220-final-application-tests/digital-source.test.log",
+      "transcriptSha256": "3453a7e9f4a66bfeb9179202ec55ce93a7e1c225dd0b081880ab2f452e609417",
+      "testSha256": "2c3dc50fecac64a3df9d69c0900a0d528075ed361cb855754001cc5ef0d81556"
+    },
+    {
+      "file": "tests/digital-storage.test.mjs",
+      "command": [
+        "node",
+        "tests/digital-storage.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 13,
+      "passed": 13,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.071,
+      "transcript": "evidence/v220-final-application-tests/digital-storage.test.log",
+      "transcriptSha256": "7904211feb96c83c42a08abe9b5fdcdcbe27aea9fde8084c605e5e46aea7d8a5",
+      "testSha256": "0f815dc0a24597042549b06c9dea42e96f1601933bdc18f388e1e06a7d595e4a"
+    },
+    {
+      "file": "tests/digital.test.mjs",
+      "command": [
+        "node",
+        "tests/digital.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 22,
+      "passed": 22,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.067,
+      "transcript": "evidence/v220-final-application-tests/digital.test.log",
+      "transcriptSha256": "f0a95762059024e75d76f87ab545d555eda4fc30746468badc1ef041755f4469",
+      "testSha256": "6d542dc202305401ceff56d661c96421edb7f2017cd97e787ae234e72068df93"
+    },
+    {
+      "file": "tests/displays.test.mjs",
+      "command": [
+        "node",
+        "tests/displays.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 17,
+      "passed": 17,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.144,
+      "transcript": "evidence/v220-final-application-tests/displays.test.log",
+      "transcriptSha256": "ce8eb52e239da8ef8eadd68cdf9f14fd32ba94be1d67f4375ca283d68574a54a",
+      "testSha256": "575f0b745e42fbd33ed3c6879352854e8c3b327a44ddfe89f61426f1f5e490f0"
+    },
+    {
+      "file": "tests/editor.test.mjs",
+      "command": [
+        "node",
+        "tests/editor.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 11,
+      "passed": 11,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.082,
+      "transcript": "evidence/v220-final-application-tests/editor.test.log",
+      "transcriptSha256": "e7f90d891c6f968d463d21f54e3790997873aa73d9a56a50f10c1c25f22a4289",
+      "testSha256": "932b5b582d2a117d4e20c0d9f356cdc1cc77c4c0c6b9deb4f384ce759ead4ca0"
+    },
+    {
+      "file": "tests/engine-loading.test.mjs",
+      "command": [
+        "node",
+        "tests/engine-loading.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 24,
+      "passed": 24,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.52,
+      "transcript": "evidence/v220-final-application-tests/engine-loading.test.log",
+      "transcriptSha256": "823119b362c313404a91288b03ba21d78fa83ef73f770d1a019fd7f15a960304",
+      "testSha256": "8d420d78eeea2613befea4e44bb0c6d45b4474c318b5f7dad55a36fc3d7ef629"
+    },
+    {
+      "file": "tests/engine-raw-parser.test.mjs",
+      "command": [
+        "node",
+        "tests/engine-raw-parser.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 6,
+      "passed": 6,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.053,
+      "transcript": "evidence/v220-final-application-tests/engine-raw-parser.test.log",
+      "transcriptSha256": "fba6c335650529539b1704de65fa52cf104c3a01b6bf3ac8bac838a6d2630c75",
+      "testSha256": "64544c5e963ff4c0be68f26cca88b11b4bf39860da8572c37b5392d7778cf0a0"
+    },
+    {
+      "file": "tests/experiments-app.test.mjs",
+      "command": [
+        "node",
+        "tests/experiments-app.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 18,
+      "passed": 18,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.344,
+      "transcript": "evidence/v220-final-application-tests/experiments-app.test.log",
+      "transcriptSha256": "8c869dfbcc7834f4d2c9832fd86fed734659be0ee0934b2b615ec907dc9080f5",
+      "testSha256": "4e481a4db21ad18c950c15e162c63be652ac0573b9a62a24f3c9e6fce8e1008d"
+    },
+    {
+      "file": "tests/experiments-engine.test.mjs",
+      "command": [
+        "node",
+        "tests/experiments-engine.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 5,
+      "passed": 5,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 1.717,
+      "transcript": "evidence/v220-final-application-tests/experiments-engine.test.log",
+      "transcriptSha256": "7c89bb24c03ac2568105a7cfd752fc50fba9d331e042dbe1747de528e97e39c4",
+      "testSha256": "4cbf60dab5dab47b7d1d93ce280557ee85d46053987d48adbbf241e5d72ad330"
+    },
+    {
+      "file": "tests/experiments-ui.test.mjs",
+      "command": [
+        "node",
+        "tests/experiments-ui.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 11,
+      "passed": 11,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.146,
+      "transcript": "evidence/v220-final-application-tests/experiments-ui.test.log",
+      "transcriptSha256": "09a4c9ee78f1f68f90c5605519b30e9fd609b7368995eb51b52e1b4aafc82eca",
+      "testSha256": "c0ca3993fc28271ab6725d6ee6b6003e6306d8ed5b1e9d163055b90af789e454"
+    },
+    {
+      "file": "tests/experiments.test.mjs",
+      "command": [
+        "node",
+        "tests/experiments.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 31,
+      "passed": 31,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.502,
+      "transcript": "evidence/v220-final-application-tests/experiments.test.log",
+      "transcriptSha256": "fc17b0e6870ecc058c1d94dda3d9180bb2d40e3b9223e77b2bbb1be1deaf4bc5",
+      "testSha256": "1d691884eea04ac802289290d87328838827c13141e143592b800d625f82405f"
+    },
+    {
+      "file": "tests/installation-app.test.mjs",
+      "command": [
+        "node",
+        "tests/installation-app.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 11,
+      "passed": 11,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.088,
+      "transcript": "evidence/v220-final-application-tests/installation-app.test.log",
+      "transcriptSha256": "2f2be602da2c7c0fba6a89e98cfb5f2b9bd71d4c1f913bb1d5df82e780433c7c",
+      "testSha256": "bac73704bec123d7d4d077fad6cbd3cc08b84c083c5a32771d59bebccaca8965"
+    },
+    {
+      "file": "tests/installation-check.test.mjs",
+      "command": [
+        "node",
+        "tests/installation-check.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 20,
+      "passed": 20,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.589,
+      "transcript": "evidence/v220-final-application-tests/installation-check.test.log",
+      "transcriptSha256": "568fe3de8388ea6bb83fbf97d8c25f880a6d9288feb80289136e4aedd9f0d5d5",
+      "testSha256": "2bfe87cbacbfcfe430a832730a8bc2e0e6d54da8035f9f899caa9e21741b78a6"
+    },
+    {
+      "file": "tests/instrument-report.test.mjs",
+      "command": [
+        "node",
+        "tests/instrument-report.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 5,
+      "passed": 5,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.098,
+      "transcript": "evidence/v220-final-application-tests/instrument-report.test.log",
+      "transcriptSha256": "45440aa6f497d132ddae338614c4f4605d8bc3f5e1d591ff6964bec1ea1f7cec",
+      "testSha256": "31d7a3bb55fb05337f991339d8d264ac951126b6940cc21140905ed210faa285"
+    },
+    {
+      "file": "tests/live-controls-app.test.mjs",
+      "command": [
+        "node",
+        "tests/live-controls-app.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 7,
+      "passed": 7,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.088,
+      "transcript": "evidence/v220-final-application-tests/live-controls-app.test.log",
+      "transcriptSha256": "4d742a5395c927f35a17ce7ed434f8e00bbc9f2523b4a48e219ee6cd2109fe1d",
+      "testSha256": "6eca5cdd7bb10525aef60651db57e6d042362d6b80037c812abb2213a537eea2"
+    },
+    {
+      "file": "tests/live-controls.test.mjs",
+      "command": [
+        "node",
+        "tests/live-controls.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 23,
+      "passed": 23,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.105,
+      "transcript": "evidence/v220-final-application-tests/live-controls.test.log",
+      "transcriptSha256": "6f72d46860509001b52a3b8bc35e48a2810d7b66531140d3749083b1974d5b81",
+      "testSha256": "1fadea80588dfa12fd5fcd6b023c5f47184fc4f451cbdd8f3c9be6d5421592ec"
+    },
+    {
+      "file": "tests/logic-indicators.test.mjs",
+      "command": [
+        "node",
+        "tests/logic-indicators.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 14,
+      "passed": 14,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.106,
+      "transcript": "evidence/v220-final-application-tests/logic-indicators.test.log",
+      "transcriptSha256": "e9ab1416e43c266b1c1af246fc17ab0feb55a6fe52f9876f145839eb4fa5608c",
+      "testSha256": "e6a8f603c570405225c6babd05e20f77e8fb9006b974fabdeb8eabb54c8a8aba"
+    },
+    {
+      "file": "tests/logic-io-app.test.mjs",
+      "command": [
+        "node",
+        "tests/logic-io-app.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 10,
+      "passed": 10,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.088,
+      "transcript": "evidence/v220-final-application-tests/logic-io-app.test.log",
+      "transcriptSha256": "59b14d7e0a39881f7a37b37fc71c9c22fd10b5defbd6433ed8df30cfff93740a",
+      "testSha256": "c1808b03ebe8b03a8e99a3449942030dfd9182d7a63598889ab045d805eaade1"
+    },
+    {
+      "file": "tests/logic-io-examples.test.mjs",
+      "command": [
+        "node",
+        "tests/logic-io-examples.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 6,
+      "passed": 6,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.124,
+      "transcript": "evidence/v220-final-application-tests/logic-io-examples.test.log",
+      "transcriptSha256": "a712cfee427aa6a91c16bbc650638ceb75a775080ba8dfebea64de51b5419ec1",
+      "testSha256": "3ec812478f87576b6cae3a6b66c0da28558556f3a2cb0ff9292e4fdc6ee23101"
+    },
+    {
+      "file": "tests/measurement-evidence.test.mjs",
+      "command": [
+        "node",
+        "tests/measurement-evidence.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 6,
+      "passed": 6,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.098,
+      "transcript": "evidence/v220-final-application-tests/measurement-evidence.test.log",
+      "transcriptSha256": "620e2d99a9bf5363dab60932d770d78d6452c909929cca5e9f0a804fd0148c4b",
+      "testSha256": "08f916aeeea56bc397d26ec0409ae1209a1832fc692f95e8fd4e790ce1150448"
+    },
+    {
+      "file": "tests/measurements-app.test.mjs",
+      "command": [
+        "node",
+        "tests/measurements-app.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 14,
+      "passed": 14,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.338,
+      "transcript": "evidence/v220-final-application-tests/measurements-app.test.log",
+      "transcriptSha256": "93bc7dd0888519a0787983f2ae7ff617e37359814b5ceae4a723180a1513808c",
+      "testSha256": "862486a26f9a8b434922546e5882995b43d8e17dae07f033bb85e293107d5cac"
+    },
+    {
+      "file": "tests/measurements.test.mjs",
+      "command": [
+        "node",
+        "tests/measurements.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 17,
+      "passed": 17,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.08,
+      "transcript": "evidence/v220-final-application-tests/measurements.test.log",
+      "transcriptSha256": "f587affe3f140166010fff1c2cdeb865b3e4384ac4501c278c7738d171256912",
+      "testSha256": "ac102e2c11cfdb47c89ca92bdb681d6a544d9f074a4c472b2a0cc56c78c090aa"
+    },
+    {
+      "file": "tests/offline.test.mjs",
+      "command": [
+        "node",
+        "tests/offline.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 22,
+      "passed": 22,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.541,
+      "transcript": "evidence/v220-final-application-tests/offline.test.log",
+      "transcriptSha256": "044775d05623c4e69b260618f87a08f79a9cb25fb1f0a125c636677130d025c9",
+      "testSha256": "50200bdd515505a85ad1a87aabde5caa3e837ad4d306a9376e778e9db94824da"
+    },
+    {
+      "file": "tests/plot-signals.test.mjs",
+      "command": [
+        "node",
+        "tests/plot-signals.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 17,
+      "passed": 17,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.11,
+      "transcript": "evidence/v220-final-application-tests/plot-signals.test.log",
+      "transcriptSha256": "246a49873634f7aa4677283f5d1947d983d47475bd1fe349e65631e59bb48c9d",
+      "testSha256": "b4bedff1fb583ed84d0705b7068629bde1d817b54df4ce99fc63b8edac9eb612"
+    },
+    {
+      "file": "tests/reference-environment.test.mjs",
+      "command": [
+        "node",
+        "tests/reference-environment.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 7,
+      "passed": 7,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.086,
+      "transcript": "evidence/v220-final-application-tests/reference-environment.test.log",
+      "transcriptSha256": "ab52c3d1936df6c0a1caea5157e5f3f4dd836dda99c58071872f1af015dc6d06",
+      "testSha256": "bd1ad23ac7f8d3048be635907d1098c33e8da70fdf5cea45aa0560dd8468b35c"
+    },
+    {
+      "file": "tests/release-docs.test.mjs",
+      "command": [
+        "node",
+        "tests/release-docs.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 9,
+      "passed": 9,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.072,
+      "transcript": "evidence/v220-final-application-tests/release-docs.test.log",
+      "transcriptSha256": "74b89836f815be712b208eb85aa24a834958badf73fd3d1f090720f016d613b7",
+      "testSha256": "7fe12e06ef3abd98d34530abee224d21ac3a2dfd584c06c4b21c3b087ea3a9a6"
+    },
+    {
+      "file": "tests/repair.test.mjs",
+      "command": [
+        "node",
+        "tests/repair.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 12,
+      "passed": 12,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.155,
+      "transcript": "evidence/v220-final-application-tests/repair.test.log",
+      "transcriptSha256": "5a248602a0f28115a5fd485ec02f86ec32879ac4b04da66228baeb7009622d4b",
+      "testSha256": "9cb5fbd0feab522c2eaf696d9fabe0b0473646f23260389a4683a15d70d5a62e"
+    },
+    {
+      "file": "tests/results.test.mjs",
+      "command": [
+        "node",
+        "tests/results.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 14,
+      "passed": 14,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.11,
+      "transcript": "evidence/v220-final-application-tests/results.test.log",
+      "transcriptSha256": "df46b7756eb19b7df0a32928fc9c848425a182fe929e217ff29783e826a13538",
+      "testSha256": "82121a0e66a6db66dc3795c0c636a8d168b30f50d40ebeec698cecf4c111efe9"
+    },
+    {
+      "file": "tests/simulation.test.mjs",
+      "command": [
+        "node",
+        "tests/simulation.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 10,
+      "passed": 10,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.322,
+      "transcript": "evidence/v220-final-application-tests/simulation.test.log",
+      "transcriptSha256": "d87a776d21b2ac87902a80d5e291a83fba5019b0ba045eb8316502c8d6899efa",
+      "testSha256": "a9b097db4907b1ff113efd21930ee82e2837912dc03d0186d937b95b82df328d"
+    },
+    {
+      "file": "tests/step-study.test.mjs",
+      "command": [
+        "node",
+        "tests/step-study.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 11,
+      "passed": 11,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.257,
+      "transcript": "evidence/v220-final-application-tests/step-study.test.log",
+      "transcriptSha256": "7c2ae3c0f306b85a60518e750e7f9cb0649dfa62e2bb24ddfd2392e622a590a1",
+      "testSha256": "03924d6fcbf014c7687362c44a1059ab7cd544200b9f806018df482d7435b76e"
+    },
+    {
+      "file": "tests/timing-app.test.mjs",
+      "command": [
+        "node",
+        "tests/timing-app.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 15,
+      "passed": 15,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.307,
+      "transcript": "evidence/v220-final-application-tests/timing-app.test.log",
+      "transcriptSha256": "c7b1298873827036d6c7ca2721cdfa93b526a76a28fa185182ab0a6a71614008",
+      "testSha256": "471732965f47d5b57f09ce8986efc63b6b825f5f76defaec024bbb7c754e6906"
+    },
+    {
+      "file": "tests/timing-evidence.test.mjs",
+      "command": [
+        "node",
+        "tests/timing-evidence.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 20,
+      "passed": 20,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.667,
+      "transcript": "evidence/v220-final-application-tests/timing-evidence.test.log",
+      "transcriptSha256": "5d72cdd2296916f6005a50f90cb4eb9c8cb7d363c6635d9f22aa35069148c899",
+      "testSha256": "725fccae18e4825dfb6a8ce4a135f2da1a67aaf1b7854a142ff0aa6256c8c8fd"
+    },
+    {
+      "file": "tests/timing-ui.test.mjs",
+      "command": [
+        "node",
+        "tests/timing-ui.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 12,
+      "passed": 12,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.088,
+      "transcript": "evidence/v220-final-application-tests/timing-ui.test.log",
+      "transcriptSha256": "a259851d30d4985827b99155176c3b20b971f8a93cb9e2b8b84d7073e3e0a969",
+      "testSha256": "195d04458d0243d0db06213563f32cbe5c2c53716858e345ac14f1f6b44c8934"
+    },
+    {
+      "file": "tests/timing.test.mjs",
+      "command": [
+        "node",
+        "tests/timing.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 34,
+      "passed": 34,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.186,
+      "transcript": "evidence/v220-final-application-tests/timing.test.log",
+      "transcriptSha256": "3738b95d419c3b154937c7f931009fc8e5a8d50abd04c1388ca15516bfaab6b4",
+      "testSha256": "8a09e80021b0d4ba0b6ecc5fdfa40292cf70da3c6652d69d73af20d7bc5daf93"
+    },
+    {
+      "file": "tests/truth-table-app.test.mjs",
+      "command": [
+        "node",
+        "tests/truth-table-app.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 17,
+      "passed": 17,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.126,
+      "transcript": "evidence/v220-final-application-tests/truth-table-app.test.log",
+      "transcriptSha256": "7b552b788808b1897140036316ec8b620243c31ab1ead3e0a24b65663c420776",
+      "testSha256": "5b25db7dfb63a3b5d87fcd8d7717b66f92c6d56fee06c9899da7ba60973d6b8b"
+    },
+    {
+      "file": "tests/truth-table-evidence-ui.test.mjs",
+      "command": [
+        "node",
+        "tests/truth-table-evidence-ui.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 10,
+      "passed": 10,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.132,
+      "transcript": "evidence/v220-final-application-tests/truth-table-evidence-ui.test.log",
+      "transcriptSha256": "3bd4bf74896d85e71b8a726a0f0d304813c89582328e00c372d12f10bb795af3",
+      "testSha256": "803ee6fa2400f63d80d59e0d3408f730442912e2ccc44cc9527d399fb548084a"
+    },
+    {
+      "file": "tests/truth-table.test.mjs",
+      "command": [
+        "node",
+        "tests/truth-table.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 7,
+      "passed": 7,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.174,
+      "transcript": "evidence/v220-final-application-tests/truth-table.test.log",
+      "transcriptSha256": "51e05827f566213b17809cbfd14ced44d003500cca835dd628e7bca40db46ab4",
+      "testSha256": "df43d25b1bcdc3f261bd6d3a9fe82031408f88f4ff46d5aeebd8b042ecab6609"
+    },
+    {
+      "file": "tests/workbench-preferences.test.mjs",
+      "command": [
+        "node",
+        "tests/workbench-preferences.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 4,
+      "passed": 4,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.066,
+      "transcript": "evidence/v220-final-application-tests/workbench-preferences.test.log",
+      "transcriptSha256": "ee2dce66688c5593bdeb8d54dd514c979362080e9da282f9d5da0b82708d3c5f",
+      "testSha256": "6448907b0e0072c2ac338ebb0934190455ba79e3d1eb8a17e50d4b0db6c833cd"
+    },
+    {
+      "file": "tests/workbench-state-app.test.mjs",
+      "command": [
+        "node",
+        "tests/workbench-state-app.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 11,
+      "passed": 11,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.201,
+      "transcript": "evidence/v220-final-application-tests/workbench-state-app.test.log",
+      "transcriptSha256": "7c73806333fd46e4125110fe0eafc6ec2ea7f91fb708d182dbb3712422567413",
+      "testSha256": "28cd1b753bfc4a7f313e0fe5e475a301abd116b52dfe089091a71570f93e1952"
+    },
+    {
+      "file": "tests/workbench-state.test.mjs",
+      "command": [
+        "node",
+        "tests/workbench-state.test.mjs"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "environmentBlocked": false,
+      "cases": 23,
+      "passed": 23,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationSeconds": 0.089,
+      "transcript": "evidence/v220-final-application-tests/workbench-state.test.log",
+      "transcriptSha256": "28a58147eb2b050902ad4defd991ab6683bc5e86af87ff86223e25e6b0dad863",
+      "testSha256": "4486f224870597de21fdb40434af7e778ba646d062d56742430efab15c048bb0"
+    }
+  ],
+  "previousGate": {
+    "stage": "Before browser acceptance fixes",
+    "manifest": "evidence/v220-application-tests.json",
+    "sha256": "d0cd51c44b6ab12c294c04d9542e80a55ca6cca04206f7396edc3db7b3ce648d"
+  },
+  "previousFinalAttempt": {
+    "stage": "Before report-text assertion update; runtime source unchanged",
+    "manifest": "evidence/v220-final-application-tests-attempt1.json",
+    "sha256": "ee6473f735ca74b8f19c6f52f581bc26e87027234c4a6f50c60487f28c68407c"
+  }
+}

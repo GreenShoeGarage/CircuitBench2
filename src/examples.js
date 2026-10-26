@@ -2,6 +2,7 @@ import {newProject,addComponent,uid} from './model.js';
 import {DIGITAL_TYPES} from './library.js';
 import {DISPLAY_EXAMPLES} from './examples-displays.js';
 import {COORDINATED_EXAMPLES} from './examples-coordinated.js';
+import {LOGIC_IO_EXAMPLES} from './examples-logic-io.js';
 
 const pin=(c,id)=>`${c.id}:${id}`;
 function part(p,type,x,y,params={},rotation=0){const c=addComponent(p,type,x,y);Object.assign(c.params,params);p.layout.components[c.id].rotation=rotation;return c;}
@@ -124,4 +125,4 @@ definitions.push(
  {id:'study-divider',title:'Resistor tolerance and divider sensitivity',category:'Analog experiments',question:'How much does component variation move a divider output?',description:'A nominal 10 V, 10 kΩ / 10 kΩ divider is ready for repeated operating-point experiments.',expected:'The nominal midpoint is 5 V. Sweeping the upper resistor from 10k to 30k gives 5 V, 3.333 V and 2.5 V at three equally spaced trials. Independent resistor tolerances produce a distribution around the nominal voltage.',tryThis:'Open Analog experiments. Choose a parameter sweep of R1.value from 10k to 30k, 3 trials, and Midpoint final value. Then try a seeded tolerance study with both resistors at ±5%.',create:divider},
  {id:'study-rc',title:'RC capacitance sweep and frequency response',category:'Analog experiments',question:'How does capacitance move a filter response at a chosen frequency?',description:'The RC low-pass example is prepared for logarithmic parameter sweeps or seeded tolerance studies using the real ngspice AC solver.',expected:'At 1 kHz, increasing capacitance lowers output magnitude and moves phase toward −90°. Each trial captures a fresh complete response and the interpolated complex value at the selected frequency.',tryThis:'Open Analog experiments, sweep C1.value logarithmically from 10n to 1u with 9 trials, select Output and AC magnitude at 1k. Repeat with AC phase or a tolerance study.',create:()=>rc(false,false)}
 );
-export const EXAMPLES=[...definitions.map(meta=>({...meta,create:()=>finish(meta.create(),meta)})),...DISPLAY_EXAMPLES,...COORDINATED_EXAMPLES];
+export const EXAMPLES=[...definitions.map(meta=>({...meta,create:()=>finish(meta.create(),meta)})),...DISPLAY_EXAMPLES,...COORDINATED_EXAMPLES,...LOGIC_IO_EXAMPLES];

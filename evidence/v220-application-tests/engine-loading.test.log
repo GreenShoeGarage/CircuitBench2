@@ -1,0 +1,34 @@
+✔ real pinned WASM bytes load with correct, generic, absent or misleading MIME types (85.185127ms)
+✔ missing WASM reports the exact subdirectory URL, HTTP status and response MIME (0.851704ms)
+✔ a status-200 HTML route fallback is identified instead of sent to WebAssembly (0.868378ms)
+✔ truncated valid-header WASM and non-WASM files fail with distinct diagnostics (0.927205ms)
+✔ network/policy failures preserve the real cause without inventing an HTTP status (0.342785ms)
+✔ response read failures retain URL and successful response metadata (0.28534ms)
+✔ successful local glue import performs no diagnostic fetch or external fallback (0.238422ms)
+✔ missing engine glue is caught after bootstrap and gives source-checkout guidance (0.368022ms)
+✔ a rejected engine module reports wrong MIME and status-200 HTML responses explicitly (0.660823ms)
+✔ opaque engine import failures keep the browser reason when response inspection is blocked (0.332129ms)
+✔ vendor start rejects an actual invalid supplied binary instead of leaving startup pending (5.039951ms)
+✔ an actual disposable worker computes from one validated WASM fetch with generic MIME (142.777472ms)
+✔ empty worker error keeps startup phase and exact worker URL without asserting a WASM cause (3.803881ms)
+✔ worker-constructor policy errors retain the denied worker URL (0.48927ms)
+✔ the public facade retains structured worker asset diagnostics and terminates the failed worker (0.488899ms)
+✔ a stalled loader is bounded and reports the loading stage when terminated (99.998654ms)
+✔ worker reload inspection reports observed HTTP, MIME, HTML and current protocol accurately (1.701175ms)
+✔ worker response inspection bounds the inspected body without executing it (0.535949ms)
+✔ worker response inspection times out even when the injected fetch ignores abort (25.60469ms)
+✔ worker response inspection respects external cancellation and preserves its abort identity (0.392508ms)
+✔ opaque startup diagnostics distinguish bad responses while healthy responses keep the cause unknown (2.13255ms)
+✔ Stop during startup inspection wins over diagnostics and terminates the worker exactly once (0.421801ms)
+✔ the original run watchdog wins during startup inspection and aborts its fetch (100.671128ms)
+✔ accepted worker protocol is visible before computation and incompatible protocols fail without inspection (1.37871ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 481.949295
+failed to asynchronously prepare wasm: CompileError: WebAssembly.instantiate(): expected magic word 00 61 73 6d, found 01 02 03 04 @+0
+Aborted(CompileError: WebAssembly.instantiate(): expected magic word 00 61 73 6d, found 01 02 03 04 @+0)

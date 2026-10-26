@@ -1,0 +1,19 @@
+✔ study plans exact grid halvings while preserving every other initial configuration field (10.585751ms)
+✔ invalid trial counts, sub-grid halvings, foreign signals and incompatible solvers are rejected before running (3.592818ms)
+✔ fresh real coordinated RC trials show decreasing analytic error and recomputable successive differences (41.031424ms)
+✔ failed trials remain explicit and comparisons never skip a missing middle trial (14.697323ms)
+✔ cancellation preserves complete cases and leaves unstarted comparisons unavailable (11.607726ms)
+✔ abort interrupts a pending trial and retains its attempted input without a fabricated result (5.137672ms)
+✔ cancelling during input hashing does not wait for a late hash or start a solver (6.988886ms)
+✔ continuous or live-adjusted trials and wrong step results are refused (27.052729ms)
+✔ an absent crossing remains saved raw evidence and yields no scalar comparison (10.067408ms)
+✔ import rejects changed differences, run settings, provenance and scalar identities (41.310866ms)
+✔ exports, history retention and setup presentation preserve the explicit sensitivity criterion (14.142867ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 191.181351

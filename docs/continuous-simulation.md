@@ -41,6 +41,14 @@ preserve the counter's private state and clock phase. For feedback, use
 display**. The [converter guide](multibit-converters.md) describes the sampled
 loop and its explicit startup code.
 
+For a direct binary control, open **Digital voltage source and red logic
+indicators**. Its DVS source starts HIGH, so the direct indicator glows red and
+the inverted indicator stays dark. Change the source with its live controls
+or **Live inputs…**. **Digital voltage source, RC response and logic indicators**
+also enables explicit voltage terminals and shows the difference between the
+immediate digital command and the capacitor's later threshold crossing. See
+[logic-io.md](logic-io.md).
+
 ## What each control does
 
 | Control | Behavior |
@@ -52,10 +60,13 @@ loop and its explicit startup code.
 | **Stop & keep results** or **Stop** | Terminates the worker, including in-flight work, and retains the last completed window. Starting again creates a new initial state. |
 | Edit, undo, or replace the circuit | Stops the continuous session before changing its captured circuit. Use live inputs for supported changes that should preserve state. |
 
-The supported live controls are a scalar `DIN` value, a `BUSIN` word of its
-configured width, and the value of an independent **DC** voltage or current
-source. Logic values retain `0`, `1`, `X` and `Z`; an uncertain word that reaches
-a DAC is still subject to that converter's validity rules. Live input is not a
+The supported live controls are a scalar `DIN` value, a binary `DVS` value,
+a `BUSIN` word of its configured width, and the value of an independent **DC**
+voltage or current source. DVS accepts only `0` or `1`; DIN and BUSIN retain
+`0`, `1`, `X` and `Z`. An uncertain word that reaches a DAC is still subject
+to that converter's validity rules. A DVS voltage output follows its resolved
+digital net through its configured finite edges; contention X is an error.
+Live input is not a
 topology editor or a way to change clock periods, source waveform types, part
 values or converter widths. Those edits start a new experiment.
 
@@ -124,8 +135,9 @@ analog interpolation. Each digital trace begins with its recorded state at the
 retained boundary, followed by all retained transitions. That first state is
 not a new edge. An edge or pulse that began before the retained window cannot
 be reconstructed from missing history. Timing measurements respect this
-boundary. The seven-segment display follows cursor A when set within the
-retained interval, or its latest recorded state otherwise; X/Z remain visible.
+boundary. The seven-segment display and scalar logic indicators follow Cursor A
+when set within the retained interval, or their latest recorded states otherwise.
+X/Z remain visible; only a known HIGH makes the scalar indicator glow red.
 
 ## Explicit resource limits
 

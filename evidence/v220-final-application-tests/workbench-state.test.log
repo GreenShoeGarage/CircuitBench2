@@ -1,0 +1,31 @@
+✔ an unrun circuit says Editing and does not invent an observed LOW or running worker (5.29247ms)
+✔ a completed current run is Results ready and uses its actual last retained time (0.519575ms)
+✔ imported and autosave-restored results are identified without rerunning or mutating evidence (1.295748ms)
+✔ old revision results keep their plot time while warning that current indicators are neutral (0.226073ms)
+✔ both run header and captured snapshot identity must match the current circuit (1.295898ms)
+✔ Cursor A is exact, includes retained endpoints, and offers an explicit return action (1.079828ms)
+✔ a cursor outside the rolling window has no display observation and can return to latest (0.708843ms)
+✔ malformed axes cannot claim a retained display time from other metadata (0.741531ms)
+✔ the live session lifecycle is distinct from the latest completed evidence (0.841488ms)
+✔ starting before a first result and preparing without a session never invent time zero evidence (0.364076ms)
+✔ an active session can run while the user views a different completed result (0.356495ms)
+✔ a historical cursor remains clearly historical when the retained session is paused (0.486366ms)
+✔ in-flight pause-step and input changes do not claim completed future state (0.333801ms)
+✔ the source initial setting and confirmed live command remain separate from historical display time (0.409703ms)
+✔ stopped and snapshot continuous windows are inspectable without promising solver resume (0.526745ms)
+✔ recorded drive readback is right-continuous and never looks ahead of Cursor A (0.29221ms)
+✔ malformed or future input records show an unavailable command instead of guessing HIGH (0.635075ms)
+✔ a different active circuit cannot supply the selected source live state (0.16988ms)
+✔ worker liveness is never inferred from saved run status or inconsistent session metadata (0.252041ms)
+✔ bounded experiments and analog analyses have useful states without fictitious time observations (0.209428ms)
+✔ failed, timed-out and cancelled experiments do not present successful completed evidence (1.136402ms)
+✔ markup escapes user text and offers a native keyboard-operable latest-time button (0.202208ms)
+✔ latest-time binding delegates one explicit view action and cleanup removes it (0.234275ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 25.493023

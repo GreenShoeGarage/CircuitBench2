@@ -1,0 +1,1192 @@
+{
+  "format": "CircuitBench logic I/O browser export verification",
+  "formatVersion": 1,
+  "version": "2.0.0-rc.2",
+  "verifiedAt": "2026-10-25T01:42:51.912Z",
+  "hashesFinalized": true,
+  "scope": "Production import validation of three actual browser backups, repeated JSON round trips, snapshot-specific indicator observations, independently reconstructed sparse/dense digital states, exact gate-edge delays, RC backward-Euler recurrence, Ohm law and Schmitt threshold decisions. No circuit is resimulated. This record does not establish browser actions, CSS appearance, hosting/offline behavior or physical-device accuracy.",
+  "artifacts": [
+    {
+      "file": "evidence/rc202-live-digital.circuitbench.json",
+      "bytes": 115348,
+      "sha256": "77ce5ec3f719fca71f68da7d63548d6cf5c4a25de5a733f3ec6c526d4fb76bdd",
+      "appVersion": "2.0.0-rc.2",
+      "projectId": "project_mvn5gwtw_rbaco9ziejj",
+      "title": "Digital voltage source and red logic indicators",
+      "revision": 2,
+      "activeRunId": "run_mvn5j31i_j4w6yf8oi8p",
+      "runs": [
+        {
+          "id": "run_mvn5gxne_dg9guaj559p",
+          "revision": 0,
+          "status": "completed",
+          "solver": "ngspice",
+          "engineBuild": "cb-digital-kernel-2",
+          "points": 2,
+          "vectorCount": 3,
+          "timeBounds": [
+            0,
+            0.002
+          ],
+          "snapshotIndicators": [
+            {
+              "ref": "IND1",
+              "value": "0",
+              "on": false,
+              "label": "LOW",
+              "available": true
+            },
+            {
+              "ref": "IND2",
+              "value": "1",
+              "on": true,
+              "label": "HIGH",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "run_mvn5hrz6_mgiuor0batj",
+          "revision": 1,
+          "status": "completed",
+          "solver": "ngspice",
+          "engineBuild": "cb-digital-kernel-2",
+          "points": 2,
+          "vectorCount": 3,
+          "timeBounds": [
+            0,
+            0.002
+          ],
+          "snapshotIndicators": [
+            {
+              "ref": "IND1",
+              "value": "1",
+              "on": true,
+              "label": "HIGH",
+              "available": true
+            },
+            {
+              "ref": "IND2",
+              "value": "0",
+              "on": false,
+              "label": "LOW",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "run_mvn5j31i_j4w6yf8oi8p",
+          "revision": 2,
+          "status": "completed-with-warnings",
+          "solver": "coordinated",
+          "engineBuild": "cb-coordinated-1",
+          "points": 23,
+          "vectorCount": 3,
+          "timeBounds": [
+            0.0155,
+            0.017499999999999998
+          ],
+          "snapshotIndicators": [
+            {
+              "ref": "IND1",
+              "value": "1",
+              "on": true,
+              "label": "HIGH",
+              "available": true
+            },
+            {
+              "ref": "IND2",
+              "value": "0",
+              "on": false,
+              "label": "LOW",
+              "available": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "evidence/rc202-voltage-levels.circuitbench.json",
+      "bytes": 345104,
+      "sha256": "06ccbce2aa0e08509f67aef9925b3fa830f889028425779d7d01242e2fd8a47e",
+      "appVersion": "2.0.0-rc.2",
+      "projectId": "project_mvn5mslh_tdguy582ucl",
+      "title": "Digital voltage source, RC response and logic indicators",
+      "revision": 2,
+      "activeRunId": "run_mvn5pq47_dyg6gz3ef8t",
+      "runs": [
+        {
+          "id": "run_mvn5mteq_8ranwhp9ufg",
+          "revision": 0,
+          "status": "completed-with-warnings",
+          "solver": "coordinated",
+          "engineBuild": "cb-coordinated-1",
+          "points": 503,
+          "vectorCount": 6,
+          "timeBounds": [
+            0,
+            0.005
+          ],
+          "snapshotIndicators": [
+            {
+              "ref": "IND1",
+              "value": "1",
+              "on": true,
+              "label": "HIGH",
+              "available": true
+            },
+            {
+              "ref": "IND2",
+              "value": "1",
+              "on": true,
+              "label": "HIGH",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "run_mvn5opxs_tzc2u5nop9t",
+          "revision": 0,
+          "status": "completed-with-warnings",
+          "solver": "coordinated",
+          "engineBuild": "cb-coordinated-1",
+          "points": 503,
+          "vectorCount": 6,
+          "timeBounds": [
+            0,
+            0.005
+          ],
+          "snapshotIndicators": [
+            {
+              "ref": "IND1",
+              "value": "1",
+              "on": true,
+              "label": "HIGH",
+              "available": true
+            },
+            {
+              "ref": "IND2",
+              "value": "1",
+              "on": true,
+              "label": "HIGH",
+              "available": true
+            }
+          ]
+        },
+        {
+          "id": "run_mvn5pq47_dyg6gz3ef8t",
+          "revision": 2,
+          "status": "completed-with-warnings",
+          "solver": "coordinated",
+          "engineBuild": "cb-coordinated-1",
+          "points": 502,
+          "vectorCount": 6,
+          "timeBounds": [
+            0,
+            0.005
+          ],
+          "snapshotIndicators": [
+            {
+              "ref": "IND1",
+              "value": "1",
+              "on": true,
+              "label": "HIGH",
+              "available": true
+            },
+            {
+              "ref": "IND2",
+              "value": "0",
+              "on": false,
+              "label": "LOW",
+              "available": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "evidence/rc202-four-state-indicators.circuitbench.json",
+      "bytes": 38217,
+      "sha256": "76d643b1e9273456abe1fb9b1e286bcd732bab61cb36d838ef3fdbdacaa685d6",
+      "appVersion": "2.0.0-rc.2",
+      "projectId": "project_mvn5q9lh_im5ih24h518",
+      "title": "Logic indicators: high, low, unknown and released",
+      "revision": 0,
+      "activeRunId": "run_mvn5qaf7_nr6ttnb11fd",
+      "runs": [
+        {
+          "id": "run_mvn5qaf7_nr6ttnb11fd",
+          "revision": 0,
+          "status": "completed",
+          "solver": "ngspice",
+          "engineBuild": "cb-digital-kernel-2",
+          "points": 6,
+          "vectorCount": 5,
+          "timeBounds": [
+            0,
+            0.0045
+          ],
+          "snapshotIndicators": [
+            {
+              "ref": "IND1",
+              "value": "1",
+              "on": true,
+              "label": "HIGH",
+              "available": true
+            },
+            {
+              "ref": "IND2",
+              "value": "0",
+              "on": false,
+              "label": "LOW",
+              "available": true
+            },
+            {
+              "ref": "IND3",
+              "value": "X",
+              "on": false,
+              "label": "UNKNOWN",
+              "available": true
+            },
+            {
+              "ref": "IND4",
+              "value": "Z",
+              "on": false,
+              "label": "HIGH IMPEDANCE",
+              "available": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "name": "rc202-live-digital.circuitbench.json: production import keeps every captured run",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "rc202-live-digital.circuitbench.json: JSON/import round trip 1 is unchanged",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "rc202-live-digital.circuitbench.json: JSON/import round trip 2 is unchanged",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "rc202-live-digital.circuitbench.json: JSON/import round trip 3 is unchanged",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5gxne_dg9guaj559p: complete vectors and strictly advancing time",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5gxne_dg9guaj559p: all indicator observations use the matching snapshot and red only for 1",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5gxne_dg9guaj559p: sparse states reproduce every dense logic value",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5gxne_dg9guaj559p: older revision cannot illuminate the working circuit",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5gxne_dg9guaj559p/netlist: hash matches or insecure-context absence is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "run_mvn5gxne_dg9guaj559p/simulation: hash matches or insecure-context absence is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "run_mvn5hrz6_mgiuor0batj: complete vectors and strictly advancing time",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5hrz6_mgiuor0batj: all indicator observations use the matching snapshot and red only for 1",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5hrz6_mgiuor0batj: sparse states reproduce every dense logic value",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5hrz6_mgiuor0batj: older revision cannot illuminate the working circuit",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5hrz6_mgiuor0batj/netlist: hash matches or insecure-context absence is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "run_mvn5hrz6_mgiuor0batj/simulation: hash matches or insecure-context absence is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "run_mvn5j31i_j4w6yf8oi8p: complete vectors and strictly advancing time",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5j31i_j4w6yf8oi8p: all indicator observations use the matching snapshot and red only for 1",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5j31i_j4w6yf8oi8p: sparse states reproduce every dense logic value",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5j31i_j4w6yf8oi8p/netlist: hash matches or insecure-context absence is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "run_mvn5j31i_j4w6yf8oi8p/simulation: hash matches or insecure-context absence is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "rc202-live-digital.circuitbench.json: active run reproduces the working-circuit indicators",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "rc202-voltage-levels.circuitbench.json: production import keeps every captured run",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "rc202-voltage-levels.circuitbench.json: JSON/import round trip 1 is unchanged",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "rc202-voltage-levels.circuitbench.json: JSON/import round trip 2 is unchanged",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "rc202-voltage-levels.circuitbench.json: JSON/import round trip 3 is unchanged",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5mteq_8ranwhp9ufg: complete vectors and strictly advancing time",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5mteq_8ranwhp9ufg: all indicator observations use the matching snapshot and red only for 1",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5mteq_8ranwhp9ufg: sparse states reproduce every dense logic value",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5mteq_8ranwhp9ufg: older revision cannot illuminate the working circuit",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5mteq_8ranwhp9ufg/netlist: hash matches or insecure-context absence is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "run_mvn5mteq_8ranwhp9ufg/simulation: hash matches or insecure-context absence is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "run_mvn5opxs_tzc2u5nop9t: complete vectors and strictly advancing time",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5opxs_tzc2u5nop9t: all indicator observations use the matching snapshot and red only for 1",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5opxs_tzc2u5nop9t: sparse states reproduce every dense logic value",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5opxs_tzc2u5nop9t: older revision cannot illuminate the working circuit",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5opxs_tzc2u5nop9t/netlist: hash matches or insecure-context absence is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "run_mvn5opxs_tzc2u5nop9t/simulation: hash matches or insecure-context absence is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "run_mvn5pq47_dyg6gz3ef8t: complete vectors and strictly advancing time",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5pq47_dyg6gz3ef8t: all indicator observations use the matching snapshot and red only for 1",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5pq47_dyg6gz3ef8t: sparse states reproduce every dense logic value",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5pq47_dyg6gz3ef8t/netlist: hash matches or insecure-context absence is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "run_mvn5pq47_dyg6gz3ef8t/simulation: hash matches or insecure-context absence is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "rc202-voltage-levels.circuitbench.json: active run reproduces the working-circuit indicators",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "rc202-four-state-indicators.circuitbench.json: production import keeps every captured run",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "rc202-four-state-indicators.circuitbench.json: JSON/import round trip 1 is unchanged",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "rc202-four-state-indicators.circuitbench.json: JSON/import round trip 2 is unchanged",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "rc202-four-state-indicators.circuitbench.json: JSON/import round trip 3 is unchanged",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5qaf7_nr6ttnb11fd: complete vectors and strictly advancing time",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5qaf7_nr6ttnb11fd: all indicator observations use the matching snapshot and red only for 1",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5qaf7_nr6ttnb11fd: sparse states reproduce every dense logic value",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5qaf7_nr6ttnb11fd/netlist: hash matches or insecure-context absence is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "run_mvn5qaf7_nr6ttnb11fd/simulation: hash matches or insecure-context absence is explicit",
+      "passed": true,
+      "details": {
+        "recorded": "unavailable-in-insecure-context"
+      }
+    },
+    {
+      "name": "rc202-four-state-indicators.circuitbench.json: active run reproduces the working-circuit indicators",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Live digital: two bounded runs and one completed continuous window",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Live digital: recorded source drives the inverter input",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Live digital: retained window and point accounting",
+      "passed": true,
+      "details": {
+        "formatVersion": 1,
+        "startedAtTime": 0,
+        "windowStart": 0.0155,
+        "currentTime": 0.017499999999999998,
+        "totalPoints": 178,
+        "droppedPoints": 155,
+        "inputChanges": [
+          {
+            "time": 0.0173,
+            "updates": [
+              {
+                "id": "c_mvn5gwtx_3dqdulgia5k",
+                "value": "0"
+              }
+            ]
+          },
+          {
+            "time": 0.0174,
+            "updates": [
+              {
+                "id": "c_mvn5gwtx_3dqdulgia5k",
+                "value": "1"
+              }
+            ]
+          }
+        ],
+        "stateRetained": true,
+        "sessionStatus": "stopped"
+      }
+    },
+    {
+      "name": "Live digital: exact source changes are retained",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Live digital: sparse source events match the independent input-history reconstruction",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Live digital: both NOT edges preserve the configured 10 ns delay",
+      "passed": true,
+      "details": {
+        "propagationDelaySeconds": 1e-8,
+        "inputEvents": [
+          {
+            "time": 0.0155,
+            "value": "1"
+          },
+          {
+            "time": 0.0173,
+            "value": "0"
+          },
+          {
+            "time": 0.0174,
+            "value": "1"
+          }
+        ],
+        "outputEvents": [
+          {
+            "time": 0.0155,
+            "value": "0"
+          },
+          {
+            "time": 0.01730001,
+            "value": "1"
+          },
+          {
+            "time": 0.01740001,
+            "value": "0"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Live digital: indicators at 0.017299999999 s",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Live digital: indicators at 0.0173 s",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Live digital: indicators at 0.01730001 s",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Live digital: indicators at 0.0174 s",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Live digital: indicators at 0.01740001 s",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Live digital: latest retained indicators are HIGH/LOW",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Live digital: a time before the retained window is unavailable",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5gxne_dg9guaj559p: bounded source and NOT are complementary",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5hrz6_mgiuor0batj: bounded source and NOT are complementary",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Voltage levels: three preserved 5 V, 5 V, 3.3 V runs",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Voltage levels: observed point counts remain 503, 503, 502",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5mteq_8ranwhp9ufg: independent RC topology assumptions",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5mteq_8ranwhp9ufg: configured source voltage and initial conditions",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5mteq_8ranwhp9ufg: every capacitor sample agrees with independent backward-Euler recurrence",
+      "passed": true,
+      "details": {
+        "points": 503,
+        "maximumAbsoluteErrorVolts": 9.769962616701378e-15,
+        "toleranceVolts": 1e-10,
+        "timeConstantSeconds": 0.001
+      }
+    },
+    {
+      "name": "run_mvn5mteq_8ranwhp9ufg: source current agrees with independent Ohm law",
+      "passed": true,
+      "details": {
+        "maximumAbsoluteErrorAmps": 1.0299920638612292e-18,
+        "toleranceAmps": 1e-12,
+        "direction": "Current into source positive terminal; delivered current is negative."
+      }
+    },
+    {
+      "name": "run_mvn5mteq_8ranwhp9ufg: every Schmitt state follows independently applied thresholds",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5mteq_8ranwhp9ufg: final indicators agree with voltage range and Schmitt threshold",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5mteq_8ranwhp9ufg: recorded threshold timing or absent crossing matches range",
+      "passed": true,
+      "details": {
+        "thresholdEvents": [
+          {
+            "time": 0,
+            "value": "0"
+          },
+          {
+            "time": 0.001209973626,
+            "value": "1"
+          }
+        ]
+      }
+    },
+    {
+      "name": "run_mvn5opxs_tzc2u5nop9t: independent RC topology assumptions",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5opxs_tzc2u5nop9t: configured source voltage and initial conditions",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5opxs_tzc2u5nop9t: every capacitor sample agrees with independent backward-Euler recurrence",
+      "passed": true,
+      "details": {
+        "points": 503,
+        "maximumAbsoluteErrorVolts": 9.769962616701378e-15,
+        "toleranceVolts": 1e-10,
+        "timeConstantSeconds": 0.001
+      }
+    },
+    {
+      "name": "run_mvn5opxs_tzc2u5nop9t: source current agrees with independent Ohm law",
+      "passed": true,
+      "details": {
+        "maximumAbsoluteErrorAmps": 1.0299920638612292e-18,
+        "toleranceAmps": 1e-12,
+        "direction": "Current into source positive terminal; delivered current is negative."
+      }
+    },
+    {
+      "name": "run_mvn5opxs_tzc2u5nop9t: every Schmitt state follows independently applied thresholds",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5opxs_tzc2u5nop9t: final indicators agree with voltage range and Schmitt threshold",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5opxs_tzc2u5nop9t: recorded threshold timing or absent crossing matches range",
+      "passed": true,
+      "details": {
+        "thresholdEvents": [
+          {
+            "time": 0,
+            "value": "0"
+          },
+          {
+            "time": 0.001209973626,
+            "value": "1"
+          }
+        ]
+      }
+    },
+    {
+      "name": "run_mvn5pq47_dyg6gz3ef8t: independent RC topology assumptions",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5pq47_dyg6gz3ef8t: configured source voltage and initial conditions",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5pq47_dyg6gz3ef8t: every capacitor sample agrees with independent backward-Euler recurrence",
+      "passed": true,
+      "details": {
+        "points": 502,
+        "maximumAbsoluteErrorVolts": 2.5757174171303632e-14,
+        "toleranceVolts": 1e-10,
+        "timeConstantSeconds": 0.001
+      }
+    },
+    {
+      "name": "run_mvn5pq47_dyg6gz3ef8t: source current agrees with independent Ohm law",
+      "passed": true,
+      "details": {
+        "maximumAbsoluteErrorAmps": 6.098637220230962e-19,
+        "toleranceAmps": 1e-12,
+        "direction": "Current into source positive terminal; delivered current is negative."
+      }
+    },
+    {
+      "name": "run_mvn5pq47_dyg6gz3ef8t: every Schmitt state follows independently applied thresholds",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5pq47_dyg6gz3ef8t: final indicators agree with voltage range and Schmitt threshold",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5pq47_dyg6gz3ef8t: recorded threshold timing or absent crossing matches range",
+      "passed": true,
+      "details": {
+        "thresholdEvents": [
+          {
+            "time": 0,
+            "value": "0"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Voltage levels: current 3.3 V project remains direct HIGH and sensed LOW",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Four-state patterns: four indicators and a complete 4.5 ms result",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "PAT1: every sparse event equals the authored scalar pattern",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "PAT2: every sparse event equals the authored scalar pattern",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "PAT3: every sparse event equals the authored scalar pattern",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "PAT4: every sparse event equals the authored scalar pattern",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Four-state patterns: retained-end states are 1, 0, X, Z with exactly one high lamp",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Four-state patterns: captured Cursor A reads 0, X, Z, 1",
+      "passed": true,
+      "details": {
+        "cursorSeconds": 0.001481650892211237
+      }
+    },
+    {
+      "name": "Four-state patterns: exact 1 ms event is right-continuous",
+      "passed": true,
+      "details": {}
+    }
+  ],
+  "analogChecks": [
+    {
+      "runId": "run_mvn5mteq_8ranwhp9ufg",
+      "highVoltage": 5,
+      "points": 503,
+      "timeConstantSeconds": 0.001,
+      "finalCapacitorVoltage": 4.96546343494606,
+      "maximumRecurrenceErrorVolts": 9.769962616701378e-15,
+      "maximumCurrentErrorAmps": 1.0299920638612292e-18,
+      "thresholdEvents": [
+        {
+          "time": 0,
+          "value": "0"
+        },
+        {
+          "time": 0.001209973626,
+          "value": "1"
+        }
+      ],
+      "finalIndicators": [
+        {
+          "ref": "IND1",
+          "value": "1",
+          "on": true,
+          "label": "HIGH",
+          "available": true
+        },
+        {
+          "ref": "IND2",
+          "value": "1",
+          "on": true,
+          "label": "HIGH",
+          "available": true
+        }
+      ]
+    },
+    {
+      "runId": "run_mvn5opxs_tzc2u5nop9t",
+      "highVoltage": 5,
+      "points": 503,
+      "timeConstantSeconds": 0.001,
+      "finalCapacitorVoltage": 4.96546343494606,
+      "maximumRecurrenceErrorVolts": 9.769962616701378e-15,
+      "maximumCurrentErrorAmps": 1.0299920638612292e-18,
+      "thresholdEvents": [
+        {
+          "time": 0,
+          "value": "0"
+        },
+        {
+          "time": 0.001209973626,
+          "value": "1"
+        }
+      ],
+      "finalIndicators": [
+        {
+          "ref": "IND1",
+          "value": "1",
+          "on": true,
+          "label": "HIGH",
+          "available": true
+        },
+        {
+          "ref": "IND2",
+          "value": "1",
+          "on": true,
+          "label": "HIGH",
+          "available": true
+        }
+      ]
+    },
+    {
+      "runId": "run_mvn5pq47_dyg6gz3ef8t",
+      "highVoltage": 3.3,
+      "points": 502,
+      "timeConstantSeconds": 0.001,
+      "finalCapacitorVoltage": 3.277205861717851,
+      "maximumRecurrenceErrorVolts": 2.5757174171303632e-14,
+      "maximumCurrentErrorAmps": 6.098637220230962e-19,
+      "thresholdEvents": [
+        {
+          "time": 0,
+          "value": "0"
+        }
+      ],
+      "finalIndicators": [
+        {
+          "ref": "IND1",
+          "value": "1",
+          "on": true,
+          "label": "HIGH",
+          "available": true
+        },
+        {
+          "ref": "IND2",
+          "value": "0",
+          "on": false,
+          "label": "LOW",
+          "available": true
+        }
+      ]
+    }
+  ],
+  "continuousDigital": {
+    "runId": "run_mvn5j31i_j4w6yf8oi8p",
+    "formatVersion": 1,
+    "startedAtTime": 0,
+    "windowStart": 0.0155,
+    "currentTime": 0.017499999999999998,
+    "totalPoints": 178,
+    "droppedPoints": 155,
+    "inputChanges": [
+      {
+        "time": 0.0173,
+        "updates": [
+          {
+            "id": "c_mvn5gwtx_3dqdulgia5k",
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "time": 0.0174,
+        "updates": [
+          {
+            "id": "c_mvn5gwtx_3dqdulgia5k",
+            "value": "1"
+          }
+        ]
+      }
+    ],
+    "stateRetained": true,
+    "sessionStatus": "stopped",
+    "sourceEvents": [
+      {
+        "time": 0.0155,
+        "value": "1"
+      },
+      {
+        "time": 0.0173,
+        "value": "0"
+      },
+      {
+        "time": 0.0174,
+        "value": "1"
+      }
+    ],
+    "inverterEvents": [
+      {
+        "time": 0.0155,
+        "value": "0"
+      },
+      {
+        "time": 0.01730001,
+        "value": "1"
+      },
+      {
+        "time": 0.01740001,
+        "value": "0"
+      }
+    ],
+    "propagationDelaySeconds": 1e-8,
+    "latestIndicators": [
+      {
+        "ref": "IND1",
+        "value": "1",
+        "on": true,
+        "label": "HIGH",
+        "available": true
+      },
+      {
+        "ref": "IND2",
+        "value": "0",
+        "on": false,
+        "label": "LOW",
+        "available": true
+      }
+    ]
+  },
+  "fourStateIndicators": {
+    "runId": "run_mvn5qaf7_nr6ttnb11fd",
+    "latest": [
+      {
+        "ref": "IND1",
+        "value": "1",
+        "on": true,
+        "label": "HIGH",
+        "available": true
+      },
+      {
+        "ref": "IND2",
+        "value": "0",
+        "on": false,
+        "label": "LOW",
+        "available": true
+      },
+      {
+        "ref": "IND3",
+        "value": "X",
+        "on": false,
+        "label": "UNKNOWN",
+        "available": true
+      },
+      {
+        "ref": "IND4",
+        "value": "Z",
+        "on": false,
+        "label": "HIGH IMPEDANCE",
+        "available": true
+      }
+    ],
+    "observedCursor": {
+      "time": 0.001481650892211237,
+      "indicators": [
+        {
+          "ref": "IND1",
+          "value": "0",
+          "on": false,
+          "label": "LOW",
+          "available": true
+        },
+        {
+          "ref": "IND2",
+          "value": "X",
+          "on": false,
+          "label": "UNKNOWN",
+          "available": true
+        },
+        {
+          "ref": "IND3",
+          "value": "Z",
+          "on": false,
+          "label": "HIGH IMPEDANCE",
+          "available": true
+        },
+        {
+          "ref": "IND4",
+          "value": "1",
+          "on": true,
+          "label": "HIGH",
+          "available": true
+        }
+      ]
+    }
+  },
+  "dependencies": {
+    "src/displays.js": "4f67bb130f6af75844555d2372ce3e888cf16241bf9ac48853dc99ea292f0f9d",
+    "src/library.js": "ab341ea3d86c9f01c9994af087a109fdcf985591c4e5e1965d33c07fe58a3c65",
+    "src/model.js": "25afcb832414db683f8a7fda630722b3e73ef2f13a3ce92443b748af1353abb0",
+    "src/storage.js": "4987c11bbf7a37ffb24feb77ccab410169cc0f282e3f00de32794301ae27d43e",
+    "src/continuous-evidence.js": "af8cb5b91bb3dc90f03943b9dd97ca8f5bf489a2b755cc729612c48e05aad9c5",
+    "src/experiments.js": "dc2314da3aa6bf0202345f2af4e8bb973ba230ada0e936d445b94ad2cbf043c1",
+    "src/netlist.js": "88f46730d8c0faa07601feb7edb2876eb3952b4abd4e3f7a57f364f7117345b4",
+    "src/timing-evidence.js": "0fb5e73c2e5679fab7bfe969072dbc59df53e54c6eef6f31124e9f002bcfeb5e",
+    "src/timing.js": "6b68bb2e175182eae949ed2623368632971d347d52c597bb2c65573f4647fb9c",
+    "src/truth-table-evidence.js": "81d891f186ed388f91692b2297ae7c8c9a18797509ac821edeb1c6d92c083feb"
+  },
+  "verifier": {
+    "file": "scripts/verify-logic-io-evidence.mjs",
+    "sha256": "c6ebaacaa6e5141d144dc778e7b1ffca1feb4b07393967af2ce940263bb26b1f"
+  },
+  "localDistribution": {
+    "version": "2.0.0-rc.2",
+    "buildHash": "672a6435dfd88d38",
+    "scope": "Current local distribution, not a browser-capture build assertion. The downloaded backups do not contain a runtime build hash."
+  },
+  "summary": {
+    "artifacts": 3,
+    "capturedRuns": 7,
+    "jsonRoundTrips": 9,
+    "rcRuns": 3,
+    "rcSamples": 1508,
+    "sourceDependencies": 10,
+    "passedChecks": 101,
+    "failedChecks": 0
+  },
+  "status": "passed"
+}

@@ -1,0 +1,33 @@
+✔ human SI values distinguish mega from milli and femto from farad (2.114131ms)
+✔ PWL validates positive ordered time pairs (1.527477ms)
+✔ blank project is actually blank and cannot simulate silently (5.347388ms)
+✔ crossing geometric wires remain electrically separate (0.816271ms)
+✔ explicit shared junction joins crossing wires (0.524301ms)
+✔ all ground symbols join node zero (0.245321ms)
+✔ equal net labels connect explicitly, different labels stay distinct (0.460297ms)
+✔ move, rotate, and mirror never change electrical connectivity (1.11506ms)
+✔ project round trip preserves topology, parameters, analysis, probes and layout (46.236557ms)
+✔ validateProject rejects future schemas and invalid references with original preserved (0.852585ms)
+✔ validateProject rejects duplicate IDs, nonfinite geometry and unsupported component types (0.474008ms)
+✔ delete component removes attached wires, labels and probes without orphan endpoints (0.726399ms)
+✔ duplicate components assign new IDs and references and only internal wires (0.636055ms)
+✔ duplicated same-name labels preserve their internal net without joining original (0.337026ms)
+✔ undo-style immutable snapshot restores electrical and drawing state together (2.462524ms)
+✔ missing ground, model, invalid value and floating island are clear errors (1.520617ms)
+✔ netlist emits normalized numeric values and selected current/differential measurements (0.725097ms)
+✔ all bundled component model definitions have redistributable provenance and exercised fixtures (3.724731ms)
+✔ all worked examples preserve their actual execution and import boundary (32.457629ms)
+✔ SPICE suffixes follow SPICE M=milli; human editor M=mega (0.215297ms)
+✔ netlist import rejects commands, file access, behavioral source injection and unsupported dialects (0.588616ms)
+✔ arbitrary model substitutions fail and exact bundled model roundtrips work (0.186545ms)
+✔ imported project keeps separate netlist workspace and UI analysis settings (0.276006ms)
+✔ analysis limits reject huge sweeps, wrong step directions and impossible frequency range (0.21084ms)
+✔ per-run sample budget considers both number of nodes and step count (3.322008ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 115.298875

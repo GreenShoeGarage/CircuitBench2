@@ -1,0 +1,18 @@
+✔ source controls expose keyboard-native binary buttons and explicit selected state (26.973611ms)
+✔ voltage-mode buttons show the configured differential levels with safe escaped text (6.07747ms)
+✔ binary source UI cannot silently represent X or Z as HIGH or LOW (0.636803ms)
+✔ idle source button updates the project starting value through the normal edit transaction (25.124926ms)
+✔ live source button changes the retained session and keeps the original project immutable (6.346917ms)
+✔ unknown drive settings are rejected before reaching a live worker (3.753266ms)
+✔ a source cannot be applied to a continuous session belonging to another project (3.461962ms)
+✔ source buttons are blocked during a pending bounded experiment (2.152956ms)
+✔ failed input changes do not claim success or save a fabricated drive change (2.634134ms)
+✔ a replaced session cannot be reported or saved by a late successful input response (6.463542ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 114.021846

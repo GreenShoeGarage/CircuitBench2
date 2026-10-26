@@ -1,0 +1,12 @@
+✔ source workbench preferences survive backup without changing initial values or revision (6.931837ms)
+✔ deleted and no-longer-adjustable sources are pruned without dropping valid controls (1.087221ms)
+✔ old projects receive empty preferences and malformed/oversized control lists are rejected (1.328396ms)
+✔ measurement presets are portable project configuration with bounded, validated identities (1.390628ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16.946101

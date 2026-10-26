@@ -1,0 +1,19 @@
+✔ actual result and selection renderers keep the persistent strip and DVS initial state current (57.387416ms)
+✔ the actual Return to latest action clears only Cursor A and never changes or resumes simulation (7.943586ms)
+✔ unchanged renders retain keyboard focus and changed state cleans up old view-action listeners (6.510314ms)
+✔ actual history selection can show an older run while the retained continuous session remains paused (21.130732ms)
+✔ async bounded-run completion after an edit shows its captured revision without lighting current indicators (5.810916ms)
+✔ replacement tracks restored run identities without adding persistence-schema fields (8.412826ms)
+✔ actual paused source controls show last confirmed drive until acknowledgement and retain initial state (11.30942ms)
+✔ a late input response from an ended session cannot replace the new session state strip (10.597154ms)
+✔ stopping through the actual lifecycle converts the strip to a non-resumable saved window (7.800597ms)
+✔ the Step button finishes with an idle paused strip after publishing a completed update (6.875003ms)
+✔ a stopped Step finishing after a new session starts cannot repaint or report errors for that new session (6.327015ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 169.710199

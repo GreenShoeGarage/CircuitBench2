@@ -1,0 +1,233 @@
+{
+  "format": "CircuitBench v2.2 browser workflow observations",
+  "formatVersion": 1,
+  "release": "2.2.0",
+  "recordedAt": "2026-10-25T12:51:23.309951+00:00",
+  "environment": {
+    "browser": "Managed Chrome CDP",
+    "preview": "http://terminal.local:4173/",
+    "viewport": {
+      "width": 1363,
+      "height": 938
+    },
+    "scope": "Authorized local release preview and test example projects; no external host upload",
+    "finalRuntimeBuild": "53c8eee8280bd405",
+    "earlierPreviewBuilds": [
+      "bb156ae68f152849",
+      "539298d62250ea83",
+      "3e42b7f2ea9606be"
+    ],
+    "secureContext": false
+  },
+  "checks": [
+    {
+      "id": "digital-live-controls",
+      "status": "passed",
+      "observations": [
+        "Digital voltage source and red logic indicators example loaded.",
+        "Source pinned beside schematic; preference survived reload.",
+        "Continuous pause, live LOW command and Step changed IND1 to LOW and IND2 to HIGH.",
+        "Initial source setting remained HIGH while applied live input and recorded result were LOW."
+      ]
+    },
+    {
+      "id": "running-trigger-navigation",
+      "status": "passed",
+      "observations": [
+        "Capture, Run until and Next event enabled while a batch was running on build 3e42b7f2ea9606be.",
+        "Opening Capture waited for a completed boundary and paused the session.",
+        "Running Next event stopped at ADC-threshold-crossing at 0.007162833661 seconds and remained paused."
+      ]
+    },
+    {
+      "id": "analog-threshold-capture",
+      "status": "passed",
+      "example": "Closed-loop Schmitt RC oscillator",
+      "trigger": {
+        "signal": "v(sense)",
+        "edge": "rising",
+        "threshold": 3.5,
+        "before": 0.001,
+        "after": 5e-05,
+        "search": 0.005
+      },
+      "eventTime": 0.006311996923,
+      "eventMethod": "accepted-step-threshold-localization",
+      "retainedSamples": 217,
+      "requestedWindow": [
+        0.005311996923,
+        0.006361996923
+      ],
+      "actualWindow": [
+        0.00531,
+        0.006361996923
+      ],
+      "coverage": "complete",
+      "missingBefore": 0,
+      "missingAfter": 0
+    },
+    {
+      "id": "capture-measurement-preset-export-restore",
+      "status": "passed",
+      "observations": [
+        "Absolute rise-time setup 1.6 V to 3.4 V on v(sense) saved with project.",
+        "Measurement complete with one crossing pair; raw scalar 0.0007556522321903519 seconds.",
+        "Measurement CSV, evidence JSON and project backup downloaded.",
+        "Open project restored the exported backup. The result was marked restored, arithmetic recomputed, and preset/capture/measurement retained.",
+        "Report iframe included capture source identity, coverage, measurement raw scalar, compiled partition and full coordinated plan."
+      ]
+    },
+    {
+      "id": "fresh-step-study",
+      "status": "passed",
+      "example": "RC step response",
+      "maximumSteps": [
+        5e-06,
+        2.5e-06,
+        1.25e-06
+      ],
+      "scalarsSeconds": [
+        0.00220271448037857,
+        0.002199969941883485,
+        0.0021985975147544457
+      ],
+      "absoluteTolerance": 0,
+      "relativeTolerance": 0.001,
+      "adjacentStatus": [
+        "outside-tolerance",
+        "within-tolerance"
+      ],
+      "observations": [
+        "Three independent trials completed, with exact input/evidence inspection actions.",
+        "Study evidence JSON and complete project backup downloaded.",
+        "Study survived reload.",
+        "Table layout visually inspected after separating formatted numbers from raw SI values."
+      ]
+    },
+    {
+      "id": "bus-display-linked-selection",
+      "status": "passed",
+      "example": "Hex counter with a working seven-segment display",
+      "observations": [
+        "Pure-digital run completed at 16 ms with 66 settled positions.",
+        "Display showed hexadecimal 0 with actual segment word 00111111.",
+        "Expanded count bus into derived bits 3,2,1,0 without changing revision.",
+        "Locate on bit0 selected the matching schematic signal.",
+        "After editing, historical trace refused to navigate a different working revision."
+      ]
+    },
+    {
+      "id": "guided-indicator-atomic-undo",
+      "status": "passed",
+      "observations": [
+        "Build from IN1 Output offered compatible explicit construction actions.",
+        "Attach logic state indicator changed six components/six connections to seven/seven in one edit.",
+        "Rerun produced HIGH indicator state.",
+        "One Undo restored six components/six connections."
+      ]
+    },
+    {
+      "id": "wasm-ac-cutoff",
+      "status": "passed",
+      "example": "RC low-pass filter",
+      "observations": [
+        "Real bundled analog worker completed an AC run with 501 original frequency samples.",
+        "Cutoff measurement on V(out)/V(in) at the declared reference frequency returned complete, 159.15494484242754 Hz.",
+        "View interval used logarithmic frequency coordinates and showed 148.5\u2013172.2 Hz; cursors bracketed 158.5 and 162.2 Hz."
+      ]
+    },
+    {
+      "id": "analysis-native-edit-and-plan-export",
+      "status": "passed",
+      "observations": [
+        "Native key input followed by blur committed maximum step 100u and incremented revision1 to2.",
+        "Real coordinated run produced52 positions versus1002 at5u.",
+        "Standalone coordinated execution-plan JSON downloaded from revision2, including the full plan and separate partition."
+      ]
+    },
+    {
+      "id": "goal-filters",
+      "status": "passed",
+      "observations": [
+        "Input/state, bus/display, mixed-control and analog-behavior goals exposed their relevant complete examples."
+      ]
+    }
+  ],
+  "limitations": [
+    {
+      "id": "html-report-download",
+      "status": "not-completed-in-managed-preview",
+      "details": "Report iframe and valid blob download link were observed. Browser download waits timed out for link click, downloadMedia and native Enter activation. No app-origin console error was observed in the inspected error logs. HTML download completion is not claimed for this preview; report generation and preview are verified. The historical owner2.0 acceptance is not relabeled as2.2."
+    },
+    {
+      "id": "http-preview",
+      "status": "environment-boundary",
+      "details": "Managed preview is HTTP terminal.local; secure-context input hashing and offline service-worker installation are unavailable here. Browser artifacts honestly record unavailable-in-insecure-context for input hashes. Automated tests verify actual SHA-256 semantics and package offline contracts separately. No new HTTPS/offline or browser-matrix acceptance is claimed."
+    }
+  ],
+  "driverObservations": [
+    {
+      "id": "synthetic-fill-does-not-commit-onchange",
+      "resolution": "Resolved using native key press then blur. The resulting revision and real simulation point count were verified. Synthetic fill/pressSequentially displayed edited text but did not dirty the native change event; no application workaround was added."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "evidence/v220-browser/capture-and-measurement.circuitbench.json",
+      "bytes": 768443,
+      "sha256": "c00d8d06fdbc36f853a3020a4611b5005a431723125d669102d61ee8ec1b7db8",
+      "origin": "Actual managed-browser download"
+    },
+    {
+      "path": "evidence/v220-browser/capture-measurement.json",
+      "bytes": 29358,
+      "sha256": "fa66ab56be4b22f4b077fe988a8e7d10f756eba71339b59225136f1f4e993dcf",
+      "origin": "Actual managed-browser download"
+    },
+    {
+      "path": "evidence/v220-browser/capture-measurement.csv",
+      "bytes": 1279,
+      "sha256": "a2b321efb47194ef61fd228a9298bccd122706f5f0ed9f2d3cf3144bc3643e24",
+      "origin": "Actual managed-browser download"
+    },
+    {
+      "path": "evidence/v220-browser/rc-step-study.json",
+      "bytes": 696082,
+      "sha256": "410ce82428eca07d02b4aeccc3c323b2c2e1b08c5548ca55e5b2b07a4a9a2325",
+      "origin": "Actual managed-browser download"
+    },
+    {
+      "path": "evidence/v220-browser/rc-step-study.circuitbench.json",
+      "bytes": 1135797,
+      "sha256": "7444ba07f1f73da65eaacd8059fae253ea261ba29cff37381a1599c0ebc13019",
+      "origin": "Actual managed-browser download"
+    },
+    {
+      "path": "evidence/v220-browser/rc-coordinated-execution-plan.json",
+      "bytes": 7314,
+      "sha256": "52a11da19ee3c83094ab58b7e2239ecade583256aa51ef338ee106721edf0118",
+      "origin": "Actual managed-browser download"
+    }
+  ],
+  "screenshotProof": [
+    {
+      "filename": "circuitbench-v220-capture-measurement-1792932026909.jpg",
+      "description": "Completed captured-rise measurement with original source identity"
+    },
+    {
+      "filename": "circuitbench-v220-step-study-final-1792932344400.jpg",
+      "description": "Three completed fresh trials and explicit adjacent tolerance outcomes"
+    },
+    {
+      "filename": "circuitbench-v220-bus-display-1792932386492.jpg",
+      "description": "Working red seven-segment display, expanded bus and linked signal selection"
+    }
+  ],
+  "assertionsNotMade": [
+    "External host deployment",
+    "Owner acceptance of2.2",
+    "Physical-accuracy certification",
+    "HTML download completion in this managed browser",
+    "Offline installation in this HTTP preview"
+  ]
+}

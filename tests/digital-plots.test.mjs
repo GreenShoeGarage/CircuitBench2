@@ -153,7 +153,8 @@ test('pure digital report preserves real four-state results and identifies event
   assert.ok(html.includes(escapeHTML(DIGITAL_ENGINE_INFO.name+' '+DIGITAL_ENGINE_INFO.version)));
   assert.ok(html.includes('Build: '+escapeHTML(DIGITAL_ENGINE_INFO.build)));
   assert.match(html, /Analog WASM SHA-256: Not used by a digital-only run/);
-  assert.match(html, /Compiled digital \/ mixed-signal plan/);
+  assert.match(html, /Compiled digital \/ mixed-signal partition/);
+  assert.ok(html.includes('<pre>' + escapeHTML(JSON.stringify(generated.simulation, null, 2)) + '</pre>'), 'the exact digital partition remains in report provenance');
   assert.ok(html.includes('<pre>' + escapeHTML(generated.netlist) + '</pre>'));
   assert.ok(!/NaN|Infinity/.test(html));
   delete result.sampling.description; // Portable metadata permits an omitted description.
@@ -183,7 +184,7 @@ test('mixed report preserves both executed decks, bridge snapshot, union provena
   assert.ok(html.includes('Digital engine:</strong> '+escapeHTML(`${DIGITAL_ENGINE_INFO.name} ${DIGITAL_ENGINE_INFO.version} · ${DIGITAL_ENGINE_INFO.package} ${DIGITAL_ENGINE_INFO.packageVersion}`)));
   assert.ok(html.includes(ENGINE_INFO.wasmSha256)); assert.ok(html.includes(DIGITAL_ENGINE_INFO.build));
   assert.ok(html.includes(escapeHTML(result.sampling.description)));
-  assert.match(html, /shared result grid preserves samples from the final analog pass/);
+  assert.match(html, /shared result grid preserves original samples from the final ngspice analog pass/);
   assert.match(html, /States observed: 0, 1/);
   assert.match(html, /low: 1\.5 · high: 3\.5 · mode: schmitt/);
   assert.match(html, /low: 0 · high: 5 · rise: 1u · fall: 1u/);

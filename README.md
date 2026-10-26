@@ -1,6 +1,6 @@
 # CircuitBench
 
-**Version 2.0.0-rc.1 — analog, digital and coordinated mixed-signal release candidate.**
+**Version 2.2.0 — everyday workbench controls, instruments and numerical comparisons.**
 
 CircuitBench is Green Shoe Garage's self-hosted electronics workbench. Draw a
 circuit, configure an experiment, run it, measure the response, compare a
@@ -8,14 +8,80 @@ baseline and save the evidence. It is a static browser application with local
 simulation and storage. No account, cloud API, telemetry or native runtime
 installation is required for the deployed application.
 
-This candidate implements all six requested batches: a working seven-segment
-display, coordinated analog/digital feedback, closed-loop execution, multibit
-converters, advanced analog experiments and stateful continuous simulation.
-The library contains **41 parts, 35 model definitions and 38 examples**:
-16 analog, 14 digital and 8 mixed-signal examples. External-host acceptance
-remains a release gate; see [validation](docs/VALIDATION.md).
+The implemented foundation includes a working seven-segment display,
+coordinated analog/digital feedback, closed-loop execution, multibit converters,
+advanced analog experiments and stateful continuous simulation. The rc.2
+release added the digital voltage source and red-HIGH logic indicators.
+The library remains **43 parts, 37 model definitions and 41 examples**:
+16 analog, 16 digital and 9 mixed-signal examples.
 
-## New in 2.0
+## Delivered in 2.1 and 2.2
+
+This cumulative release completes both authorized development batches. The
+accepted stable 2.0 installation and browser record remains preserved under its
+original identity; current verification is recorded in [VALIDATION.md](docs/VALIDATION.md).
+
+| Milestone | New workflow |
+|---|---|
+| 2.1 · Everyday workbench | Pin live sources beside the schematic; operate a digital source directly; use reliable momentary press/release; find compatible pins; insert explicit ADC/DAC, Slice/Join and decoder/display corrections; navigate diagnostics to the affected circuit location. |
+| 2.2 · Instruments | Digital-edge and analog-threshold triggers; pre/post-trigger capture; Run until event; Next event; view-only bus-bit expansion and linked schematic/plot selection. |
+| 2.2 · Measurements | Rise/fall time, overshoot, settling, threshold delay, transfer gain, AC cutoff and explicit digital setup/hold checks, with reusable configurations and independent evidence. |
+| 2.2 · Numerical comparisons | Rerun a coordinated transient with 2–4 successively halved maximum steps, compare a declared scalar measurement and retain every trial, difference and tolerance. |
+
+The [live-control guide](docs/live-controls.md), [guided construction guide](docs/guided-construction.md),
+[capture guide](docs/triggered-capture.md), [measurement guide](docs/measurements.md)
+and [time-step study guide](docs/step-study.md) describe the exact behavior.
+The maintained catalog and analog model scope remain unchanged.
+
+## Installation and state improvements introduced in 2.0.0-rc.3
+
+- **Check installation:** open **Help → Check installation** to inspect the
+  loaded release identity, release/recovery manifests and runtime assets.
+  Separate disposable workers execute a digital logic fixture, retained
+  coordinated feedback and a real ngspice WASM divider. The working circuit
+  and saved projects are not used or changed. Download diagnostic JSON with
+  per-check results and available stage/asset details.
+- **Clear operation and observation:** a persistent strip separates Editing,
+  Running, Paused, Results ready and Showing saved result from the time being
+  observed. **Latest** and **Cursor A** identify the displayed time;
+  **Return to latest** clears the historical cursor without starting or
+  resuming a simulation.
+- **Source-state context:** selecting a digital voltage source distinguishes
+  its configured Initial drive from confirmed Live drive or Recorded drive
+  at the viewed time. Indicators continue to observe the resolved net.
+- **Completed-step feedback:** a paused Step reports its pending work, then
+  returns to the retained-state explanation when complete. Pending commands
+  disable Step; an obsolete session cannot overwrite the replacement
+  session's status or attach a late error to it.
+- **Consistent release identity:** operational guides and both recovery
+  entries receive current version/path labels during the build. The shell
+  records its loaded build identity so installation checks can identify a
+  mismatched advertised release. Historical evidence keeps its original
+  version.
+- **Repeatable native reference:** a private, hash-pinned ngspice42 setup and
+  explicit proof executable path restore the existing native comparison.
+  The rc.3 numerical proof passed 24 checks using native42, the deployed
+  ngspice45.2 WASM engine, analytic expectations and retained state. The
+  [reference environment guide](docs/reference-environment.md) describes
+  exact inputs, commands and verification limits.
+
+An installation check establishes the connected asset and engine observations
+it records. **Completed with limits** identifies unavailable verification,
+such as SHA-256 on an insecure origin. Offline reload, upgrades, recovery and
+actual output downloads have separate acceptance evidence. The checker leaves
+caches and registrations unchanged; **Open cache repair** opens the existing
+explicit recovery workflow. See [installation checks](docs/installation.md#check-this-installation)
+and [viewing circuit state](docs/user-guide.md#know-which-circuit-state-you-are-viewing).
+
+## Digital controls and displays introduced in 2.0.0-rc.2
+
+- **Digital voltage source (DVS):** choose LOW (0) or HIGH (1) using its inspector buttons. The digital output connects directly to gates. Optional **Digital logic + voltage terminals** adds separate analog +/− terminals, defaulting to 0/5 V with configurable rise/fall times.
+- **Logic state indicator (DLED):** the actual resolved HIGH glows red on the schematic. LOW is dark, X is amber and Z has a dashed blue outline. Cursor A reads the preserved state at a chosen time; missing or stale results remain neutral.
+- **Live switching:** change the source with its inspector buttons or **Live inputs…** during a continuous session. The original circuit stays as the initial condition; recorded input changes preserve their simulation times. When paused, use **Step** or **Resume** to see the response.
+
+Start with **Examples → Digital voltage source and red logic indicators**. DV1 starts HIGH: its direct indicator is red and the indicator after a NOT gate is dark. The mixed RC example demonstrates actual 0/5 V terminals and a delayed Schmitt response. A third example shows HIGH, LOW, X and Z together. See [digital sources and indicators](docs/logic-io.md).
+
+## Features added in 2.0
 
 | Capability | Delivered behavior |
 |---|---|
@@ -49,7 +115,7 @@ its supported feed-forward mixed circuits. The bundled ngspice WASM still has
 XSPICE disabled; the coordinated engine has its own recorded identity and
 explicit model limits. See [the engine contract](docs/closed-loop-engine.md).
 
-## Try the new workflows
+## Try the workbench workflows
 
 ### Display actual digital state
 
@@ -127,7 +193,7 @@ restored-record checks and limits.
 
 The same worker retains capacitor voltages, inductor currents, clock phase,
 register/counter state and pending digital/conversion events across updates and
-pauses. Live controls include scalar `DIN`, `BUSIN` words and independent **DC**
+pauses. Live controls include binary `DVS`, four-state scalar `DIN`, `BUSIN` words and independent **DC**
 voltage/current sources. Applied changes are recorded with absolute simulation
 times. Circuit edits stop the session; changing topology or component parameters
 starts a new experiment.
@@ -162,11 +228,11 @@ and reopen it through **Project → Open project**. Generic semiconductor models
 have educational limitations; see [component models](docs/component-models.md)
 and [compatibility](docs/compatibility.md) when interpreting results.
 
-## Install the prebuilt 2.0 release
+## Install the prebuilt 2.2 release
 
-Extract **CircuitBench-2.0.0-rc.1-deploy.zip** and upload the complete contents to
+Extract **CircuitBench-2.2.0-deploy.zip** and upload the complete contents to
 the application's directory. Preserve `assets/`, `repair/`, manifests and root
-files. Executable assets are under `assets/2.0.0-rc.1/`; this includes the
+files. Executable assets are under `assets/2.2.0/`; this includes the
 complete `engine/` folder and its WASM binary. Every worker and engine asset
 must be present.
 
@@ -180,7 +246,7 @@ Open **http://localhost:8080/**. A source checkout needs the build below before
 serving `dist/`. Opening `index.html` directly through `file://` is unsupported.
 
 To upgrade an existing installation, save a backup, upload the complete release,
-close other CircuitBench tabs and open `repair/?release=2.0.0-rc.1`. Refresh
+close other CircuitBench tabs and open `repair/?release=2.2.0`. Refresh
 cached application files, return to the app and confirm the visible version.
 Recovery preserves project storage and preferences. The versioned service
 worker retains exact asset checks and a canonical application shell for hosts
@@ -207,8 +273,9 @@ fields; keep the original backup when moving between versions. See
 
 For installed offline use, visit over HTTPS or localhost and wait for
 **Offline ready**. A downloaded release can also be served from a local web
-server without internet access. Fresh installation, offline reload and upgrade
-acceptance must still be verified on the exact external target build.
+server without internet access. The earlier v2.0 hosting and browser acceptance is
+recorded as passed from the project owner's confirmation. **Help → Check installation**
+provides the active installation's asset and engine observations.
 
 ## Source checkout
 
@@ -224,22 +291,27 @@ python3 -m http.server 8080 --directory dist
 The source ZIP excludes a duplicate `dist/` tree; the build recreates it.
 Numerical proof scripts and their evidence are included under `scripts/` and
 `evidence/`. Analog reference comparisons use the separately pinned native
-ngspice development executable; it is not a deployed application dependency.
+ngspice42 development executable; it is not a deployed application dependency.
+The [reference setup recipe](docs/reference-environment.md) extracts exact
+verified packages into a private directory and records runtime-library
+identities. Pass its executable explicitly to `prove-coordinated.mjs`; no
+system installation or replacement of the bundled WASM is required.
 
 ## Release status and evidence
 
-Version 2.0.0-rc.1 remains a release candidate. Current numerical results,
-worker checks, browser observations, test totals and remaining acceptance gates
-are recorded in [VALIDATION.md](docs/VALIDATION.md) and
-[PROGRESS.md](docs/PROGRESS.md). Historical observations retain their original
-build identities. Feature completion does not establish external-host
-deployment or successful HTTPS/offline acceptance.
+Version **2.2.0** contains the completed 2.1 workbench and 2.2 instrument
+batches. [VALIDATION.md](docs/VALIDATION.md) and [PROGRESS.md](docs/PROGRESS.md)
+record current automated, numerical, browser and package evidence. The user's
+October 25 hosting/browser acceptance remains scoped to stable 2.0; it is
+preserved in the historical records and does not imply a new external upload.
 
-The release's `CircuitBench-2.0.0-rc.1-release-integrity.json` and
-`CircuitBench-2.0.0-rc.1-SHA256SUMS.txt` identify the exact packaged source and
-deploy archives. Uploading those deploy contents is a separate host operation.
+The release's `CircuitBench-2.2.0-release-integrity.json` and
+`CircuitBench-2.2.0-SHA256SUMS.txt` identify the exact packaged source and deploy
+archives. Upload the complete deploy contents to update the self-hosted app.
 
 ## Documentation
+
+- [Digital voltage source and red logic indicators](docs/logic-io.md)
 
 - [User guide](docs/user-guide.md)
 - [Seven-segment display](docs/seven-segment-display.md)
@@ -254,6 +326,7 @@ deploy archives. Uploading those deploy contents is a separate host operation.
 - [Architecture](docs/architecture.md) and [project format](docs/project-format.md)
 - [Component models](docs/component-models.md)
 - [Analog engine evaluation](docs/engine-evaluation.md)
+- [Repeatable native reference environment](docs/reference-environment.md)
 - [Validation](docs/VALIDATION.md) and [progress](docs/PROGRESS.md)
 - [Roadmap](ROADMAP.md) and [changelog](CHANGELOG.md)
 - [Application license](LICENSE) and [third-party notices](THIRD_PARTY_NOTICES.md)

@@ -1,0 +1,24 @@
+{
+  "milestone": "2.1 everyday workbench",
+  "completedAt": "2026-10-25T12:23:13.528657+00:00",
+  "delivery": "Included in cumulative 2.2 release; no separate hosted release claimed.",
+  "testsReportedByImplementers": {
+    "live-controls": 23,
+    "live-controls-app": 7,
+    "logic-io-app": 10,
+    "continuous-app": 17,
+    "workbench-state-app": 11,
+    "experiments-app": 18,
+    "timing-app": 15,
+    "construction-and-editor": 38
+  },
+  "sourceCheckpoint": {
+    "src/app.js": "edee12c7aa74f00cd861d3ea50a5dd92d6ecd991b21428f5d6909bb0f881a2f2",
+    "src/live-controls.js": "3d63caacb5a746c8e670126eec04b1c901718991dd5a098b83f30e56a945b2fb",
+    "src/editor.js": "ee45fdad9bcd9db502f60e21024c7a7a2a8fc858f135c4c46eda9cdc3145802a",
+    "src/construction.js": "9f01d4cbcc6d0e47027991fae5ffc4bf92c276641e96c30591619ab369c70d0a",
+    "src/construction-ui.js": "23c2f699ac46d1d139915934ae4174a947ca9670484eefceaad05bfbdf140830",
+    "docs/live-controls.md": "67db76fb2577ed8158653b5a55d6a66fa6fe8f68b04bc8dff7b8a9fa30577a02",
+    "docs/guided-construction.md": "c8c376fb6b09cf404eaa0c2da562c964018d2bdf0da5cfd47db3bac3cb1374fb"
+  }
+}

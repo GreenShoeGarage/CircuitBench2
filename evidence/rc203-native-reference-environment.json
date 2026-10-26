@@ -1,0 +1,253 @@
+{
+  "format": "CircuitBenchNativeReferenceEnvironment",
+  "formatVersion": 1,
+  "recipe": "cb-native-ngspice42-ubuntu-noble-amd64-1",
+  "recordedAt": "2026-10-25T02:18:34.446Z",
+  "status": "ready",
+  "platform": {
+    "platform": "linux",
+    "arch": "x64",
+    "kernel": "6.18.55",
+    "node": "v24.22.1",
+    "glibcRuntime": "2.39"
+  },
+  "scope": "Exact pinned native ngspice42 executable, package inputs and observed runtime-library identity. This does not claim a source rebuild, a hermetic toolchain, or numerical comparison with CircuitBench.",
+  "distribution": {
+    "name": "Ubuntu",
+    "release": "24.04 (noble)",
+    "architecture": "amd64",
+    "snapshot": "https://snapshot.ubuntu.com/ubuntu/20260828T000000Z/"
+  },
+  "packages": [
+    {
+      "name": "ngspice",
+      "version": "42+ds-3build1",
+      "file": "ngspice_42+ds-3build1_amd64.deb",
+      "path": "/tmp/cb-rc203-native-reference-7lhkwuvl/packages/ngspice_42+ds-3build1_amd64.deb",
+      "bytes": 4411398,
+      "sha256": "466c4c06418107ceaa9c9457065b3bb71a9d9dc5ec6fef186d7de9d5208ce8db",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20260828T000000Z/pool/universe/n/ngspice/ngspice_42+ds-3build1_amd64.deb"
+    },
+    {
+      "name": "libxft2",
+      "version": "2.3.6-1build1",
+      "file": "libxft2_2.3.6-1build1_amd64.deb",
+      "path": "/tmp/cb-rc203-native-reference-7lhkwuvl/packages/libxft2_2.3.6-1build1_amd64.deb",
+      "bytes": 45280,
+      "sha256": "b4f4f3255c0b8773b260c61cbe20ee7c63799cfc0e4e389fa58375dd480b093a",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20260828T000000Z/pool/main/x/xft/libxft2_2.3.6-1build1_amd64.deb"
+    }
+  ],
+  "checks": [
+    {
+      "name": "package hashes and byte lengths",
+      "passed": true
+    },
+    {
+      "name": "historically pinned executable hash",
+      "passed": true
+    },
+    {
+      "name": "private dependency and initialization integrity",
+      "passed": true
+    },
+    {
+      "name": "dynamic libraries resolved and fingerprinted",
+      "passed": true
+    },
+    {
+      "name": "native executable starts and identifies as ngspice42",
+      "passed": true
+    }
+  ],
+  "prefix": "/tmp/cb-rc203-native-reference-7lhkwuvl",
+  "environment": {
+    "LD_LIBRARY_PATH": "/tmp/cb-rc203-native-reference-7lhkwuvl/tools/usr/lib/x86_64-linux-gnu",
+    "SPICE_LIB_DIR": "/tmp/cb-rc203-native-reference-7lhkwuvl/runtime/ngspice"
+  },
+  "executable": {
+    "path": "/tmp/cb-rc203-native-reference-7lhkwuvl/tools/usr/bin/ngspice",
+    "bytes": 8300800,
+    "sha256": "820658317b0b54035208da41936fd6871ce924036e5ea4113a4168b821b7fc45",
+    "versionText": "******\n** ngspice-42 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2023, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Sun Mar 31 20:15:14 UTC 2024\n******"
+  },
+  "extractedRuntimeLibrary": {
+    "path": "/tmp/cb-rc203-native-reference-7lhkwuvl/tools/usr/lib/x86_64-linux-gnu/libXft.so.2.3.6",
+    "bytes": 105944,
+    "sha256": "368eee2879589cb6716f03ba23dee35b97faa0a4102c715776c7224bef8e3164"
+  },
+  "initialization": {
+    "originalPath": "/tmp/cb-rc203-native-reference-7lhkwuvl/tools/usr/share/ngspice/scripts/spinit",
+    "originalSha256": "6ce47fdb8ed6d10e5d3235f9444e58b10cecb8551d8ad249de1b887775a1cd08",
+    "path": "/tmp/cb-rc203-native-reference-7lhkwuvl/runtime/ngspice/scripts/spinit",
+    "sha256": "0e4e8480df8abc16a847981d8f477ba4cd9bbabdde711a92f8eefc88ec97eced",
+    "transformation": "Replace /usr/lib/x86_64-linux-gnu/ngspice/ with the extracted private code-model directory; all other bytes remain unchanged.",
+    "userConfiguration": "Pass -n to native comparisons to exclude local/user .spiceinit; the recorded global initialization still applies."
+  },
+  "dynamicLibraries": [
+    {
+      "path": "/lib/x86_64-linux-gnu/libICE.so.6",
+      "realPath": "/usr/lib/x86_64-linux-gnu/libICE.so.6.3.0",
+      "sha256": "899ff245d50d4f1a7bb114d13b6200f42f93696ad93f38020c6ed7c84a5a943e"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libSM.so.6",
+      "realPath": "/usr/lib/x86_64-linux-gnu/libSM.so.6.0.1",
+      "sha256": "c9301f0ff852c0edcfc766f91c5df4f73b1b300c0303ac188524154588892fd0"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libX11.so.6",
+      "realPath": "/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0",
+      "sha256": "c5b5d782bd9cab3420a62df88f5c991507edf3331a89f98464ddbc538c37b879"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libXau.so.6",
+      "realPath": "/usr/lib/x86_64-linux-gnu/libXau.so.6.0.0",
+      "sha256": "8040da3f8516c1acfe39f04ff022480cdb273705ba5e7a4ca70bbdb1527cd67a"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libXaw.so.7",
+      "realPath": "/usr/lib/x86_64-linux-gnu/libXaw7.so.7.0.0",
+      "sha256": "18e0e839eb69d2abe4f025c288582f88e6cc8264efd3d66a9cd51e8350833ac9"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libXdmcp.so.6",
+      "realPath": "/usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0",
+      "sha256": "667d97d6da16016400ab10de9f83ef4ab209ceb6adf68ff9650225ec13e723b0"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libXext.so.6",
+      "realPath": "/usr/lib/x86_64-linux-gnu/libXext.so.6.4.0",
+      "sha256": "2907e6a996465de5b32a0dd10534d4416b87f1dee5670aaa7b19301a1fc93f44"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libXmu.so.6",
+      "realPath": "/usr/lib/x86_64-linux-gnu/libXmu.so.6.2.0",
+      "sha256": "5dd17c27af809f60078aefd39bb89b763beeca5bbf30f204e6f1597f3cdf227f"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libXpm.so.4",
+      "realPath": "/usr/lib/x86_64-linux-gnu/libXpm.so.4.11.0",
+      "sha256": "a9fe78df2fe7ae078915f16c4991b934d0d9de7bd12dd5fcb1859dedc9a5e578"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libXrender.so.1",
+      "realPath": "/usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0",
+      "sha256": "250977e0e004b6c0556144c3e683487063b4582dc83d205196ec3aa65d54e2c6"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libXt.so.6",
+      "realPath": "/usr/lib/x86_64-linux-gnu/libXt.so.6.0.0",
+      "sha256": "267143b6258b866a522e9cff8db1e11ed95acb4fe23c56d9224e71afe617b0b8"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libbrotlicommon.so.1",
+      "realPath": "/usr/lib/x86_64-linux-gnu/libbrotlicommon.so.1.1.0",
+      "sha256": "a91ead095d2c80520c55a89057bbe10b031a075340442e63f44b310f93883a1b"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libbrotlidec.so.1",
+      "realPath": "/usr/lib/x86_64-linux-gnu/libbrotlidec.so.1.1.0",
+      "sha256": "64d8a5019d4c294b89fde1193343ea324bbd8603652554e5545f0a01595fa2c5"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libbsd.so.0",
+      "realPath": "/usr/lib/x86_64-linux-gnu/libbsd.so.0.12.1",
+      "sha256": "e86cd4f0019f42c2ba5e60602e0edc8694d2948377d98c3654d0f6bddb5254bb"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libbz2.so.1.0",
+      "realPath": "/usr/lib/x86_64-linux-gnu/libbz2.so.1.0.4",
+      "sha256": "218c4abdabce31161f3c2778762986d1fe06633705c7eb004a740946a5ccdfff"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libc.so.6",
+      "realPath": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+      "sha256": "511f825ee075610ac9c0f7f91e2c13de2000d0f7b859f6461137e809a0a009d0"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libedit.so.2",
+      "realPath": "/usr/lib/x86_64-linux-gnu/libedit.so.2.0.72",
+      "sha256": "195c607216f8581dbf516346ed38f4c73500cac4b84e18eb0a4fd49931e4cd56"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libexpat.so.1",
+      "realPath": "/usr/lib/x86_64-linux-gnu/libexpat.so.1.9.1",
+      "sha256": "7ae38be4b2f909d25c5ca3107ed04bc3128a8a24ea7adfe30102c3f04089c9c3"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libfontconfig.so.1",
+      "realPath": "/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.1",
+      "sha256": "a94b4059b27766f563894c8f7e61762b6f6b2e25c59ef36b730164d4b75c6c98"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libfreetype.so.6",
+      "realPath": "/usr/lib/x86_64-linux-gnu/libfreetype.so.6.20.1",
+      "sha256": "c14c53c5baff12afafb610c6312fb879e9bb77e80dd42e27504d52d6d8bcd059"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libgcc_s.so.1",
+      "realPath": "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1",
+      "sha256": "d93224d2b0dab4247598be683adca02f5cf00586f99c187579cd7e92058fb7cb"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libgomp.so.1",
+      "realPath": "/usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0",
+      "sha256": "135f3c8f006d2fe5e68e51281c7974cb991a03de3bfb3593d68d174dfcf854d1"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libm.so.6",
+      "realPath": "/usr/lib/x86_64-linux-gnu/libm.so.6",
+      "sha256": "f06f2ce1f1833df5f41cf13b6447ff07bea993ad9b27297d3428c2f70ab3f0e7"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libmd.so.0",
+      "realPath": "/usr/lib/x86_64-linux-gnu/libmd.so.0.1.0",
+      "sha256": "423e18586b6ea740f4465afd64f7a9a4cb7264ed979c8e7256f9085af5345fef"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libpng16.so.16",
+      "realPath": "/usr/lib/x86_64-linux-gnu/libpng16.so.16.43.0",
+      "sha256": "eac265b3506df0d9110dd9143e1d0503e2daabafe1d98b23fac8ca17b71d1f6b"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libstdc++.so.6",
+      "realPath": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33",
+      "sha256": "1fd75fe70354a416d75aef22bcae68c47bd25d20e2d0568c30b1a9838cf62f11"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libtinfo.so.6",
+      "realPath": "/usr/lib/x86_64-linux-gnu/libtinfo.so.6.4",
+      "sha256": "61f693cd7f8e55ad3ab518b20a00c01adb46ef829cf90773c97615a73f99e09b"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libuuid.so.1",
+      "realPath": "/usr/lib/x86_64-linux-gnu/libuuid.so.1.3.0",
+      "sha256": "a0fe32d24d125186cf332570770ae749822b5b529d4d4f59222e1aedbc63b58d"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libxcb.so.1",
+      "realPath": "/usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0",
+      "sha256": "7958a0136b121bdc4c708968569ad152a9ed208ab026e2537b1005dde64ca440"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libz.so.1",
+      "realPath": "/usr/lib/x86_64-linux-gnu/libz.so.1.3",
+      "sha256": "9b64150b28505a33d6bc3ecf709c279f6de97a1c184dbda65d06ee4537f6d286"
+    },
+    {
+      "path": "/lib64/ld-linux-x86-64.so.2",
+      "realPath": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+      "sha256": "6222a16be7f2d458d6870efe6e715fc0c8d45766fb79cf7dcc3125538d703e28"
+    },
+    {
+      "path": "/tmp/cb-rc203-native-reference-7lhkwuvl/tools/usr/lib/x86_64-linux-gnu/libXft.so.2",
+      "realPath": "/tmp/cb-rc203-native-reference-7lhkwuvl/tools/usr/lib/x86_64-linux-gnu/libXft.so.2.3.6",
+      "sha256": "368eee2879589cb6716f03ba23dee35b97faa0a4102c715776c7224bef8e3164"
+    }
+  ],
+  "binaryBuild": {
+    "kind": "Ubuntu distribution binary",
+    "compiler": "Not inferred: the stripped executable does not expose a compiler .comment section. No compilation was performed by this recipe."
+  }
+}

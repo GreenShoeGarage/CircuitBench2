@@ -1,0 +1,26 @@
+✔ the app runs a sequential study from its captured project without changing circuit revision (127.259369ms)
+✔ working edits while a study runs cannot change later trial inputs or the captured revision (46.401343ms)
+✔ an invalid setup never starts workers or overwrites study history (7.516892ms)
+✔ ineligible empty or invalid analog circuits do not expose a dead Run study action (1.621003ms)
+✔ a second queued activation cannot replace the active study task or cancellation controller (30.469198ms)
+✔ modal Stop cancels an active worker and retains an explicit partial study (20.757243ms)
+✔ global Stop during input hashing prevents additional trials and ignores the late hash result (15.737418ms)
+✔ a late successful worker response after Stop cannot append completed evidence (23.511693ms)
+✔ replacement waits for cancellation and clears only the departing project history (14.484832ms)
+✔ failed trial handling continues later values and retains a clean completed-errors record (24.615347ms)
+✔ history navigation and CSV/JSON exports preserve independent study evidence (54.936371ms)
+✔ exported project backup reopens with restored notices and survives another export/import (60.809579ms)
+✔ study-only content retains backup confirmation and Cancel preserves the record (43.645239ms)
+✔ envelope and restored project histories are deep copies (32.828589ms)
+✔ duplicate projects start a new study history while the exported backup preserves it (34.106774ms)
+✔ removing a saved study updates history without changing the schematic (57.388505ms)
+✔ reports include all saved studies without requiring retained full run records (21.042377ms)
+✔ the seventh completed study preserves the newest record and discloses eviction (124.313602ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 763.14459

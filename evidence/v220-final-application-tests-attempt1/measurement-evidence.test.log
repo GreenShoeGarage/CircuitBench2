@@ -1,0 +1,14 @@
+✔ measurement records retain complete independent raw evidence and survive run removal (10.652068ms)
+✔ import recomputes arithmetic and rejects contradictory settings, metadata and raw samples (5.743644ms)
+✔ malformed source extras, duplicate records, nonportable numbers and invalid timestamps are rejected (2.089635ms)
+✔ presets have bounded normalized definitions and keep exact windows and declared levels (1.235168ms)
+✔ bounded retention keeps the new record and states how many records were removed (0.824263ms)
+✔ CSV and evidence JSON retain exact values and provenance; HTML escapes user fields (18.248069ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 45.425458

@@ -1,0 +1,29 @@
+✔ rolling history retains actual absolute sample positions and a sparse boundary state (2.705831ms)
+✔ a new chunk replaces the shared settled boundary without a duplicated time or gap (0.691608ms)
+✔ window duration advances to a stored sample rather than inventing an interpolated boundary (0.249848ms)
+✔ sample and event retention bounds move the whole window without losing interior edges (0.472786ms)
+✔ gaps, overlaps, changed widths, inconsistent sparse data and pseudo-logic are rejected (0.847918ms)
+✔ bounded finite-result merging fails before discarding any point or event (0.457523ms)
+✔ pause waits for an active command and retains its worker and last numerical state (1.233304ms)
+✔ single-step advances a paused session without enabling automatic execution (0.304458ms)
+✔ Stop before a scheduled command starts cannot touch a replacement session (0.260163ms)
+✔ a completed old command after Stop and restart cannot overwrite new results or state (0.497572ms)
+✔ Stop in the starting-state callback prevents even initialization (0.211541ms)
+✔ live inputs pause safely, capture a copy, record exact simulation time and resume (0.655725ms)
+✔ a stale input response after Stop cannot append into a replacement session (0.425967ms)
+✔ concurrent input edits and steps cannot race an input command (0.364837ms)
+✔ an explicit pause during a live input change is not undone by automatic resume (0.199233ms)
+✔ pause during worker initialization is honored after startup completes (0.212423ms)
+✔ an idle paused-worker failure is reflected immediately in controller state (0.149149ms)
+✔ an input failure closes the worker and reports failed rather than a false paused session (0.285981ms)
+✔ stalled, gapped or overshot solver chunks fail and close without publishing results (0.359028ms)
+✔ partial chunks continue from their actual end while preserving the absolute timeline (0.64579ms)
+✔ real RC numerical state and live source changes survive pause and resume without restart (4.448225ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 22.546735

@@ -1,0 +1,271 @@
+{
+  "format": "CircuitBenchSimulationPlan",
+  "formatVersion": 1,
+  "appVersion": "2.2.0",
+  "project": {
+    "schemaVersion": 1,
+    "appVersion": "2.2.0",
+    "id": "project_mvntsujq_a05mzb94lmv",
+    "title": "RC step response",
+    "revision": 2,
+    "createdAt": "2026-10-25T12:50:39.398Z",
+    "updatedAt": "2026-10-25T12:50:40.017Z",
+    "question": "How long does the capacitor take to charge?",
+    "notes": "Expected: τ = RC = 1 ms. The output is about 0.63212 V after 1 ms and 0.99326 V after 5 ms.\nTry: Double R1 and observe a 2 ms time constant. Keep the maximum step small relative to τ.",
+    "assumptions": [
+      "Lumped circuit elements and ideal independent sources.",
+      "Model outputs are numerical predictions; validate a physical design using component data and measurements."
+    ],
+    "circuit": {
+      "components": [
+        {
+          "id": "c_mvntsujq_2l20r18ye3u",
+          "ref": "V1",
+          "type": "V",
+          "params": {
+            "waveform": "pulse",
+            "dc": "0",
+            "ac": "1",
+            "phase": "0",
+            "offset": "0",
+            "amplitude": "1",
+            "frequency": "1k",
+            "delay": "0",
+            "low": "0",
+            "high": "1",
+            "rise": "1n",
+            "fall": "1n",
+            "width": "10m",
+            "period": "20m",
+            "pwl": "0,0; 1m,1; 2m,0"
+          },
+          "model": null
+        },
+        {
+          "id": "c_mvntsujq_5sh5xy47xbu",
+          "ref": "R1",
+          "type": "R",
+          "params": {
+            "value": "10k"
+          },
+          "model": null
+        },
+        {
+          "id": "c_mvntsujq_75fy2s3hjke",
+          "ref": "C1",
+          "type": "C",
+          "params": {
+            "value": "100n",
+            "ic": "0"
+          },
+          "model": null
+        },
+        {
+          "id": "c_mvntsujq_gt44zntmsj",
+          "ref": "G1",
+          "type": "GND",
+          "params": {},
+          "model": null
+        }
+      ],
+      "connections": [
+        {
+          "id": "w_mvntsujq_ftxf775m3wp",
+          "a": "c_mvntsujq_2l20r18ye3u:p",
+          "b": "c_mvntsujq_5sh5xy47xbu:1"
+        },
+        {
+          "id": "w_mvntsujq_cbd40324yln",
+          "a": "c_mvntsujq_5sh5xy47xbu:2",
+          "b": "c_mvntsujq_75fy2s3hjke:1"
+        },
+        {
+          "id": "w_mvntsujq_r020upu1d0l",
+          "a": "c_mvntsujq_75fy2s3hjke:2",
+          "b": "c_mvntsujq_gt44zntmsj:0"
+        },
+        {
+          "id": "w_mvntsujq_ab4noqimh6",
+          "a": "c_mvntsujq_2l20r18ye3u:n",
+          "b": "c_mvntsujq_gt44zntmsj:0"
+        }
+      ],
+      "junctions": [],
+      "labels": [
+        {
+          "id": "label_mvntsujq_fidcqfvoxlj",
+          "name": "in",
+          "target": "c_mvntsujq_2l20r18ye3u:p"
+        },
+        {
+          "id": "label_mvntsujq_4l0ztwiujmo",
+          "name": "out",
+          "target": "c_mvntsujq_75fy2s3hjke:1"
+        }
+      ]
+    },
+    "layout": {
+      "components": {
+        "c_mvntsujq_2l20r18ye3u": {
+          "x": 160,
+          "y": 280,
+          "rotation": 0,
+          "mirror": false
+        },
+        "c_mvntsujq_5sh5xy47xbu": {
+          "x": 320,
+          "y": 240,
+          "rotation": 0,
+          "mirror": false
+        },
+        "c_mvntsujq_75fy2s3hjke": {
+          "x": 440,
+          "y": 280,
+          "rotation": 90,
+          "mirror": false
+        },
+        "c_mvntsujq_gt44zntmsj": {
+          "x": 160,
+          "y": 400,
+          "rotation": 0,
+          "mirror": false
+        }
+      },
+      "wires": {
+        "w_mvntsujq_ftxf775m3wp": {
+          "points": []
+        },
+        "w_mvntsujq_cbd40324yln": {
+          "points": [
+            {
+              "x": 440,
+              "y": 240
+            }
+          ]
+        },
+        "w_mvntsujq_r020upu1d0l": {
+          "points": [
+            {
+              "x": 440,
+              "y": 380
+            }
+          ]
+        },
+        "w_mvntsujq_ab4noqimh6": {
+          "points": []
+        }
+      },
+      "junctions": {},
+      "annotations": []
+    },
+    "analysis": {
+      "type": "tran",
+      "solver": "coordinated",
+      "start": "1",
+      "stop": "100k",
+      "points": 100,
+      "step": "100u",
+      "duration": "5m",
+      "source": "V1",
+      "sweepStart": "0",
+      "sweepStop": "10",
+      "sweepStep": "0.1",
+      "temperature": 27,
+      "reltol": "1e-4",
+      "uic": true
+    },
+    "probes": [
+      {
+        "id": "probe_mvntsujq_gt3w1ii9qfq",
+        "kind": "voltage",
+        "label": "Output",
+        "a": "c_mvntsujq_75fy2s3hjke:1",
+        "b": null
+      },
+      {
+        "id": "probe_mvntsujq_w4wlxdnd3a",
+        "kind": "voltage",
+        "label": "Input",
+        "a": "c_mvntsujq_2l20r18ye3u:p",
+        "b": null
+      }
+    ],
+    "workspace": "schematic",
+    "netlistText": "",
+    "workbench": {
+      "pinnedSources": [],
+      "momentarySources": []
+    },
+    "measurementPresets": []
+  },
+  "netlist": "CircuitBench - RC step response - revision 2\n* Reproducible analysis from schema 1. Generic models are educational.\nV1 in 0 DC 0.000000000000e+0 AC 1.000000000000e+0 0.000000000000e+0 PULSE(0.000000000000e+0 1.000000000000e+0 0.000000000000e+0 1.000000000000e-9 1.000000000000e-9 1.000000000000e-2 2.000000000000e-2)\nR1 in out 1.000000000000e+4\nC1 out 0 1.000000000000e-7 IC=0.000000000000e+0\n.temp 27\n.options reltol=1.000000000000e-4 abstol=1e-12 vntol=1e-6 itl1=200 itl4=100\n.save all\n.tran 1.000000000000e-4 5.000000000000e-3 0 1.000000000000e-4 uic\n.end\n",
+  "netlistHash": "unavailable-in-insecure-context",
+  "simulation": null,
+  "coordinatedPlan": {
+    "kind": "coordinated-transient",
+    "version": 1,
+    "duration": 0.005,
+    "maxStep": 0.00009999999999999999,
+    "analog": {
+      "nodes": [
+        "in",
+        "out"
+      ],
+      "elements": [
+        {
+          "id": "c_mvntsujq_2l20r18ye3u",
+          "ref": "V1",
+          "type": "V",
+          "p": "in",
+          "n": "0",
+          "wave": {
+            "kind": "pulse",
+            "dc": 0,
+            "low": 0,
+            "high": 1,
+            "delay": 0,
+            "rise": 1e-9,
+            "fall": 1e-9,
+            "width": 0.01,
+            "period": 0.02
+          }
+        },
+        {
+          "id": "c_mvntsujq_5sh5xy47xbu",
+          "ref": "R1",
+          "type": "R",
+          "p": "in",
+          "n": "out",
+          "value": 10000,
+          "ic": 0
+        },
+        {
+          "id": "c_mvntsujq_75fy2s3hjke",
+          "ref": "C1",
+          "type": "C",
+          "p": "out",
+          "n": "0",
+          "value": 1.0000000000000001e-7,
+          "ic": 0
+        }
+      ],
+      "uic": true
+    },
+    "digital": {
+      "sources": [],
+      "gates": [],
+      "sequential": [],
+      "buses": [],
+      "probes": [],
+      "hiddenNodes": [],
+      "inputGroups": []
+    },
+    "adcs": [],
+    "dacs": [],
+    "controls": []
+  },
+  "simulationHash": "unavailable-in-insecure-context",
+  "simulationHashRole": "coordinated execution plan",
+  "analogNetlists": [],
+  "note": "The compiled plan starts from this captured project’s initial source settings. Project backups and capture evidence retain applied continuous-session commands. Digital components are not standalone SPICE devices."
+}

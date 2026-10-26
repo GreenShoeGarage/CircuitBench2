@@ -1,0 +1,20 @@
+✔ flat and directory recovery routes derive the exact parent app scope at root and subdirectories (7.700972ms)
+✔ recovery isolates scope and refreshes canonical asset HTTP-cache keys without fetching index.html (50.398026ms)
+✔ HTTP file refresh works without secure cache APIs and reports exactly which checks were unavailable (12.666417ms)
+✔ cleanup failures remain visible while other eligible caches and runtime downloads are attempted (4.460979ms)
+✔ malicious manifest paths are rejected before any listed runtime asset is requested (36.371884ms)
+✔ manifest shape, duplicates, missing essentials and download budgets fail closed (17.744985ms)
+✔ same-length stale bytes, truncated files, unusable JavaScript MIME and HTTP failures are distinct partial results (4.236314ms)
+✔ an available SHA-256 implementation that fails does not silently downgrade to size-only success (6.212248ms)
+✔ oversized bodies remain blocked and identify the expected limit, observed size and response metadata (7.620351ms)
+✔ stalled network requests are timed out and aborted with a readable result (12.053428ms)
+✔ runtime downloads use a bounded parallel queue (8.132332ms)
+✔ HTTP recovery UI stays actionable, waits for file checks and requires a separate Return action (3.054853ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 180.833403

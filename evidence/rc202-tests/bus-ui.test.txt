@@ -1,0 +1,18 @@
+✔ bus values and CSV retain width, leading zeroes and every literal X/Z bit (2.508958ms)
+✔ malformed words, missing bit order, inconsistent measurement width and pseudo-numeric buses are not plotted (1.343971ms)
+✔ word cursors use the exact predecessor state and Mixed keeps a bus beside the preferred analog probe (3.109774ms)
+✔ bus timing lanes shade partial X/Z words and omit only text that cannot fit its interval (1.03742ms)
+✔ dense bus transitions survive zoom and export without signal decimation (28.888206ms)
+✔ bus baseline matching rejects width changes and uses compatible baseline event times independently (0.72435ms)
+✔ width guards reject direct bus-to-scalar and unequal bus joins while explicit slice/join paths remain usable (16.458249ms)
+✔ junctions and equal labels cannot silently resize a bus (3.974967ms)
+✔ new fixed-port symbols render resolved widths, accessible bus pins and literal export colors through transforms (7.439305ms)
+✔ an imported width conflict remains visible and cannot produce a misleading probe (1.239179ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 87.181424

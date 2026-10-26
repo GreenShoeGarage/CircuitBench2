@@ -1,0 +1,17 @@
+{
+  "appVersion": "2.0.0-rc.2",
+  "runtimeBuild": "672a6435dfd88d38",
+  "recordedAt": "2026-10-25T01:43:57.607414+00:00",
+  "command": "node tests/package.test.mjs",
+  "exitCode": 0,
+  "tests": 9,
+  "passed": 9,
+  "failed": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "todo": 0,
+  "transcript": "evidence/rc202-package-tests.txt",
+  "transcriptSha256": "721bfb99716d30abb96482533fa81ffe7717d4dce46baf4b2dfb8693640e3ec6",
+  "status": "passed",
+  "scope": "Package gate before embedding this gate record. Final repeat with the same runtime and completed evidence is recorded in the external release-integrity receipt."
+}

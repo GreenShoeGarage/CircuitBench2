@@ -26,7 +26,7 @@ export function compileSimulation(project,net=buildNets(project)){
  const sourceName=ref=>{const base='V_CB_'+ref;let name=base,index=1;while(refs.has(name.toLowerCase()))name=base+'_'+index++;refs.add(name.toLowerCase());return name;};
  for(const c of project.circuit.components){
   const node=pin=>net.endpointToNet[`${c.id}:${pin}`],bits=pin=>digital.endpointBits[`${c.id}:${pin}`]??[],bit=pin=>bits(pin)[0],n=(key,unit)=>parseValue(c.params[key],unit);
-  if(c.type==='DIN'){sources.push({id:c.id,output:bit('out'),kind:'constant',value:c.params.state});inputGroups.push({id:c.id,label:c.ref,width:1,sources:[c.id]});}
+  if(c.type==='DIN'||c.type==='DVS'){if(c.type==='DVS'&&!['0','1'].includes(c.params.state))throw new Error(`${c.ref}: digital voltage source requires known logic 0 or 1.`);sources.push({id:c.id,output:bit('out'),kind:'constant',value:c.params.state});inputGroups.push({id:c.id,label:c.ref,width:1,sources:[c.id]});if(c.type==='DVS'&&c.params.outputMode==='logic-voltage')dacs.push({id:c.id,type:'DVS',input:bit('out'),sourceName:sourceName(c.ref),low:n('low','V'),high:n('high','V'),rise:n('rise','s'),fall:n('fall','s'),initial:c.params.state==='1'?n('high','V'):n('low','V')});}
   else if(c.type==='BUSIN'){const outputs=bits('out'),word=parseLogicWord(c.params.value,outputs.length),sourceIds=[];for(let i=0;i<outputs.length;i++){const id=elementId(c.id+'_bit_'+i);sources.push({id,output:outputs[i],kind:'constant',value:word[word.length-1-i]});sourceIds.push(id);}inputGroups.push({id:c.id,label:c.ref,width:outputs.length,sources:sourceIds});}
   else if(c.type==='PATTERN'){const outputs=bits('out'),events=parsePattern(c.params.pattern,outputs.length);for(let i=0;i<outputs.length;i++)sources.push({id:elementId(c.id+'_bit_'+i),output:outputs[i],kind:'pattern',events:events.map(e=>({time:e.time,value:e.value[outputs.length-1-i]})),repeatPeriod:n('repeat','s')});}
   else if(c.type==='CLOCK')sources.push({id:c.id,output:bit('out'),kind:'clock',period:n('period','s'),duty:n('duty','%')/100,delay:n('delay','s')});
@@ -74,7 +74,7 @@ export function generateNetlist(project,{dacWaveforms={}}={}){
  }else{
    for(const c of project.circuit.components){const node=pin=>netMap[`${c.id}:${pin}`],val=(key,unit)=>sci(parseValue(c.params[key],unit));try{
      if(c.type==='GND')continue;
-     if(DIGITAL_TYPES.includes(c.type)){if(['DAC','DACBUS'].includes(c.type)&&simulation){const dac=simulation.dacs.find(d=>d.id===c.id);lines.push(`${dac.sourceName} ${node(c.type==='DACBUS'?'p':'out')} ${node(c.type==='DACBUS'?'n':'ref')} ${dacSource(dac,dacWaveforms[c.id],simulation.duration)}`);}}
+     if(DIGITAL_TYPES.includes(c.type)){if(simulation&&(['DAC','DACBUS'].includes(c.type)||c.type==='DVS'&&c.params.outputMode==='logic-voltage')){const dac=simulation.dacs.find(d=>d.id===c.id),pair=['DACBUS','DVS'].includes(c.type)?['p','n']:['out','ref'];lines.push(`${dac.sourceName} ${node(pair[0])} ${node(pair[1])} ${dacSource(dac,dacWaveforms[c.id],simulation.duration)}`);}}
      else if(['R','C','L'].includes(c.type)){lines.push(`${c.ref} ${node('1')} ${node('2')} ${val('value',c.type==='R'?'Ω':c.type==='C'?'F':'H')}${['C','L'].includes(c.type)?` IC=${val('ic',c.type==='C'?'V':'A')}`:''}`);}
      else if(['V','I'].includes(c.type))lines.push(`${c.ref} ${node('p')} ${node('n')} ${sourceValue(c)}`);
      else if(['D','LED'].includes(c.type))lines.push(`${c.ref} ${node('a')} ${node('k')} ${c.model}`);

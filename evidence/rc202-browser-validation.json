@@ -1,0 +1,117 @@
+{
+  "format": "CircuitBenchBrowserValidation",
+  "appVersion": "2.0.0-rc.2",
+  "runtimeBuild": "672a6435dfd88d38",
+  "recordedAt": "2026-10-25T01:41:49.337573+00:00",
+  "environment": {
+    "browser": "Managed Chrome / CDP",
+    "url": "http://terminal.local:4173/",
+    "secureContext": false
+  },
+  "status": "passed-for-requested-workflows",
+  "observations": [
+    {
+      "workflow": "Binary source and NOT gate",
+      "result": "LOW/HIGH inspector changes, bounded reruns and red-HIGH/dark-LOW complementary indicators verified. Stale revision readouts go neutral before rerun.",
+      "servedBuild": "8c392e63de9989e2",
+      "scope": "Preliminary bounded LOW/HIGH checks before final runtime freeze."
+    },
+    {
+      "workflow": "Continuous source switching",
+      "initial": "HIGH",
+      "applied": [
+        {
+          "time": 0.0173,
+          "value": "0",
+          "via": "source inspector button"
+        },
+        {
+          "time": 0.0174,
+          "value": "1",
+          "via": "Live inputs binary selector"
+        }
+      ],
+      "stayedPaused": true,
+      "steppedAfterEachChange": true,
+      "retainedWindow": [
+        0.0155,
+        0.0175
+      ],
+      "points": 23,
+      "totalPoints": 178,
+      "droppedPoints": 155,
+      "sourceSnapshotRemainedHIGH": true,
+      "artifact": "rc202-live-digital.circuitbench.json",
+      "servedBuild": "672a6435dfd88d38"
+    },
+    {
+      "workflow": "Actual voltage terminals",
+      "levelsTested": [
+        5,
+        3.3
+      ],
+      "duration": 0.005,
+      "high5Points": 503,
+      "high3_3Points": 502,
+      "high5Indicators": [
+        "1",
+        "1"
+      ],
+      "high3_3Indicators": [
+        "1",
+        "0"
+      ],
+      "thresholds": [
+        1.5,
+        3.5
+      ],
+      "artifact": "rc202-voltage-levels.circuitbench.json",
+      "servedBuild": "672a6435dfd88d38"
+    },
+    {
+      "workflow": "Four-state indicators and Cursor A",
+      "finalTime": 0.0045,
+      "finalStates": [
+        "1",
+        "0",
+        "X",
+        "Z"
+      ],
+      "cursorTime": 0.001481650892211237,
+      "cursorStates": [
+        "0",
+        "X",
+        "Z",
+        "1"
+      ],
+      "colors": {
+        "1": "red glow",
+        "0": "dark",
+        "X": "amber",
+        "Z": "blue dashed outline"
+      },
+      "artifact": "rc202-four-state-indicators.circuitbench.json",
+      "servedBuild": "672a6435dfd88d38"
+    },
+    {
+      "workflow": "Browser backup import",
+      "artifact": "rc202-live-digital.circuitbench.json",
+      "result": "Reopened through Open project and Replace working project. Restored revision2, 23points, final1/0 indicators at17.5ms; no active solver resumed.",
+      "servedBuild": "672a6435dfd88d38"
+    },
+    {
+      "workflow": "Console inspection",
+      "applicationErrorsObserved": 0,
+      "excluded": "Browser-extension metadata errors from chrome-extension URLs.",
+      "servedBuild": "672a6435dfd88d38"
+    }
+  ],
+  "limits": [
+    "The external Green Shoe Garage host was not changed or tested in this request.",
+    "Secure service-worker/offline/update acceptance and full browser/viewport matrix remain open.",
+    "The SVG export button reported success, but retrieving its download path timed out in the cloud browser; this is not recorded as verified file delivery. Inline exported-SVG lamp markup is covered by application tests.",
+    "Native print/PDF and the prior HTML-report download acceptance gate were not repeated."
+  ],
+  "screenshot": "Delivered separately as circuitbench-rc2-digital-io-20261024.jpg; actual restored digital session and source controls, not a generated mockup.",
+  "buildProvenance": "Builds identified by the preview operator and local release manifest; not inferred from exported project snapshots."
+}

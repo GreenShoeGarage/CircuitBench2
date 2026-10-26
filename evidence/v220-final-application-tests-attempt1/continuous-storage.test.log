@@ -1,0 +1,17 @@
+✔ actual rolling mixed result restores its absolute nonzero time window (39.488082ms)
+✔ timing on a retained bus bit ignores the initial boundary as an edge (16.976008ms)
+✔ continuous timing and its original run survive two backup round trips (15.907465ms)
+✔ independent timing retains the live input history after the full run is removed (10.510976ms)
+✔ recorded continuous sampling bounds must agree with retained timing source bounds (10.002988ms)
+✔ a nonzero timing source boundary requires explicit continuous provenance (8.0128ms)
+✔ window-boundary, retention-count, session-status and live-source corruption is rejected (12.64793ms)
+✔ a saved continuous snapshot is inspectable evidence rather than resumable solver state (8.619823ms)
+✔ continuous sampling cannot be detached from its retention provenance (7.232021ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 135.646268

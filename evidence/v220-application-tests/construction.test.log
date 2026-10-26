@@ -1,0 +1,36 @@
+✔ destination highlighting exactly respects the real domain/width connection rule (6.690743ms)
+✔ attach indicator observes HIGH without adding a digital driver (5.854734ms)
+✔ bus-bit probe inserts a genuine one-bit alias with MSB/LSB correctness (5.535034ms)
+✔ Join uses explicit low/high placement and preserves X/Z per bit (2.499257ms)
+✔ 4-bit to display correction inserts matching decoder plus explicit decimal source (4.436548ms)
+✔ matching display attached to decoder output inherits the explicit active-level default (0.664878ms)
+✔ width corrections construct valid Slice and Join wiring without directly merging buses (1.831435ms)
+✔ ADC and DAC correction direction follows the driven digital net (1.384957ms)
+✔ ADC/DAC direction discovers drivers through passive Slice/Join aliases (0.847788ms)
+✔ scalar ADC correction explicitly wires its analog reference and leaves domains distinct (1.445186ms)
+✔ multibit DAC maps the bus width and preserves explicit voltage/rise/startup settings (1.75322ms)
+✔ standalone multibit ADC config accepts explicit 2–8 bit widths and converter timing (1.15536ms)
+✔ invalid ranges, words, timing and references are rejected without any project mutation (2.753732ms)
+✔ DAC refuses a voltage output short to the chosen reference atomically (1.179646ms)
+✔ Editor construction groups decoder, decimal source, display and all wires into one undo (1.652251ms)
+✔ typed corrective UI escapes project labels and includes explicit configuration fields (0.511493ms)
+✔ diagnostic navigation resolves an exact component pin instead of another reference prefix (1.110704ms)
+✔ net conflict diagnostic selects exact members and connecting wires (1.317768ms)
+✔ undriven bus-bit diagnostic resolves bit aliases back to visible bus pins (0.344137ms)
+✔ probe diagnostics navigate to probe endpoints and settings diagnostics stay non-navigable (0.255966ms)
+✔ whole-circuit analysis compatibility offers ngspice for an intact nonlinear analog circuit (2.399601ms)
+✔ nonlinear mixed feedback never offers a misleading ngspice fallback (2.200617ms)
+✔ a supported closed loop offered from replay keeps topology and only proposes Coordinated transient (2.09981ms)
+✔ alternative engines are withheld until unrelated circuit errors are repaired (1.010106ms)
+✔ goal-based example groups cover every existing example without adding catalog entries (7.781909ms)
+✔ source operating targets emit one owned momentary gesture across callback rerenders (0.340521ms)
+✔ source toggle requires release; dragging or canceling the operation target does not toggle (0.367931ms)
+✔ source keyboard press repeat is coalesced and cancels safely when changing editor mode (0.230289ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 66.777368

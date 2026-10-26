@@ -1,0 +1,17 @@
+✔ built release identity matches application and source package (342.141724ms)
+✔ version stamping targets the shell label and supports arbitrary future prerelease versions (158.988908ms)
+✔ manifest authenticates every packaged file it declares (3940.679334ms)
+✔ offline asset list includes the ordinary-JS engine and actual WASM filename (45.120894ms)
+✔ service worker precaches only available local core assets (24.094165ms)
+✔ browser module imports and entry assets resolve locally within the app subdirectory (297.461868ms)
+✔ every copied runtime and release file maps to matching original source bytes (5369.292876ms)
+✔ release contains one WASM and no duplicate unversioned executable tree (9.139481ms)
+✔ recovery manifest warms exact versioned assets without requesting a rewritten HTML shell (9.293793ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10258.100608

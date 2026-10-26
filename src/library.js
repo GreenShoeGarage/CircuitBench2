@@ -3,6 +3,7 @@ export const MODEL_VERSION = 'cb-models-1.0.0';
 export const DIGITAL_MODEL_VERSION = 'cb-digital-models-1.0.0';
 export const BUS_MODEL_VERSION = 'cb-bus-models-1.0.0';
 export const DISPLAY_MODEL_VERSION = 'cb-display-models-1.0.0';
+export const LOGIC_IO_MODEL_VERSION = 'cb-logic-io-1.0.0';
 /** Segment bit order is a,b,c,d,e,f,g,dp from least to most significant. */
 export const SEVEN_SEGMENT_HEX = Object.freeze([0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71]);
 export function sevenSegmentDecodeTable(mode='hex',active='high'){
@@ -54,10 +55,10 @@ const logicDelay=value('delay','Propagation delay','s','10n');
 const logicLimits='Native 0/1/X/Z event model with transport delay and 1 ps time resolution. No supply current, drive strength, electrical loading, setup/hold, or physical metastability model.';
 const nativeProvenance={source:'CircuitBench original four-state event and bridge definitions',version:DIGITAL_MODEL_VERSION,license:'MIT',kind:'educational'};
 function nativePart(type,name,prefix,pins,params,semantics,fixture,extra={}){
-  const bridge=['ADC','DAC','ADCBUS','DACBUS'].includes(type),model='CB_'+type;
+  const bridge=['ADC','DAC','ADCBUS','DACBUS','DVS'].includes(type),model='CB_'+type;
   const limitations=extra.limitations??logicLimits;
   const version=extra.modelVersion??DIGITAL_MODEL_VERSION;
-  MODELS[model]={name,version,license:'MIT',kind:bridge?'bridge':'digital',source:nativeProvenance.source,fixture,limitations,definition:JSON.stringify({implementation:bridge?'CircuitBench explicit analog/digital bridge':'CircuitBench four-state event kernel',type,timeResolution:'1 ps',timing:extra.timing??'transport',ports:pins.map(({id,domain,direction})=>({id,domain,direction})),defaults:Object.fromEntries(params.map(x=>[x.key,x.default])),semantics,...(extra.widthPolicy?{widthPolicy:extra.widthPolicy}:{})})};
+  MODELS[model]={name,version,license:'MIT',kind:bridge?'bridge':'digital',source:nativeProvenance.source,fixture,limitations,definition:JSON.stringify({implementation:bridge?'CircuitBench explicit analog/digital bridge':'CircuitBench four-state event kernel',type,timeResolution:'1 ps',timing:extra.timing??'transport',ports:pins.map(({id,domain,direction})=>({id,domain,direction})),defaults:Object.fromEntries(params.map(x=>[x.key,x.default])),semantics,...(extra.widthPolicy?{widthPolicy:extra.widthPolicy}:{}),...(extra.portPolicy?{portPolicy:extra.portPolicy}:{})})};
   return part(type,name,bridge?'Mixed signal':'Digital',prefix,pins,params,{domain:bridge?'mixed':'digital',model,description:semantics,fixture,provenance:version===DIGITAL_MODEL_VERSION?nativeProvenance:{...nativeProvenance,version},limitations,supportedAnalyses:['tran'],...extra});
 }
 LIBRARY.push(
@@ -93,6 +94,11 @@ LIBRARY.push(
  nativePart('ADCBUS','Multibit sampled ADC','ADCB',[p('p','Input +',-40,-20,'analog','input'),p('n','Reference −',-40,20,'analog','input'),dout('q','Code',40,0)],[width,value('vmin','Zero-code voltage','V','0'),value('vmax','Full-scale voltage','V','5'),value('period','Sample period','s','100u'),value('delay','Conversion delay','s','1n')],'Samples the differential voltage at time 0 and each sample period. Unsigned 2–8 bit nearest-code quantization, saturated to the configured range; output updates after the conversion delay. Requires Coordinated transient.','converter-ramp',{modelVersion:CONVERTER_MODEL_VERSION,widthPolicy:{q:'width'},limitations:'Ideal infinite-impedance sampled converter. No input loading, aperture jitter, noise, nonlinearity, missing codes, or physical metastability. The initial word is X until the first conversion completes. Full-scale maps to code 2^N−1.'}),
  nativePart('DACBUS','Multibit voltage DAC','DACB',[di('d','Code',-40,0),p('p','Output +',40,-20,'analog','output'),p('n','Reference −',40,20,'analog','passive')],[width,value('low','Zero-code voltage','V','0'),value('high','Full-scale voltage','V','5'),value('rise','Rise time','s','1u'),value('fall','Fall time','s','1u'),value('initial','Startup code','','0x0')],'Maps a known unsigned 2–8 bit word to low + code/(2^N−1) × (high−low), with finite linear edges. Holds the explicit startup code until the first known input, then rejects X/Z. Requires Coordinated transient.','converter-staircase',{modelVersion:CONVERTER_MODEL_VERSION,widthPolicy:{d:'width'},limitations:'Ideal voltage source without output resistance, current limit, noise or physical DAC glitches. The explicit startup code is used only before the first fully known word. Later X/Z inputs stop the simulation; no voltage is invented.'})
 );
+LIBRARY.push(
+ nativePart('DVS','Digital voltage source','DV',[dout('out','Logic output',40,0),p('p','Voltage +',0,-40,'analog','output'),p('n','Voltage −',0,40,'analog','passive')],[value('state','Logic state','','0',{options:['0','1']}),value('outputMode','Output mode','','logic',{options:['logic','logic-voltage']}),value('low','Low voltage','V','0'),value('high','High voltage','V','5'),value('rise','Rise time','s','1u'),value('fall','Fall time','s','1u')],'Switchable scalar logic 0 or 1. Logic mode exposes only the digital output. Logic + voltage mode also exposes separate analog +/− terminals driven from the resolved digital output with explicit low/high voltages and finite linear edges. The initial voltage matches the selected starting state.','digital-voltage-source',{category:'Digital',modelVersion:LOGIC_IO_MODEL_VERSION,portPolicy:{out:'always',p:'outputMode=logic-voltage',n:'outputMode=logic-voltage'},timing:'constant digital source; optional finite-edge voltage output',limitations:'Logic mode has no physical voltage or electrical loading. Optional voltage output is an ideal source without resistance, current limit or supply rails. Its digital input is the resolved output net: X/Z contention stops voltage simulation. Use Coordinated transient for live input changes or voltage-to-ADC feedback. Analog terminals must be explicitly enabled and wired; digital and analog pins never connect directly.'}),
+ nativePart('DLED','Logic state indicator','IND',[di('in','Logic input',-40,0)],[],'Passive scalar digital indicator. The actual resolved state from the current run or selected time glows red only for high (1). Low (0), unknown (X), high impedance (Z), and unavailable results remain distinguishable.','logic-indicator-states',{category:'Displays',modelVersion:LOGIC_IO_MODEL_VERSION,timing:'passive observation',limitations:'Logic indication only: no LED electrical model, current draw, brightness law or persistence. The indicator never drives or loads its input.'})
+);
+export const LOGIC_IO_TYPES=Object.freeze(['DVS','DLED']);
 export const CONVERTER_TYPES=Object.freeze(['ADCBUS','DACBUS']);
 export const DISPLAY_TYPES=Object.freeze(['HEX7','SEG7']);
 export const BUS_TYPES=Object.freeze(['BUSIN','PATTERN','SLICE','JOIN','REGISTER','COUNTER','MUX','DECODER','LUT']);
@@ -102,7 +108,7 @@ export const GATE_TYPES=Object.freeze(['BUF','NOT','AND','OR','XOR','NAND','NOR'
 export function getPart(type){const d=LIBRARY.find(x=>x.type===type);if(!d)throw new Error(`Unsupported component type: ${type}`);return d;}
 
 function integer(input,label,min,max){const text=String(input);if(!/^\d+$/.test(text)||!Number.isInteger(Number(text))||Number(text)<min||Number(text)>max)throw new Error(`${label} must be an integer from ${min} to ${max}.`);return Number(text);}
-/** Fixed pin identities; widths derive only from trusted part definitions. */
+/** Pin identities and optional ports derive only from trusted part definitions. */
 export function getPins(component){
  const d=getPart(typeof component==='string'?component:component.type),q={...d.defaults,...(typeof component==='string'?{}:component.params)};
  const widths={},w=()=>integer(q.width,'Data width',1,8);
@@ -117,7 +123,8 @@ export function getPins(component){
  if(d.type==='SEG7')widths.in=8;
  if(d.type==='HEX7'){widths.in=4;widths.out=8;}
  if(d.type==='LUT'){widths.in=integer(q.inputBits,'Truth-table input width',1,4);widths.out=integer(q.outputBits,'Truth-table output width',1,8);}
- return d.pins.map(pin=>({...pin,width:widths[pin.id]??1}));
+ if(d.type==='DVS'&&!['logic','logic-voltage'].includes(q.outputMode))throw new Error('Digital voltage source output mode must be logic or logic-voltage.');
+ return d.pins.filter(pin=>d.type!=='DVS'||q.outputMode==='logic-voltage'||pin.id==='out').map(pin=>({...pin,width:widths[pin.id]??1}));
 }
 export function parseLogicWord(input,width,{allowZ=true}={}){
  width=integer(width,'Word width',1,8);const raw=String(input).trim(),text=raw.toUpperCase();let word;

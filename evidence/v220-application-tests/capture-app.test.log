@@ -1,0 +1,19 @@
+✔ actual trigger setup pauses at a boundary and rejects invalid drafts without arming (28.309161ms)
+✔ capture completion saves one immutable window with provenance and reopens through backup validation (12.796517ms)
+✔ run until event uses the exact trigger boundary and no post-trigger delay (5.699976ms)
+✔ Next event pauses the owned session and releases its busy controls after completion (4.223694ms)
+✔ Next event work cap reports a limit instead of claiming a settled event (25.583341ms)
+✔ an obsolete capture form cannot arm a later session (7.323484ms)
+✔ old capture callbacks cannot append evidence after project replacement (6.8844ms)
+✔ View capture keeps the working project and retained session while selecting immutable evidence (7.70107ms)
+✔ capture CSV, JSON and measurements remain available after the full source run is removed (6.958157ms)
+✔ opening evidence respects the run count and protects a live session and pinned baseline (10.437496ms)
+✔ explicit instrument snapshots get separate run identities and never freeze or modify the live window (4.808135ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 135.273025

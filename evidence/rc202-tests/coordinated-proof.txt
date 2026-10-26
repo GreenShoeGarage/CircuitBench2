@@ -1,0 +1,3 @@
+rc: analytic, pinned ngspice WASM reference, and retained state passed
+rl: analytic, pinned ngspice WASM reference, and retained state passed
+19 coordinated numerical checks passed.

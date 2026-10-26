@@ -184,10 +184,16 @@ agreement with the established kernel, private counter state, future transport
 events, closed-loop oscillation, converter sampling/delay, unknown words,
 interrupted DAC ramps, and live changes.
 
-`scripts/prove-coordinated.mjs` executes actual **ngspice 45.2 WASM** and pinned
-**native ngspice 42** reference circuits. Its dated record is
-[coordinated-validation.json](../evidence/coordinated-validation.json).
-The current proof has 24 passing checks over four fixtures:
+`scripts/prove-coordinated.mjs` compares coordinated results with actual
+**ngspice 45.2 WASM** and, by default, the pinned **native ngspice 42** reference.
+The current release's exact evidence and coverage are recorded in
+[release validation](VALIDATION.md); changing the application version never
+relabels an older numerical run as a fresh comparison.
+
+The **2.0.0-rc.1 historical baseline** contains 24 passing checks over four
+fixtures. Its original
+[coordinated-validation.json](../evidence/coordinated-validation.json) and
+[release assessment](history/VALIDATION-2.0.0-rc.1.md) retain that identity:
 
 | Fixture | Acceptance criterion | Observed maximum difference |
 |---|---|---|
@@ -202,9 +208,23 @@ loop instead uses an explicit ADC, delayed inverter and finite-edge DAC. The
 0.3% comparison allowance includes those declared topology differences and
 maximum-step error. It is not a byte-identical circuit equivalence claim.
 
-These numerical checks do not claim browser rendering, production-worker
-cancellation, HTTPS installation or offline operation; the release validation
-record reports those separately.
+The **2.0.0-rc.2** numerical run explicitly used `--wasm-only` because the
+native reference executable was unavailable. Its 19 passing checks cover the
+pinned WASM comparisons, analytic expectations and retained-state behavior;
+see [rc202-coordinated-validation.json](../evidence/rc202-coordinated-validation.json)
+and [the rc.2 validation assessment](history/VALIDATION-2.0.0-rc.2.md).
+It does not constitute a fresh native comparison. The proof command's default
+continues to require the native executable; omitting it requires the explicit
+option and is recorded in the result.
+
+The [native reference environment recipe](reference-environment.md) restores
+the exact pinned ngspice42 executable into a private directory and records its
+package, initialization and runtime-library identities. A successful setup
+and a fresh numerical proof remain separate observations.
+
+Numerical comparisons and saved-sample arithmetic establish the checks they
+record. Browser rendering, worker cancellation, HTTPS installation and offline
+operation have separate acceptance evidence in the current release validation.
 
 ## Bounds
 

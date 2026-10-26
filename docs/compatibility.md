@@ -1,6 +1,6 @@
 # Supported components, analyses and interchange
 
-This matrix defines CircuitBench 2.0's analog, digital, display, converter,
+This matrix defines CircuitBench 2.0.0-rc.2's analog, digital, display, converter,
 timing, independent-study and continuous mixed-signal scope. ngspice itself
 has additional capabilities; their presence in the numerical engine does not
 make them supported in the schematic editor or import subset.
@@ -57,6 +57,8 @@ that step. Its 1 ps event grid is not a statement of analog physical accuracy.
 | Type | Pins | Adjustable behavior | Scope |
 |---|---|---|---|
 | Logic input (DIN) | out | Literal 0/1/X/Z | Constant logic driver |
+| Digital voltage source (DVS) | Digital out; optional analog p/n | Binary state; digital-only or digital + voltage; low/high voltage, finite rise/fall | Direct scalar logic and optional explicit ideal voltage drive; X/Z contention stops voltage output |
+| Logic state indicator (DLED) | Scalar digital in | None | Passive red HIGH lamp; dark LOW, amber X, outlined Z, neutral unavailable result; no LED current model |
 | Clock | out | Period, high duty cycle (%), start delay | Event-driven binary clock |
 | BUF / NOT | in, out | Propagation delay | Four-state buffer/inverter |
 | AND / OR / XOR / NAND / NOR / XNOR | a, b, out | Propagation delay | Two-input four-state logic |
@@ -93,8 +95,8 @@ models, not characterized manufacturer logic ICs or physical converters.
 The scalar/bridge model set remains `cb-digital-models-1.0.0`; the nine bus and
 table models use `cb-bus-models-1.0.0`. The two display models use
 `cb-display-models-1.0.0` and the two multibit converters use
-`cb-converters-1.0.0`. Together with the analog library there
-are 41 parts and 35 explicit model records. Words are stored and displayed
+`cb-converters-1.0.0`. DVS and DLED add `cb-logic-io-1.0.0`. Together with the analog library there
+are 43 parts and 37 explicit model records. Words are stored and displayed
 MSB first; bit zero is least significant. A word of width one remains a scalar
 logic signal. Existing ADC/DAC parts remain one-bit bridges.
 
@@ -106,7 +108,7 @@ logic signal. Existing ADC/DAC parts remain one-bit bridges.
 | DC sweep | Analog; one independent voltage/current source; numeric start, stop and step |
 | AC | Analog decade-spaced small-signal sweep; complex results, magnitude and phase |
 | Transient | Fresh bounded run, maximum time step and duration; ngspice analog-only UIC and coordinated component initial conditions |
-| Continuous transient | One coordinated worker; Pause/Resume/Step, live DIN/BUSIN/DC V/I, absolute-time recent window |
+| Continuous transient | One coordinated worker; Pause/Resume/Step, live DIN/DVS/BUSIN/DC V/I, absolute-time recent window; DVS accepts only 0/1 |
 | Source DC | Constant DC value; also sets the bias value for non-DC waveform sources |
 | Source AC | Amplitude and phase around the operating point |
 | Sine | Offset, amplitude, positive frequency, optional nonnegative delay |
@@ -116,7 +118,7 @@ logic signal. Existing ADC/DAC parts remain one-bit bridges.
 | Current measurement | Voltage-source and inductor branch currents; resistor current from terminal voltage / resistance |
 | Logic measurement | Literal 0/1/X/Z with stepped lanes and state-at-time cursors |
 | Bus measurement | Explicit 2–8 bit MSB-first words with width metadata and X/Z retained |
-| Truth-table experiment | Pure combinational circuit; enumerate selected DIN/BUSIN inputs, up to 8 bits and 32 output traces |
+| Truth-table experiment | Pure combinational circuit; enumerate selected DIN/digital-only DVS/BUSIN inputs, up to 8 bits and 32 output traces |
 | Mixed comparison | Analog voltage and logic lanes on a shared time axis |
 | Comparison | One pinned baseline; matching named signals of the same analysis type |
 | Analog parameter sweep | Independent analog-only schematic trials, one eligible parameter, 2–64 linear/log values |
@@ -129,6 +131,13 @@ state. The ngspice/native digital and mixed replay route requires normal t=0
 startup and rejects UIC. Coordinated transient supports UIC and carries state
 across continuous updates and pauses. Stop ends that worker; saved continuous
 windows are inspectable results, not resumable execution checkpoints.
+
+Digital-only DVS exposes no analog terminals and needs no ground. Its voltage
+mode adds explicit `p`/`n` pins with a default 0/5 V range and 1 µs edges. The
+initial voltage matches the starting state. Live DVS changes retain analog
+state and follow the configured edges; DIN and BUSIN keep their 0/1/X/Z rules.
+DLED observes the current revision's saved events at Cursor A or the latest
+retained time. No result is distinct from LOW. See [logic-io.md](logic-io.md).
 
 The truth-table experiment runs each binary assignment through the timed event
 kernel with a settling interval covering the longest combinational path.
@@ -320,5 +329,6 @@ for exact X/Z, boundary, pairing, resolution and storage rules.
 The focused guides give the complete user-facing contracts for
 [continuous simulation](continuous-simulation.md),
 [multibit converters](multibit-converters.md),
+[digital voltage sources and red logic indicators](logic-io.md),
 [seven-segment displays](seven-segment-display.md) and
 [advanced analog experiments](analog-experiments.md).

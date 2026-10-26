@@ -8,12 +8,12 @@ export function truthTableChoices(project,generated){
  const plan=generated?.simulation,errors=(generated?.diagnostics??[]).filter(d=>d.severity==='error');
  let reason=errors.length?errors.map(d=>d.message).join(' '):'';
  if(!reason&&plan?.mode!=='digital')reason='Truth tables require a purely digital combinational circuit.';
- if(!reason&&(project.circuit.components.some(c=>['CLOCK','PATTERN','DFF','REGISTER','COUNTER','ADC','DAC'].includes(c.type))))reason='Use a transient run for clocks, timed patterns, stateful parts or bridges. Truth tables enumerate combinational logic driven by Logic input or Bus input parts.';
+ if(!reason&&(project.circuit.components.some(c=>['CLOCK','PATTERN','DFF','REGISTER','COUNTER','ADC','DAC'].includes(c.type))))reason='Use a transient run for clocks, timed patterns, stateful parts or bridges. Truth tables enumerate combinational logic driven by Logic input, digital-only Digital voltage source, or Bus input parts.';
  const inputs=(plan?.digital?.inputGroups??[]).map(input=>({id:input.id,label:input.label,width:input.width??1}));
  const labels=new Map();for(const m of generated?.measurements??[])if(m.vector)labels.set(m.vector.toLowerCase(),m.label);
  const probeIds=new Set(project.probes.map(p=>p.id)),preferred=new Set((generated?.measurements??[]).filter(m=>probeIds.has(m.id)).map(m=>m.vector?.toLowerCase()));
  const outputs=(plan?.digital?.probes??[]).map(output=>({name:output.name,label:labels.get(output.name.toLowerCase())??output.name,width:output.width??output.bits?.length??1,preferred:preferred.has(output.name.toLowerCase())}));
- if(!reason&&!inputs.length)reason='Add a Logic input or Bus input to enumerate its binary values.';
+ if(!reason&&!inputs.length)reason='Add a Logic input, digital-only Digital voltage source, or Bus input to enumerate its binary values.';
  if(!reason&&!outputs.length)reason='Add an output connection or probe to inspect.';
  return {inputs,outputs,reason};
 }

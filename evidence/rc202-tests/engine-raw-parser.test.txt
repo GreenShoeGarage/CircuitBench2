@@ -1,0 +1,14 @@
+✔ UTF-8 project titles do not shift real raw-data byte offsets (7.031401ms)
+✔ Binary marker text within a title is not mistaken for the payload line (0.372763ms)
+✔ Unicode CRLF headers preserve complex point-major sample order (0.552941ms)
+✔ a raw-data subarray with a nonzero backing offset parses correctly (0.474481ms)
+✔ truncated, trailing and misdeclared binary payloads fail explicitly (0.827405ms)
+✔ missing binary markers and invalid declared counts are rejected (0.411599ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 19.160153

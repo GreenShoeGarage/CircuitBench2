@@ -1,0 +1,39 @@
+✔ backward-Euler RC equals independent discrete solution (29.689119ms)
+✔ RC numerical error decreases with a smaller maximum step (45.497666ms)
+✔ capacitor state survives arbitrary exact-grid chunk boundaries (94.191099ms)
+✔ chunk cap yields an unfinished result and next call resumes state (9.805634ms)
+✔ inductor current is retained during continuation (11.360599ms)
+✔ RLC step follows the independent underdamped analytic response (31.499738ms)
+✔ non-UIC initialization computes a genuine DC operating point (11.921725ms)
+✔ constant current source sign follows p-to-n convention (0.546155ms)
+✔ ideal voltage-source conflicts are rejected without invented conductance (1.624867ms)
+✔ unsupported nonlinear devices are rejected by the stateful solver (0.452561ms)
+✔ pure digital event session agrees with every existing authored pure digital fixture (131.901751ms)
+✔ gate events scheduled beyond a chunk are preserved (1.608753ms)
+✔ pure digital continuous advances by events without fake analog steps (0.960268ms)
+✔ counter private word and clock phase survive repeated chunks (1.969711ms)
+✔ causal Schmitt RC loop oscillates and matches independent period estimate (165.236037ms)
+✔ closed-loop events persist across chunks without restarting oscillation (75.252494ms)
+✔ one-bit threshold band remains X and never silently drives a DAC (0.628491ms)
+✔ quantization is clipped nearest-code with exact endpoint mapping (0.344971ms)
+✔ sampled multibit ADC publishes complete words only after conversion delay (4.080206ms)
+✔ ADC sampling phase and pending conversions survive chunks (3.151456ms)
+✔ multibit DAC holds configured startup code, then follows first known input (2.55124ms)
+✔ DAC rejects a later unknown word after its first known code (0.575013ms)
+✔ finite DAC ramp interrupted by a newer word starts at the actual voltage (0.476133ms)
+✔ live DC change continues capacitor state instead of restarting (30.600108ms)
+✔ live digital controls schedule normal propagation at the current time (0.396348ms)
+✔ invalid live changes do not partially apply preceding valid changes (8.372548ms)
+✔ source waveforms and corner breakpoints are explicit (0.823992ms)
+✔ compiler supports current clock-DAC and analog RC schemas (5.342301ms)
+✔ compiler rejects unsupported devices and imported decks explicitly (0.622874ms)
+✔ time, step, converter and matrix bounds are validated (1.007937ms)
+✔ live DC change updates algebraic voltage at the exact boundary while keeping C state (7.522156ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 693.995002

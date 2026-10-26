@@ -1,0 +1,31 @@
+✔ supported pinned inputs include scalar logic, buses and DC supplies; waveform sources stay out (6.544213ms)
+✔ idle controls edit the initial setting through the supplied project transaction (0.945833ms)
+✔ queued HIGH then release LOW survives a slow press acknowledgement without touching initial conditions (2.651282ms)
+✔ different control surfaces share one serialization queue and retain command order (0.545333ms)
+✔ queue pressure bounds ordinary commands but always admits the owned momentary release (7.068254ms)
+✔ keyboard repetition or a second surface cannot create overlapping holds on one source (0.393109ms)
+✔ Stop invalidates a queued press and release before either can run (0.355343ms)
+✔ a late release and old acknowledgement cannot control a replacement session (0.455501ms)
+✔ reusing a session object with a new generation still rejects an old hold (0.301654ms)
+✔ a changed project revision or foreign snapshot cannot receive live commands (0.336075ms)
+✔ momentary use requires a live session and invalid drive inputs never reach the worker (0.402953ms)
+✔ failed press acknowledgement clears its held state without inventing saved success (0.289556ms)
+✔ feedback distinguishes initial, confirmed live, queued and recorded drive at Cursor A (1.098286ms)
+✔ pin and momentary configuration survives project validation (0.918021ms)
+✔ the actual pinned pointer handler releases LOW after pointerup (0.798445ms)
+✔ the actual pinned pointer handler releases LOW after pointercancel (0.311869ms)
+✔ the actual pinned pointer handler releases LOW after lostpointercapture (0.254815ms)
+✔ the actual pinned pointer handler releases LOW after blur (0.233003ms)
+✔ the actual pinned pointer handler releases LOW after hidden (0.253423ms)
+✔ the actual pinned pointer handler releases LOW after focusout (0.262817ms)
+✔ the actual pinned pointer handler releases LOW after cleanup (0.204371ms)
+✔ the actual pinned keyboard handler ignores repeat, releases outside the panel and suppresses click toggles (0.408371ms)
+✔ a real paused solver preserves initial settings and needs a computed step for momentary indicator response (11.178824ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 47.949908

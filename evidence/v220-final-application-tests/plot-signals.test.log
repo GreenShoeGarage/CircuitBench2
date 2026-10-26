@@ -1,0 +1,25 @@
+✔ derived lanes display MSB down to LSB and preserve literal X/Z per bit (2.935321ms)
+✔ expansion retains preserved transitions between sampled rows and holds final state to run end (0.480186ms)
+✔ event projection removes only unchanged states of the same bit (0.234926ms)
+✔ valid preserved value vectors support expansion without a separate bus event record (0.188017ms)
+✔ invalid bus metadata or word width is rejected without coercing states (0.201066ms)
+✔ expand/collapse is view-only; backup data, raw trace catalog and CSV stay byte-identical (1.089704ms)
+✔ expanded bit cursor and SVG show the actual event before a sampled bus row (1.693443ms)
+✔ compatible baseline bus bits retain independent event times and incompatible widths are excluded (0.687121ms)
+✔ expanded state persists across same-session continuous batches and resets for another run (0.431636ms)
+✔ explicit expand/collapse and Locate controls are rendered with accessible names (0.675064ms)
+✔ selectTrace emits recorded identity while preserving cursor/range and raw data (0.411195ms)
+✔ same-revision bus bit links through electrical Slice/Join aliases to visible pins (12.747133ms)
+✔ working pins can select a specific expanded bit without notifying the reverse link (10.197049ms)
+✔ historical revision mismatch blocks both link directions without changing the active plot (1.976469ms)
+✔ differential and branch-current links retain their recorded component and endpoint identities (1.587206ms)
+✔ net-to-plot mapping prioritizes voltage/logic over an incidental branch-current trace (0.360411ms)
+✔ Editor signal focus highlights selected endpoints with no circuit edit or reverse callback (6.311861ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 48.656247

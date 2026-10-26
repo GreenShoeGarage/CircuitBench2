@@ -1,0 +1,25 @@
+✔ app opens one stateful session and captures its immutable original project (20.070811ms)
+✔ portable active-window backup is completed snapshot evidence without mutating live run (31.600077ms)
+✔ Stop preserves completed window and releases the active session (8.85364ms)
+✔ Stop before the first chunk creates a cancelled run without numerical evidence (7.255666ms)
+✔ editing stops continuous computation before changing the project revision (13.7727ms)
+✔ project replacement stops the old continuous session and keeps replacement clean (4.874211ms)
+✔ history trimming clears only waveform cursors older than the retained window (8.736206ms)
+✔ live-input dialog parses engineering units and records input changes without revising the schematic (9.661107ms)
+✔ invalid live-input text stays in the dialog and cannot reach the worker (4.117021ms)
+✔ an obsolete live-input dialog cannot control a later session (6.473452ms)
+✔ a failed session preserves its previously completed numerical window (7.601395ms)
+✔ Stop during deferred hashing prevents a late worker startup (2.803063ms)
+✔ project replacement during deferred hashes cannot attach an old run to the new project (2.157502ms)
+✔ hash failures release preparing state and leave no half-started run (2.318145ms)
+✔ editing during deferred hashing cancels the old snapshot before worker startup (2.030144ms)
+✔ Stop during the second deferred hash also prevents worker startup (1.675965ms)
+✔ a cancelled old preparation cannot clear a newer preparation or start its worker (4.668504ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 149.924909

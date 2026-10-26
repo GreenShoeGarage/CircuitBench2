@@ -1,0 +1,20 @@
+✔ same-boundary momentary release cancels a superseded post-trigger capture explicitly (8.738618ms)
+✔ an unrelated same-boundary live update keeps the witness and completes a valid capture (3.844476ms)
+✔ changing a trigger signal after advancing time preserves the earlier witness (2.229571ms)
+✔ completed zero-post capture remains immutable after immediate same-time input release (1.509ms)
+✔ analog same-boundary supersession cancels only when the selected raw voltage changes (6.443571ms)
+✔ all trigger-observed input responses retain their boundary state even without a crossing (0.287143ms)
+✔ event-step work exhaustion names its partial search and a second search reaches the real event (26.670563ms)
+✔ full next-event search exhaustion reports its actual completed horizon (0.712829ms)
+✔ capture validation rejects a forged witness timestamp inside retained data gaps (3.81301ms)
+✔ automatic capture completion notifies paused only after the command owner is cleared (42.065395ms)
+✔ live-input capture pause notifies again after its input owner clears (1.786599ms)
+✔ a capture callback that stops ownership is never followed by a stale paused notification (0.556909ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 104.918251

@@ -1,0 +1,24 @@
+{
+  "format": "CircuitBenchReleaseAcceptance",
+  "formatVersion": 1,
+  "version": "2.0.0",
+  "acceptedCandidate": {
+    "version": "2.0.0-rc.3",
+    "runtimeBuild": "8a99d6d843d32aa6"
+  },
+  "confirmationDate": "2026-10-25",
+  "confirmationTimezone": "America/New_York",
+  "recordedAt": "2026-10-25T11:52:53.309247+00:00",
+  "source": {
+    "kind": "user-confirmation",
+    "statement": "hosting and browser acceptance checks passed"
+  },
+  "status": "passed",
+  "releaseDecision": "Promote the accepted 2.0.0-rc.3 candidate to stable 2.0.0.",
+  "scope": "The outstanding hosting and browser acceptance discussed with the user after the rc.3 handoff is accepted as passed. This includes the deployment/offline/update/recovery and browser workflow/output/lifecycle acceptance categories in that handoff.",
+  "provenance": "This is the user’s acceptance confirmation, not a new agent-observed host inspection or browser run. The user supplied no additional individual browser, device, host log, per-case results or output files in this message.",
+  "promotionChangeScope": "Release version, release documentation, evidence and exact current-archive selection in the packager. Simulation, editor, storage, model definitions, worker implementation and numerical engine behavior remain the accepted rc.3 implementation.",
+  "historicalEvidence": "Prior automated, numerical and managed-preview records retain their original rc.3 version/build, observations and hashes. The previous preview limitations remain historical observations and are not current release blockers after owner acceptance.",
+  "nextMilestone": "2.1 — Everyday workbench",
+  "stableRuntimeBuild": "6cf7ae00d61a0f43"
+}

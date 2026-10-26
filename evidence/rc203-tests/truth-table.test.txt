@@ -1,0 +1,15 @@
+✔ truth table enumerates selected inputs in declared significance order through timed logic (6.367046ms)
+✔ truth table settles the longest reconvergent path and preserves fixed unknown drivers (1.167821ms)
+✔ eight selected bus bits produce at most 256 literal-word rows without exposing private bits (27.602446ms)
+✔ truth tables reject clocks, patterns, state and combinational cycles (0.970384ms)
+✔ truth-table input, output and shared work limits fail explicitly (1.217402ms)
+✔ workbench rejects mixed truth tables before starting a worker (0.502309ms)
+✔ truth-table worker is exclusive, disposable, cancellable and recoverable (161.105036ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 206.413321

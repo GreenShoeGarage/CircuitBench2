@@ -1,0 +1,13 @@
+✔ production WASM divider sweep agrees with the independent resistor-divider equation (443.396464ms)
+✔ production WASM tolerance study matches its exact reproducible resistor values (586.905868ms)
+✔ production WASM RC AC sweep agrees with independent complex transfer-function magnitude and phase (370.159563ms)
+✔ production WASM RC transient study preserves samples and independently expected final voltage (253.972533ms)
+✔ all thirteen production trial workers are terminated after completion (0.198632ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1663.421059

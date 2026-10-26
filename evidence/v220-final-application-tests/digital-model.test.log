@@ -1,0 +1,31 @@
+✔ library exposes separate trusted domains and complete native model provenance (2.044841ms)
+✔ schema1 analog projects retain their original version, graph, layout and null simulation (10.441764ms)
+✔ native examples round trip all typed probes, state and bridge parameters (53.682169ms)
+✔ pure logic needs no ground and exposed unused outputs are valid measurements (0.587625ms)
+✔ connection helpers prevent cross-domain wires and inherit junction domains (0.666141ms)
+✔ direct wires, equal labels and transitive junctions cannot convert domains (1.285433ms)
+✔ digital ground symbols and the special zero label are domain errors (0.648685ms)
+✔ drawing crossings across domains never create an electrical join (0.318138ms)
+✔ ADC observer ports neither join their nodes nor provide a ground return (0.7406ms)
+✔ undriven inputs fail, while explicit X/Z and deliberate contention remain representable (4.271649ms)
+✔ combinational cycles fail while a DFF breaks the dependency cycle (0.469751ms)
+✔ mixed input and output blocks may share only ground without becoming feedback (0.488759ms)
+✔ DAC-to-ADC conductive or control dependencies are conservatively rejected (1.533788ms)
+✔ digital and mixed analyses reject AC/DC/op and UIC (4.9104ms)
+✔ digital timing enforces minimum resolution, safe integer range and event budget (3.954041ms)
+✔ clock percent storage compiles to fractional duty with no highWidth field (0.574446ms)
+✔ invalid state/mode selections and swapped model bindings fail before execution (2.104048ms)
+✔ logic and voltage probes cannot silently cross domains (0.545043ms)
+✔ compiler binds DFF and tri-state input order and differential ADC references explicitly (1.673875ms)
+✔ DAC internal source names are collision-safe and waveform regeneration is nonmutating (1.390887ms)
+✔ DAC waveform validation rejects missing, partial, unknown, out-of-range and unordered replay (6.96192ms)
+✔ digital duplication and deletion retain safe endpoints and grouped labels (0.817424ms)
+✔ native plans and native model names never masquerade as complete SPICE decks (2.907071ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 110.46994

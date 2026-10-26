@@ -1,0 +1,28 @@
+✔ full advertised inventory, build identity and all three smoke paths pass independently (96.63992ms)
+✔ the authored smoke fixtures exercise real logic and actual retained feedback (18.817808ms)
+✔ manifest validation rejects path escapes, duplicates, unrelated roots and excessive allocations before requesting files (15.625657ms)
+✔ version/build mismatches fail manifests without following their inventory while smoke results remain independent (31.333486ms)
+✔ a tampered recovery document does not authorize any runtime fetch (8.610999ms)
+✔ same-length changed JavaScript is rejected by its SHA-256 (22.419793ms)
+✔ HTML fallbacks, wrong JavaScript MIME and invalid WebAssembly signatures produce distinct diagnostics (42.949105ms)
+✔ generic binary MIME is accepted for correct WASM bytes while missing SHA remains explicitly unavailable (9.100734ms)
+✔ a missing loaded-shell build cannot be reported as a complete release match (15.491777ms)
+✔ oversized declared responses are rejected before reading and redirected responses are rejected (50.139735ms)
+✔ decoded streaming growth is bounded even with a missing or compressed Content-Length (22.388208ms)
+✔ opaque worker failure is retained without guessing a CSP or cache cause and later paths still run (43.619027ms)
+✔ an incorrect worker result is detected rather than equating worker startup with a passed smoke test (21.955889ms)
+✔ cancelling an active engine check stops it and prevents later engines from starting (14.648871ms)
+✔ request timeout aborts a stalled fetch and retains a bounded failure report (14.158536ms)
+✔ the total deadline aborts work even if a fetch ignores its cancellation signal (5.311168ms)
+✔ already-cancelled runs and unsupported file scopes perform no network or engine work (0.594773ms)
+✔ missing browser capabilities are unavailable and progress callback errors cannot leak workers (14.07698ms)
+✔ UI escapes observed failures and provides explicit cancellation/download/recovery controls (16.420598ms)
+✔ all three installation fixtures complete through the production worker facades and all workers terminate (740.900741ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1216.899308

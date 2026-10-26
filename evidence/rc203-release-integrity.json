@@ -1,0 +1,851 @@
+{
+  "application": "CircuitBench",
+  "version": "2.0.0-rc.3",
+  "runtime_build": "8a99d6d843d32aa6",
+  "verified_at": "2026-10-25T02:36:09.600451+00:00",
+  "distribution_manifest_sha256": "9728b4b68f63b68380da3f843e484116a453bc7847a585c701f6a6e927717ab0",
+  "checks": {
+    "all_declared_distribution_hashes_match": true,
+    "undeclared_distribution_files": 0,
+    "source_and_built_runtime_match": true,
+    "all_copied_source_inputs_match": true,
+    "generated_shell_matches_source": true,
+    "generated_release_documents_match_source": true,
+    "loaded_shell_build_identity": true,
+    "versioned_runtime_paths": true,
+    "unique_wasm_asset": true,
+    "declared_distribution_files": 437,
+    "runtime_assets": 44
+  },
+  "archives": {
+    "CircuitBench-2.0.0-rc.3-deploy.zip": {
+      "bytes": 13757047,
+      "sha256": "f2f467a81eaa43bf9cfa5c6dae855a778fa605470916858b5bdf87c9c5d8f3d4",
+      "zip_crc_verified": true
+    },
+    "CircuitBench-2.0.0-rc.3-source.zip": {
+      "bytes": 13968520,
+      "sha256": "bfabce647adcff7927e7b3f44ac6ceb334e90c38ad8a22810cf7d20c91d40fe8",
+      "zip_crc_verified": true
+    }
+  },
+  "release_files": {
+    "CircuitBench-2.0.0-rc.3-deploy.zip": {
+      "bytes": 13757047,
+      "sha256": "f2f467a81eaa43bf9cfa5c6dae855a778fa605470916858b5bdf87c9c5d8f3d4"
+    },
+    "CircuitBench-2.0.0-rc.3-source.zip": {
+      "bytes": 13968520,
+      "sha256": "bfabce647adcff7927e7b3f44ac6ceb334e90c38ad8a22810cf7d20c91d40fe8"
+    }
+  },
+  "scope": "Exact package content, source/rebuilt deployment equality, archive integrity and explicitly scoped verification records. The release remains a candidate: no public deployment or successful HTTPS/offline/update, SVG/HTML file delivery, native print/PDF, or full browser matrix is implied.",
+  "verification": {
+    "applicationTests": {
+      "record": "evidence/rc203-test-summary.json",
+      "sha256": "3642a4e85770401468d9eb50fd6abc37e6edf775b8a423fe03de43642c881722",
+      "status": "passed",
+      "totals": {
+        "tests": 676,
+        "pass": 676,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "fileCount": 46,
+      "executionDescription": "Consolidated latest successful execution per application test file: initial 45-file direct-Node sweep, corrected timing-app harness rerun, the new reference-environment test, and eight targeted app-handler suites rerun after the browser-observed Step lifecycle fix. This is not a single full rerun."
+    },
+    "finalPackageTests": {
+      "testedAt": "2026-10-25T02:35:50.747334+00:00",
+      "command": "node tests/package.test.mjs",
+      "exitCode": 0,
+      "durationSeconds": 0.7050917148590088,
+      "counts": {
+        "tests": 10,
+        "suites": 0,
+        "pass": 10,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed",
+      "transcriptSha256": "4dbc613cc9ab8ba58667b9cab0bc3942414048ea4775ae1a9f53eef063423523",
+      "testSourceSha256": "f4641b9db6585dc5e0abc09a262425dd55fb3bb8f9740acdd64bb3ae493d7ffd",
+      "manifestSha256": "9728b4b68f63b68380da3f843e484116a453bc7847a585c701f6a6e927717ab0",
+      "runtimeBuild": "8a99d6d843d32aa6",
+      "recordingNote": "The first metadata parser expected TAP # summary markers. The existing successful transcript uses Node spec \u2139 markers; counts were recovered from that same transcript without rerunning or changing the tests.",
+      "transcriptText": "\u2714 built release identity matches application and source package (8.203749ms)\n\u2714 version stamping targets the shell label and supports arbitrary future prerelease versions (4.74841ms)\n\u2714 operational documentation and both recovery entries use this release from recorded source templates (15.742972ms)\n\u2714 manifest authenticates every packaged file it declares (232.138745ms)\n\u2714 offline asset list includes the ordinary-JS engine and actual WASM filename (10.687082ms)\n\u2714 service worker precaches only available local core assets (18.842761ms)\n\u2714 browser module imports and entry assets resolve locally within the app subdirectory (41.426593ms)\n\u2714 every copied runtime and release file maps to matching original source bytes (205.100071ms)\n\u2714 release contains one WASM and no duplicate unversioned executable tree (1.717227ms)\n\u2714 recovery manifest warms exact versioned assets without requesting a rewritten HTML shell (5.703053ms)\n\u2139 tests 10\n\u2139 suites 0\n\u2139 pass 10\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 554.997789\n"
+    },
+    "nodeTestTotals": {
+      "tests": 686,
+      "pass": 686,
+      "fail": 0,
+      "files": 47,
+      "scope": "676 application cases plus 10 final built-package cases; numerical and captured-output checks are counted separately."
+    },
+    "numericalProof": {
+      "record": "evidence/rc203-coordinated-validation.json",
+      "sha256": "4f51bc4126142fd4c6e083a3eece2a904b0b4484a749f736442ea24f7a8c576b",
+      "status": "passed",
+      "checks": 24,
+      "mode": "wasm-and-native",
+      "nativeReference": {
+        "status": "executed",
+        "version": "******\n** ngspice-42 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2023, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Sun Mar 31 20:15:14 UTC 2024\n******\n",
+        "sha256": "820658317b0b54035208da41936fd6871ce924036e5ea4113a4168b821b7fc45",
+        "path": "/tmp/cb-rc203-native-reference-7lhkwuvl/tools/usr/bin/ngspice",
+        "ignoreUserInit": true
+      },
+      "wasmReference": {
+        "version": "ngspice45.2 / EEcircuit-engine1.8.0",
+        "sha256": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4"
+      }
+    },
+    "nativeReferenceEnvironment": {
+      "record": "evidence/rc203-native-reference-environment.json",
+      "sha256": "6a550efbd893cb3139f141541174bf48371bd66226712048b62e34fd566483f1",
+      "scope": "Pinned distribution executable and recorded runtime dependencies; not a hermetic toolchain or a fresh native source build."
+    },
+    "capturedOutputAudit": {
+      "record": "evidence/rc203-download-validation.json",
+      "sha256": "a3828e9336cea397a212af70989f29ad918c1a7816d743931199dcf92538a8fd",
+      "status": "passed",
+      "checks": 80,
+      "summary": {
+        "artifacts": 3,
+        "capturedRuns": 7,
+        "importedHistoricalRuns": 3,
+        "notMarkedImportedRuns": 4,
+        "jsonRoundTrips": 3,
+        "recordedSamples": 65,
+        "independentDigitalSampleComparisons": 130,
+        "recordedDigitalEvents": 18,
+        "csvDataRows": 2,
+        "sourceDependencies": 20,
+        "passedChecks": 80,
+        "failedChecks": 0
+      },
+      "scope": "Read-only structural and arithmetic audit of the actual downloaded installation diagnostic, project backup and selected-run CSV. Uses production backup validation and indicator readback, repeated JSON/import round trips, independent reconstruction of the source/inverter states, and exact CSV comparison. No simulator is run. This audit does not establish the browser actions, CSS appearance, offline/upgrade behavior, general physical accuracy, SVG delivery, HTML-report delivery or native print/PDF."
+    },
+    "browserObservations": {
+      "record": "evidence/rc203-browser-validation.json",
+      "sha256": "bf68ced83f45d827e19f3dfc2a5c05a90c81e2cd8a77e18e555d47a86b097617",
+      "finalRuntimeBuild": "8a99d6d843d32aa6",
+      "scope": "Operator-observed UI workflows in the managed Chrome preview, plus explicitly identified actual downloads. This record is not HTTPS/offline/update, public deployment, full cross-browser, or native print/PDF acceptance.",
+      "installationDiagnosticSummary": {
+        "passed": 5,
+        "failed": 1,
+        "unavailable": 44
+      },
+      "installationDiagnosticStatus": "failed",
+      "previewLimitations": [
+        "The preview-served SVG visibly contains a live-server injected live-reload script after the canonical SVG. Source and deploy icon files remain 443 bytes. The application correctly rejects this modified response; its integrity checks were not relaxed.",
+        "SHA-256 is unavailable on this HTTP preview. The global SHA check and 43 metadata-valid runtime assets are unavailable for exact byte verification. Offline service-worker acceptance is unavailable here."
+      ]
+    },
+    "releaseStatus": "release-candidate",
+    "publicDeploymentPerformed": false,
+    "remainingAcceptance": [
+      "Exact public HTTPS worker/WASM/asset behavior",
+      "Fresh secure offline installation and offline reload",
+      "Project-preserving secure update and recovery",
+      "Incomplete-upload staging acceptance",
+      "Actual SVG and HTML report delivery",
+      "Native print/PDF",
+      "Declared browser/platform/viewport and prolonged background/foreground lifecycle matrix"
+    ]
+  },
+  "independentArchiveAudit": {
+    "format": "CircuitBenchIndependentArchiveAudit",
+    "formatVersion": 1,
+    "version": "2.0.0-rc.3",
+    "expectedRuntimeBuild": "8a99d6d843d32aa6",
+    "startedAt": "2026-10-25T02:40:16.527617+00:00",
+    "status": "passed",
+    "scope": "Independent frozen ZIP safety/CRC/content/provenance checks, recorded validation consistency, actual-download verifier rerun, and an isolated source-ZIP rebuild compared byte-for-byte with every deploy file. No original source or release artifact is modified.",
+    "limitations": [
+      "Application test transcripts and the final package gate are authenticated and counted; the 676-case application suite is not rerun.",
+      "The 80-check file-only actual-download verifier is rerun; no simulator or browser is run by this audit.",
+      "The retained installation diagnostic remains failed, with 5 passed, 1 failed and 44 unavailable observations in the insecure preview. This audit does not turn it into deployment acceptance.",
+      "Rebuild comparison concerns file bytes, not ZIP container timestamps or byte-identical ZIP compression.",
+      "No native engine source rebuild, hermetic toolchain, physical accuracy expansion, public deployment, offline browser, upgrade browser, SVG/HTML delivery or print/PDF acceptance is claimed."
+    ],
+    "checks": [
+      {
+        "name": "CircuitBench-2.0.0-rc.3-deploy.zip: unique safe paths, no symlinks or encrypted entries",
+        "passed": true,
+        "details": {
+          "entries": 437,
+          "unsafe": [],
+          "duplicateEntries": 0
+        }
+      },
+      {
+        "name": "CircuitBench-2.0.0-rc.3-deploy.zip: every ZIP entry passes CRC",
+        "passed": true,
+        "details": {
+          "firstBadEntry": null
+        }
+      },
+      {
+        "name": "CircuitBench-2.0.0-rc.3-source.zip: unique safe paths, no symlinks or encrypted entries",
+        "passed": true,
+        "details": {
+          "entries": 506,
+          "unsafe": [],
+          "duplicateEntries": 0
+        }
+      },
+      {
+        "name": "CircuitBench-2.0.0-rc.3-source.zip: every ZIP entry passes CRC",
+        "passed": true,
+        "details": {
+          "firstBadEntry": null
+        }
+      },
+      {
+        "name": "Frozen archive file counts",
+        "passed": true,
+        "details": {
+          "deploy": 437,
+          "source": 506
+        }
+      },
+      {
+        "name": "Checksum entry is canonical",
+        "passed": true,
+        "details": {
+          "line": "f2f467a81eaa43bf9cfa5c6dae855a778fa605470916858b5bdf87c9c5d8f3d4  CircuitBench-2.0.0-rc.3-deploy.zip"
+        }
+      },
+      {
+        "name": "Checksum entry is canonical",
+        "passed": true,
+        "details": {
+          "line": "bfabce647adcff7927e7b3f44ac6ceb334e90c38ad8a22810cf7d20c91d40fe8  CircuitBench-2.0.0-rc.3-source.zip"
+        }
+      },
+      {
+        "name": "SHA256SUMS exactly identifies both ZIP bytes",
+        "passed": true,
+        "details": {
+          "CircuitBench-2.0.0-rc.3-deploy.zip": "f2f467a81eaa43bf9cfa5c6dae855a778fa605470916858b5bdf87c9c5d8f3d4",
+          "CircuitBench-2.0.0-rc.3-source.zip": "bfabce647adcff7927e7b3f44ac6ceb334e90c38ad8a22810cf7d20c91d40fe8"
+        }
+      },
+      {
+        "name": "Base external receipt identifies frozen runtime and manifest",
+        "passed": true
+      },
+      {
+        "name": "Base receipt archive hashes and sizes match independently read files",
+        "passed": true
+      },
+      {
+        "name": "Exact frozen manifest SHA-256",
+        "passed": true,
+        "details": {
+          "sha256": "9728b4b68f63b68380da3f843e484116a453bc7847a585c701f6a6e927717ab0"
+        }
+      },
+      {
+        "name": "Manifest declares every deploy file exactly once",
+        "passed": true
+      },
+      {
+        "name": "All declared deploy content SHA-256 values match",
+        "passed": true,
+        "details": {
+          "checked": 436,
+          "mismatches": []
+        }
+      },
+      {
+        "name": "Manifest version and canonical build method",
+        "passed": true
+      },
+      {
+        "name": "Package and source model versions agree",
+        "passed": true
+      },
+      {
+        "name": "All source ZIP files match the frozen original checkout",
+        "passed": true,
+        "details": {
+          "checked": 506,
+          "mismatches": []
+        }
+      },
+      {
+        "name": "All declared build inputs match source ZIP content",
+        "passed": true,
+        "details": {
+          "checked": 8,
+          "mismatches": []
+        }
+      },
+      {
+        "name": "Every copied deploy input matches its source ZIP file byte-for-byte",
+        "passed": true,
+        "details": {
+          "checked": 428,
+          "mismatches": []
+        }
+      },
+      {
+        "name": "Four generated-document declarations match the frozen contract",
+        "passed": true,
+        "details": {
+          "docs/installation.md": {
+            "source": "docs/installation.md",
+            "renderer": "cb-release-docs-1",
+            "version": "2.0.0-rc.3"
+          },
+          "docs/user-guide.md": {
+            "source": "docs/user-guide.md",
+            "renderer": "cb-release-docs-1",
+            "version": "2.0.0-rc.3"
+          },
+          "repair.html": {
+            "source": "public/repair.html",
+            "renderer": "cb-release-docs-1",
+            "version": "2.0.0-rc.3"
+          },
+          "repair/index.html": {
+            "source": "public/repair.html",
+            "renderer": "cb-release-docs-1",
+            "version": "2.0.0-rc.3"
+          }
+        }
+      },
+      {
+        "name": "All generated docs reproduce exactly from source version tokens",
+        "passed": true,
+        "details": {
+          "checked": 4,
+          "mismatches": []
+        }
+      },
+      {
+        "name": "Recovery document templating preserves all embedded JavaScript bytes",
+        "passed": true
+      },
+      {
+        "name": "Copied inputs plus declared generated outputs cover the deployment",
+        "passed": true
+      },
+      {
+        "name": "Runtime inventory is complete, sorted and unique",
+        "passed": true,
+        "details": {
+          "runtimeAssets": 44
+        }
+      },
+      {
+        "name": "Runtime-source mapping authenticates all non-generated runtime assets",
+        "passed": true,
+        "details": {
+          "sourceMappedAssets": 43
+        }
+      },
+      {
+        "name": "Required UI modules, three workers and engine files are all versioned runtime assets",
+        "passed": true
+      },
+      {
+        "name": "Exactly one executing WASM and no duplicate unversioned runtime",
+        "passed": true,
+        "details": {
+          "wasmFiles": [
+            "assets/2.0.0-rc.3/engine/spice.wasm"
+          ],
+          "obsoleteRuntimePaths": []
+        }
+      },
+      {
+        "name": "Served shell contains the exact stamped runtime identity",
+        "passed": true
+      },
+      {
+        "name": "Independent canonical runtime hash reproduces build identity",
+        "passed": true,
+        "details": {
+          "method": "runtime-shell-development-v1",
+          "computed": "8a99d6d843d32aa6"
+        }
+      },
+      {
+        "name": "Independent source-shell transformation reproduces served shell bytes",
+        "passed": true
+      },
+      {
+        "name": "Versioned and compatibility service workers are byte-identical",
+        "passed": true
+      },
+      {
+        "name": "Service worker authenticates final stamped shell and all runtime bytes",
+        "passed": true,
+        "details": {
+          "integrityEntries": 45
+        }
+      },
+      {
+        "name": "Recovery manifest exactly covers declared runtime and service worker",
+        "passed": true,
+        "details": {
+          "verifiedEntries": 44
+        }
+      },
+      {
+        "name": "Recorded application test counts independently sum to 676/676 across 46 files",
+        "passed": true,
+        "details": {
+          "files": 46,
+          "totals": {
+            "tests": 676,
+            "pass": 676,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          }
+        }
+      },
+      {
+        "name": "All 46 recorded application sources and transcripts authenticate exact counts",
+        "passed": true,
+        "details": {
+          "checked": 46,
+          "mismatches": []
+        }
+      },
+      {
+        "name": "Application summary source snapshot matches the source ZIP",
+        "passed": true,
+        "details": {
+          "checked": 56,
+          "mismatches": []
+        }
+      },
+      {
+        "name": "Current test-file inventory matches the 46 application files plus package gate",
+        "passed": true
+      },
+      {
+        "name": "Historical failed and superseded test evidence remains present with declared hashes",
+        "passed": true,
+        "details": {
+          "phases": 6,
+          "mismatches": []
+        }
+      },
+      {
+        "name": "External final package gate is 10/10 on the exact frozen manifest",
+        "passed": true,
+        "details": {
+          "counts": {
+            "tests": 10,
+            "suites": 0,
+            "pass": 10,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "record": "/tmp/cb-rc203-package-final.json",
+          "recordSha256": "17b0078321de611f977692b3167c844bd5ec2341aa33c46b4f873fa2c4cfcf2b",
+          "transcriptSha256": "4dbc613cc9ab8ba58667b9cab0bc3942414048ea4775ae1a9f53eef063423523",
+          "manifestSha256": "9728b4b68f63b68380da3f843e484116a453bc7847a585c701f6a6e927717ab0"
+        }
+      },
+      {
+        "name": "docs/VALIDATION.md: current application/package totals and runtime identity agree",
+        "passed": true
+      },
+      {
+        "name": "docs/PROGRESS.md: current application/package totals and runtime identity agree",
+        "passed": true
+      },
+      {
+        "name": "Finalized download record contains 80 passed checks with no failures",
+        "passed": true,
+        "details": {
+          "artifacts": 3,
+          "capturedRuns": 7,
+          "importedHistoricalRuns": 3,
+          "notMarkedImportedRuns": 4,
+          "jsonRoundTrips": 3,
+          "recordedSamples": 65,
+          "independentDigitalSampleComparisons": 130,
+          "recordedDigitalEvents": 18,
+          "csvDataRows": 2,
+          "sourceDependencies": 20,
+          "passedChecks": 80,
+          "failedChecks": 0
+        }
+      },
+      {
+        "name": "Download validator and all 20 production dependencies match archived sources",
+        "passed": true,
+        "details": {
+          "sourceDependencies": 20,
+          "verifier": {
+            "file": "scripts/verify-rc203-downloads.mjs",
+            "sha256": "1ace8706b08032ca5fb138da13c159ec011835b3cd8ce40060ade52bb0dfba04"
+          },
+          "mismatches": []
+        }
+      },
+      {
+        "name": "Three actual downloads match recorded bytes and SHA-256",
+        "passed": true,
+        "details": [
+          {
+            "file": "evidence/rc203-installation-browser.json",
+            "bytes": 24644,
+            "sha256": "6aceedc22f52d405021e90ec3d572d60c465cc4db332aede90d783db1a5ebdd4"
+          },
+          {
+            "file": "evidence/rc203-browser-project.json",
+            "bytes": 223370,
+            "sha256": "072c5fa3a130223bd66615c03689e7f944cbcf3c27e57755623ddea57aecca3f"
+          },
+          {
+            "file": "evidence/rc203-browser-results.csv",
+            "bytes": 141,
+            "sha256": "b6224e0515e90a19e24ce39b86b813111e88ce04187305a17ae12a3b6f22c760"
+          }
+        ]
+      },
+      {
+        "name": "Observed diagnostic failure and capability limitations remain literal",
+        "passed": true,
+        "details": {
+          "passed": 5,
+          "failed": 1,
+          "unavailable": 44
+        }
+      },
+      {
+        "name": "Operator browser record runtime-source hashes match the source archive",
+        "passed": true,
+        "details": {
+          "checked": 7,
+          "mismatches": []
+        }
+      },
+      {
+        "name": "Recorded 24 numerical checks identify the exact archived proof sources and WASM",
+        "passed": true,
+        "details": {
+          "passed": 24,
+          "failed": 0,
+          "sources": 7,
+          "nativeSha256": "820658317b0b54035208da41936fd6871ce924036e5ea4113a4168b821b7fc45",
+          "wasmSha256": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4",
+          "mismatches": []
+        }
+      },
+      {
+        "name": "Native environment provenance matches the numerical executable and summary receipt",
+        "passed": true
+      },
+      {
+        "name": "Numerical kernels, models, netlist and deployed engine/source bytes remain unchanged from rc.2",
+        "passed": true,
+        "details": {
+          "src/coordinated.js": {
+            "bytes": 25848,
+            "sha256": "12d2ded7ca0d500718c567ea212827918fae423bcc9179c85c5cb28fc3429b6a",
+            "unchanged": true
+          },
+          "src/coordinated-digital.js": {
+            "bytes": 13584,
+            "sha256": "6e73b4b7b982b2e3f807e23e96d62f25cee916341762e0da8ae41c32bf2d23d5",
+            "unchanged": true
+          },
+          "src/digital.js": {
+            "bytes": 27749,
+            "sha256": "ab9e81e869af307fab57967fe9aa80e484213c6d96479d9b77e0e63e1271ba36",
+            "unchanged": true
+          },
+          "src/library.js": {
+            "bytes": 31855,
+            "sha256": "ab341ea3d86c9f01c9994af087a109fdcf985591c4e5e1965d33c07fe58a3c65",
+            "unchanged": true
+          },
+          "src/netlist.js": {
+            "bytes": 34417,
+            "sha256": "88f46730d8c0faa07601feb7edb2876eb3952b4abd4e3f7a57f364f7117345b4",
+            "unchanged": true
+          },
+          "public/engine/eecircuit-engine.js": {
+            "bytes": 78294,
+            "sha256": "97f14b3da89a2e3f16a73e9eab9eba2e503b02548cfa788bcf9d330a6a9021c6",
+            "unchanged": true
+          },
+          "public/engine/spice.wasm": {
+            "bytes": 6133055,
+            "sha256": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4",
+            "unchanged": true
+          },
+          "public/engine/source/ngspice-45.2-source.tar.gz": {
+            "bytes": 10591938,
+            "sha256": "3aa30022e975bc04e2d9566e62e76d15e108d7b887f520755383ba37464c2324",
+            "unchanged": true
+          }
+        }
+      },
+      {
+        "name": "Isolated extraction exactly reproduces all 506 source ZIP files",
+        "passed": true,
+        "details": {
+          "files": 506
+        }
+      },
+      {
+        "name": "isolated-build: command exits successfully",
+        "passed": true
+      },
+      {
+        "name": "Every isolated rebuilt deploy file, including manifest, is byte-identical to frozen deploy ZIP",
+        "passed": true,
+        "details": {
+          "files": 437,
+          "mismatches": [],
+          "rebuiltManifestSha256": "9728b4b68f63b68380da3f843e484116a453bc7847a585c701f6a6e927717ab0"
+        }
+      },
+      {
+        "name": "isolated-package-check: command exits successfully",
+        "passed": true
+      },
+      {
+        "name": "download-verifier-rerun: command exits successfully",
+        "passed": true
+      },
+      {
+        "name": "Read-only download verifier freshly reproduces all 80 checks and recorded arithmetic",
+        "passed": true,
+        "details": {
+          "status": "passed-provisional",
+          "summary": {
+            "artifacts": 3,
+            "capturedRuns": 7,
+            "importedHistoricalRuns": 3,
+            "notMarkedImportedRuns": 4,
+            "jsonRoundTrips": 3,
+            "recordedSamples": 65,
+            "independentDigitalSampleComparisons": 130,
+            "recordedDigitalEvents": 18,
+            "csvDataRows": 2,
+            "sourceDependencies": 20,
+            "passedChecks": 80,
+            "failedChecks": 0
+          },
+          "installationDiagnosticStatus": "failed",
+          "installationObservedSummary": {
+            "passed": 5,
+            "failed": 1,
+            "unavailable": 44
+          },
+          "note": "Read-only audit; --finalize writes the verification record. Application-test counts are separate."
+        }
+      },
+      {
+        "name": "Isolated build and read-only validator leave all extracted source files unchanged",
+        "passed": true
+      },
+      {
+        "name": "All four original release artifacts remain byte-identical after the audit",
+        "passed": true,
+        "details": {
+          "CircuitBench-2.0.0-rc.3-deploy.zip": {
+            "bytes": 13757047,
+            "sha256": "f2f467a81eaa43bf9cfa5c6dae855a778fa605470916858b5bdf87c9c5d8f3d4"
+          },
+          "CircuitBench-2.0.0-rc.3-source.zip": {
+            "bytes": 13968520,
+            "sha256": "bfabce647adcff7927e7b3f44ac6ceb334e90c38ad8a22810cf7d20c91d40fe8"
+          },
+          "CircuitBench-2.0.0-rc.3-SHA256SUMS.txt": {
+            "bytes": 202,
+            "sha256": "caa5209867fa2b24583e450f9f7e675f578c7f453789e2b5623e9b13bc1476cb"
+          },
+          "CircuitBench-2.0.0-rc.3-release-integrity.json": {
+            "bytes": 1664,
+            "sha256": "82e4506c5fbf91a866398cfb9855cc62997817c5e53a0b8672ff98fcd628df72"
+          }
+        }
+      },
+      {
+        "name": "All frozen original source files remain unchanged after the audit",
+        "passed": true,
+        "details": {
+          "checked": 506,
+          "changed": []
+        }
+      }
+    ],
+    "commands": [
+      {
+        "command": [
+          "node",
+          "scripts/build.mjs"
+        ],
+        "cwd": "/tmp/cb-rc203-frozen-rebuild-ifmat8nh/CircuitBench",
+        "exitCode": 0,
+        "seconds": 0.764,
+        "stdout": "Built CircuitBench 2.0.0-rc.3 / 8a99d6d843d32aa6: 437 files, 44 local runtime assets.\n",
+        "stderr": "",
+        "transcript": "/tmp/cb-rc203-audit-isolated-build.txt",
+        "bytes": 182,
+        "sha256": "d6b691df01a09e8d989a39d8070a3f43cfa243e49f1f6a153995ea4e95892024"
+      },
+      {
+        "command": [
+          "python3",
+          "scripts/package.py",
+          "--check-only"
+        ],
+        "cwd": "/tmp/cb-rc203-frozen-rebuild-ifmat8nh/CircuitBench",
+        "exitCode": 0,
+        "seconds": 0.225,
+        "stdout": "Verified 437 distribution files, all copied/generated source inputs, and 44 versioned runtime assets for 2.0.0-rc.3.\n",
+        "stderr": "",
+        "transcript": "/tmp/cb-rc203-audit-isolated-package-check.txt",
+        "bytes": 230,
+        "sha256": "5d831ca14794005a3c8beeaefaf6e709dc67bf418d631abd8fa644adc4893e42"
+      },
+      {
+        "command": [
+          "node",
+          "scripts/verify-rc203-downloads.mjs"
+        ],
+        "cwd": "/tmp/cb-rc203-frozen-rebuild-ifmat8nh/CircuitBench",
+        "exitCode": 0,
+        "seconds": 0.233,
+        "stdout": "{\n  \"status\": \"passed-provisional\",\n  \"summary\": {\n    \"artifacts\": 3,\n    \"capturedRuns\": 7,\n    \"importedHistoricalRuns\": 3,\n    \"notMarkedImportedRuns\": 4,\n    \"jsonRoundTrips\": 3,\n    \"recordedSamples\": 65,\n    \"independentDigitalSampleComparisons\": 130,\n    \"recordedDigitalEvents\": 18,\n    \"csvDataRows\": 2,\n    \"sourceDependencies\": 20,\n    \"passedChecks\": 80,\n    \"failedChecks\": 0\n  },\n  \"installationDiagnosticStatus\": \"failed\",\n  \"installationObservedSummary\": {\n    \"passed\": 5,\n    \"failed\": 1,\n    \"unavailable\": 44\n  },\n  \"note\": \"Read-only audit; --finalize writes the verification record. Application-test counts are separate.\"\n}\n",
+        "stderr": "",
+        "transcript": "/tmp/cb-rc203-audit-download-verifier-rerun.txt",
+        "bytes": 760,
+        "sha256": "0f48d5f2b006a6ee46c854f0c5e5574fc876dae03faed56e96067349d2ecaeef"
+      }
+    ],
+    "originalReleaseFiles": {
+      "CircuitBench-2.0.0-rc.3-deploy.zip": {
+        "bytes": 13757047,
+        "sha256": "f2f467a81eaa43bf9cfa5c6dae855a778fa605470916858b5bdf87c9c5d8f3d4"
+      },
+      "CircuitBench-2.0.0-rc.3-source.zip": {
+        "bytes": 13968520,
+        "sha256": "bfabce647adcff7927e7b3f44ac6ceb334e90c38ad8a22810cf7d20c91d40fe8"
+      },
+      "CircuitBench-2.0.0-rc.3-SHA256SUMS.txt": {
+        "bytes": 202,
+        "sha256": "caa5209867fa2b24583e450f9f7e675f578c7f453789e2b5623e9b13bc1476cb"
+      },
+      "CircuitBench-2.0.0-rc.3-release-integrity.json": {
+        "bytes": 1664,
+        "sha256": "82e4506c5fbf91a866398cfb9855cc62997817c5e53a0b8672ff98fcd628df72"
+      }
+    },
+    "archives": {
+      "CircuitBench-2.0.0-rc.3-deploy.zip": {
+        "entries": 437,
+        "files": 437,
+        "directories": 0,
+        "uncompressedBytes": 23124759,
+        "bytes": 13757047,
+        "sha256": "f2f467a81eaa43bf9cfa5c6dae855a778fa605470916858b5bdf87c9c5d8f3d4"
+      },
+      "CircuitBench-2.0.0-rc.3-source.zip": {
+        "entries": 506,
+        "files": 506,
+        "directories": 0,
+        "uncompressedBytes": 23715130,
+        "bytes": 13968520,
+        "sha256": "bfabce647adcff7927e7b3f44ac6ceb334e90c38ad8a22810cf7d20c91d40fe8"
+      }
+    },
+    "priorSourceArchive": {
+      "path": "/workspace/scratch/141bc601d3b6/release/CircuitBench-2.0.0-rc.2-source.zip",
+      "bytes": 13775689,
+      "sha256": "6bbd420f6f7d1a3a5aefaa484c47e57a3a978fc33cf7c34e5524ac20b594aa0e"
+    },
+    "unchangedNumericalFiles": {
+      "src/coordinated.js": {
+        "bytes": 25848,
+        "sha256": "12d2ded7ca0d500718c567ea212827918fae423bcc9179c85c5cb28fc3429b6a",
+        "unchanged": true
+      },
+      "src/coordinated-digital.js": {
+        "bytes": 13584,
+        "sha256": "6e73b4b7b982b2e3f807e23e96d62f25cee916341762e0da8ae41c32bf2d23d5",
+        "unchanged": true
+      },
+      "src/digital.js": {
+        "bytes": 27749,
+        "sha256": "ab9e81e869af307fab57967fe9aa80e484213c6d96479d9b77e0e63e1271ba36",
+        "unchanged": true
+      },
+      "src/library.js": {
+        "bytes": 31855,
+        "sha256": "ab341ea3d86c9f01c9994af087a109fdcf985591c4e5e1965d33c07fe58a3c65",
+        "unchanged": true
+      },
+      "src/netlist.js": {
+        "bytes": 34417,
+        "sha256": "88f46730d8c0faa07601feb7edb2876eb3952b4abd4e3f7a57f364f7117345b4",
+        "unchanged": true
+      },
+      "public/engine/eecircuit-engine.js": {
+        "bytes": 78294,
+        "sha256": "97f14b3da89a2e3f16a73e9eab9eba2e503b02548cfa788bcf9d330a6a9021c6",
+        "unchanged": true
+      },
+      "public/engine/spice.wasm": {
+        "bytes": 6133055,
+        "sha256": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4",
+        "unchanged": true
+      },
+      "public/engine/source/ngspice-45.2-source.tar.gz": {
+        "bytes": 10591938,
+        "sha256": "3aa30022e975bc04e2d9566e62e76d15e108d7b887f520755383ba37464c2324",
+        "unchanged": true
+      }
+    },
+    "isolatedSourceDirectory": "/tmp/cb-rc203-frozen-rebuild-ifmat8nh/CircuitBench",
+    "summary": {
+      "deployFiles": 437,
+      "sourceFiles": 506,
+      "runtimeAssets": 44,
+      "manifestSha256": "9728b4b68f63b68380da3f843e484116a453bc7847a585c701f6a6e927717ab0",
+      "runtimeBuild": "8a99d6d843d32aa6",
+      "copiedSourceFiles": 428,
+      "generatedDocuments": 4,
+      "buildInputs": 8,
+      "isolatedRebuildFilesCompared": 437,
+      "isolatedRebuildMismatches": 0,
+      "recordedApplicationTestFiles": 46,
+      "recordedApplicationTests": 676,
+      "recordedFinalPackageTests": 10,
+      "recordedTotalNodeTests": 686,
+      "recordedNumericalChecks": 24,
+      "freshActualDownloadChecks": 80,
+      "unchangedNumericalFilesComparedToRc2": 8,
+      "originalSourceFilesUnchanged": 506,
+      "originalReleaseFilesUnchanged": 4
+    },
+    "completedAt": "2026-10-25T02:40:19.207645+00:00",
+    "checkTotals": {
+      "passed": 57,
+      "failed": 0
+    }
+  },
+  "independentArchiveAuditSha256": "12d9e47ddb9f6687619408b2cb6e6055d5b8763f217ac2add804f891fd614c79",
+  "verificationCompletedAt": "2026-10-25T02:41:00.881903+00:00",
+  "receiptCompletionNote": "The independent archive audit inspected the original package.py integrity receipt before this final evidence was appended. Its originalReleaseFiles entry for release-integrity.json identifies that base receipt, not this completed receipt. The deploy ZIP, source ZIP and SHA256SUMS file remain unchanged after the audit. This receipt includes the complete final package-test transcript and independent audit; neither ZIP was rebuilt to add this external verification."
+}

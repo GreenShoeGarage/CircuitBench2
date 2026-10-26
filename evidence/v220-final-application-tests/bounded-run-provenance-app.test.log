@@ -1,0 +1,20 @@
+✔ bounded coordinated analog Run captures and hashes the actual compiled execution plan (18.03325ms)
+✔ bounded coordinated mixed Run preserves the digital partition separately from its execution-plan hash (17.459095ms)
+✔ coordinated input identity remains attached to the captured revision during working edits (4.606693ms)
+✔ actual backup export/import retains coordinated plan/hash and immutable run provenance (9.96346ms)
+✔ ordinary digital Run continues to hash its native partition and uses actual resolved events (4.257648ms)
+✔ ordinary mixed ngspice input retains partition hashing even when its numerical runner fails explicitly (3.76239ms)
+✔ ordinary analog ngspice input has no fabricated coordinated plan or simulation-plan hash (2.878618ms)
+✔ unsupported coordinated devices and compiler errors stop before workers with diagnostic evidence (3.886923ms)
+✔ standalone coordinated export includes exact execution inputs and their matching hashes (5.636489ms)
+✔ standalone export freezes project, compiled plan and matching analog stages before asynchronous hashing (2.460813ms)
+✔ ordinary digital and mixed exports retain native partition identity while pure analog ngspice exports SPICE (5.432228ms)
+✔ invalid standalone coordinated export downloads no substitute or fabricated execution plan (2.575061ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 89.692688

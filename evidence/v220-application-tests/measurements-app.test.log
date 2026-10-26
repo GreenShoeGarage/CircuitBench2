@@ -1,0 +1,22 @@
+✔ measurement setup owns its captured run when the active run and source arrays later change (30.194459ms)
+✔ measurement activation refuses a replaced project and preserves the old draft (5.222189ms)
+✔ actual preset handlers save, load and delete exact settings without changing electrical revision (25.096312ms)
+✔ invalid measurement windows do not append or autosave evidence (4.065376ms)
+✔ active continuous windows require an explicit immutable snapshot before measurement (6.688587ms)
+✔ capture-only source measurements and interval viewing preserve capture ownership (9.227207ms)
+✔ AC measurement interval navigation supplies logarithmic range coordinates and raw frequency cursors (4.724706ms)
+✔ measurement source removal leaves exports, backup/import and report evidence intact (18.032421ms)
+✔ real app step-study handler runs fresh coordinated trials and retains immutable initial settings (58.513126ms)
+✔ working edits during a pending step trial do not change any later independent trial input (28.749922ms)
+✔ duplicate study activation and Stop cannot publish a late successful trial (13.928478ms)
+✔ project replacement waits for a cancelled study before clearing departing evidence (13.746781ms)
+✔ failed app study cases remain explicit and nested trial evidence exports/reopens independently (46.942979ms)
+✔ envelopes deep-copy measurement/study samples and deleting one record preserves the circuit and other histories (32.397152ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 303.019207

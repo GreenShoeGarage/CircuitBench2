@@ -1,0 +1,32 @@
+LOGIC-LEVEL OFFLINE VERIFICATION ONLY. No browser service-worker or disconnected-network reload is claimed.
+Generated dist/sw-2.0.0-rc.3.js SHA-256: d8588587bbc0b297ca75e1eda571028badcca4d55dec8e44623c68b7834182eb; version 2.0.0-rc.3; build a193c1048772c4f0
+✔ generated precache lists every real runtime asset, including actual WebAssembly bytes (246.966608ms)
+✔ scope-relative install and cached offline fetch work in VM at / (78.396413ms)
+✔ scope-relative install and cached offline fetch work in VM at /tools/circuitbench/ (94.626916ms)
+✔ canonical shell caching avoids injected host HTML and a redirected/missing index.html alias (34.207427ms)
+✔ asset release directories and query pins never substitute one another in the cache (30.446179ms)
+✔ reload and no-store asset diagnostics observe the network without stale-cache fallback (39.094822ms)
+✔ canonical navigation reload uses fresh responses and falls back only on network failure (57.84296ms)
+✔ uncached resources fall back to network and fail honestly while offline (37.685784ms)
+✔ non-GET, foreign-origin, and out-of-scope requests are not intercepted (33.027882ms)
+✔ a failed runtime fetch cannot advertise offline readiness or leave a partial install (12.907762ms)
+✔ HTTP-200 HTML in place of the WASM binary is rejected before caching (17.862988ms)
+✔ module and stylesheet content types must be usable by the browser (86.425158ms)
+✔ valid binary bytes with generic MIME remain usable with the buffered WASM loader (89.561264ms)
+✔ SHA-256 rejects same-length stale JavaScript and modified WASM with valid magic (71.997098ms)
+✔ fresh installation bypasses a stale HTTP cache after the hosting files are repaired (90.999979ms)
+✔ a verified new build replaces a poisoned prior build without deleting other scopes (52.101858ms)
+✔ failed cache writes clean the incomplete new cache while preserving the prior build (39.797763ms)
+✔ missing secure digest support refuses installation instead of weakening integrity checks (13.705299ms)
+✔ readiness checks every cached runtime asset instead of accepting only the HTML shell (50.846647ms)
+✔ readiness rejects poisoned bytes and unusable MIME even when every cache key exists (111.030168ms)
+✔ cache activation cleans only older builds of the exact scope, preserving nested and sibling installs (83.757347ms)
+✔ waiting updates are activated only by explicit SKIP_WAITING message (21.005001ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1424.630316

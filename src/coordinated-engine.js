@@ -63,8 +63,8 @@ export class CoordinatedEngine {
       if (job.ready) this.send(pending);
     });
   }
-  advanceTo(end, { maxSteps = 2000, timeoutMs } = {}) { return this.request('advance', { end, maxSteps }, { timeoutMs }); }
-  setInputs(updates, options) { return this.request('inputs', { updates }, options); }
+  advanceTo(end, { maxSteps = 2000, timeoutMs, trigger = null, stopOnEvent = false } = {}) { return this.request('advance', { end, maxSteps, trigger, stopOnEvent }, { timeoutMs }); }
+  setInputs(updates, { trigger = null, ...options } = {}) { return this.request('inputs', { updates, trigger }, options); }
   async run(plan, { timeoutMs = 30000, onLog = () => {} } = {}) {
     if (this.active) throw failure('A coordinated session is already open. Stop it before starting another.', 'COORDINATED_BUSY');
     const started = performance.now(), timeout = Math.max(1, Math.min(60000, Number(timeoutMs) || 30000));

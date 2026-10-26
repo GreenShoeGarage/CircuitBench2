@@ -1,0 +1,1038 @@
+{
+  "version": "2.0.0-rc.3",
+  "assembledAt": "2026-10-25T02:28:24.838290+00:00",
+  "status": "passed",
+  "command": "Consolidated latest successful execution per application test file: initial 45-file direct-Node sweep, corrected timing-app harness rerun, the new reference-environment test, and eight targeted app-handler suites rerun after the browser-observed Step lifecycle fix. This is not a single full rerun.",
+  "scope": "Application source and controlled worker/DOM/package-component tests. tests/package.test.mjs is excluded and must be recorded separately against the final built release. Browser/deployment and numerical reference evidence are separate records.",
+  "files": 46,
+  "totals": {
+    "tests": 676,
+    "pass": 676,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "results": [
+    {
+      "file": "tests/autosave.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.082,
+      "counts": {
+        "tests": 4,
+        "suites": 0,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/autosave.test-after-step-fix.txt",
+      "transcriptSha256": "e340edbdd8be9c9e8d5a093d5694a11829d0f68b93ef096760c41c963dd6cd4a",
+      "sourceSha256": "7fa6183eb0fa16f6500135092675bfc7a112bd08341ae28716bb8a6142524c5d",
+      "testedAt": "2026-10-25T02:27:29.204611+00:00",
+      "execution": "targeted-rerun-after-step-lifecycle-fix",
+      "applicationSourceSha256": "b1531fb1f854e20cbe46f2ab4df6c4262fe201b44aaa18fea2ff66ed6405782d"
+    },
+    {
+      "file": "tests/bus-model.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.388,
+      "counts": {
+        "tests": 24,
+        "suites": 0,
+        "pass": 24,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/bus-model.test.txt",
+      "sourceSha256": "04bc8149d92ecd4335e822b2074fea9d5d39530f1d49d18ca5d76566c29e9e3e",
+      "execution": "initial-sweep",
+      "transcriptSha256": "1b90b9f25e37020f83d6278d5217238327b4b940a52a306a4b12bb16d8c8ba4a"
+    },
+    {
+      "file": "tests/bus-report.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.181,
+      "counts": {
+        "tests": 2,
+        "suites": 0,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/bus-report.test.txt",
+      "sourceSha256": "f65479849fcebaf1bc26d9a8068a5376d006f768225aab72e7101f085c444ce7",
+      "execution": "initial-sweep",
+      "transcriptSha256": "427d9810a132798b7cb3b03e59bc4938f5f0a8d74f8f990a308a1c9c2898a20f"
+    },
+    {
+      "file": "tests/bus-ui.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.263,
+      "counts": {
+        "tests": 10,
+        "suites": 0,
+        "pass": 10,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/bus-ui.test.txt",
+      "sourceSha256": "ed94dee2abde076d9af81d8b11cf41db2bf24646bb9fa71d194ba3aa8744e42f",
+      "execution": "initial-sweep",
+      "transcriptSha256": "b9522302b6a377b0ffe493b10d4658ef6c5afead2d1620e287a9813d27a594c2"
+    },
+    {
+      "file": "tests/continuous-app.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.242,
+      "counts": {
+        "tests": 17,
+        "suites": 0,
+        "pass": 17,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/continuous-app.test-after-step-fix.txt",
+      "transcriptSha256": "fbefe43a5a16b014366f4c42114355780a0938bb44963edd2ffd9d2b3dd44213",
+      "sourceSha256": "33ac6df03b9713ab1e5370ecec2390c7f5d3323e60f84b70242fde2b96821f3a",
+      "testedAt": "2026-10-25T02:27:29.205212+00:00",
+      "execution": "targeted-rerun-after-step-lifecycle-fix",
+      "applicationSourceSha256": "b1531fb1f854e20cbe46f2ab4df6c4262fe201b44aaa18fea2ff66ed6405782d"
+    },
+    {
+      "file": "tests/continuous-storage.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.46,
+      "counts": {
+        "tests": 9,
+        "suites": 0,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/continuous-storage.test.txt",
+      "sourceSha256": "75c84c3437f28bf43cb8aa32edc887d818fe6952c4bbfeec499bea8c31e07b53",
+      "execution": "initial-sweep",
+      "transcriptSha256": "7721ff6a3940111662e8e61bad172023e3d9e611c5280586034e03b2e80466f0"
+    },
+    {
+      "file": "tests/continuous.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.147,
+      "counts": {
+        "tests": 21,
+        "suites": 0,
+        "pass": 21,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/continuous.test.txt",
+      "sourceSha256": "0ce42c4b7a7e88886b8a3f725b88c23a87c31882aa774c259debaba06a177f5c",
+      "execution": "initial-sweep",
+      "transcriptSha256": "4506c536499938b87cc6475e1a6e32e1915f74a5752e76bda8cfca81d58c92d7"
+    },
+    {
+      "file": "tests/converters-integration.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.278,
+      "counts": {
+        "tests": 9,
+        "suites": 0,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/converters-integration.test.txt",
+      "sourceSha256": "eae642973e97e8ba19762e9e2bd1b84fc7fc14a9cc0194bc80907cae2534752b",
+      "execution": "initial-sweep",
+      "transcriptSha256": "43381ae9049c1337d7816c198b65e5cfd231cdd065d6868b2789b245eacb92d6"
+    },
+    {
+      "file": "tests/coordinated-facade.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.661,
+      "counts": {
+        "tests": 14,
+        "suites": 0,
+        "pass": 14,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/coordinated-facade.test.txt",
+      "sourceSha256": "15d26c9d2c2fa5dd6aae646ae666ba1b4b45af36e5e2dea958d250f227c1a692",
+      "execution": "initial-sweep",
+      "transcriptSha256": "03b7593a4417f847319a8fb50303a1fad70943a6977e84812fe9da586b6427df"
+    },
+    {
+      "file": "tests/coordinated.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.804,
+      "counts": {
+        "tests": 31,
+        "suites": 0,
+        "pass": 31,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/coordinated.test.txt",
+      "sourceSha256": "c73e3822eca14b039ffced05f338d7975126637af6c53b30b2526c3360f677e9",
+      "execution": "initial-sweep",
+      "transcriptSha256": "8367e2f49dcd6b727309173d3430eb90a291fe78c276bee47793b1570252f9e7"
+    },
+    {
+      "file": "tests/core.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.49,
+      "counts": {
+        "tests": 25,
+        "suites": 0,
+        "pass": 25,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/core.test.txt",
+      "sourceSha256": "832a73458ad2d9af1f40e2afcd10e9f04b1b1f253b381616f17d29960ee0eff8",
+      "execution": "initial-sweep",
+      "transcriptSha256": "2f0f3a3b36ff0f95040b64a330b917688300fc4f54a51a2540034dde2e4ffde3"
+    },
+    {
+      "file": "tests/digital-editor.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.157,
+      "counts": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/digital-editor.test.txt",
+      "sourceSha256": "63ea30a9911dd9a6f8c21f1d7c1daa10239c7bbc6c4009f62ee1f39c79c028dd",
+      "execution": "initial-sweep",
+      "transcriptSha256": "adb65d61848b18d2d69fbb5d8db47a717853d79d04505dbd5d01618f086e1b98"
+    },
+    {
+      "file": "tests/digital-expansion.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.155,
+      "counts": {
+        "tests": 14,
+        "suites": 0,
+        "pass": 14,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/digital-expansion.test.txt",
+      "sourceSha256": "4eeb911d5f876146a24c91dd0e6bcf12b5fdd207a2fd5e995a633b8d844a4668",
+      "execution": "initial-sweep",
+      "transcriptSha256": "9a75a0a9b98b2bf383712bc5a4a1729588fc5dd20ad12cfcffcb351c3a73ff93"
+    },
+    {
+      "file": "tests/digital-model.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.428,
+      "counts": {
+        "tests": 23,
+        "suites": 0,
+        "pass": 23,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/digital-model.test.txt",
+      "sourceSha256": "9e29078398dec05e63109a8d9b0dfaa332a76331278572e6853c3d7d5bb7396f",
+      "execution": "initial-sweep",
+      "transcriptSha256": "ee225294ab078c58b86d6e0e78e952b062a636f780981dcf0a4dc9847e0de8dd"
+    },
+    {
+      "file": "tests/digital-plots.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.214,
+      "counts": {
+        "tests": 10,
+        "suites": 0,
+        "pass": 10,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/digital-plots.test.txt",
+      "sourceSha256": "2c5d60e0c42d92e2960bb90904639ca29ed7ff23f4154b1e0eb5e5a1610748f1",
+      "execution": "initial-sweep",
+      "transcriptSha256": "74695dc6593684a01e9d539f8e9d95bca70aba6a6af6a4f14a1ec327663904a2"
+    },
+    {
+      "file": "tests/digital-source.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.977,
+      "counts": {
+        "tests": 15,
+        "suites": 0,
+        "pass": 15,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/digital-source.test.txt",
+      "sourceSha256": "2c3dc50fecac64a3df9d69c0900a0d528075ed361cb855754001cc5ef0d81556",
+      "execution": "initial-sweep",
+      "transcriptSha256": "af227f1a2528b44eae77a1efd506c939ea3ab417174b6508950eb73b9c8174fa"
+    },
+    {
+      "file": "tests/digital-storage.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.222,
+      "counts": {
+        "tests": 13,
+        "suites": 0,
+        "pass": 13,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/digital-storage.test.txt",
+      "sourceSha256": "0f815dc0a24597042549b06c9dea42e96f1601933bdc18f388e1e06a7d595e4a",
+      "execution": "initial-sweep",
+      "transcriptSha256": "7028b9495bae3139c2a06b141d7c9ead9f2b6fd7469971796916cf03490af99c"
+    },
+    {
+      "file": "tests/digital.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.173,
+      "counts": {
+        "tests": 22,
+        "suites": 0,
+        "pass": 22,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/digital.test.txt",
+      "sourceSha256": "6d542dc202305401ceff56d661c96421edb7f2017cd97e787ae234e72068df93",
+      "execution": "initial-sweep",
+      "transcriptSha256": "e1b0c1115064bc569c73b28cb182e16496615a46a50e4d92585010c19feff4d0"
+    },
+    {
+      "file": "tests/displays.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.348,
+      "counts": {
+        "tests": 17,
+        "suites": 0,
+        "pass": 17,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/displays.test.txt",
+      "sourceSha256": "575f0b745e42fbd33ed3c6879352854e8c3b327a44ddfe89f61426f1f5e490f0",
+      "execution": "initial-sweep",
+      "transcriptSha256": "2d44667f9aaf29153d4e82899c1d419a5a927c77592eda4feb89e5a26aed5e75"
+    },
+    {
+      "file": "tests/editor.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.252,
+      "counts": {
+        "tests": 11,
+        "suites": 0,
+        "pass": 11,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/editor.test.txt",
+      "sourceSha256": "932b5b582d2a117d4e20c0d9f356cdc1cc77c4c0c6b9deb4f384ce759ead4ca0",
+      "execution": "initial-sweep",
+      "transcriptSha256": "c3d3d432e5efe391581b31d093dab1f0e2203fc39e91be005de9a4cada1c8b88"
+    },
+    {
+      "file": "tests/engine-loading.test.mjs",
+      "exitCode": 0,
+      "seconds": 1.115,
+      "counts": {
+        "tests": 24,
+        "suites": 0,
+        "pass": 24,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/engine-loading.test.txt",
+      "sourceSha256": "8d420d78eeea2613befea4e44bb0c6d45b4474c318b5f7dad55a36fc3d7ef629",
+      "execution": "initial-sweep",
+      "transcriptSha256": "a2ac73fbf1033ee5918b69fb554df90c1ad3cba7a6354303c0cb4c4c7376aaed"
+    },
+    {
+      "file": "tests/engine-raw-parser.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.136,
+      "counts": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/engine-raw-parser.test.txt",
+      "sourceSha256": "64544c5e963ff4c0be68f26cca88b11b4bf39860da8572c37b5392d7778cf0a0",
+      "execution": "initial-sweep",
+      "transcriptSha256": "e80f69e5e8859ab2979bb16ae9ead2af93c3fd6f4ff407d7fb32aa06aa5d1560"
+    },
+    {
+      "file": "tests/experiments-app.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.473,
+      "counts": {
+        "tests": 18,
+        "suites": 0,
+        "pass": 18,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/experiments-app.test-after-step-fix.txt",
+      "transcriptSha256": "0ced6e601401af10bf75a4f79581e4ad1aa4b4c292afe83820fbce6de0e9bfd2",
+      "sourceSha256": "3180a1650d9b06d7895689fec7829418ee90cc833c043c1834ddeb22c00233ce",
+      "testedAt": "2026-10-25T02:27:29.286714+00:00",
+      "execution": "targeted-rerun-after-step-lifecycle-fix",
+      "applicationSourceSha256": "b1531fb1f854e20cbe46f2ab4df6c4262fe201b44aaa18fea2ff66ed6405782d"
+    },
+    {
+      "file": "tests/experiments-engine.test.mjs",
+      "exitCode": 0,
+      "seconds": 4.976,
+      "counts": {
+        "tests": 5,
+        "suites": 0,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/experiments-engine.test.txt",
+      "sourceSha256": "4cbf60dab5dab47b7d1d93ce280557ee85d46053987d48adbbf241e5d72ad330",
+      "execution": "initial-sweep",
+      "transcriptSha256": "b204550ddc3262c34bb20dd1a167acebaff643c827ae6d07b981e97f61d94855"
+    },
+    {
+      "file": "tests/experiments-ui.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.299,
+      "counts": {
+        "tests": 11,
+        "suites": 0,
+        "pass": 11,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/experiments-ui.test.txt",
+      "sourceSha256": "c0ca3993fc28271ab6725d6ee6b6003e6306d8ed5b1e9d163055b90af789e454",
+      "execution": "initial-sweep",
+      "transcriptSha256": "21bb4657e13f731c9db8f716206620eabce1815162c7b8671dd8f11dc9a3e648"
+    },
+    {
+      "file": "tests/experiments.test.mjs",
+      "exitCode": 0,
+      "seconds": 1.091,
+      "counts": {
+        "tests": 31,
+        "suites": 0,
+        "pass": 31,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/experiments.test.txt",
+      "sourceSha256": "1d691884eea04ac802289290d87328838827c13141e143592b800d625f82405f",
+      "execution": "initial-sweep",
+      "transcriptSha256": "491dfedfd0c1bba8aa9de230aaadea93ad0492b07ac056862771a795e84a36e3"
+    },
+    {
+      "file": "tests/installation-app.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.123,
+      "counts": {
+        "tests": 11,
+        "suites": 0,
+        "pass": 11,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/installation-app.test-after-step-fix.txt",
+      "transcriptSha256": "bec45c7630f2856de80d733d0a8a0fffc9fc3d215acd4ca7e8e6d36ad936f0a5",
+      "sourceSha256": "bac73704bec123d7d4d077fad6cbd3cc08b84c083c5a32771d59bebccaca8965",
+      "testedAt": "2026-10-25T02:27:29.448113+00:00",
+      "execution": "targeted-rerun-after-step-lifecycle-fix",
+      "applicationSourceSha256": "b1531fb1f854e20cbe46f2ab4df6c4262fe201b44aaa18fea2ff66ed6405782d"
+    },
+    {
+      "file": "tests/installation-check.test.mjs",
+      "exitCode": 0,
+      "seconds": 1.345,
+      "counts": {
+        "tests": 20,
+        "suites": 0,
+        "pass": 20,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/installation-check.test.txt",
+      "sourceSha256": "2bfe87cbacbfcfe430a832730a8bc2e0e6d54da8035f9f899caa9e21741b78a6",
+      "execution": "initial-sweep",
+      "transcriptSha256": "bb48fbadc404c55342a4541fd4b22f1ed0a9307012b0daf58dc506207803d71a"
+    },
+    {
+      "file": "tests/logic-indicators.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.294,
+      "counts": {
+        "tests": 14,
+        "suites": 0,
+        "pass": 14,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/logic-indicators.test.txt",
+      "sourceSha256": "e6a8f603c570405225c6babd05e20f77e8fb9006b974fabdeb8eabb54c8a8aba",
+      "execution": "initial-sweep",
+      "transcriptSha256": "30ba964ffa7c736c1d12636e8cf307c8a5fe39e3872e4e5dbac6d711993efda1"
+    },
+    {
+      "file": "tests/logic-io-app.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.109,
+      "counts": {
+        "tests": 10,
+        "suites": 0,
+        "pass": 10,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/logic-io-app.test-after-step-fix.txt",
+      "transcriptSha256": "1dd59d04f0d3918b91685d2ad20e51e7af11b534fc5f56dc1689f220c7f2e781",
+      "sourceSha256": "507d9f6946c6b9c4d6ff5110395dd5ae47f934426855d33d66f5a3bd9acc43df",
+      "testedAt": "2026-10-25T02:27:29.570864+00:00",
+      "execution": "targeted-rerun-after-step-lifecycle-fix",
+      "applicationSourceSha256": "b1531fb1f854e20cbe46f2ab4df6c4262fe201b44aaa18fea2ff66ed6405782d"
+    },
+    {
+      "file": "tests/logic-io-examples.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.396,
+      "counts": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/logic-io-examples.test.txt",
+      "sourceSha256": "3ec812478f87576b6cae3a6b66c0da28558556f3a2cb0ff9292e4fdc6ee23101",
+      "execution": "initial-sweep",
+      "transcriptSha256": "a59df7593f0307417c47e1160fe6fb1b861d4d23403c7d323056557eef3fba11"
+    },
+    {
+      "file": "tests/offline.test.mjs",
+      "exitCode": 0,
+      "seconds": 1.661,
+      "counts": {
+        "tests": 22,
+        "suites": 0,
+        "pass": 22,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/offline.test.txt",
+      "sourceSha256": "50200bdd515505a85ad1a87aabde5caa3e837ad4d306a9376e778e9db94824da",
+      "execution": "initial-sweep",
+      "transcriptSha256": "f2856982d9d2250d4aba0f3cb84ce858baabeb52973b2b3183f024766c20fc65"
+    },
+    {
+      "file": "tests/reference-environment.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.103,
+      "counts": {
+        "tests": 7,
+        "suites": 0,
+        "pass": 7,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/reference-environment.test.txt",
+      "sourceSha256": "bd1ad23ac7f8d3048be635907d1098c33e8da70fdf5cea45aa0560dd8468b35c",
+      "transcriptSha256": "c726517bcee142a4954276ab06dad83d24e7d10129bd0594a4ce2fba1a5a63d5",
+      "testedAt": "2026-10-25T02:24:21.673615+00:00",
+      "execution": "additional-new-test-file"
+    },
+    {
+      "file": "tests/release-docs.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.147,
+      "counts": {
+        "tests": 9,
+        "suites": 0,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/release-docs.test.txt",
+      "sourceSha256": "7fe12e06ef3abd98d34530abee224d21ac3a2dfd584c06c4b21c3b087ea3a9a6",
+      "execution": "initial-sweep",
+      "transcriptSha256": "b7eb23c59beaee64b0dc4d2dd6842f602c545b04b6b7507175c7d93155baad26"
+    },
+    {
+      "file": "tests/repair.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.44,
+      "counts": {
+        "tests": 12,
+        "suites": 0,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/repair.test.txt",
+      "sourceSha256": "9cb5fbd0feab522c2eaf696d9fabe0b0473646f23260389a4683a15d70d5a62e",
+      "execution": "initial-sweep",
+      "transcriptSha256": "abdc6d226b517b24f6f6be5615fefb0ecb4e5659170c0bae6056492c8904f760"
+    },
+    {
+      "file": "tests/results.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.323,
+      "counts": {
+        "tests": 14,
+        "suites": 0,
+        "pass": 14,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/results.test.txt",
+      "sourceSha256": "82121a0e66a6db66dc3795c0c636a8d168b30f50d40ebeec698cecf4c111efe9",
+      "execution": "initial-sweep",
+      "transcriptSha256": "cac9cec84fed53aa40a38f8d40b218cdfaee6a96127a4005ce0bc1550ef60862"
+    },
+    {
+      "file": "tests/simulation.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.496,
+      "counts": {
+        "tests": 10,
+        "suites": 0,
+        "pass": 10,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/simulation.test.txt",
+      "sourceSha256": "a9b097db4907b1ff113efd21930ee82e2837912dc03d0186d937b95b82df328d",
+      "execution": "initial-sweep",
+      "transcriptSha256": "456ee547258779b032fd8f27c1c787caa553dc1d683a82fe6a974ad80c258095"
+    },
+    {
+      "file": "tests/timing-app.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.393,
+      "counts": {
+        "tests": 15,
+        "suites": 0,
+        "pass": 15,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/timing-app.test-after-step-fix.txt",
+      "transcriptSha256": "47dcfab8d5392a403b8334d40fb4a6a4e58e0c3674279e7028e1a3e6c5f60c88",
+      "sourceSha256": "0ad44916bc7c35d3f4902ff29455128659c5c6feeffe608529b214764aa80656",
+      "testedAt": "2026-10-25T02:27:29.679811+00:00",
+      "execution": "targeted-rerun-after-step-lifecycle-fix",
+      "applicationSourceSha256": "b1531fb1f854e20cbe46f2ab4df6c4262fe201b44aaa18fea2ff66ed6405782d"
+    },
+    {
+      "file": "tests/timing-evidence.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.847,
+      "counts": {
+        "tests": 20,
+        "suites": 0,
+        "pass": 20,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/timing-evidence.test.txt",
+      "sourceSha256": "725fccae18e4825dfb6a8ce4a135f2da1a67aaf1b7854a142ff0aa6256c8c8fd",
+      "execution": "initial-sweep",
+      "transcriptSha256": "6de865df69fb2ae6000b55d9e84b7dad609d9019dbf075341d67287a76cb8d70"
+    },
+    {
+      "file": "tests/timing-ui.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.174,
+      "counts": {
+        "tests": 12,
+        "suites": 0,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/timing-ui.test.txt",
+      "sourceSha256": "195d04458d0243d0db06213563f32cbe5c2c53716858e345ac14f1f6b44c8934",
+      "execution": "initial-sweep",
+      "transcriptSha256": "0b7f1dd71af100ff1f5684ff74d784e4078caed6fd9687f583401dd8488a9929"
+    },
+    {
+      "file": "tests/timing.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.407,
+      "counts": {
+        "tests": 34,
+        "suites": 0,
+        "pass": 34,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/timing.test.txt",
+      "sourceSha256": "8a09e80021b0d4ba0b6ecc5fdfa40292cf70da3c6652d69d73af20d7bc5daf93",
+      "execution": "initial-sweep",
+      "transcriptSha256": "4d6d0da4747c9a8c3223f619efaf06b94dfc6bed0b7266945f6d142447461f80"
+    },
+    {
+      "file": "tests/truth-table-app.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.173,
+      "counts": {
+        "tests": 17,
+        "suites": 0,
+        "pass": 17,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/truth-table-app.test-after-step-fix.txt",
+      "transcriptSha256": "e0c5fcb938167949e76e26104f99b1b7455cab20bbdadb229fff2f5bef3780b3",
+      "sourceSha256": "7a9ebe07201311cbc1937372df35b0425913e4b2e0b18986cf83df7d3e3de798",
+      "testedAt": "2026-10-25T02:27:29.760287+00:00",
+      "execution": "targeted-rerun-after-step-lifecycle-fix",
+      "applicationSourceSha256": "b1531fb1f854e20cbe46f2ab4df6c4262fe201b44aaa18fea2ff66ed6405782d"
+    },
+    {
+      "file": "tests/truth-table-evidence-ui.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.19,
+      "counts": {
+        "tests": 10,
+        "suites": 0,
+        "pass": 10,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/truth-table-evidence-ui.test.txt",
+      "sourceSha256": "803ee6fa2400f63d80d59e0d3408f730442912e2ccc44cc9527d399fb548084a",
+      "execution": "initial-sweep",
+      "transcriptSha256": "c51f2af24794e98b9d391f8437ac89e0c1221e251bd2cc283bec6372db1b0153"
+    },
+    {
+      "file": "tests/truth-table.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.379,
+      "counts": {
+        "tests": 7,
+        "suites": 0,
+        "pass": 7,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/truth-table.test.txt",
+      "sourceSha256": "df43d25b1bcdc3f261bd6d3a9fe82031408f88f4ff46d5aeebd8b042ecab6609",
+      "execution": "initial-sweep",
+      "transcriptSha256": "1b37050c34a8ef8df03b9b648ebcb4f2222a66b482d0cd0929a4ec968cb213a4"
+    },
+    {
+      "file": "tests/workbench-state-app.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.256,
+      "counts": {
+        "tests": 11,
+        "suites": 0,
+        "pass": 11,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/workbench-state-app.test-after-step-fix.txt",
+      "transcriptSha256": "54bcd38e3771aeb846b4a6a4f0ba2405a9acac184aa750321fc72734c39a3255",
+      "sourceSha256": "868a51add099425b1a5abb5eccd85f79789af0964dba3f19b8b7e8d8275d9661",
+      "testedAt": "2026-10-25T02:27:29.933421+00:00",
+      "execution": "targeted-rerun-after-step-lifecycle-fix",
+      "applicationSourceSha256": "b1531fb1f854e20cbe46f2ab4df6c4262fe201b44aaa18fea2ff66ed6405782d"
+    },
+    {
+      "file": "tests/workbench-state.test.mjs",
+      "exitCode": 0,
+      "seconds": 0.2,
+      "counts": {
+        "tests": 23,
+        "suites": 0,
+        "pass": 23,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "transcript": "evidence/rc203-tests/workbench-state.test.txt",
+      "sourceSha256": "4486f224870597de21fdb40434af7e778ba646d062d56742430efab15c048bb0",
+      "execution": "initial-sweep",
+      "transcriptSha256": "a9432891de38ac5e82e85934b03ec44e11fc0ae17df5c28c2aef8ae062d69427"
+    }
+  ],
+  "executionHistory": [
+    {
+      "phase": "initial-sweep",
+      "summary": "evidence/rc203-test-summary-initial.json",
+      "summarySha256": "93bb664cf84fe2224838aba16f6bf7fcf3718331f8e9126b976ac1c1372a2db9",
+      "log": "evidence/rc203-test-run-initial.jsonl",
+      "logSha256": "c2f72b0d3d6e9cd8caf103b8105b6a6d7bcc4a0155f8f8446b44da6166f80844",
+      "files": 45,
+      "totals": {
+        "tests": 667,
+        "pass": 652,
+        "fail": 15,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "superseded-failure",
+      "note": "Only timing-app.test.mjs failed (15 cases), because new application dependencies were absent from its controlled VM harness. Original failed transcript was retained under the path below; the original summary keeps its original transcript filename.",
+      "retainedFailureTranscript": "evidence/rc203-tests/timing-app.initial-missing-dependencies.txt",
+      "retainedFailureTranscriptSha256": "f1b166ccf8ebfbe712077660ed3ef6d7c2d9d4cafda081b0b4b3fb699744264e"
+    },
+    {
+      "phase": "corrected-timing-harness-rerun",
+      "file": "tests/timing-app.test.mjs",
+      "transcript": "evidence/rc203-tests/timing-app.test.txt",
+      "transcriptSha256": "ffd05e132aa7943ed0b3a39a2e9167ac15f65e0dc9c084bf3d1b606c5d7d148a",
+      "counts": {
+        "tests": 15,
+        "suites": 0,
+        "pass": 15,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed",
+      "note": "Missing harness dependencies were supplied; no application behavior was changed for this correction. The same suite also passed in the later targeted rerun."
+    },
+    {
+      "phase": "new-reference-environment-tests",
+      "file": "tests/reference-environment.test.mjs",
+      "transcript": "evidence/rc203-tests/reference-environment.test.txt",
+      "counts": {
+        "tests": 7,
+        "suites": 0,
+        "pass": 7,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed"
+    },
+    {
+      "phase": "step-regression-test-draft",
+      "transcript": "evidence/rc203-tests/workbench-state-app.step-regression-draft.txt",
+      "counts": {
+        "tests": 11,
+        "suites": 0,
+        "pass": 9,
+        "fail": 2,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "superseded-failure",
+      "note": "An exact floating-point test assertion was replaced with a sub-picosecond comparison before confirming the actual Step presentation regression. The late old-session error regression also failed."
+    },
+    {
+      "phase": "confirmed-step-regressions-before-fix",
+      "transcript": "evidence/rc203-tests/workbench-state-app.before-step-fix.txt",
+      "counts": {
+        "tests": 11,
+        "suites": 0,
+        "pass": 9,
+        "fail": 2,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "applicationSourceSha256": "fb5e82670d5428dfb1628500d574beb97ed347614c67efc0c59ccc18f98aac2d",
+      "status": "superseded-failure",
+      "note": "Two new regressions reproduced the stale Advancing one step label after completion and error delivery from an ended session after replacement."
+    },
+    {
+      "phase": "targeted-app-handler-rerun-after-step-fix",
+      "summary": "evidence/rc203-test-followups.json",
+      "summarySha256": "2decb359388fb39f696003960fe4f5c42508621683482b4427399786e739a7fe",
+      "files": 8,
+      "totals": {
+        "tests": 103,
+        "pass": 103,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "status": "passed",
+      "note": "Step now renders pending state and settled state using the captured session owner. Step is disabled while a step or input change is pending; obsolete session errors do not affect the replacement session. Two additional cases increase the final application total by two."
+    }
+  ],
+  "sourceSnapshot": {
+    "recordedAt": "2026-10-25T02:28:24.839402+00:00",
+    "sha256ByPath": {
+      "index.html": "7b3d47f69ebf5d6019450894003eabdefbe3069ba7e92d52c014020b2b1b0ae2",
+      "package.json": "886cbf93558120ab4ea41e4e716a78036d5a36d146bd780a2d7494b496621167",
+      "public/engine/eecircuit-engine.js": "97f14b3da89a2e3f16a73e9eab9eba2e503b02548cfa788bcf9d330a6a9021c6",
+      "public/engine/spice.wasm": "ed7995425b6f7af02db874539d13ea10d07759d5f2be6b79969343459ae886e4",
+      "scripts/build.mjs": "c2957345829f36521f6799a083078c2e89e0ad7963995ff80c8e1443c5cbe6aa",
+      "scripts/engine-node-worker.mjs": "8da739075ad80769a6b7f85c47ee961578bba20ef17ac0773ec926cb37ede41d",
+      "scripts/package.py": "98616d1420255073f201791c0db337cfd315592813f78556b004b20deb20520a",
+      "scripts/prove-coordinated.mjs": "f03439064bf1a6562d7a351b7b0f3dcfd6a47904d2b5b0f6907f4ec75da6e6de",
+      "scripts/prove-digital.mjs": "2341b0173e4532831fdbfe5265912fb694f4ba0b1b5d179ef1556fd92fe481ea",
+      "scripts/prove-engine.mjs": "bdce76001f86d680aab60d3e51857aa10eea5b2ebb22ba181dce9b02eeb68642",
+      "scripts/prove-examples.mjs": "f7357a1f96a9f58fb06e3ad49ad90fded4f4d9b8c494220137af804d5f837a0d",
+      "scripts/prove-timing.mjs": "87e5fcd3e7856ea800992deaaef3eb34d9140ecc6636c83f7d9b96d698b2b911",
+      "scripts/reference-environment.mjs": "c9d634a6989118bd2307d83f2a406b0d6f1ccd927c2536c34032120a8c0b2940",
+      "scripts/release-docs.mjs": "c20ac14224d9d67b39c4e59aa9137fc7bea4b18bf6cd794abafaf8a9d64388da",
+      "scripts/vendor-engine.py": "e90ae8dde12dfb2d7657da24253a41f34f993530fc252f31fc4f58533ebcda19",
+      "scripts/verify-browser-evidence.mjs": "268880d8b398af58f0adb4bd416014fcf0114cdab7c7c67157182c83863cbd99",
+      "scripts/verify-logic-io-evidence.mjs": "c6ebaacaa6e5141d144dc778e7b1ffca1feb4b07393967af2ce940263bb26b1f",
+      "src/app.js": "b1531fb1f854e20cbe46f2ab4df6c4262fe201b44aaa18fea2ff66ed6405782d",
+      "src/continuous-evidence.js": "af8cb5b91bb3dc90f03943b9dd97ca8f5bf489a2b755cc729612c48e05aad9c5",
+      "src/continuous.js": "568641071461a8dbc57b1224a5443f86b514d1b4c443243ed24cdafd4061897c",
+      "src/coordinated-digital.js": "6e73b4b7b982b2e3f807e23e96d62f25cee916341762e0da8ae41c32bf2d23d5",
+      "src/coordinated-engine.js": "94348c12e8fd3d4706f3b2e57ef35bb82d2123251d471fb43486af0e25a5d55f",
+      "src/coordinated-results.js": "e89ec29eb0f0517b1fa40be565173323af5e9223a88c667c983e83e93c568655",
+      "src/coordinated-worker.js": "f52d3702cb5cc81d42a639146ab1dac6367030289334c115932f90dddb5312b8",
+      "src/coordinated.js": "12d2ded7ca0d500718c567ea212827918fae423bcc9179c85c5cb28fc3429b6a",
+      "src/digital-engine.js": "86f2b39466f8784ee9311db7633af299f2d99bf6a82a45dabef56ed33e227089",
+      "src/digital-worker.js": "1283b1b8de76c941301562abeac1a5bbc287eb9481d4b569504520325d5a5d10",
+      "src/digital.js": "ab9e81e869af307fab57967fe9aa80e484213c6d96479d9b77e0e63e1271ba36",
+      "src/displays.js": "4f67bb130f6af75844555d2372ce3e888cf16241bf9ac48853dc99ea292f0f9d",
+      "src/editor.js": "16e1343c5f8ca81066205a0f66715fe1b2efe9891a24f37d1839d7c9514ac18e",
+      "src/engine-worker.js": "1ba0fabfc4a35b98891869cc989c38bd800157b28f4321edabbe115073018ea3",
+      "src/engine.js": "a6e50bebb2ed8572633605c6ea286ea3e71390651f21b645f47b5730367624fd",
+      "src/examples-coordinated.js": "e28cf43aca9d85e7380e69c139aa566b5c4eb2570fbd4f953e5697a6c9b09e82",
+      "src/examples-displays.js": "e7c5ebefbfc0ea23e8fa1c730fbb8301c62663e1c3ed7955fd5e94cce4f581d5",
+      "src/examples-logic-io.js": "7e0c3d2e359cdf322a97b138f6726c7098265e9465b36b4e712cca78c09c401e",
+      "src/examples.js": "a05a0049627ee20a21e42b8a0512d925ff470c3f7f25288aab5e7e76384ddc03",
+      "src/experiments-ui.js": "680695e49a319a005bbbfa93bd910b36cd497e823a3d1bb761df3b5b209e795c",
+      "src/experiments.js": "dc2314da3aa6bf0202345f2af4e8bb973ba230ada0e936d445b94ad2cbf043c1",
+      "src/installation-check.js": "699f53bed1523de87510336145b0f25a38b8df9603898cac9101cd6348f6947f",
+      "src/installation-ui.js": "ee8787f8408e6a894ce23b8cbe2b9e8c2d3a1477820d4dc1069a7b0aeae6dc4d",
+      "src/library.js": "ab341ea3d86c9f01c9994af087a109fdcf985591c4e5e1965d33c07fe58a3c65",
+      "src/logic-source-ui.js": "27e18744f83524b8080ef4c481c9822e1f4fca34a6f914e8746f0ddf875f1c39",
+      "src/model.js": "aecbae5815b4d8dfa017a3d0c8b40b536f7b06566e099b8970179bed4b33ac4e",
+      "src/netlist.js": "88f46730d8c0faa07601feb7edb2876eb3952b4abd4e3f7a57f364f7117345b4",
+      "src/plots.js": "2be5a841910fee0a466eb08ee241bcd7a82926ccdf8cbe626ed4325d7361e911",
+      "src/reports.js": "10a9f8b4364f53cfe975f6442c86cdec3edaf6b6ab859a345643f2d02d8dc1b6",
+      "src/simulation.js": "fdf48771ef20263a9b0086ebb6490fc21b6596bb5ee8aaae67523d022a74e1ff",
+      "src/storage.js": "4987c11bbf7a37ffb24feb77ccab410169cc0f282e3f00de32794301ae27d43e",
+      "src/symbols.js": "e01586b22957df4f21797ba61a5769fc7e5563bf3c0e1e1b50c873a1964bd0ff",
+      "src/timing-evidence.js": "0fb5e73c2e5679fab7bfe969072dbc59df53e54c6eef6f31124e9f002bcfeb5e",
+      "src/timing-ui.js": "fc52cfbbdf76c336e0b133e0321504211b900c37cf66d9a61879d1b6d9a246e3",
+      "src/timing.js": "6b68bb2e175182eae949ed2623368632971d347d52c597bb2c65573f4647fb9c",
+      "src/truth-table-evidence.js": "81d891f186ed388f91692b2297ae7c8c9a18797509ac821edeb1c6d92c083feb",
+      "src/truth-table-ui.js": "5e46bd6c88df976015fe6bcf0f42569dd03d159b6ae280869ed7d56e146281e5",
+      "src/workbench-state.js": "198742e69aefaaa60b47dfeb534ed8c60bf1aa54ebde0258d55c338efa8df931",
+      "style.css": "408e82a9f6d496bc36ab498dcf1c5f7599c5c03944647773aca8d71a163acbc9"
+    },
+    "note": "These are current source hashes at assembly. Every final test-file hash matches its recorded execution. Eight actual application-handler consumers were rerun after app.js changed. The initial sweep did not record a separate full dependency hash map for each suite."
+  },
+  "builtArtifactContext": {
+    "versionAtAssembly": "2.0.0-rc.3",
+    "runtimeBuildAtAssembly": "8a99d6d843d32aa6",
+    "initialOfflineTestHeader": "LOGIC-LEVEL OFFLINE VERIFICATION ONLY. No browser service-worker or disconnected-network reload is claimed.",
+    "note": "The generated service-worker suite records its own built-artifact identity in its transcript. Final release packaging and exact-host/offline browser acceptance remain separate gates."
+  },
+  "nativeReferenceEnvironment": {
+    "record": "evidence/rc203-native-reference-environment.json",
+    "sha256": "6a550efbd893cb3139f141541174bf48371bd66226712048b62e34fd566483f1",
+    "status": "ready",
+    "note": "Exact copy of the prepared native reference environment receipt. This receipt is not itself a new numerical comparison."
+  }
+}

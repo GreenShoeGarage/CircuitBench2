@@ -1,0 +1,23 @@
+✔ the setup measures its captured run even after the active run and working revision change (61.305683ms)
+✔ an invalid window does not append evidence or autosave and keeps the draft open (6.731722ms)
+✔ the real kind-change handler reads pulse settings and saves a separate immutable record (13.742728ms)
+✔ saved-history buttons open the chosen record and the selected run reuses its latest setup (14.689011ms)
+✔ removing the full source run keeps timing history, CSV and standalone evidence usable (11.308443ms)
+✔ View pair selects the original run, exact cursors and one trace per selected vector (13.517046ms)
+✔ a bus-bit pair opens its full word lane and does not fabricate a new scalar trace (15.273941ms)
+✔ View pair safely ignores missing source runs, unknown rows and incomplete endpoints (10.788042ms)
+✔ timing-only project content requires backup confirmation and Cancel preserves it (10.557095ms)
+✔ backup export and actual import preserve evidence and record restoration separately (29.312299ms)
+✔ envelopes own deep copies and project replacement clears only the departing history (7.779875ms)
+✔ Duplicate project starts new evidence history while a previously exported backup keeps its measurements (7.701436ms)
+✔ Remove measurement changes timing history without mutating its source run (10.770011ms)
+✔ report generation passes all saved timing records even when their source runs are absent (7.944785ms)
+✔ the thirteenth measurement is saved and the oldest record removal is disclosed (67.686539ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 301.519567

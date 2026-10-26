@@ -1,12 +1,13 @@
 import {getPart,parseValue,parsePWL,MODELS,DIGITAL_TYPES,GATE_TYPES,BUS_TYPES,SEQUENTIAL_TYPES,getPins,parseLogicWord,parsePattern,parseTruthTable} from './library.js';
-export const VERSION='2.0.0-rc.1';
+import {validateMeasurementPresets} from './measurement-evidence.js';
+export const VERSION='2.2.0';
 export const SCHEMA_VERSION=1;
 export const LIMITS={components:300,connections:1600,junctions:600,labels:600,annotations:300,probes:100,jsonBytes:256*1024*1024};
 export const clone=value=>structuredClone(value);
 export function uid(prefix='id'){return `${prefix}_${globalThis.crypto?.randomUUID?.()||`${Date.now().toString(36)}_${Math.random().toString(36).slice(2)}`}`;}
 export function newProject(title='Untitled circuit'){
  const now=new Date().toISOString();
- return {schemaVersion:SCHEMA_VERSION,appVersion:VERSION,id:uid('project'),title,revision:0,createdAt:now,updatedAt:now,question:'',notes:'',assumptions:[],circuit:{components:[],connections:[],junctions:[],labels:[]},layout:{components:{},wires:{},junctions:{},annotations:[]},analysis:{type:'ac',solver:'ngspice',start:'1',stop:'100k',points:60,step:'10u',duration:'10m',source:'V1',sweepStart:'0',sweepStop:'10',sweepStep:'0.1',temperature:27,reltol:'1e-4',uic:false},probes:[],workspace:'schematic',netlistText:''};
+ return {schemaVersion:SCHEMA_VERSION,appVersion:VERSION,id:uid('project'),title,revision:0,createdAt:now,updatedAt:now,question:'',notes:'',assumptions:[],circuit:{components:[],connections:[],junctions:[],labels:[]},layout:{components:{},wires:{},junctions:{},annotations:[]},analysis:{type:'ac',solver:'ngspice',start:'1',stop:'100k',points:60,step:'10u',duration:'10m',source:'V1',sweepStart:'0',sweepStop:'10',sweepStep:'0.1',temperature:27,reltol:'1e-4',uic:false},probes:[],workspace:'schematic',netlistText:'',workbench:{pinnedSources:[],momentarySources:[]},measurementPresets:[]};
 }
 const validId=id=>typeof id==='string'&&/^[A-Za-z][A-Za-z0-9_-]{0,95}$/.test(id)&&!['__proto__','constructor','prototype'].includes(id);
 const assert=(v,msg)=>{if(!v)throw new Error(msg);};
@@ -36,7 +37,15 @@ export function validateProject(input){
  for(const key of ['start','stop','step','duration','source','sweepStart','sweepStop','sweepStep','reltol']){if(key in a)p.analysis[key]=text(String(a[key]),100,`Analysis ${key}`);}
  p.analysis.points=finite(Number(a.points??60),'AC points per decade',1,1000);assert(Number.isInteger(p.analysis.points),'AC points per decade must be an integer.');p.analysis.temperature=finite(Number(a.temperature??27),'Temperature',-100,200);p.analysis.uic=!!a.uic;
  p.probes=array(input.probes??[],LIMITS.probes,'Probes').map(q=>{const id=uniqueId(q.id,ids,'probe');assert(['voltage','differential','current','logic'].includes(q.kind),'Unsupported measurement kind.');const r={id,kind:q.kind,label:text(q.label??q.kind,100,'Probe label')};if(q.kind==='current'){const ci=q.componentId??q.a;assert(p.circuit.components.some(c=>c.id===ci),'Current probe refers to a missing component.');r.componentId=ci;r.a=ci;}else{r.a=endpoint(q.a);r.b=q.kind==='differential'?endpoint(q.b):null;}return r;});
- p.workspace=input.workspace??'schematic';assert(['schematic','netlist'].includes(p.workspace),'Unsupported workspace.');p.netlistText=text(input.netlistText??'',200000,'SPICE netlist');return p;
+ p.workspace=input.workspace??'schematic';assert(['schematic','netlist'].includes(p.workspace),'Unsupported workspace.');p.netlistText=text(input.netlistText??'',200000,'SPICE netlist');p.workbench=validateWorkbench(input.workbench,p);p.measurementPresets=validateMeasurementPresets(input.measurementPresets);return p;
+}
+/** Drawing preferences never change the electrical initial conditions. Missing or
+ * no-longer-controllable components are pruned when a project is restored. */
+export function validateWorkbench(input,project){
+ const value=input===undefined?{}:object(input,'Workbench preferences must be an object.');
+ const controls=new Map(project.circuit.components.filter(c=>['DIN','DVS','BUSIN'].includes(c.type)||['V','I'].includes(c.type)&&c.params.waveform==='dc').map(c=>[c.id,c]));
+ const clean=(key,max,momentary=false)=>{const seen=new Set();return array(value[key]??[],max,`Workbench ${key}`).filter(id=>{assert(validId(id)&&!seen.has(id),'Workbench source identifiers must be valid and unique.');seen.add(id);const c=controls.get(id);return c&&(!momentary||['DVS','DIN'].includes(c.type));});};
+ return{pinnedSources:clean('pinnedSources',32),momentarySources:clean('momentarySources',300,true)};
 }
 export function serializeProject(project){return JSON.stringify(validateProject(project),null,2);}
 export function parseProject(json){assert(typeof json==='string'&&json.length<=LIMITS.jsonBytes,'Project file is too large.');let input;try{input=JSON.parse(json);}catch{throw new Error('This is not valid JSON. Choose a CircuitBench .circuitbench.json project file.');}return validateProject(input.project??input);}
@@ -47,18 +56,20 @@ export function setComponentParams(project,id,changes){
  object(changes,'Parameter changes must be an object.');const proposed={...component,params:{...component.params,...changes}},known=new Set(getPart(component.type).params.map(p=>p.key));
  for(const key of Object.keys(changes))if(!known.has(key))throw new Error(`${component.ref}: unknown parameter ${key}.`);
  proposed.params=validateParams(proposed);const originalPins=getPins(component),proposedPins=getPins(proposed),widthChanged=proposedPins.some(pin=>pin.width!==originalPins.find(p=>p.id===pin.id)?.width);
+ const retainedPins=new Set(proposedPins.map(pin=>pin.id)),removedEndpoints=new Set(originalPins.filter(pin=>!retainedPins.has(pin.id)).map(pin=>`${id}:${pin.id}`));
+ if(removedEndpoints.size&&(project.circuit.connections.some(w=>removedEndpoints.has(w.a)||removedEndpoints.has(w.b))||project.circuit.labels.some(l=>removedEndpoints.has(l.target))||project.probes.some(q=>removedEndpoints.has(q.a)||removedEndpoints.has(q.b))))throw new Error(`${component.ref}: disconnect voltage terminals and remove their labels/probes before disabling the voltage output. Existing connections were preserved.`);
  const trial={...project,circuit:{...project.circuit,components:project.circuit.components.map(c=>c.id===id?proposed:c)}},net=buildNets(trial);
  const conflict=net.nets.find(n=>n.widthConflict&&n.endpoints.some(e=>e.startsWith(id+':')));
  if(widthChanged&&conflict)throw new Error(`${component.ref}: the requested width conflicts with connected net ${conflict.name}. Disconnect or resize the other ports explicitly before changing this width.`);
  if(proposed.type==='SLICE'){const lsb=Number(proposed.params.lsb),count=Number(proposed.params.count),width=Number(proposed.params.width);if(!Number.isInteger(lsb)||lsb<0||lsb+count>width)throw new Error(`${component.ref}: slice first bit plus count must fit its input width.`);}
- component.params=proposed.params;return component;
+ component.params=proposed.params;if(project.workbench)project.workbench=validateWorkbench(project.workbench,project);return component;
 }
 export function endpointPosition(project,endpoint){if(endpoint?.startsWith('j:'))return project.layout.junctions[endpoint.slice(2)]??null;const [id,pin]=String(endpoint).split(':');const c=project.circuit.components.find(c=>c.id===id),l=project.layout.components[id];if(!c||!l)return null;const p=getPins(c).find(p=>p.id===pin);if(!p)return null;const angle=(l.rotation||0)*Math.PI/180,x=(l.mirror?-1:1)*p.x,y=p.y;return {x:l.x+Math.round(x*Math.cos(angle)-y*Math.sin(angle)),y:l.y+Math.round(x*Math.sin(angle)+y*Math.cos(angle))};}
 export function removeItems(p,ids){
  const set=new Set(ids);const removedEndpoints=new Set(p.circuit.components.filter(c=>set.has(c.id)).flatMap(c=>getPins(c).map(pin=>`${c.id}:${pin.id}`)));for(const j of p.circuit.junctions)if(set.has(j.id))removedEndpoints.add(`j:${j.id}`);
  p.circuit.components=p.circuit.components.filter(c=>{if(set.has(c.id)){delete p.layout.components[c.id];return false;}return true;});p.circuit.junctions=p.circuit.junctions.filter(j=>{if(set.has(j.id)){delete p.layout.junctions[j.id];return false;}return true;});
  p.circuit.connections=p.circuit.connections.filter(w=>{if(set.has(w.id)||removedEndpoints.has(w.a)||removedEndpoints.has(w.b)){delete p.layout.wires[w.id];return false;}return true;});
- p.circuit.labels=p.circuit.labels.filter(l=>!set.has(l.id)&&!removedEndpoints.has(l.target));p.layout.annotations=p.layout.annotations.filter(a=>!set.has(a.id));p.probes=p.probes.filter(q=>!set.has(q.id)&&!set.has(q.componentId??q.a)&&!removedEndpoints.has(q.a)&&!removedEndpoints.has(q.b));
+ p.circuit.labels=p.circuit.labels.filter(l=>!set.has(l.id)&&!removedEndpoints.has(l.target));p.layout.annotations=p.layout.annotations.filter(a=>!set.has(a.id));p.probes=p.probes.filter(q=>!set.has(q.id)&&!set.has(q.componentId??q.a)&&!removedEndpoints.has(q.a)&&!removedEndpoints.has(q.b));if(p.workbench)p.workbench=validateWorkbench(p.workbench,p);
 }
 export function duplicateItems(p,ids,offset=40){
  const selected=new Set(ids),map=new Map(),newIds=[],endpointMap=new Map();const old=clone(p);
@@ -147,11 +158,11 @@ function checkDigital(p,net,out){
   if(c.type==='LUT')parseTruthTable(c.params.table,width('in'),width('out'));
   if(c.type==='PATTERN'){const events=parsePattern(c.params.pattern,width('out')),repeat=n('repeat','s'),last=events.at(-1).time;if(repeat<0||!safeTime(repeat)||repeat>0&&Math.round(repeat/1e-12)<=Math.round(last/1e-12))error(`${c.ref}: repeat period must be zero (once) or later than the last pattern event on the safe 1 ps grid.`,c.id);const copies=repeat>0?Math.ceil(duration/repeat)+1:1;edges+=events.length*copies*width('out');}
   if(c.type==='SLICE'&&!/^\d+$/.test(String(c.params.lsb)))error(`${c.ref}: slice first bit must be a nonnegative integer.`,c.id);
-  if(['ADC','DAC','DACBUS'].includes(c.type)){if(!(n('high','V')>n('low','V')))error(`${c.ref}: high threshold/output must be greater than low.`,c.id);}
+  if(['ADC','DAC','DACBUS'].includes(c.type)||c.type==='DVS'&&c.params.outputMode==='logic-voltage'){if(!(n('high','V')>n('low','V')))error(`${c.ref}: high threshold/output must be greater than low.`,c.id);}
   if(c.type==='ADCBUS'){if(!(n('vmax','V')>n('vmin','V')))error(`${c.ref}: full-scale voltage must be greater than zero-code voltage.`,c.id);for(const key of ['period','delay']){const time=n(key,'s');if(time<1e-12||!safeTime(time))error(`${c.ref}: ${key} must be at least 1 ps on the safe time grid.`,c.id);}if(Math.round(n('delay','s')/1e-12)>=Math.round(n('period','s')/1e-12))error(`${c.ref}: conversion delay must be shorter than sample period on the 1 ps time grid.`,c.id);}
   if(c.type==='DACBUS'){const word=parseLogicWord(c.params.initial,width('d'),{allowZ:false});if(word.includes('X'))error(`${c.ref}: startup code must be a known binary word.`,c.id);}
   if(['ADCBUS','DACBUS'].includes(c.type)&&p.analysis.solver!=='coordinated')error(`${c.ref}: multibit converters require the Coordinated transient solver.`,c.id,'COORDINATED_REQUIRED');
-  if(['DAC','DACBUS'].includes(c.type)){for(const key of ['rise','fall']){const time=n(key,'s');if(time<1e-12||!safeTime(time))error(`${c.ref}: ${key} time must be at least 1 ps and fit the safe 1 ps timeline.`,c.id);}if(net.endpointToNet[`${c.id}:${c.type==='DACBUS'?'p':'out'}`]===net.endpointToNet[`${c.id}:${c.type==='DACBUS'?'n':'ref'}`])error(`${c.ref}: the analog output is shorted to its reference.`,c.id);}
+  if(['DAC','DACBUS'].includes(c.type)||c.type==='DVS'&&c.params.outputMode==='logic-voltage'){for(const key of ['rise','fall']){const time=n(key,'s');if(time<1e-12||!safeTime(time))error(`${c.ref}: ${key} time must be at least 1 ps and fit the safe 1 ps timeline.`,c.id);}const pair=['DACBUS','DVS'].includes(c.type)?['p','n']:['out','ref'];if(net.endpointToNet[`${c.id}:${pair[0]}`]===net.endpointToNet[`${c.id}:${pair[1]}`])error(`${c.ref}: the analog output is shorted to its reference.`,c.id);}
   if(!['SLICE','JOIN','DAC','DACBUS'].includes(c.type))elements+=pins.filter(pin=>pin.direction==='output'&&pin.domain==='digital').reduce((sum,pin)=>sum+pin.width,0);
  }catch(e){error(`${c.ref}: ${e.message}`,c.id);}}
  if(edges*(elements+1)>200000)error('Estimated digital pattern/clock and gate events exceed the 200,000-event budget. Shorten the run, slow sources, or reduce the circuit.');
@@ -159,17 +170,17 @@ function checkDigital(p,net,out){
  const digital=buildDigitalNets(p,net);out.push(...digital.diagnostics);if(digital.bits.length>255)error('Digital runs support at most 255 distinct scalar bit nets after slice/join expansion.');
  for(const bit of digital.bits){if(bit.inputs.length&&!bit.drivers.length)error(`Digital bit net ${bit.name} has no driver. Connect a logic input, pattern, clock, gate output, or ADC; use explicit X/Z inputs when uncertainty is intentional.`);if(bit.drivers.length>1)warning(`Digital bit net ${bit.name} has ${bit.drivers.length} drivers. Opposing active values resolve to X; released outputs resolve to Z.`);}
  const graph=new Map(digital.bits.map(bit=>[bit.name,new Set()]));
- for(const c of parts){if(SEQUENTIAL_TYPES.includes(c.type)||['DIN','BUSIN','CLOCK','PATTERN','SLICE','JOIN','ADC','DAC','ADCBUS','DACBUS'].includes(c.type))continue;const pins=getPins(c),bits=pin=>digital.endpointBits[`${c.id}:${pin}`]??[];
+ for(const c of parts){if(SEQUENTIAL_TYPES.includes(c.type)||['DIN','DVS','BUSIN','CLOCK','PATTERN','SLICE','JOIN','ADC','DAC','ADCBUS','DACBUS'].includes(c.type))continue;const pins=getPins(c),bits=pin=>digital.endpointBits[`${c.id}:${pin}`]??[];
   if(c.type==='MUX'){for(const[i,output]of bits('out').entries())for(const input of[bits('a')[i],bits('b')[i],bits('sel')[0]])graph.get(input)?.add(output);}
   else{const inputs=pins.filter(pin=>pin.direction==='input').flatMap(pin=>bits(pin.id)),outputs=pins.filter(pin=>pin.direction==='output').flatMap(pin=>bits(pin.id));for(const input of inputs)for(const output of outputs)graph.get(input)?.add(output);}
  }
  const active=new Set(),done=new Set();function cycle(node){if(active.has(node))return true;if(done.has(node))return false;active.add(node);for(const next of graph.get(node)??[])if(cycle(next))return true;active.delete(node);done.add(node);return false;}
  if([...graph.keys()].some(cycle))error('Combinational digital feedback is unsupported. Break the cycle with a flip-flop or register; propagation delay alone is not a state element.',undefined,'DIGITAL_COMBINATIONAL_CYCLE');
  const dependencies=analogDependencies(p,net),adcs=parts.filter(c=>['ADC','ADCBUS'].includes(c.type));
- for(const dac of parts.filter(c=>['DAC','DACBUS'].includes(c.type))){const reached=new Set(),todo=(dac.type==='DACBUS'?['p','n']:['out','ref']).map(pin=>net.endpointToNet[`${dac.id}:${pin}`]).filter(n=>n&&n!=='0');while(todo.length){const n=todo.pop();if(reached.has(n))continue;reached.add(n);for(const other of dependencies.get(n)??[])todo.push(other);}for(const adc of adcs)if(p.analysis.solver!=='coordinated'&&(adc.type==='ADCBUS'?['p','n']:['in','ref']).some(pin=>reached.has(net.endpointToNet[`${adc.id}:${pin}`])))error(`${dac.ref} can influence ${adc.ref} through the analog circuit. Select Coordinated transient for this closed-loop circuit. The ngspice replay mode requires independent analog input and output paths.`,dac.id,'MIXED_ANALOG_FEEDBACK');}
- if(adcs.length&&!p.circuit.components.some(c=>['DAC','DACBUS'].includes(c.type)||getPart(c.type).domain==='analog'&&c.type!=='GND'))error('An ADC requires an actual analog input circuit, not only ground symbols.');
+ for(const dac of parts.filter(c=>['DAC','DACBUS'].includes(c.type)||c.type==='DVS'&&c.params.outputMode==='logic-voltage')){const reached=new Set(),todo=(['DACBUS','DVS'].includes(dac.type)?['p','n']:['out','ref']).map(pin=>net.endpointToNet[`${dac.id}:${pin}`]).filter(n=>n&&n!=='0');while(todo.length){const n=todo.pop();if(reached.has(n))continue;reached.add(n);for(const other of dependencies.get(n)??[])todo.push(other);}for(const adc of adcs)if(p.analysis.solver!=='coordinated'&&(adc.type==='ADCBUS'?['p','n']:['in','ref']).some(pin=>reached.has(net.endpointToNet[`${adc.id}:${pin}`])))error(`${dac.ref} can influence ${adc.ref} through the analog circuit. Select Coordinated transient for this closed-loop circuit. The ngspice replay mode requires independent analog input and output paths.`,dac.id,'MIXED_ANALOG_FEEDBACK');}
+ if(adcs.length&&!p.circuit.components.some(c=>['DAC','DACBUS'].includes(c.type)||c.type==='DVS'&&c.params.outputMode==='logic-voltage'||getPart(c.type).domain==='analog'&&c.type!=='GND'))error('An ADC requires an actual analog input circuit, not only ground symbols.');
  out.push({severity:'info',message:'Native digital simulation uses 0/1/X/Z states, transport delays and 1 ps resolution. Bus bit 0 is least significant; displayed words are MSB first. Initial settling is not a clock edge; setup/hold and analog metastability are not modeled.'});
- if(p.analysis.solver!=='coordinated'&&parts.some(c=>['ADC','DAC'].includes(c.type)))out.push({severity:'warning',message:'Mixed simulation uses bounded analog-input → digital → analog-output replay. ADC crossing times are interpolated from actual analog samples. DAC output must remain known 0/1; unresolved X/Z stops replay. Reduce the analog maximum step to improve crossing-time resolution.'});
+ if(p.analysis.solver!=='coordinated'&&parts.some(c=>['ADC','DAC'].includes(c.type)||c.type==='DVS'&&c.params.outputMode==='logic-voltage'))out.push({severity:'warning',message:'Mixed simulation uses bounded analog-input → digital → analog-output replay. ADC crossing times are interpolated from actual analog samples. DAC output must remain known 0/1; unresolved X/Z stops replay. Reduce the analog maximum step to improve crossing-time resolution.'});
 }
 export function checkCircuit(p){
  if(p.workspace==='netlist')return p.analysis.solver==='coordinated'?[{severity:'error',message:'Coordinated transient requires a schematic. Use ngspice for imported SPICE.'}]:[];

@@ -1,0 +1,63 @@
+✔ human SI values distinguish mega from milli and femto from farad (2.519545ms)
+✔ PWL validates positive ordered time pairs (1.113961ms)
+✔ blank project is actually blank and cannot simulate silently (6.227135ms)
+✔ crossing geometric wires remain electrically separate (0.999425ms)
+✔ explicit shared junction joins crossing wires (0.624238ms)
+✔ all ground symbols join node zero (0.59446ms)
+✔ equal net labels connect explicitly, different labels stay distinct (0.468959ms)
+✔ move, rotate, and mirror never change electrical connectivity (1.148936ms)
+✔ project round trip preserves topology, parameters, analysis, probes and layout (51.811058ms)
+✔ validateProject rejects future schemas and invalid references with original preserved (1.298798ms)
+✔ validateProject rejects duplicate IDs, nonfinite geometry and unsupported component types (0.762456ms)
+✔ delete component removes attached wires, labels and probes without orphan endpoints (0.621364ms)
+✔ duplicate components assign new IDs and references and only internal wires (0.757533ms)
+✔ duplicated same-name labels preserve their internal net without joining original (0.421734ms)
+✔ undo-style immutable snapshot restores electrical and drawing state together (2.859246ms)
+✔ missing ground, model, invalid value and floating island are clear errors (2.631449ms)
+✔ netlist emits normalized numeric values and selected current/differential measurements (1.17059ms)
+✔ all bundled component model definitions have redistributable provenance and exercised fixtures (4.049582ms)
+✖ all worked examples preserve their actual execution and import boundary (45.051559ms)
+✔ SPICE suffixes follow SPICE M=milli; human editor M=mega (0.192901ms)
+✔ netlist import rejects commands, file access, behavioral source injection and unsupported dialects (0.929553ms)
+✔ arbitrary model substitutions fail and exact bundled model roundtrips work (0.352212ms)
+✔ imported project keeps separate netlist workspace and UI analysis settings (0.514136ms)
+✔ analysis limits reject huge sweeps, wrong step directions and impossible frequency range (0.281071ms)
+✔ per-run sample budget considers both number of nodes and step count (3.849909ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 24
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 140.926485
+
+✖ failing tests:
+
+test at tests/core.test.mjs:32:1
+✖ all worked examples preserve their actual execution and import boundary (45.051559ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      analog: 16,
+  +   digital: 16,
+  +   mixed: 9
+  -   digital: 14,
+  -   mixed: 8
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/141bc601d3b6/circuitbench/tests/core.test.mjs:32:1285)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

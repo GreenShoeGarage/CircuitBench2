@@ -1,0 +1,22 @@
+✔ logic indicator is a scalar passive input with versioned educational provenance (9.961047ms)
+✔ red high and dark low come from simulated values, with distinct unknown and high impedance (8.490676ms)
+✔ a high driver opposed by a low driver resolves to unknown without red glow (1.062264ms)
+✔ scalar indicators reject direct analog pins and unselected bus words (0.486046ms)
+✔ bus slice aliases use the canonical resolved scalar trace even with different net names (2.10522ms)
+✔ selected-time readback follows exact sparse events and is right-continuous (1.766892ms)
+✔ missing, stale and failed runs stay neutral instead of displaying a false low or high (1.136133ms)
+✔ malformed scalar event evidence cannot light an indicator (1.291481ms)
+✔ contradictory scalar metadata and invalid time axes stay unavailable (1.447151ms)
+✔ continuous input changes update the actual lamp and retained-window cursor readings (5.411187ms)
+✔ indicator models and resolved results survive a portable project backup (3.180904ms)
+✔ schematic, result card and standalone SVG retain red high state and accessible text (3.067967ms)
+✔ seven-segment and scalar indicators share the result area without misrendering their widths (1.818418ms)
+✔ digital source artwork only exposes analog terminals in enabled voltage mode (0.12929ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 54.551867

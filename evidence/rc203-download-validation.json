@@ -1,0 +1,1006 @@
+{
+  "format": "CircuitBench rc.3 actual-download audit",
+  "formatVersion": 1,
+  "version": "2.0.0-rc.3",
+  "verifiedAt": "2026-10-25T02:35:08.873Z",
+  "hashesFinalized": true,
+  "status": "passed",
+  "scope": "Read-only structural and arithmetic audit of the actual downloaded installation diagnostic, project backup and selected-run CSV. Uses production backup validation and indicator readback, repeated JSON/import round trips, independent reconstruction of the source/inverter states, and exact CSV comparison. No simulator is run. This audit does not establish the browser actions, CSS appearance, offline/upgrade behavior, general physical accuracy, SVG delivery, HTML-report delivery or native print/PDF.",
+  "limitations": [
+    "The installation diagnostic explicitly reports a failed icon response: the preview declared 1655 bytes for a 443-byte SVG. Its failed status is preserved. The separate browser record attributes the change to live-server injection; this file-only audit does not inspect the injected response body.",
+    "The preview is insecure HTTP. SHA-256 and the Service Worker API were unavailable there; the downloaded diagnostic makes no exact runtime-byte or offline-installation claim.",
+    "Backup appVersion and projectSnapshot.appVersion describe saved project metadata. They do not identify the runtime build that executed a run. The backup does not embed a runtime application build hash.",
+    "Three runs are marked as imported history. Four are not marked imported; the separate operator record identifies two intermediate rc.3-build captures and two final-build captures. These build assignments are not inferred from snapshot versions.",
+    "Actual SVG and HTML report downloads did not complete in the recorded browser workflow. The HTML report preview rendered, but no downloadable SVG/HTML/PDF file is claimed by this audit."
+  ],
+  "artifacts": [
+    {
+      "file": "evidence/rc203-installation-browser.json",
+      "bytes": 24644,
+      "sha256": "6aceedc22f52d405021e90ec3d572d60c465cc4db332aede90d783db1a5ebdd4"
+    },
+    {
+      "file": "evidence/rc203-browser-project.json",
+      "bytes": 223370,
+      "sha256": "072c5fa3a130223bd66615c03689e7f944cbcf3c27e57755623ddea57aecca3f"
+    },
+    {
+      "file": "evidence/rc203-browser-results.csv",
+      "bytes": 141,
+      "sha256": "b6224e0515e90a19e24ce39b86b813111e88ce04187305a17ae12a3b6f22c760"
+    }
+  ],
+  "checks": [
+    {
+      "name": "Diagnostic: exact format, release and reported capture build",
+      "passed": true,
+      "details": {
+        "version": "2.0.0-rc.3",
+        "loadedBuild": "8a99d6d843d32aa6",
+        "manifestBuild": "8a99d6d843d32aa6"
+      }
+    },
+    {
+      "name": "Diagnostic: finite bounded completion time",
+      "passed": true,
+      "details": {
+        "durationMs": 699
+      }
+    },
+    {
+      "name": "Diagnostic: observed insecure preview capability limits remain explicit",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Diagnostic: bounded unique check inventory and literal statuses",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Diagnostic: aggregate counts independently agree with every check",
+      "passed": true,
+      "details": {
+        "passed": 5,
+        "failed": 1,
+        "unavailable": 44
+      }
+    },
+    {
+      "name": "Diagnostic: the preview icon failure is preserved instead of relabeled successful",
+      "passed": true,
+      "details": {
+        "check": {
+          "id": "asset:icon.svg",
+          "label": "icon.svg",
+          "status": "failed",
+          "message": "Response declares 1655 bytes; the permitted maximum is 443. HTTP 200; Content-Type image/svg+xml.",
+          "code": "INSTALLATION_RESPONSE_SIZE",
+          "assetUrl": "http://terminal.local:4173/icon.svg",
+          "httpStatus": 200,
+          "contentType": "image/svg+xml",
+          "expectedBytes": 443,
+          "declaredBytes": "1655",
+          "contentEncoding": null
+        },
+        "interpretation": "Declared oversize was rejected before a decoded body length was recorded."
+      }
+    },
+    {
+      "name": "Diagnostic: asset observations stay in the application scope and have bounded byte fields",
+      "passed": true,
+      "details": {
+        "assetChecks": 44
+      }
+    },
+    {
+      "name": "Diagnostic: insecure asset observations do not claim SHA matches",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Diagnostic: manifest inventory count and bounded advertised size are consistent",
+      "passed": true,
+      "details": {
+        "files": 44,
+        "declaredBytes": 6997593
+      }
+    },
+    {
+      "name": "Diagnostic: all three execution paths report passing independent smoke circuits",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Diagnostic: digital source/inverter and analog-divider observations are internally consistent",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Diagnostic: coordinated smoke retains finite bounded observations through 4 ms",
+      "passed": true,
+      "details": {
+        "fixture": "Schmitt RC feedback across two retained updates",
+        "completedTime": 0.004,
+        "boundaryVoltage": 1.5969113854651653,
+        "finalVoltage": 2.2153220288065647,
+        "engine": "cb-coordinated-1"
+      }
+    },
+    {
+      "name": "Diagnostic: no project/circuit/result payload fields are present",
+      "passed": true,
+      "details": {
+        "forbiddenKeys": []
+      }
+    },
+    {
+      "name": "Backup: rc.3 portable envelope passes production import with all seven runs",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Backup: all run IDs and the selected-run identity survive import",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Backup: JSON/import round trip 1 is unchanged",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Backup: JSON/import round trip 2 is unchanged",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Backup: JSON/import round trip 3 is unchanged",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Diagnostic: no working project title or identifiers appear in the diagnostic JSON",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Backup: three imported rc.2 runs remain distinct from four unmarked runs",
+      "passed": true,
+      "details": {
+        "importedRunIds": [
+          "run_mvn5gxne_dg9guaj559p",
+          "run_mvn5hrz6_mgiuor0batj",
+          "run_mvn5j31i_j4w6yf8oi8p"
+        ],
+        "notMarkedImportedRunIds": [
+          "run_mvn7eo6y_c791e9iw2zb",
+          "run_mvn7gre8_3db0vegn962",
+          "run_mvn7imid_uom750skwz",
+          "run_mvn7jxzj_n3u2b3bo2m"
+        ]
+      }
+    },
+    {
+      "name": "Backup: snapshot versions retain the observed mixture instead of being rewritten as execution provenance",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Backup: separate operator capture notes refer only to the four unmarked runs",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5gxne_dg9guaj559p: source/NOT/two-indicator topology and snapshot identity",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5gxne_dg9guaj559p: complete ordered samples and literal binary vectors",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5gxne_dg9guaj559p: all dense logic samples match independent source-history/NOT reconstruction",
+      "passed": true,
+      "details": {
+        "delaySeconds": 1e-8,
+        "samples": 2,
+        "appliedSourceChanges": 0
+      }
+    },
+    {
+      "name": "run_mvn5gxne_dg9guaj559p: every sparse event agrees with the same independent reconstruction",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5gxne_dg9guaj559p: indicator readbacks use recorded states and glow only for HIGH",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5gxne_dg9guaj559p: older revision cannot light the current working circuit",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5gxne_dg9guaj559p: stored input hashes match or insecure absence remains explicit",
+      "passed": true,
+      "details": {
+        "recordedHashes": [
+          {
+            "kind": "netlist",
+            "value": "unavailable-in-insecure-context"
+          },
+          {
+            "kind": "simulation",
+            "value": "unavailable-in-insecure-context"
+          }
+        ]
+      }
+    },
+    {
+      "name": "run_mvn5hrz6_mgiuor0batj: source/NOT/two-indicator topology and snapshot identity",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5hrz6_mgiuor0batj: complete ordered samples and literal binary vectors",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5hrz6_mgiuor0batj: all dense logic samples match independent source-history/NOT reconstruction",
+      "passed": true,
+      "details": {
+        "delaySeconds": 1e-8,
+        "samples": 2,
+        "appliedSourceChanges": 0
+      }
+    },
+    {
+      "name": "run_mvn5hrz6_mgiuor0batj: every sparse event agrees with the same independent reconstruction",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5hrz6_mgiuor0batj: indicator readbacks use recorded states and glow only for HIGH",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5hrz6_mgiuor0batj: older revision cannot light the current working circuit",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5hrz6_mgiuor0batj: stored input hashes match or insecure absence remains explicit",
+      "passed": true,
+      "details": {
+        "recordedHashes": [
+          {
+            "kind": "netlist",
+            "value": "unavailable-in-insecure-context"
+          },
+          {
+            "kind": "simulation",
+            "value": "unavailable-in-insecure-context"
+          }
+        ]
+      }
+    },
+    {
+      "name": "run_mvn5j31i_j4w6yf8oi8p: source/NOT/two-indicator topology and snapshot identity",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5j31i_j4w6yf8oi8p: complete ordered samples and literal binary vectors",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5j31i_j4w6yf8oi8p: all dense logic samples match independent source-history/NOT reconstruction",
+      "passed": true,
+      "details": {
+        "delaySeconds": 1e-8,
+        "samples": 23,
+        "appliedSourceChanges": 2
+      }
+    },
+    {
+      "name": "run_mvn5j31i_j4w6yf8oi8p: every sparse event agrees with the same independent reconstruction",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5j31i_j4w6yf8oi8p: indicator readbacks use recorded states and glow only for HIGH",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5j31i_j4w6yf8oi8p: older revision cannot light the current working circuit",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn5j31i_j4w6yf8oi8p: stored input hashes match or insecure absence remains explicit",
+      "passed": true,
+      "details": {
+        "recordedHashes": [
+          {
+            "kind": "netlist",
+            "value": "unavailable-in-insecure-context"
+          },
+          {
+            "kind": "simulation",
+            "value": "unavailable-in-insecure-context"
+          }
+        ]
+      }
+    },
+    {
+      "name": "run_mvn5j31i_j4w6yf8oi8p: retained window accounting is exact and stopped status is preserved",
+      "passed": true,
+      "details": {
+        "windowStart": 0.0155,
+        "currentTime": 0.017499999999999998,
+        "totalPoints": 178,
+        "droppedPoints": 155
+      }
+    },
+    {
+      "name": "run_mvn7eo6y_c791e9iw2zb: source/NOT/two-indicator topology and snapshot identity",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn7eo6y_c791e9iw2zb: complete ordered samples and literal binary vectors",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn7eo6y_c791e9iw2zb: all dense logic samples match independent source-history/NOT reconstruction",
+      "passed": true,
+      "details": {
+        "delaySeconds": 1e-8,
+        "samples": 21,
+        "appliedSourceChanges": 1
+      }
+    },
+    {
+      "name": "run_mvn7eo6y_c791e9iw2zb: every sparse event agrees with the same independent reconstruction",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn7eo6y_c791e9iw2zb: indicator readbacks use recorded states and glow only for HIGH",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn7eo6y_c791e9iw2zb: older revision cannot light the current working circuit",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn7eo6y_c791e9iw2zb: stored input hashes match or insecure absence remains explicit",
+      "passed": true,
+      "details": {
+        "recordedHashes": [
+          {
+            "kind": "netlist",
+            "value": "unavailable-in-insecure-context"
+          },
+          {
+            "kind": "simulation",
+            "value": "unavailable-in-insecure-context"
+          }
+        ]
+      }
+    },
+    {
+      "name": "run_mvn7eo6y_c791e9iw2zb: retained window accounting is exact and stopped status is preserved",
+      "passed": true,
+      "details": {
+        "windowStart": 0.0081,
+        "currentTime": 0.0101,
+        "totalPoints": 103,
+        "droppedPoints": 82
+      }
+    },
+    {
+      "name": "run_mvn7gre8_3db0vegn962: source/NOT/two-indicator topology and snapshot identity",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn7gre8_3db0vegn962: complete ordered samples and literal binary vectors",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn7gre8_3db0vegn962: all dense logic samples match independent source-history/NOT reconstruction",
+      "passed": true,
+      "details": {
+        "delaySeconds": 1e-8,
+        "samples": 2,
+        "appliedSourceChanges": 0
+      }
+    },
+    {
+      "name": "run_mvn7gre8_3db0vegn962: every sparse event agrees with the same independent reconstruction",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn7gre8_3db0vegn962: indicator readbacks use recorded states and glow only for HIGH",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn7gre8_3db0vegn962: older revision cannot light the current working circuit",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn7gre8_3db0vegn962: stored input hashes match or insecure absence remains explicit",
+      "passed": true,
+      "details": {
+        "recordedHashes": [
+          {
+            "kind": "netlist",
+            "value": "unavailable-in-insecure-context"
+          },
+          {
+            "kind": "simulation",
+            "value": "unavailable-in-insecure-context"
+          }
+        ]
+      }
+    },
+    {
+      "name": "run_mvn7imid_uom750skwz: source/NOT/two-indicator topology and snapshot identity",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn7imid_uom750skwz: complete ordered samples and literal binary vectors",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn7imid_uom750skwz: all dense logic samples match independent source-history/NOT reconstruction",
+      "passed": true,
+      "details": {
+        "delaySeconds": 1e-8,
+        "samples": 13,
+        "appliedSourceChanges": 0
+      }
+    },
+    {
+      "name": "run_mvn7imid_uom750skwz: every sparse event agrees with the same independent reconstruction",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn7imid_uom750skwz: indicator readbacks use recorded states and glow only for HIGH",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn7imid_uom750skwz: older revision cannot light the current working circuit",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn7imid_uom750skwz: stored input hashes match or insecure absence remains explicit",
+      "passed": true,
+      "details": {
+        "recordedHashes": [
+          {
+            "kind": "netlist",
+            "value": "unavailable-in-insecure-context"
+          },
+          {
+            "kind": "simulation",
+            "value": "unavailable-in-insecure-context"
+          }
+        ]
+      }
+    },
+    {
+      "name": "run_mvn7imid_uom750skwz: retained window accounting is exact and stopped status is preserved",
+      "passed": true,
+      "details": {
+        "windowStart": 0,
+        "currentTime": 0.0012,
+        "totalPoints": 13,
+        "droppedPoints": 0
+      }
+    },
+    {
+      "name": "run_mvn7jxzj_n3u2b3bo2m: source/NOT/two-indicator topology and snapshot identity",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn7jxzj_n3u2b3bo2m: complete ordered samples and literal binary vectors",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn7jxzj_n3u2b3bo2m: all dense logic samples match independent source-history/NOT reconstruction",
+      "passed": true,
+      "details": {
+        "delaySeconds": 1e-8,
+        "samples": 2,
+        "appliedSourceChanges": 0
+      }
+    },
+    {
+      "name": "run_mvn7jxzj_n3u2b3bo2m: every sparse event agrees with the same independent reconstruction",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn7jxzj_n3u2b3bo2m: indicator readbacks use recorded states and glow only for HIGH",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "run_mvn7jxzj_n3u2b3bo2m: stored input hashes match or insecure absence remains explicit",
+      "passed": true,
+      "details": {
+        "recordedHashes": [
+          {
+            "kind": "netlist",
+            "value": "unavailable-in-insecure-context"
+          },
+          {
+            "kind": "simulation",
+            "value": "unavailable-in-insecure-context"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Backup: selected bounded run exactly matches current rc.3 project revision 4",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Backup: selected run retains exactly 0–2 ms with HIGH/LOW indicators",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "Backup: recorded current-run lamps agree at both endpoints and an interior cursor time",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "CSV: actual download bytes equal the production exporter for the selected run",
+      "passed": true,
+      "details": {
+        "bytes": 141,
+        "runId": "run_mvn7jxzj_n3u2b3bo2m"
+      }
+    },
+    {
+      "name": "CSV: header independently maps the two raw nets and two selected probes",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "CSV: two rows contain the exact retained times and literal HIGH/LOW values",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "CSV: every data column independently equals its saved source vector",
+      "passed": true,
+      "details": {}
+    }
+  ],
+  "runs": [
+    {
+      "id": "run_mvn5gxne_dg9guaj559p",
+      "revision": 0,
+      "status": "completed",
+      "importedFromBackup": true,
+      "snapshotAppVersion": "2.0.0-rc.2",
+      "points": 2,
+      "timeBounds": [
+        0,
+        0.002
+      ],
+      "continuous": false,
+      "latestIndicators": [
+        {
+          "ref": "IND1",
+          "value": "0",
+          "label": "LOW",
+          "on": false,
+          "available": true,
+          "time": 0.002
+        },
+        {
+          "ref": "IND2",
+          "value": "1",
+          "label": "HIGH",
+          "on": true,
+          "available": true,
+          "time": 0.002
+        }
+      ],
+      "history": "Marked as imported; preserved rc.2 evidence."
+    },
+    {
+      "id": "run_mvn5hrz6_mgiuor0batj",
+      "revision": 1,
+      "status": "completed",
+      "importedFromBackup": true,
+      "snapshotAppVersion": "2.0.0-rc.2",
+      "points": 2,
+      "timeBounds": [
+        0,
+        0.002
+      ],
+      "continuous": false,
+      "latestIndicators": [
+        {
+          "ref": "IND1",
+          "value": "1",
+          "label": "HIGH",
+          "on": true,
+          "available": true,
+          "time": 0.002
+        },
+        {
+          "ref": "IND2",
+          "value": "0",
+          "label": "LOW",
+          "on": false,
+          "available": true,
+          "time": 0.002
+        }
+      ],
+      "history": "Marked as imported; preserved rc.2 evidence."
+    },
+    {
+      "id": "run_mvn5j31i_j4w6yf8oi8p",
+      "revision": 2,
+      "status": "completed-with-warnings",
+      "importedFromBackup": true,
+      "snapshotAppVersion": "2.0.0-rc.2",
+      "points": 23,
+      "timeBounds": [
+        0.0155,
+        0.017499999999999998
+      ],
+      "continuous": true,
+      "latestIndicators": [
+        {
+          "ref": "IND1",
+          "value": "1",
+          "label": "HIGH",
+          "on": true,
+          "available": true,
+          "time": 0.017499999999999998
+        },
+        {
+          "ref": "IND2",
+          "value": "0",
+          "label": "LOW",
+          "on": false,
+          "available": true,
+          "time": 0.017499999999999998
+        }
+      ],
+      "history": "Marked as imported; preserved rc.2 evidence."
+    },
+    {
+      "id": "run_mvn7eo6y_c791e9iw2zb",
+      "revision": 2,
+      "status": "completed-with-warnings",
+      "importedFromBackup": false,
+      "snapshotAppVersion": "2.0.0-rc.2",
+      "points": 21,
+      "timeBounds": [
+        0.0081,
+        0.0101
+      ],
+      "continuous": true,
+      "latestIndicators": [
+        {
+          "ref": "IND1",
+          "value": "0",
+          "label": "LOW",
+          "on": false,
+          "available": true,
+          "time": 0.0101
+        },
+        {
+          "ref": "IND2",
+          "value": "1",
+          "label": "HIGH",
+          "on": true,
+          "available": true,
+          "time": 0.0101
+        }
+      ],
+      "operatorCaptureNote": {
+        "reportedRuntimeBuild": "a193c1048772c4f0",
+        "stage": "intermediate rc.3 browser session",
+        "source": "Separate browser-operator observation; not proven by this backup or inferred from its snapshot version."
+      }
+    },
+    {
+      "id": "run_mvn7gre8_3db0vegn962",
+      "revision": 2,
+      "status": "completed",
+      "importedFromBackup": false,
+      "snapshotAppVersion": "2.0.0-rc.2",
+      "points": 2,
+      "timeBounds": [
+        0,
+        0.002
+      ],
+      "continuous": false,
+      "latestIndicators": [
+        {
+          "ref": "IND1",
+          "value": "1",
+          "label": "HIGH",
+          "on": true,
+          "available": true,
+          "time": 0.002
+        },
+        {
+          "ref": "IND2",
+          "value": "0",
+          "label": "LOW",
+          "on": false,
+          "available": true,
+          "time": 0.002
+        }
+      ],
+      "operatorCaptureNote": {
+        "reportedRuntimeBuild": "a193c1048772c4f0",
+        "stage": "intermediate rc.3 browser session",
+        "source": "Separate browser-operator observation; not proven by this backup or inferred from its snapshot version."
+      }
+    },
+    {
+      "id": "run_mvn7imid_uom750skwz",
+      "revision": 3,
+      "status": "completed-with-warnings",
+      "importedFromBackup": false,
+      "snapshotAppVersion": "2.0.0-rc.3",
+      "points": 13,
+      "timeBounds": [
+        0,
+        0.0012
+      ],
+      "continuous": true,
+      "latestIndicators": [
+        {
+          "ref": "IND1",
+          "value": "0",
+          "label": "LOW",
+          "on": false,
+          "available": true,
+          "time": 0.0012
+        },
+        {
+          "ref": "IND2",
+          "value": "1",
+          "label": "HIGH",
+          "on": true,
+          "available": true,
+          "time": 0.0012
+        }
+      ],
+      "operatorCaptureNote": {
+        "reportedRuntimeBuild": "8a99d6d843d32aa6",
+        "stage": "final rc.3 browser session",
+        "source": "Separate browser-operator observation; not proven by this backup or inferred from its snapshot version."
+      }
+    },
+    {
+      "id": "run_mvn7jxzj_n3u2b3bo2m",
+      "revision": 4,
+      "status": "completed",
+      "importedFromBackup": false,
+      "snapshotAppVersion": "2.0.0-rc.3",
+      "points": 2,
+      "timeBounds": [
+        0,
+        0.002
+      ],
+      "continuous": false,
+      "latestIndicators": [
+        {
+          "ref": "IND1",
+          "value": "1",
+          "label": "HIGH",
+          "on": true,
+          "available": true,
+          "time": 0.002
+        },
+        {
+          "ref": "IND2",
+          "value": "0",
+          "label": "LOW",
+          "on": false,
+          "available": true,
+          "time": 0.002
+        }
+      ],
+      "operatorCaptureNote": {
+        "reportedRuntimeBuild": "8a99d6d843d32aa6",
+        "stage": "final rc.3 browser session",
+        "source": "Separate browser-operator observation; not proven by this backup or inferred from its snapshot version."
+      }
+    }
+  ],
+  "installation": {
+    "observedStatus": "failed",
+    "observedSummary": {
+      "passed": 5,
+      "failed": 1,
+      "unavailable": 44
+    },
+    "loadedBuild": "8a99d6d843d32aa6",
+    "manifestBuild": "8a99d6d843d32aa6",
+    "scope": "http://terminal.local:4173/",
+    "environment": {
+      "secureContext": false,
+      "fetch": true,
+      "worker": true,
+      "webAssembly": true,
+      "sha256": false,
+      "serviceWorker": false,
+      "indexedDB": true,
+      "online": true,
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36"
+    },
+    "engineChecks": [
+      {
+        "id": "engine:digital",
+        "status": "passed",
+        "details": {
+          "fixture": "Binary source and inverter",
+          "high": "1",
+          "inverted": "0",
+          "engine": "cb-digital-kernel-2"
+        }
+      },
+      {
+        "id": "engine:coordinated",
+        "status": "passed",
+        "details": {
+          "fixture": "Schmitt RC feedback across two retained updates",
+          "completedTime": 0.004,
+          "boundaryVoltage": 1.5969113854651653,
+          "finalVoltage": 2.2153220288065647,
+          "engine": "cb-coordinated-1"
+        }
+      },
+      {
+        "id": "engine:ngspice",
+        "status": "passed",
+        "details": {
+          "fixture": "10 V equal-resistor divider",
+          "expectedVoltage": 5,
+          "measuredVoltage": 5,
+          "engine": "ngspice",
+          "engineVersion": "45.2"
+        }
+      }
+    ],
+    "previewAssetFailure": {
+      "id": "asset:icon.svg",
+      "label": "icon.svg",
+      "status": "failed",
+      "message": "Response declares 1655 bytes; the permitted maximum is 443. HTTP 200; Content-Type image/svg+xml.",
+      "code": "INSTALLATION_RESPONSE_SIZE",
+      "assetUrl": "http://terminal.local:4173/icon.svg",
+      "httpStatus": 200,
+      "contentType": "image/svg+xml",
+      "expectedBytes": 443,
+      "declaredBytes": "1655",
+      "contentEncoding": null
+    }
+  },
+  "backup": {
+    "activeRunId": "run_mvn7jxzj_n3u2b3bo2m",
+    "currentRevision": 4,
+    "currentProjectVersion": "2.0.0-rc.3",
+    "totalRuns": 7,
+    "importedHistoricalRuns": 3,
+    "notMarkedImportedRuns": 4,
+    "snapshotVersions": {
+      "2.0.0-rc.2": 5,
+      "2.0.0-rc.3": 2
+    },
+    "operatorReportedFinalBuildRuns": 2,
+    "operatorReportedIntermediateBuildRuns": 2,
+    "latestIndicators": [
+      {
+        "ref": "IND1",
+        "value": "1",
+        "label": "HIGH",
+        "on": true,
+        "available": true,
+        "time": 0.002
+      },
+      {
+        "ref": "IND2",
+        "value": "0",
+        "label": "LOW",
+        "on": false,
+        "available": true,
+        "time": 0.002
+      }
+    ],
+    "runtimeBuildProvenance": "The application runtime build is not stored in the project backup; the distinct operator capture notes remain external observations."
+  },
+  "csv": {
+    "file": "evidence/rc203-browser-results.csv",
+    "sourceRunId": "run_mvn7jxzj_n3u2b3bo2m",
+    "sourceRevision": 4,
+    "columns": [
+      "Time (s)",
+      "D(input) (logic)",
+      "D(inverted) (logic)",
+      "Source state (logic)",
+      "Inverted state (logic)"
+    ],
+    "dataRows": 2,
+    "exactProductionExportMatch": true
+  },
+  "dependencies": {
+    "src/installation-ui.js": "ee8787f8408e6a894ce23b8cbe2b9e8c2d3a1477820d4dc1069a7b0aeae6dc4d",
+    "src/storage.js": "4987c11bbf7a37ffb24feb77ccab410169cc0f282e3f00de32794301ae27d43e",
+    "src/continuous-evidence.js": "af8cb5b91bb3dc90f03943b9dd97ca8f5bf489a2b755cc729612c48e05aad9c5",
+    "src/experiments.js": "dc2314da3aa6bf0202345f2af4e8bb973ba230ada0e936d445b94ad2cbf043c1",
+    "src/netlist.js": "88f46730d8c0faa07601feb7edb2876eb3952b4abd4e3f7a57f364f7117345b4",
+    "src/model.js": "aecbae5815b4d8dfa017a3d0c8b40b536f7b06566e099b8970179bed4b33ac4e",
+    "src/library.js": "ab341ea3d86c9f01c9994af087a109fdcf985591c4e5e1965d33c07fe58a3c65",
+    "src/timing-evidence.js": "0fb5e73c2e5679fab7bfe969072dbc59df53e54c6eef6f31124e9f002bcfeb5e",
+    "src/timing.js": "6b68bb2e175182eae949ed2623368632971d347d52c597bb2c65573f4647fb9c",
+    "src/truth-table-evidence.js": "81d891f186ed388f91692b2297ae7c8c9a18797509ac821edeb1c6d92c083feb",
+    "src/installation-check.js": "699f53bed1523de87510336145b0f25a38b8df9603898cac9101cd6348f6947f",
+    "src/coordinated-engine.js": "94348c12e8fd3d4706f3b2e57ef35bb82d2123251d471fb43486af0e25a5d55f",
+    "src/coordinated-results.js": "e89ec29eb0f0517b1fa40be565173323af5e9223a88c667c983e83e93c568655",
+    "src/coordinated.js": "12d2ded7ca0d500718c567ea212827918fae423bcc9179c85c5cb28fc3429b6a",
+    "src/coordinated-digital.js": "6e73b4b7b982b2e3f807e23e96d62f25cee916341762e0da8ae41c32bf2d23d5",
+    "src/digital.js": "ab9e81e869af307fab57967fe9aa80e484213c6d96479d9b77e0e63e1271ba36",
+    "src/digital-engine.js": "86f2b39466f8784ee9311db7633af299f2d99bf6a82a45dabef56ed33e227089",
+    "src/engine.js": "a6e50bebb2ed8572633605c6ea286ea3e71390651f21b645f47b5730367624fd",
+    "src/plots.js": "2be5a841910fee0a466eb08ee241bcd7a82926ccdf8cbe626ed4325d7361e911",
+    "src/displays.js": "4f67bb130f6af75844555d2372ce3e888cf16241bf9ac48853dc99ea292f0f9d"
+  },
+  "verifier": {
+    "file": "scripts/verify-rc203-downloads.mjs",
+    "sha256": "1ace8706b08032ca5fb138da13c159ec011835b3cd8ce40060ade52bb0dfba04"
+  },
+  "summary": {
+    "artifacts": 3,
+    "capturedRuns": 7,
+    "importedHistoricalRuns": 3,
+    "notMarkedImportedRuns": 4,
+    "jsonRoundTrips": 3,
+    "recordedSamples": 65,
+    "independentDigitalSampleComparisons": 130,
+    "recordedDigitalEvents": 18,
+    "csvDataRows": 2,
+    "sourceDependencies": 20,
+    "passedChecks": 80,
+    "failedChecks": 0
+  }
+}

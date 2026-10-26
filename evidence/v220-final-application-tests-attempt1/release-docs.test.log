@@ -1,0 +1,17 @@
+✔ all installation references follow stable, prerelease and build-metadata versions (2.757539ms)
+✔ known stale ZIP, engine, worker, recovery and displayed-version instructions fail the build check (0.601115ms)
+✔ explicit historical operational examples and old evidence identities remain unchanged (0.187486ms)
+✔ history exemptions must have balanced explicit boundaries (0.229068ms)
+✔ unknown or unrendered placeholders and templates missing substitutions are rejected (0.192193ms)
+✔ release labels cannot inject paths, HTML, query fields or unbounded input (0.180125ms)
+✔ rendering is deterministic, leaves source unchanged and supports a later release without source edits (0.193164ms)
+✔ actual guide and recovery templates remain usable across release versions (7.069205ms)
+✔ recovery aliases use the same source and rendering preserves all recovery script bytes (1.710879ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17.676688
